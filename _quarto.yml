@@ -1,0 +1,33 @@
+project:
+  type: website
+
+website:
+  description: "Open Research Notes & Dynamic Notebooks"
+  site-url: https://nicdeclic.github.io/quantum-molecular-computing
+  title: "Quantum Molecular Computing"
+  favicon: images/logo.png
+  navbar:
+    logo: images/logo-white.png
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/nicdeclic/quantum-molecular-computing
+    
+format:
+  html:
+    theme:
+      - yeti
+
+    css: styles.css
+  pdf:
+    documentclass: article
+    geometry: margin=0.5in
+
+comments:
+  giscus:
+    repo: nicdeclic/quantum-molecular-computing
+    repo-id: "R_kgDOUVPuaw"
+    category: "General"
+    category-id: "DIC_kwDOUVPua84DFUxc"
+    mapping: title
+

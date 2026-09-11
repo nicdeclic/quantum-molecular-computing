@@ -1,0 +1,2 @@
+Feedback & Collaboration<br/>
+I am conducting this research independently and welcome feedback, questions, or critiques. If you spot a mathematical error, a bug in the code, or have suggestions for literature to explore, please open an Issue or join the Discussions tab!

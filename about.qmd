@@ -1,0 +1,15 @@
+---
+title: "About"
+image: profile.jpg
+about:
+  template: jolla
+  links:    
+    - icon: github
+      text: Github
+      href: https://github.com/nicdeclic/quantum-molecular-computing
+    - icon: github
+      text: ORCID
+      href: https://orcid.org/0009-0001-2702-2256
+---
+
+About this blog

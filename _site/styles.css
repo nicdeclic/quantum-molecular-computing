@@ -1,0 +1,8 @@
+/* css styles */
+/* Agrandir le logo de la barre de navigation */
+.navbar-brand .navbar-logo {
+  max-height: 50px; /* Ajustez cette valeur (ex: 50px, 60px, 70px) */
+  height: auto;
+  width: auto;
+  margin-top: -5px; /* Permet parfois de mieux recentrer verticalement si très grand */
+}

@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this research or software, please cite it as below."
+authors:
+  - family-names: "Joyeux"
+    given-names: "Nicolas"
+    orcid: "https://orcid.org/0009-0001-2702-2256"
+title: "Quantum Molecular Computing Research Repository"
+version: 1.0.0
+date-released: 2026-09-10
+url: "https://github.com/nicdeclic/quantum-molecular-computing"
