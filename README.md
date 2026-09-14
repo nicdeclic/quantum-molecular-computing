@@ -12,6 +12,17 @@ You can read the rendered notebooks, execute interactive widgets, and browse for
 
 ---
 
+## 🤝 Feedback & Collaboration
+I am conducting this research independently and welcome feedback, questions, or critiques. If you spot a mathematical error, a bug in the code, or have suggestions for literature to explore, please open an Issue or join the Discussions tab!  
+Peer review, constructive skepticism, and suggested improvements are central to this project's ethos.
+
+---
+
+## 📄 Citation
+If you reference, build upon, or use this research in your own work, please cite it using the metadata provided in the CITATION.cff file, or click the "Cite this repository" button on the right sidebar.
+
+---
+
 ## 🌐 Live Research Blog
 
 This repository automatically compiles into an open-access, interactive scientific website powered by [Quarto](https://quarto.org/). 
@@ -59,18 +70,6 @@ This will spin up a local preview in your browser where code modifications re-re
 
 ---
 
-## 🤝 Feedback & Collaboration
-I am conducting this research independently and welcome feedback, questions, or critiques. If you spot a mathematical error, a bug in the code, or have suggestions for literature to explore, please open an Issue or join the Discussions tab!  
-Peer review, constructive skepticism, and suggested improvements are central to this project's ethos.
-
----
-
-## 📄 Citation
-If you reference, build upon, or use this research in your own work, please cite it using the metadata provided in the CITATION.cff file, or click the "Cite this repository" button on the right sidebar.
-
----
-
 ## ⚖️ License
 Code & Computational Notebooks: Licensed under the Apache License 2.0.  
 Text, Visuals & Research Notes: Licensed under Creative Commons Attribution 4.0 International (CC-BY 4.0).
-
