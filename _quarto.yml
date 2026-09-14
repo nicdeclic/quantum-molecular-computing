@@ -3,7 +3,7 @@ project:
 
 website:
   description: "Open Research Notes & Dynamic Notebooks"
-  site-url: https://nicdeclic.github.io/quantum-molecular-computing
+  site-url: https://nicdeclic.com/
   title: "Quantum Molecular Computing"
   favicon: images/logo.png
   navbar:
@@ -11,7 +11,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/nicdeclic/quantum-molecular-computing
+        href: https://nicdeclic.com/
     
 format:
   html:    

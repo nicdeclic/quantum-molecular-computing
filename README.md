@@ -8,7 +8,7 @@ This project documents an ongoing, independent theoretical investigation into de
 Here, you will find dynamic computational notebooks, theoretical derivations, chemical graph models, and preliminary simulations investigating how delocalized $\pi$-electron systems and carbon resonance structures can be harnessed for quantum information processing.
 
 You can read the rendered notebooks, execute interactive widgets, and browse formatted reports here:
-👉 **[Read the Live Research Notes](https://nicdeclic.github.io/quantum-molecular-computing)**  
+👉 **[Read the Live Research Notes](https://nicdeclic.com/)**  
 
 ---
 
