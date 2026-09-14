@@ -7,7 +7,10 @@ about:
     - icon: github
       text: Github
       href: https://github.com/nicdeclic/quantum-molecular-computing
-    - icon: github
+    - icon: chat-dots
+      text: Discussions & Feedback
+      href: https://github.com/nicdeclic/quantum-molecular-computing/discussions
+    - icon: bookmark-check
       text: ORCID
       href: https://orcid.org/0009-0001-2702-2256
 ---

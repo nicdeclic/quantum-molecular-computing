@@ -3,7 +3,7 @@
 
 Welcome to the **Quantum Molecular Computing** research repository. 
 
-This project documents an ongoing, independent theoretical investigation into designing quantum computing architectures using **conjugated carbon bonds** as molecular quantum logic gates. 
+This project documents an ongoing, independent theoretical investigation into designing quantum computing architectures using **conjugated carbon bonds** as molecular logic gates. 
 
 Here, you will find dynamic computational notebooks, theoretical derivations, chemical graph models, and preliminary simulations investigating how delocalized $\pi$-electron systems and carbon resonance structures can be harnessed for quantum information processing.
 
