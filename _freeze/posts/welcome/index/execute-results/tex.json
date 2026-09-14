@@ -1,0 +1,12 @@
+{
+  "hash": "c8e4af11e1966b8e89e32664b7fba4ec",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Welcome To A New Space to Explore!\"\nauthor: \"NicDeclic\"\ndate: \"2026-09-11\"\ncategories: [news]\nimage: \"/images/splash.jpg\"\n---\n\n![](/images/splash.jpg)  \n\nThis is the first post in a Quarto blog. Welcome!\n\n::: {.cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see the Qiskit circuit setup code\"}\nfrom qiskit import QuantumCircuit\n\n# 1. Vous créez votre circuit\nqc = QuantumCircuit(2)\nqc.h(0)          # Porte de Hadamard\nqc.cx(0, 1)      # Porte CNOT (intrication)\nqc.measure_all()\n\n# 2. Vous affichez le circuit avec un rendu pro\nqc.draw(output='mpl') # 'mpl' utilise Matplotlib pour un dessin haute résolution\n```\n\n::: {.cell-output .cell-output-display execution_count=6}\n![Quantum circuit for Bell State generation.](index_files/figure-pdf/fig-bell-state-output-1.pdf){#fig-bell-state fig-pos='H'}\n:::\n:::\n\n\n",
+    "supporting": [
+      "index_files\\figure-pdf"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

@@ -1,0 +1,8 @@
+quarto
+jupyter
+ipython
+matplotlib
+qiskit
+qiskit-aer
+schemdraw
+rdkit

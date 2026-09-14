@@ -14,7 +14,7 @@ website:
         href: https://github.com/nicdeclic/quantum-molecular-computing
     
 format:
-  html:
+  html:    
     theme:
       - yeti
 
