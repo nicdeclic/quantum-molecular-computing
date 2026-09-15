@@ -1,157 +1,71 @@
 ---
-title: "Welcome To A Whole New Space to Explore!"
+title: "Welcome To A New Branch Of Quantum Computing!"
+description: "A fusion of computer science, physics, and chemistry."
 author: "NicDeclic"
-date: "2026-09-11"
-categories: [news]
+date: "2026-09-15"
+categories: [Introduction, Philosophy, Quantum]
 image: "/images/splash.jpg"
 ---
+
 ![](/images/splash.jpg)  
 
-test
+::: {.text-end}
+> *"Out of the void arises matter, just as out of silence emerges an idea."*  
+> — **Professor Alvin**
+:::
 
-```{python}
-#| code-summary: "Click to see the code imports"
-#| code-fold: true
+---
 
-from qiskit import QuantumCircuit
+### Welcome, Fellow Explorers!  
+  
 
-import schemdraw
-import schemdraw.logic as logic
-import schemdraw.elements as elm
+Whether you are a seasoned quantum physicist, a curious software engineer, a student wandering through the fringes of the web, or simply someone fascinated by the architecture of reality: **welcome aboard.** 
 
-from rdkit import Chem
-from rdkit.Chem import Draw
-from rdkit.Chem.Draw import rdMolDraw2D
-from IPython.display import SVG
-```
+You have just stepped into an open laboratory dedicated to an unconventional scientific journey. Here, we step away from traditional silicon chips and ultra-cold cryostats to explore how the elegant, subtle geometry of conjugated carbon systems could form the backbone of a radically different kind of quantum processor. Make yourself comfortable, bring your curiosity, and let’s explore what happens when we look at matter through the lens of computation.
 
-This is the first post in a Quarto blog. Welcome!
+---
 
-```{python}
-#| label: fig-bell-state
-#| fig-cap: "Quantum circuit for Bell State generation."
-#| code-fold: true
-#| code-summary: "Click to see the Qiskit circuit setup code"
-#| warning: false
-#| message: false
+### How I Work  
+  
 
-# 1. Vous créez votre circuit
-qc = QuantumCircuit(2)
-qc.h(0)          # Porte de Hadamard
-qc.cx(0, 1)      # Porte CNOT (intrication)
-qc.measure_all()
+The bulk of this research has been conducted over the years using nothing more than a simple graphite pencil and stacks of paper. I find it deeply amusing that the very same carbon atoms I smear across a sheet of paper might one day, if arranged with enough precision, form a quantum supercomputer.
 
-# 2. Vous affichez le circuit avec un rendu pro
-qc.draw(output='mpl') # 'mpl' utilise Matplotlib pour un dessin haute résolution
-```
+This website is the digital transcription of my physical laboratory notebook, and I will continue adding new findings as time permits. It is an evolving work in progress.  
 
+Scientific inquiry consists of sudden bursts of euphoria followed by long, quiet stretches of rumination. Do not be discouraged if updates pause for long intervals; that downtime is simply the recharge cycle my neurons require before taking the next quantum leap.
 
-```{python}
-# Création du dessin
-with schemdraw.Drawing() as d:
-    # 1. Porte logique standard (AND)
-    A = d.add(logic.And())
-    
-    # 2. Porte NOT connectée à la sortie de la porte AND
-    d.add(logic.Not().at(A.out))
-    
-    # 3. Une ligne vers la droite
-    L = d.add(elm.Line().right().length(2).label('State |ψ⟩', loc='top'))
-    
-    # 4. Pour un cercle customisé, on utilise elm.Dot ou les formes 'shapes' :
-    # Solution A : Un grand point / nœud coloré (très simple)
-    d.add(elm.Dot(radius=0.5).at(L.end).color('lightblue').label('Molecule\nNode', loc='center', color='black', fontsize=9))
-    
-    # Solution B : Pour faire vos propres boîtes "boîte noire" quantique :
-    d.add(elm.Line().right().length(1.5))
-    d.add(elm.Ic(pins=[elm.IcPin(name='In', side='left'), 
-                       elm.IcPin(name='Out', side='right')],
-                 size=(2, 2)).label('Custom\nGate', loc='center'))
-```
+---
 
+### A Disclaimer on the Speculation / Wild Thoughts Section  
+  
 
-```{mermaid}
-flowchart LR
-    A["Initial State |0⟩"] --> B["Molecular Hamiltonian"]
-    B --> C{"VQE Optimization"}
-    C -->|Update parameters| B
-    C -->|Converged| D["Ground State Energy"]
-```
+The creative phase of scientific discovery is often anything but strictly scientific. True inspiration can strike from the most unexpected corners of reality.
 
-```{dot}
-graph G {
-  layout=neato
-  run -- intr;
-  intr -- runbl;
-  runbl -- run;
-  run -- kernel;
-  kernel -- zombie;
-  kernel -- sleep;
-  kernel -- runmem;
-  sleep -- swap;
-  swap -- runswap;
-  runswap -- new;
-  runswap -- runmem;
-  new -- runmem;
-  sleep -- runmem;
-}
-```
+The **Speculations** section at the bottom of each article exists so I can think out loud without self-censorship. Any idea is welcome there, provided it has a conceptual thread connecting it to the topic at hand — and above all, the spark needed to ignite novel ways of thinking.
 
-```{python}
-# 1. Définir la molécule à partir de sa chaîne SMILES
-# Exemple : La caféine
-caffeine_smiles = "CN1C=NC2=C1C(=O)N(C(=O)N2C)C"
-mol = Chem.MolFromSmiles(caffeine_smiles)
+*A fair warning:* If your sensibilities are offended by free-form intuition that casually weaves rigorous science, spaghetti sauce, extraterrestrials, and unicorns into the same conceptual thought experiment—**skip that section entirely!**
 
-# 2. Préparer un dessin vectoriel haute définition (SVG)
-drawer = rdMolDraw2D.MolDraw2DSVG(450, 300) # Largeur, Hauteur
+---
 
-# Options d'esthétique scientifique
-options = drawer.drawOptions()
-options.addAtomIndices = True  # Affiche le numéro de chaque atome (très utile pour référencer vos qubits !)
-options.bondLineWidth = 2      # Épaisseur des liaisons chimiques
+### House Rules for Discussions & Feedback  
+  
 
-# 3. Mettre en évidence des atomes spécifiques 
-# Imaginons que les atomes 4, 5 et 6 forment le sous-système quantique que vous étudiez :
-target_atoms = [4, 5, 6]
-target_bonds = [mol.GetBondBetweenAtoms(4, 5).GetIdx(), mol.GetBondBetweenAtoms(5, 6).GetIdx()]
+You are warmly invited to comment, debate, and constructively critique any post. To keep this space constructive and enjoyable to read, please adhere to a single cardinal rule:
 
-# Dessiner la molécule avec surlignage
-drawer.DrawMolecule(
-    mol, 
-    highlightAtoms=target_atoms, 
-    highlightBonds=target_bonds,
-    highlightAtomColors={4: (0.7, 0.9, 1.0), 5: (0.7, 0.9, 1.0), 6: (0.7, 0.9, 1.0)} # Bleu clair
-)
-drawer.FinishDrawing()
+> **Ad hominem attacks are strictly forbidden. Ideas, however, can be attacked as fiercely and relentlessly as you wish.**
 
-# 4. Afficher directement dans Quarto
-svg = drawer.GetDrawingText()
-SVG(svg)
-```
+Bring your sharpest arguments, not your personal grievances.
 
+---
 
-```{python}
-# Initialiser le dessin vectoriel
-with schemdraw.Drawing() as d:
-    d.config(fontsize=12, unit=2.5)
+### The Road Ahead  
+  
+  
+It is important to emphasize that the work presented across these notes remains firmly in the theoretical realm. While these concepts are explored with analytical depth, their real-world physical implementation will demand significant experimental and technological breakthroughs. Scaling and testing them will inevitably reveal growing layers of complexity, demanding both deep interdisciplinary synergy and sustained reflection.
 
-    # 1. Ajouter la porte XOR (Somme)
-    xor = d.add(logic.Xor().label('Sum ($S$)', loc='right'))
-    
-    # 2. Entrées A et B
-    line_A = d.add(elm.Line().left(2).at(xor.in1).label('A', loc='left'))
-    line_B = d.add(elm.Line().left(2).at(xor.in2).label('B', loc='left'))
+And yet, despite all the underlying complexity... the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat.
 
-    # 3. Ajouter la porte AND (Retenue / Carry) en dessous
-    d.add(elm.Line().down(2).at(xor.in1))
-    d.add(elm.Dot()) # Point de connexion (jonction)
-    
-    and_gate = d.add(logic.And().at((xor.in1[0] + 1.5, xor.in1[1] - 2.5)).label('Carry ($C$)', loc='right'))
-    
-    # Connexions vers la porte AND
-    d.add(elm.Wire('|-').to(and_gate.in1))
-    d.add(elm.Line().down(1.7).at(xor.in2))
-    d.add(elm.Dot())
-    d.add(elm.Wire('|-').to(and_gate.in2))
-```
+---
+
+👉 **Ready to begin? Start reading here:**  
+<!-- **["A Refresher on Boolean Logic"](posts/boolean-logic/index.qmd)** -->

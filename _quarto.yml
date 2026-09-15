@@ -11,7 +11,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://nicdeclic.com/
+        href: https://github.com/nicdeclic/quantum-molecular-computing
     
 format:
   html:    

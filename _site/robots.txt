@@ -1,1 +1,1 @@
-Sitemap: https://nicdeclic.github.io/quantum-molecular-computing/sitemap.xml
+Sitemap: https://nicdeclic.com/sitemap.xml

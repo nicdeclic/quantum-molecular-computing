@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nicdeclic.github.io/quantum-molecular-computing/posts/welcome/index.html</loc>
-    <lastmod>2026-09-11T20:45:57.801Z</lastmod>
+    <loc>https://nicdeclic.com/posts/welcome/index.html</loc>
+    <lastmod>2026-09-15T20:23:59.966Z</lastmod>
   </url>
   <url>
-    <loc>https://nicdeclic.github.io/quantum-molecular-computing/index.html</loc>
+    <loc>https://nicdeclic.com/index.html</loc>
     <lastmod>2026-09-11T15:14:02.144Z</lastmod>
   </url>
   <url>
-    <loc>https://nicdeclic.github.io/quantum-molecular-computing/about.html</loc>
-    <lastmod>2026-09-11T15:14:02.144Z</lastmod>
+    <loc>https://nicdeclic.com/about.html</loc>
+    <lastmod>2026-09-15T15:47:51.436Z</lastmod>
   </url>
   <url>
-    <loc>https://nicdeclic.github.io/quantum-molecular-computing/posts/post-with-code/index.html</loc>
-    <lastmod>2026-09-11T15:14:02.144Z</lastmod>
+    <loc>https://nicdeclic.com/posts/post-with-code/index.html</loc>
+    <lastmod>2026-09-15T20:40:05.926Z</lastmod>
   </url>
 </urlset>

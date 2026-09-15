@@ -1,8 +1,9 @@
 ---
-title: "About"
+title: "About The Author"
+subtitle: "Nicolas Joyeux"
 image: profile.jpg
 about:
-  template: jolla
+  template: solana
   links:    
     - icon: github
       text: Github
@@ -14,5 +15,15 @@ about:
       text: ORCID
       href: https://orcid.org/0009-0001-2702-2256
 ---
+::: {.content-visible when-format="pdf"}
+\begin{center}
+\includegraphics[width=4cm,height=4cm,keepaspectratio]{profile.jpg}
+\end{center}
+:::
+I am an independent researcher pursuing a new paradigm in quantum information: computing built directly upon the physics of conjugated carbon bonds.  
 
-About this blog
+I graduated with a B.Sc. in Computer Science from the Université de Montréal in 1997. Over the decades, my path has taken me through the complete stack of computation—from discrete transistor electronics and microprocessor design up to low-level assembly and modern high-level languages.  
+
+Investigating carbon-based quantum logic naturally forced me outside traditional silos, driving me to dive into chemistry, biology, mathematics, and physics. While I feel I have only scratched the surface of these vast disciplines, this journey has shaped my approach into one driven entirely by systems thinking.  
+
+Beyond the terminal and the lab bench, my thinking is anchored in the philosophical foundations of deep ecology. I actively explore radical alternatives for future societies — questioning our relationship with the living world, re-evaluating technological necessity, and seeking systemic pathways to genuinely improve how we inhabit this Earth.
