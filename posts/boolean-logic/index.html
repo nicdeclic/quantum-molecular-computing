@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="NicDeclic">
+<meta name="dcterms.date" content="2026-09-16">
+<meta name="description" content="Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.">
 
-<title>Open Research Notes &amp; Dynamic Notebooks – Quantum Molecular Computing</title>
+<title>A Refresher on Boolean Logic – Quantum Molecular Computing</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,29 +29,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-97cbdf4c33b0c1d59c3c8504f205f74a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-97cbdf4c33b0c1d59c3c8504f205f74a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,35 +112,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -136,8 +143,8 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Quantum Molecular Computing" href="index.xml" data-external="1"></head>
+<link rel="stylesheet" href="../../styles.css">
+</head>
 
 <body class="nav-fixed quarto-light">
 
@@ -146,11 +153,11 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logo-white.png" alt="" class="navbar-logo light-content">
-    <img src="./images/logo-white.png" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo-white.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo-white.png" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Quantum Molecular Computing</span>
     </a>
   </div>
@@ -161,7 +168,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About The Author</span></a>
   </li>  
   <li class="nav-item compact">
@@ -179,164 +186,413 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Open Research Notes &amp; Dynamic Notebooks</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">A Refresher on Boolean Logic</h1>
+                  <div>
+        <div class="description">
+          Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Introduction</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>NicDeclic </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 16, 2026</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="SW50cm9kdWN0aW9u">Introduction <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UGhpbG9zb3BoeQ==">Philosophy <span class="quarto-category-count">(1)</span></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<div style="font-size: 1.3em;">
-<p>👉 <strong>New to this site? Start reading here:</strong><br>
-<strong><a href="./posts/welcome/index.html">“Welcome To A New Branch Of Quantum Computing!”</a></strong></p>
+<p><img src="../../images/boolean_logic.jpg" class="img-fluid"></p>
+<div class="text-end">
+<blockquote class="blockquote">
+<p><em>“Nature proposes an ‘AND’. Our observation enforces an ‘OR’.”</em><br>
+— <strong>Professor Alvin</strong></p>
+</blockquote>
 </div>
 <hr>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-      <option value="listing-author" data-direction="asc">
-        Author
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<p><img src="../../images/construction.png" class="img-fluid"></p>
+<hr>
+<p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/boolean-logic/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<div id="18e5e245" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to see library imports</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'google.colab'</span> <span class="kw">in</span> sys.modules:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Download qmc.py from GitHub</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>q https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>nicdeclic<span class="op">/</span>quantum<span class="op">-</span>molecular<span class="op">-</span>computing<span class="op">/</span>main<span class="op">/</span>qmc.py</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Download requirements.txt from GitHub</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>q https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>nicdeclic<span class="op">/</span>quantum<span class="op">-</span>molecular<span class="op">-</span>computing<span class="op">/</span>main<span class="op">/</span>requirements.txt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Install dependencies</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>pip install <span class="op">-</span>q <span class="op">-</span>r requirements.txt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"../.."</span>) <span class="co"># Select root directory</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qmc <span class="im">import</span> <span class="op">*</span> <span class="co"># QMC library</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="SW50cm9kdWN0aW9u" data-listing-date-sort="1789617600000" data-listing-file-modified-sort="1789761491321" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
-<div class="thumbnail"><a href="./posts/quick-intro/index.html" class="no-external">
-
-<img loading="lazy" src="./images/5year old toys.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/quick-intro/index.html" class="no-external">Quantum Molecular Computing Explained to a 5 Year Old</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW50cm9kdWN0aW9u'); return false;">Introduction</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/quick-intro/index.html" class="no-external">
-<p>Despite all the underlying complexity… the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/quick-intro/index.html" class="no-external">
-<div class="listing-date">
-Sep 17, 2026
-</div>
-<div class="listing-author">
-NicDeclic
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="SW50cm9kdWN0aW9u" data-listing-date-sort="1789531200000" data-listing-file-modified-sort="1789761413014" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="738">
-<div class="thumbnail"><a href="./posts/boolean-logic/index.html" class="no-external">
-
-<img loading="lazy" src="./images/boolean_logic.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/boolean-logic/index.html" class="no-external">A Refresher on Boolean Logic</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW50cm9kdWN0aW9u'); return false;">Introduction</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/boolean-logic/index.html" class="no-external">
+<section id="logical-states" class="level3">
+<h3 class="anchored" data-anchor-id="logical-states">Logical States</h3>
 <p>Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.</p>
-</a></div>
+<p>Logic gates are the foundational building blocks of digital electronics and modern computing. They manipulate binary signals—units of information represented by bits that take one of two distinct values: “0” (false, low, off) or “1” (true, high, on).</p>
+<p>Throughout this blog, we will express all circuits in matrix form. So, we might as well get comfortable with this concept right from the start.</p>
+<p>We define the logical states as:<br>
+<span class="math display">\[
+\text{ZERO} = \begin{bmatrix} 1 &amp; 0 \end{bmatrix}
+\]</span><br>
+and<br>
+<span class="math display">\[
+\text{ONE} = \begin{bmatrix} 0 &amp; 1 \end{bmatrix}
+\]</span></p>
+<hr>
+</section>
+<section id="logical-gates" class="level3">
+<h3 class="anchored" data-anchor-id="logical-gates">Logical Gates</h3>
+<p>Basic logic gates are the elementary building blocks of any digital system. These gates are: <strong>NOT</strong>, <strong>AND</strong>, <strong>OR</strong>, <strong>NAND</strong>, <strong>NOR</strong>, <strong>XOR</strong>, and <strong>XNOR</strong>. Each gate exhibits a specific behavior, formally defined by a truth table that maps its inputs to its output.</p>
+<section id="the-not-gate-inverter" class="level4">
+<h4 class="anchored" data-anchor-id="the-not-gate-inverter">The NOT Gate (Inverter)</h4>
+<p>The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.</p>
+<p>Symbol :</p>
+<div id="ca39b69d" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print in LaTex format</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>merge.to_katex(row_labels<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>,<span class="st">'d'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<p><span class="math display">\[ \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{a} &amp; 0 &amp; 1 \\ \text{b} &amp; 1 &amp; 0 \\ \text{c} &amp; 1 &amp; 0 \\ \text{d} &amp; 0 &amp; 0 \\  \hline \end{array} \]</span></p>
+<p>Standard NOT Gate (Inverter)</p>
 </div>
-<div class="metadata">
-<a href="./posts/boolean-logic/index.html" class="no-external">
-<div class="listing-date">
-Sep 16, 2026
 </div>
-<div class="listing-author">
-NicDeclic
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="SW50cm9kdWN0aW9uJTJDUGhpbG9zb3BoeQ==" data-listing-date-sort="1789444800000" data-listing-file-modified-sort="1789654663432" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="543">
-<div class="thumbnail"><a href="./posts/welcome/index.html" class="no-external">
+<table class="table table-bordered table-hover caption-top">
+<caption>Truth Table: NOT Gate</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input (<span class="math inline">\(A\)</span>)</th>
+<th style="text-align: center;">Output (<span class="math inline">\(Y\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p>The output is the inverse of the input.</p>
+<p><span class="math display">\[
+\text{NOT} = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
+\]</span></p>
+</section>
+<section id="the-and-gate" class="level4">
+<h4 class="anchored" data-anchor-id="the-and-gate">The AND Gate</h4>
+<p>The output is <code>1</code> only if both inputs <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <code>1</code>.</p>
+<table class="table table-bordered table-hover caption-top">
+<caption>Truth Table: AND Gate</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input <span class="math inline">\(A\)</span></th>
+<th style="text-align: center;">Input <span class="math inline">\(B\)</span></th>
+<th style="text-align: center;">Output <span class="math inline">\(Y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+{\text{AND}} = \begin{bmatrix}
+1 &amp; 0 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<hr>
+</section>
+<section id="the-or-gate" class="level4">
+<h4 class="anchored" data-anchor-id="the-or-gate">The OR Gate</h4>
+<p>The output is <code>1</code> if at least one of the inputs is <code>1</code>.</p>
+<table class="table table-bordered table-hover caption-top">
+<caption>Truth Table: OR Gate</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input <span class="math inline">\(A\)</span></th>
+<th style="text-align: center;">Input <span class="math inline">\(B\)</span></th>
+<th style="text-align: center;">Output <span class="math inline">\(Y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+{\text{OR}} = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1 \\
+0 &amp; 1 \\
+0 &amp; 1
+\end{bmatrix}
+\]</span></p>
+<hr>
+</section>
+<section id="the-nand-gate-not-and" class="level4">
+<h4 class="anchored" data-anchor-id="the-nand-gate-not-and">The NAND Gate (NOT-AND)</h4>
+<p>The output is <code>0</code> only when both inputs are <code>1</code>.</p>
+<table class="table table-bordered table-hover caption-top">
+<caption>Truth Table: NAND Gate</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input <span class="math inline">\(A\)</span></th>
+<th style="text-align: center;">Input <span class="math inline">\(B\)</span></th>
+<th style="text-align: center;">Output <span class="math inline">\(Y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+{\text{NAND}} = \begin{bmatrix}
+0 &amp; 1 \\
+0 &amp; 1 \\
+0 &amp; 1 \\
+1 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<hr>
+</section>
+<section id="the-nor-gate-not-or" class="level4">
+<h4 class="anchored" data-anchor-id="the-nor-gate-not-or">The NOR Gate (NOT-OR)</h4>
+<p>The output is <code>1</code> only when both inputs are <code>0</code>.</p>
+<table class="table table-bordered table-hover caption-top">
+<caption>Truth Table: NOR Gate</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input <span class="math inline">\(A\)</span></th>
+<th style="text-align: center;">Input <span class="math inline">\(B\)</span></th>
+<th style="text-align: center;">Output <span class="math inline">\(Y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+{\text{NOR}} = \begin{bmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+1 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<hr>
+</section>
+<section id="the-xor-gate-exclusive-or" class="level4">
+<h4 class="anchored" data-anchor-id="the-xor-gate-exclusive-or">The XOR Gate (Exclusive OR)</h4>
+<p>The output is <code>1</code> if the inputs are different, and <code>0</code> if they are identical.</p>
+<table class="table table-bordered table-hover caption-top">
+<caption>Truth Table: XOR Gate</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input <span class="math inline">\(A\)</span></th>
+<th style="text-align: center;">Input <span class="math inline">\(B\)</span></th>
+<th style="text-align: center;">Output <span class="math inline">\(Y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+{\text{XOR}} = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1 \\
+0 &amp; 1 \\
+1 &amp; 0
+\end{bmatrix}
+\]</span></p>
+<hr>
+</section>
+<section id="the-xnor-gate-equivalence-gate" class="level4">
+<h4 class="anchored" data-anchor-id="the-xnor-gate-equivalence-gate">The XNOR Gate (Equivalence Gate)</h4>
+<p>The inverse of XOR. The output is <code>1</code> only if the inputs are identical.</p>
+<table class="table table-bordered table-hover caption-top">
+<caption>Truth Table: XNOR Gate</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input <span class="math inline">\(A\)</span></th>
+<th style="text-align: center;">Input <span class="math inline">\(B\)</span></th>
+<th style="text-align: center;">Output <span class="math inline">\(Y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+{\text{XNOR}} = \begin{bmatrix}
+0 &amp; 1 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\]</span></p>
 
-<img loading="lazy" src="./images/splash.jpg" class="thumbnail-image">
 
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To A New Branch Of Quantum Computing!</a>
-</h3>
-<div class="listing-categories">
+</section>
+</section>
 
-<div class="listing-category" onclick="window.quartoListingCategory('SW50cm9kdWN0aW9u'); return false;">Introduction</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGhpbG9zb3BoeQ=='); return false;">Philosophy</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/welcome/index.html" class="no-external">
-<p>Whether you are a seasoned quantum physicist, a curious software engineer, a student wandering through the fringes of the web, or simply someone fascinated by the architecture of reality: <strong>welcome aboard.</strong></p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-Sep 15, 2026
-</div>
-<div class="listing-author">
-NicDeclic
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
