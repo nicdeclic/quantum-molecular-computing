@@ -1,8 +1,26 @@
 /* css styles */
-/* Agrandir le logo de la barre de navigation */
+/* Enlarge navigation bar logo */
 .navbar-brand .navbar-logo {
-  max-height: 50px; /* Ajustez cette valeur (ex: 50px, 60px, 70px) */
+  max-height: 50px; /* Adjust this value as needed (e.g., 50px, 60px, 70px) */
   height: auto;
   width: auto;
-  margin-top: -5px; /* Permet parfois de mieux recentrer verticalement si très grand */
+  margin-top: -5px; /* Fine-tunes vertical centering for larger logos */
+}
+
+/* Modern dark table header */
+table th {
+  background-color: #212529 !important; /* Very dark gray / Near black */
+  color: #ffffff !important;           /* White text */
+  text-align: center;
+}
+
+/* Clean horizontal borders and centered table cells */
+table td {
+  border-bottom: 1px solid #dee2e6;
+  text-align: center;
+}
+
+/* Hide description under post titles */
+header#title-block-header .description {
+    display: none;
 }

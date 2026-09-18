@@ -1,0 +1,21 @@
+---
+title: "Quantum Molecular Computing Explained to a 5 Year Old"
+description: "Despite all the underlying complexity... the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat."
+author: "NicDeclic"
+date: "2026-09-17"
+categories: [Introduction]
+image: "/images/5year old toys.jpg"
+---
+
+![](/images/5year old toys.jpg)  
+
+::: {.text-end}
+> *“Truth is not complex. It is our journey toward it that is.”*  
+> — **Professor Alvin**
+:::
+
+---
+
+![](/images/construction.png)
+
+---

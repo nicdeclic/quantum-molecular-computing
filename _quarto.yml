@@ -19,9 +19,7 @@ format:
       - yeti
 
     css: styles.css
-  pdf:
-    documentclass: article
-    geometry: margin=0.5in
+  ipynb: default
 
 comments:
   giscus:
@@ -30,4 +28,3 @@ comments:
     category: "General"
     category-id: "DIC_kwDOUVPua84DFUxc"
     mapping: title
-

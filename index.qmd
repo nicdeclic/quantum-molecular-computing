@@ -12,4 +12,10 @@ page-layout: full
 title-block-banner: true
 ---
 
-
+::: {style="font-size: 1.3em;"}
+👉 **New to this site? Start reading here:**  
+**["Welcome To A New Branch Of Quantum Computing!"](posts/welcome/index.qmd)**
+:::
+  
+  
+---

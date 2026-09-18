@@ -2,8 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/welcome/index.html",
-      "/posts/post-with-code/index.html"
+      "/posts/quick-intro/index.html",
+      "/posts/boolean-logic/index.html",
+      "/posts/welcome/index.html"
     ]
   }
 ]

@@ -1,0 +1,238 @@
+---
+title: "A Refresher on Boolean Logic"
+description: "Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential."
+author: "NicDeclic"
+date: "2026-09-16"
+categories: [Introduction]
+image: "/images/boolean_logic.jpg"
+---
+
+![](/images/boolean_logic.jpg)  
+
+::: {.text-end}
+> *"Nature proposes an 'AND'. Our observation enforces an 'OR'."*  
+> — **Professor Alvin**
+:::
+
+---
+
+![](/images/construction.png)
+
+---
+
+[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/boolean-logic/index.ipynb)
+```{python}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Click to see library imports"
+
+import sys
+if 'google.colab' in sys.modules:
+    # 1. Download qmc.py from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py
+    
+    # 2. Download requirements.txt from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt
+
+    # 3. Install dependencies
+    !pip install -q -r requirements.txt
+
+sys.path.insert(0, "../..") # Select root directory
+from qmc import * # QMC library
+
+```
+
+### Logical States 
+
+Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.  
+
+Logic gates are the foundational building blocks of digital electronics and modern computing. They manipulate binary signals—units of information represented by bits that take one of two distinct values: "0" (false, low, off) or "1" (true, high, on).
+
+Throughout this blog, we will express all circuits in matrix form. So, we might as well get comfortable with this concept right from the start.
+
+We define the logical states as:  
+ $$
+ \text{ZERO} = \begin{bmatrix} 1 & 0 \end{bmatrix}
+ $$  
+ and  
+ $$
+ \text{ONE} = \begin{bmatrix} 0 & 1 \end{bmatrix}
+ $$
+
+---
+
+### Logical Gates 
+
+Basic logic gates are the elementary building blocks of any digital system. These gates are: **NOT**, **AND**, **OR**, **NAND**, **NOR**, **XOR**, and **XNOR**. Each gate exhibits a specific behavior, formally defined by a truth table that maps its inputs to its output.  
+
+#### The NOT Gate (Inverter)
+The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.
+
+Symbol :
+
+```{python}
+#| echo: true
+#| code-fold: true
+#| fig-align: center
+#| fig-cap: "Standard NOT Gate (Inverter)"
+
+# Print in LaTex format
+merge.to_katex(row_labels=['a','b','c','d'])
+
+```
+
+| Input ($A$) | Output ($Y$) |
+|:---:|:---:|
+| 0 | 1 |
+| 1 | 0 |
+
+: Truth Table: NOT Gate {.table .table-bordered .table-hover}
+
+The output is the inverse of the input.
+
+$$
+\text{NOT} = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
+$$
+
+
+#### The AND Gate
+
+The output is `1` only if both inputs $A$ and $B$ are `1`.
+
+| Input $A$ | Input $B$ | Output $Y$ |
+|:---:|:---:|:---:|
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+: Truth Table: AND Gate {.table .table-bordered .table-hover}
+
+$$
+{\text{AND}} = \begin{bmatrix}
+1 & 0 \\
+1 & 0 \\
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+---
+
+#### The OR Gate
+
+The output is `1` if at least one of the inputs is `1`.
+
+| Input $A$ | Input $B$ | Output $Y$ |
+|:---:|:---:|:---:|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+
+: Truth Table: OR Gate {.table .table-bordered .table-hover}
+
+$$
+{\text{OR}} = \begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+0 & 1 \\
+0 & 1
+\end{bmatrix}
+$$
+
+---
+
+#### The NAND Gate (NOT-AND)
+
+The output is `0` only when both inputs are `1`.
+
+| Input $A$ | Input $B$ | Output $Y$ |
+|:---:|:---:|:---:|
+| 0 | 0 | 1 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+: Truth Table: NAND Gate {.table .table-bordered .table-hover}
+
+$$
+{\text{NAND}} = \begin{bmatrix}
+0 & 1 \\
+0 & 1 \\
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+$$
+
+---
+
+#### The NOR Gate (NOT-OR)
+
+The output is `1` only when both inputs are `0`.
+
+| Input $A$ | Input $B$ | Output $Y$ |
+|:---:|:---:|:---:|
+| 0 | 0 | 1 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 0 |
+
+: Truth Table: NOR Gate {.table .table-bordered .table-hover}
+
+$$
+{\text{NOR}} = \begin{bmatrix}
+0 & 1 \\
+1 & 0 \\
+1 & 0 \\
+1 & 0
+\end{bmatrix}
+$$
+
+---
+
+#### The XOR Gate (Exclusive OR)
+
+The output is `1` if the inputs are different, and `0` if they are identical.
+
+| Input $A$ | Input $B$ | Output $Y$ |
+|:---:|:---:|:---:|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+: Truth Table: XOR Gate {.table .table-bordered .table-hover}
+
+$$
+{\text{XOR}} = \begin{bmatrix}
+1 & 0 \\
+0 & 1 \\
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+$$
+
+---
+
+#### The XNOR Gate (Equivalence Gate)
+
+The inverse of XOR. The output is `1` only if the inputs are identical.
+
+| Input $A$ | Input $B$ | Output $Y$ |
+|:---:|:---:|:---:|
+| 0 | 0 | 1 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+: Truth Table: XNOR Gate {.table .table-bordered .table-hover}
+
+$$
+{\text{XNOR}} = \begin{bmatrix}
+0 & 1 \\
+1 & 0 \\
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+$$
