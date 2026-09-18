@@ -66,9 +66,9 @@ It is important to emphasize that the work presented across these notes remains 
 And yet, despite all the underlying complexity... the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat.  
   
 👉 **Quick start:**  
-**["Quantum Molecular Computing Explained to a 5 Year Old"](posts/quick-intro/index.qmd)**
+**["Quantum Molecular Computing Explained to a 5 Year Old"](/posts/quick-intro/index.html)**
 
 ---
 
 👉 **Ready to learn the theory? Click here:**  
-**["A Refresher on Boolean Logic"](posts/boolean-logic/index.qmd)**
+**["A Refresher on Boolean Logic"](/posts/boolean-logic/index.html)**

@@ -2,23 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nicdeclic.com/posts/welcome/index.html</loc>
-    <lastmod>2026-09-17T14:17:43.432Z</lastmod>
+    <lastmod>2026-09-18T20:08:51.007Z</lastmod>
   </url>
   <url>
-    <loc>https://nicdeclic.com/index.html</loc>
-    <lastmod>2026-09-17T14:01:36.279Z</lastmod>
+    <loc>https://nicdeclic.com/posts/boolean-logic/index.html</loc>
+    <lastmod>2026-09-18T19:56:53.014Z</lastmod>
   </url>
   <url>
     <loc>https://nicdeclic.com/about.html</loc>
     <lastmod>2026-09-15T15:47:51.436Z</lastmod>
   </url>
   <url>
-    <loc>https://nicdeclic.com/posts/post-with-code/index.html</loc>
-    <lastmod>2026-09-15T20:40:05.926Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nicdeclic.com/posts/boolean-logic/index.html</loc>
-    <lastmod>2026-09-18T19:56:53.014Z</lastmod>
+    <loc>https://nicdeclic.com/index.html</loc>
+    <lastmod>2026-09-17T14:01:36.279Z</lastmod>
   </url>
   <url>
     <loc>https://nicdeclic.com/posts/quick-intro/index.html</loc>

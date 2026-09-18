@@ -503,10 +503,10 @@ font-style: inherit;">'d'</span>])</span></code></pre></div></div>
 <p>It is important to emphasize that the work presented across these notes remains firmly in the theoretical realm. While these concepts are explored with analytical depth, their real-world physical implementation will demand significant experimental and technological breakthroughs. Scaling and testing them will inevitably reveal growing layers of complexity, demanding both deep interdisciplinary synergy and sustained reflection.</p>
 <p>And yet, despite all the underlying complexity… the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat.</p>
 <p>👉 <strong>Quick start:</strong><br>
-<strong><a href="posts/quick-intro/index.qmd">“Quantum Molecular Computing Explained to a 5 Year Old”</a></strong></p>
+<strong><a href="../../posts/quick-intro/index.html">“Quantum Molecular Computing Explained to a 5 Year Old”</a></strong></p>
 <hr>
 <p>👉 <strong>Ready to learn the theory? Click here:</strong><br>
-<strong><a href="posts/boolean-logic/index.qmd">“A Refresher on Boolean Logic”</a></strong></p>
+<strong><a href="../../posts/boolean-logic/index.html">“A Refresher on Boolean Logic”</a></strong></p>
 
 
 </section>
