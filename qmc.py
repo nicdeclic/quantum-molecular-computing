@@ -131,6 +131,10 @@ class TransitionMatrix:
 
         # 1. Determine which rows and columns to display
         rows_n, cols_n = self.matrix.shape
+
+        show_row_labels = show_labels and (rows_n > 1)
+        show_col_labels = show_labels and (cols_n > 1)
+
         if show_all:
             active_rows = list(range(rows_n))
             active_cols = list(range(cols_n))
@@ -154,7 +158,7 @@ class TransitionMatrix:
 
         # 3. Build Column Alignment String (The Box)
         # r for labels, | border, c for data, | border
-        align = "r" if show_labels else "" 
+        align = "r" if show_row_labels else ""
         align += "|"
         for i, c_idx in enumerate(active_cols):
             align += "c"
@@ -165,8 +169,8 @@ class TransitionMatrix:
         
         # 4. Build Table Header
         tex = f"\\begin{{array}}{{{align}}} "
-        if show_labels:
-            headers = [f"\\text{{{corner_label}}}"] 
+        if show_col_labels:
+            headers = [f"\\text{{{corner_label}}}"] if show_row_labels else []
             for c in active_cols:
                 headers.append(get_label(c, col_bits, col_labels))
             tex += " & ".join(headers) + " \\\\ "
@@ -181,7 +185,7 @@ class TransitionMatrix:
                 tex += " \\hline "
             
             row_cells = []
-            if show_labels:
+            if show_row_labels:
                 row_cells.append(get_label(r_idx, row_bits, row_labels))
             
             for c_idx in active_cols:
@@ -522,63 +526,63 @@ split = join.reverse()
 
 # Logic gates
 
-not_gate = TransitionMatrix([
+not_g = TransitionMatrix([
     [0, 1],
     [1, 0]
 ])
 
-and_gate = TransitionMatrix([
+and_g = TransitionMatrix([
     [1, 0],
     [1, 0],
     [1, 0],
     [0, 1]
 ])
 
-nand_gate = and_gate @ not_gate
+nand_g = and_g @ not_g
 
-or_gate = TransitionMatrix([
+or_g = TransitionMatrix([
     [1, 0],
     [0, 1],
     [0, 1],
     [0, 1]
 ])
 
-nor_gate = or_gate @ not_gate
+nor_g = or_g @ not_g
 
-xor_gate = TransitionMatrix([
+xor_g = TransitionMatrix([
     [1, 0],
     [0, 1],
     [0, 1],
     [1, 0]
 ])
 
-triple_xor_gate = (xor_gate ^ identity) @ xor_gate
+triple_xor_gate = (xor_g ^ identity) @ xor_g
 
 # This is the easy way to define NXOR
 #nxor_gate = xor_gate @ not_gate
 
 # This is the hard way to define NXOR. We do it here only to prove that the molecule theory works
-nxor_gate = ((fork ^ fork) @ (identity ^ jumper ^ identity) @ merge).normalize()
+nxor_g = ((fork ^ fork) @ (identity ^ jumper ^ identity) @ merge).normalize()
 
 # Reversed logic gates
 
-not_rev_gate = not_gate
+not_rev_g = not_g
 
-and_rev_gate = and_gate.reverse()
-nand_rev_gate = nand_gate.reverse()
+and_rev_g = and_g.reverse()
+nand_rev_g = nand_g.reverse()
 
-or_rev_gate = or_gate.reverse()
-nor_rev_gate = nor_gate.reverse()
+or_rev_g = or_g.reverse()
+nor_rev_g = nor_g.reverse()
 
-xor_rev_gate = xor_gate.reverse()
-nxor_rev_gate = nxor_gate.reverse()
+xor_rev_g = xor_g.reverse()
+nxor_rev_g = nxor_g.reverse()
 
 # Quaternions
 
 i_multiply = (split ^ identity ^ split) @ (identity ^ triple_xor_gate ^ negate)
-j_multiply = (split ^ identity ^ identity) @ (negate ^ xor_gate ^ identity)
-k_multiply = (identity ^ identity ^ split) @ (negate ^ xor_gate ^ negate)
+j_multiply = (split ^ identity ^ identity) @ (negate ^ xor_g ^ identity)
+k_multiply = (identity ^ identity ^ split) @ (negate ^ xor_g ^ negate)
 neg_multiply = (identity ^ negate ^ identity)
-i_ident_multiply = (identity ^ identity ^ split) @ (identity ^ xor_gate ^ negate)
+i_ident_multiply = (identity ^ identity ^ split) @ (identity ^ xor_g ^ negate)
 
 # Qubits

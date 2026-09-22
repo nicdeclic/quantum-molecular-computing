@@ -16,10 +16,6 @@ image: "/images/boolean_logic.jpg"
 
 ---
 
-![](/images/construction.png)
-
----
-
 [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/boolean-logic/index.ipynb)
 ```{python}
 #| echo: true
@@ -69,15 +65,33 @@ Basic logic gates are the elementary building blocks of any digital system. Thes
 The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.
 
 Symbol :
-
 ```{python}
-#| echo: true
-#| code-fold: true
-#| fig-align: center
-#| fig-cap: "Standard NOT Gate (Inverter)"
+#| echo: false
 
-# Print in LaTex format
-merge.to_katex(row_labels=['a','b','c','d'])
+# 1. Initialize the drawing context
+with schemdraw.Drawing() as d:
+    # Set global configuration for clean technical typography
+    d.config(fontsize=14, unit=2.5)
+
+    # 2. Add an input lead line on the left, labeled 'A'
+    input_line = d.add(elm.Line().right(1.5).label('A', loc='left'))
+
+    # 3. Add the NOT gate (inverter with bubble) connected to the input
+    # The output label 'Y' can be written with LaTeX notation: $\overline{A}$
+    not_gate = d.add(
+        logic.Not()
+        .right()
+        .at(input_line.end)
+    )
+
+    # 4. Add an output lead line extending to the right, labeled 'Y'
+    d.add(
+        elm.Line()
+        .right(1.5)
+        .at(not_gate.out)
+        .label('$Y$', loc='right')
+    )
+
 
 ```
 
@@ -90,14 +104,34 @@ merge.to_katex(row_labels=['a','b','c','d'])
 
 The output is the inverse of the input.
 
+Matrix form :
 $$
-\text{NOT} = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
+\text{Not} = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
 $$
 
 
 #### The AND Gate
 
 The output is `1` only if both inputs $A$ and $B$ are `1`.
+
+Symbol :
+```{python}
+#| echo: false
+# 1. Initialize the drawing context
+with schemdraw.Drawing() as d:
+    # Set global configuration for crisp, technical diagrams
+    d.config(fontsize=14, unit=2.5)
+
+    # 2. Add the 2-input AND gate
+    and_gate = d.add(logic.And().right())
+
+    # 3. Add input lead lines on the left, labeled 'A' and 'B'
+    d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
+    d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
+
+    # 4. Add the output lead line on the right, labeled 'Y'
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+```
 
 | Input $A$ | Input $B$ | Output $Y$ |
 |:---:|:---:|:---:|
@@ -108,8 +142,9 @@ The output is `1` only if both inputs $A$ and $B$ are `1`.
 
 : Truth Table: AND Gate {.table .table-bordered .table-hover}
 
+Matrix form :
 $$
-{\text{AND}} = \begin{bmatrix}
+{\text{And}} = \begin{bmatrix}
 1 & 0 \\
 1 & 0 \\
 1 & 0 \\
@@ -123,6 +158,25 @@ $$
 
 The output is `1` if at least one of the inputs is `1`.
 
+Symbol :
+```{python}
+#| echo: false
+# 1. Initialize the drawing context
+with schemdraw.Drawing() as d:
+    # Set global configuration for crisp, technical diagrams
+    d.config(fontsize=14, unit=2.5)
+
+    # 2. Add the 2-input OR gate
+    and_gate = d.add(logic.Or().right())
+
+    # 3. Add input lead lines on the left, labeled 'A' and 'B'
+    d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
+    d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
+
+    # 4. Add the output lead line on the right, labeled 'Y'
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+```
+
 | Input $A$ | Input $B$ | Output $Y$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 0 |
@@ -132,8 +186,9 @@ The output is `1` if at least one of the inputs is `1`.
 
 : Truth Table: OR Gate {.table .table-bordered .table-hover}
 
+Matrix form :
 $$
-{\text{OR}} = \begin{bmatrix}
+{\text{Or}} = \begin{bmatrix}
 1 & 0 \\
 0 & 1 \\
 0 & 1 \\
@@ -147,6 +202,25 @@ $$
 
 The output is `0` only when both inputs are `1`.
 
+Symbol :
+```{python}
+#| echo: false
+# 1. Initialize the drawing context
+with schemdraw.Drawing() as d:
+    # Set global configuration for crisp, technical diagrams
+    d.config(fontsize=14, unit=2.5)
+
+    # 2. Add the 2-input NAND gate
+    and_gate = d.add(logic.Nand().right())
+
+    # 3. Add input lead lines on the left, labeled 'A' and 'B'
+    d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
+    d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
+
+    # 4. Add the output lead line on the right, labeled 'Y'
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+```
+
 | Input $A$ | Input $B$ | Output $Y$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 1 |
@@ -156,8 +230,9 @@ The output is `0` only when both inputs are `1`.
 
 : Truth Table: NAND Gate {.table .table-bordered .table-hover}
 
+Matrix form :
 $$
-{\text{NAND}} = \begin{bmatrix}
+{\text{Nand}} = \begin{bmatrix}
 0 & 1 \\
 0 & 1 \\
 0 & 1 \\
@@ -171,6 +246,25 @@ $$
 
 The output is `1` only when both inputs are `0`.
 
+Symbol :
+```{python}
+#| echo: false
+# 1. Initialize the drawing context
+with schemdraw.Drawing() as d:
+    # Set global configuration for crisp, technical diagrams
+    d.config(fontsize=14, unit=2.5)
+
+    # 2. Add the 2-input NOR gate
+    and_gate = d.add(logic.Nor().right())
+
+    # 3. Add input lead lines on the left, labeled 'A' and 'B'
+    d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
+    d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
+
+    # 4. Add the output lead line on the right, labeled 'Y'
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+```
+
 | Input $A$ | Input $B$ | Output $Y$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 1 |
@@ -180,8 +274,9 @@ The output is `1` only when both inputs are `0`.
 
 : Truth Table: NOR Gate {.table .table-bordered .table-hover}
 
+Matrix form :
 $$
-{\text{NOR}} = \begin{bmatrix}
+{\text{Nor}} = \begin{bmatrix}
 0 & 1 \\
 1 & 0 \\
 1 & 0 \\
@@ -195,6 +290,25 @@ $$
 
 The output is `1` if the inputs are different, and `0` if they are identical.
 
+Symbol :
+```{python}
+#| echo: false
+# 1. Initialize the drawing context
+with schemdraw.Drawing() as d:
+    # Set global configuration for crisp, technical diagrams
+    d.config(fontsize=14, unit=2.5)
+
+    # 2. Add the 2-input XOR gate
+    and_gate = d.add(logic.Xor().right())
+
+    # 3. Add input lead lines on the left, labeled 'A' and 'B'
+    d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
+    d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
+
+    # 4. Add the output lead line on the right, labeled 'Y'
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+```
+
 | Input $A$ | Input $B$ | Output $Y$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 0 |
@@ -204,8 +318,9 @@ The output is `1` if the inputs are different, and `0` if they are identical.
 
 : Truth Table: XOR Gate {.table .table-bordered .table-hover}
 
+Matrix form :
 $$
-{\text{XOR}} = \begin{bmatrix}
+{\text{Xor}} = \begin{bmatrix}
 1 & 0 \\
 0 & 1 \\
 0 & 1 \\
@@ -219,6 +334,25 @@ $$
 
 The inverse of XOR. The output is `1` only if the inputs are identical.
 
+Symbol :
+```{python}
+#| echo: false
+# 1. Initialize the drawing context
+with schemdraw.Drawing() as d:
+    # Set global configuration for crisp, technical diagrams
+    d.config(fontsize=14, unit=2.5)
+
+    # 2. Add the 2-input XNOR gate
+    and_gate = d.add(logic.Xnor().right())
+
+    # 3. Add input lead lines on the left, labeled 'A' and 'B'
+    d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
+    d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
+
+    # 4. Add the output lead line on the right, labeled 'Y'
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+```
+
 | Input $A$ | Input $B$ | Output $Y$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 1 |
@@ -228,11 +362,108 @@ The inverse of XOR. The output is `1` only if the inputs are identical.
 
 : Truth Table: XNOR Gate {.table .table-bordered .table-hover}
 
+Matrix form :
 $$
-{\text{XNOR}} = \begin{bmatrix}
+{\text{Xnor}} = \begin{bmatrix}
 0 & 1 \\
 1 & 0 \\
 1 & 0 \\
 0 & 1
 \end{bmatrix}
 $$
+
+---
+
+### Matrix representation
+
+You might be wondering what all these matrices actually contain. You can think of a matrix as a "box" that embodies a function.  
+
+They all share the exact same format:  
+- **The rows** correspond to an enumeration of all possible input combinations.  
+- **The columns** correspond to an enumeration of all possible output combinations.  
+
+If a function has $M$ binary inputs and $N$ binary outputs, the resulting matrix will have $2^M$ rows and $2^N$ columns.  
+
+The column containing the value **1** marks the precise spot where a given input maps to its corresponding output.  
+
+For example, here is the matrix representation of the AND gate with the rows and column labels added:
+
+```{python}
+#| echo: false
+# Print in LaTex format
+and_g.to_katex()
+```
+As expected, the output is `1`, only if both inputs are `1`.
+
+Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).
+
+Logical `0`:
+```{python}
+#| echo: false
+# Print in LaTex format
+zero_out.to_katex()
+```
+
+Logical `1`:
+```{python}
+#| echo: false
+# Print in LaTex format
+one_out.to_katex()
+```
+
+---
+
+### Matrix arithmetic
+
+The beauty of this representation is that functions can be chained together end-to-end using standard matrix multiplication.
+
+For example, if we have a state corresponding to the bit "1" and pass it through a NOT gate, we can simply compute: $\text{One} \cdot \text{NOT}$.
+
+```{python}
+#| echo: false
+from IPython.display import display, Latex
+
+def display_inline(*elements):
+    """
+    Affiche des matrices et des symboles/textes côte à côte sur une seule ligne.
+    """
+    parts = []
+    for elem in elements:
+        # Si c'est une de vos matrices TransitionMatrix
+        if hasattr(elem, "_repr_latex_"):
+            # On récupère le code LaTeX sans les '$$'
+            parts.append(elem._repr_latex_().strip("$"))
+        else:
+            # Si c'est du texte ou un symbole (ex: r"\cdot", "=", r"\otimes")
+            parts.append(str(elem))
+            
+    # On assemble tout à l'intérieur d'un seul bloc '$$ ... $$'
+    full_latex = "$$ " + " ".join(parts) + " $$"
+    display(Latex(full_latex))
+
+display_inline(one_out.to_katex(show_labels=False), r"\cdot", not_g.to_katex(show_labels=False), "=", (one_out @ not_g).to_katex(show_labels=False))
+
+```
+And this yields the expected result: Zero.
+
+For logic gates with two inputs, $A$ and $B$, one might naively expect something like $A \cdot B \cdot \text{AND}$. However, that will not work dimensionally. $A$ and $B$ are $1 \times 2$ matrices, whereas the $\text{AND}$ gate is a $4 \times 2$ matrix. 
+
+To give the inputs $(A, B)$ the proper dimension to interface with the AND gate, they must first be combined using the **Kronecker tensor product** ($A \otimes B$).
+
+```{python}
+#| echo: false
+# Print in LaTex format the equation A @ B
+# Let`s enumerate all 4 possibilities for A and B.
+
+display_inline(zero_out, r"\otimes", one_out, "=", zero_out ^ one_out)
+```
+
+Once the inputs are combined into a single matrix, we can multiply them directly by the logic gate:
+```{python}
+#| echo: false
+# Print in LaTex format the equation (A @ B) * AND
+one_one = (one_out ^ one_out)
+display_inline(one_one, r"\cdot", and_g, "=", (one_one) @ and_g)
+```
+
+---

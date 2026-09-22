@@ -241,10 +241,8 @@ window.Quarto = {
 </blockquote>
 </div>
 <hr>
-<p><img src="../../images/construction.png" class="img-fluid"></p>
-<hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/boolean-logic/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="18e5e245" class="cell" data-execution_count="1">
+<div id="340c9ce8" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -284,15 +282,13 @@ and<br>
 <h4 class="anchored" data-anchor-id="the-not-gate-inverter">The NOT Gate (Inverter)</h4>
 <p>The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.</p>
 <p>Symbol :</p>
-<div id="ca39b69d" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print in LaTex format</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>merge.to_katex(row_labels<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>,<span class="st">'d'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
-<p><span class="math display">\[ \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{a} &amp; 0 &amp; 1 \\ \text{b} &amp; 1 &amp; 0 \\ \text{c} &amp; 1 &amp; 0 \\ \text{d} &amp; 0 &amp; 0 \\  \hline \end{array} \]</span></p>
-<p>Standard NOT Gate (Inverter)</p>
+<div id="4cf1cbea" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <table class="table table-bordered table-hover caption-top">
@@ -315,13 +311,23 @@ and<br>
 </tbody>
 </table>
 <p>The output is the inverse of the input.</p>
-<p><span class="math display">\[
-\text{NOT} = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
+<p>Matrix form : <span class="math display">\[
+\text{Not} = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
 \]</span></p>
 </section>
 <section id="the-and-gate" class="level4">
 <h4 class="anchored" data-anchor-id="the-and-gate">The AND Gate</h4>
 <p>The output is <code>1</code> only if both inputs <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <code>1</code>.</p>
+<p>Symbol :</p>
+<div id="a468dd6d" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <table class="table table-bordered table-hover caption-top">
 <caption>Truth Table: AND Gate</caption>
 <thead>
@@ -354,8 +360,8 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p><span class="math display">\[
-{\text{AND}} = \begin{bmatrix}
+<p>Matrix form : <span class="math display">\[
+{\text{And}} = \begin{bmatrix}
 1 &amp; 0 \\
 1 &amp; 0 \\
 1 &amp; 0 \\
@@ -367,6 +373,16 @@ and<br>
 <section id="the-or-gate" class="level4">
 <h4 class="anchored" data-anchor-id="the-or-gate">The OR Gate</h4>
 <p>The output is <code>1</code> if at least one of the inputs is <code>1</code>.</p>
+<p>Symbol :</p>
+<div id="19346339" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-5-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <table class="table table-bordered table-hover caption-top">
 <caption>Truth Table: OR Gate</caption>
 <thead>
@@ -399,8 +415,8 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p><span class="math display">\[
-{\text{OR}} = \begin{bmatrix}
+<p>Matrix form : <span class="math display">\[
+{\text{Or}} = \begin{bmatrix}
 1 &amp; 0 \\
 0 &amp; 1 \\
 0 &amp; 1 \\
@@ -412,6 +428,16 @@ and<br>
 <section id="the-nand-gate-not-and" class="level4">
 <h4 class="anchored" data-anchor-id="the-nand-gate-not-and">The NAND Gate (NOT-AND)</h4>
 <p>The output is <code>0</code> only when both inputs are <code>1</code>.</p>
+<p>Symbol :</p>
+<div id="d393ae43" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <table class="table table-bordered table-hover caption-top">
 <caption>Truth Table: NAND Gate</caption>
 <thead>
@@ -444,8 +470,8 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p><span class="math display">\[
-{\text{NAND}} = \begin{bmatrix}
+<p>Matrix form : <span class="math display">\[
+{\text{Nand}} = \begin{bmatrix}
 0 &amp; 1 \\
 0 &amp; 1 \\
 0 &amp; 1 \\
@@ -457,6 +483,16 @@ and<br>
 <section id="the-nor-gate-not-or" class="level4">
 <h4 class="anchored" data-anchor-id="the-nor-gate-not-or">The NOR Gate (NOT-OR)</h4>
 <p>The output is <code>1</code> only when both inputs are <code>0</code>.</p>
+<p>Symbol :</p>
+<div id="72d42950" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <table class="table table-bordered table-hover caption-top">
 <caption>Truth Table: NOR Gate</caption>
 <thead>
@@ -489,8 +525,8 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p><span class="math display">\[
-{\text{NOR}} = \begin{bmatrix}
+<p>Matrix form : <span class="math display">\[
+{\text{Nor}} = \begin{bmatrix}
 0 &amp; 1 \\
 1 &amp; 0 \\
 1 &amp; 0 \\
@@ -502,6 +538,16 @@ and<br>
 <section id="the-xor-gate-exclusive-or" class="level4">
 <h4 class="anchored" data-anchor-id="the-xor-gate-exclusive-or">The XOR Gate (Exclusive OR)</h4>
 <p>The output is <code>1</code> if the inputs are different, and <code>0</code> if they are identical.</p>
+<p>Symbol :</p>
+<div id="0bc9e23f" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <table class="table table-bordered table-hover caption-top">
 <caption>Truth Table: XOR Gate</caption>
 <thead>
@@ -534,8 +580,8 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p><span class="math display">\[
-{\text{XOR}} = \begin{bmatrix}
+<p>Matrix form : <span class="math display">\[
+{\text{Xor}} = \begin{bmatrix}
 1 &amp; 0 \\
 0 &amp; 1 \\
 0 &amp; 1 \\
@@ -547,6 +593,16 @@ and<br>
 <section id="the-xnor-gate-equivalence-gate" class="level4">
 <h4 class="anchored" data-anchor-id="the-xnor-gate-equivalence-gate">The XNOR Gate (Equivalence Gate)</h4>
 <p>The inverse of XOR. The output is <code>1</code> only if the inputs are identical.</p>
+<p>Symbol :</p>
+<div id="609fbbf7" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-9-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 <table class="table table-bordered table-hover caption-top">
 <caption>Truth Table: XNOR Gate</caption>
 <thead>
@@ -579,17 +635,73 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p><span class="math display">\[
-{\text{XNOR}} = \begin{bmatrix}
+<p>Matrix form : <span class="math display">\[
+{\text{Xnor}} = \begin{bmatrix}
 0 &amp; 1 \\
 1 &amp; 0 \\
 1 &amp; 0 \\
 0 &amp; 1
 \end{bmatrix}
 \]</span></p>
-
-
+<hr>
 </section>
+</section>
+<section id="matrix-representation" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-representation">Matrix representation</h3>
+<p>You might be wondering what all these matrices actually contain. You can think of a matrix as a “box” that embodies a function.</p>
+<p>They all share the exact same format:<br>
+- <strong>The rows</strong> correspond to an enumeration of all possible input combinations.<br>
+- <strong>The columns</strong> correspond to an enumeration of all possible output combinations.</p>
+<p>If a function has <span class="math inline">\(M\)</span> binary inputs and <span class="math inline">\(N\)</span> binary outputs, the resulting matrix will have <span class="math inline">\(2^M\)</span> rows and <span class="math inline">\(2^N\)</span> columns.</p>
+<p>The column containing the value <strong>1</strong> marks the precise spot where a given input maps to its corresponding output.</p>
+<p>For example, here is the matrix representation of the AND gate with the rows and column labels added:</p>
+<div id="a42fd412" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="449">
+<p><span class="math display">\[ \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 1 &amp; 0 \\ \text{``01''} &amp; 1 &amp; 0 \\ \text{``10''} &amp; 1 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 1 \\  \hline \end{array} \]</span></p>
+</div>
+</div>
+<p>As expected, the output is <code>1</code>, only if both inputs are <code>1</code>.</p>
+<p>Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).</p>
+<p>Logical <code>0</code>:</p>
+<div id="ce376aac" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="450">
+<p><span class="math display">\[ \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 1 &amp; 0 \\  \hline \end{array} \]</span></p>
+</div>
+</div>
+<p>Logical <code>1</code>:</p>
+<div id="56130d67" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="451">
+<p><span class="math display">\[ \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 0 &amp; 1 \\  \hline \end{array} \]</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="matrix-arithmetic" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-arithmetic">Matrix arithmetic</h3>
+<p>The beauty of this representation is that functions can be chained together end-to-end using standard matrix multiplication.</p>
+<p>For example, if we have a state corresponding to the bit “1” and pass it through a NOT gate, we can simply compute: <span class="math inline">\(\text{One} \cdot \text{NOT}\)</span>.</p>
+<div id="650268c3" class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[  \begin{array}{|cc|}  \hline 0 &amp; 1 \\  \hline \end{array}  \cdot  \begin{array}{|cc|}  \hline 0 &amp; 1 \\ 1 &amp; 0 \\  \hline \end{array}  =  \begin{array}{|cc|}  \hline 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<p>And this yields the expected result: Zero.</p>
+<p>For logic gates with two inputs, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, one might naively expect something like <span class="math inline">\(A \cdot B \cdot \text{AND}\)</span>. However, that will not work dimensionally. <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <span class="math inline">\(1 \times 2\)</span> matrices, whereas the <span class="math inline">\(\text{AND}\)</span> gate is a <span class="math inline">\(4 \times 2\)</span> matrix.</p>
+<p>To give the inputs <span class="math inline">\((A, B)\)</span> the proper dimension to interface with the AND gate, they must first be combined using the <strong>Kronecker tensor product</strong> (<span class="math inline">\(A \otimes B\)</span>).</p>
+<div id="1caf8257" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[  \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 1 &amp; 0 \\  \hline \end{array}  \otimes  \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{|cccc|} \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline 0 &amp; 1 &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<p>Once the inputs are combined into a single matrix, we can multiply them directly by the logic gate:</p>
+<div id="9a767294" class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[  \begin{array}{|cccc|} \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \cdot  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 1 &amp; 0 \\ \text{``01''} &amp; 1 &amp; 0 \\ \text{``10''} &amp; 1 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<hr>
+
+
 </section>
 
 </main> <!-- /main -->
