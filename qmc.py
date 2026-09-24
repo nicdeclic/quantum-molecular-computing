@@ -2,9 +2,32 @@ import numpy as np
 from scipy import sparse
 import math
 
+from IPython.display import display, Latex
+
 import schemdraw
 import schemdraw.logic as logic
 import schemdraw.elements as elm
+
+#
+# Utilities
+#
+def display_inline(*elements):
+    """
+    Affiche des matrices et des symboles/textes côte à côte sur une seule ligne.
+    """
+    parts = []
+    for elem in elements:
+        # Si c'est une de vos matrices TransitionMatrix
+        if hasattr(elem, "_repr_latex_"):
+            # On récupère le code LaTeX sans les '$$'
+            parts.append(elem._repr_latex_().strip("$"))
+        else:
+            # Si c'est du texte ou un symbole (ex: r"\cdot", "=", r"\otimes")
+            parts.append(str(elem))
+            
+    # On assemble tout à l'intérieur d'un seul bloc '$$ ... $$'
+    full_latex = "$$ " + " ".join(parts) + " $$"
+    display(Latex(full_latex))
 
 #
 # Classes
@@ -123,89 +146,87 @@ class TransitionMatrix:
     def __repr__(self):
         return f"TransitionMatrix({self.matrix.shape[0]}x{self.matrix.shape[1]})\n{self.toarray()}"
     
-    def to_katex(self, precision=2, show_labels=True, show_dims=False, 
-                 h_lines=[], v_lines=[], corner_label="", 
-                 show_all=True, row_labels=None, col_labels=None):
-        from IPython.display import Latex
-        import math
-
-        # 1. Determine which rows and columns to display
-        rows_n, cols_n = self.matrix.shape
-
-        show_row_labels = show_labels and (rows_n > 1)
-        show_col_labels = show_labels and (cols_n > 1)
-
-        if show_all:
-            active_rows = list(range(rows_n))
-            active_cols = list(range(cols_n))
-        else:
-            coo = self.matrix.tocoo()
-            active_rows = sorted(list(set(coo.row)))
-            active_cols = sorted(list(set(coo.col)))
-
-        if not active_rows or not active_cols:
-            return Latex("$$ \\text{Empty Matrix} $$")
-
-        # 2. Label helper logic
-        row_bits = int(math.log2(rows_n))
-        col_bits = int(math.log2(cols_n))
-        
-        def get_label(idx, bits, custom_list):
-            if custom_list and idx < len(custom_list):
-                return f"\\text{{{custom_list[idx]}}}"
-            # Default to LaTeX curly quotes bitstring
-            return f"\\text{{``{bin(idx)[2:].zfill(bits)}''}}"
-
-        # 3. Build Column Alignment String (The Box)
-        # r for labels, | border, c for data, | border
-        align = "r" if show_row_labels else ""
-        align += "|"
-        for i, c_idx in enumerate(active_cols):
-            align += "c"
-            # Draw internal vertical separator if specified
-            if c_idx in v_lines and i < len(active_cols) - 1:
-                align += "|"
-        align += "|"
-        
-        # 4. Build Table Header
-        tex = f"\\begin{{array}}{{{align}}} "
-        if show_col_labels:
-            headers = [f"\\text{{{corner_label}}}"] if show_row_labels else []
-            for c in active_cols:
-                headers.append(get_label(c, col_bits, col_labels))
-            tex += " & ".join(headers) + " \\\\ "
-
-        tex += " \\hline " # Top box border
-
-        # 5. Build Rows
-        dense = self.matrix.toarray()
-        for i, r_idx in enumerate(active_rows):
-            # Internal horizontal separator
-            if r_idx in h_lines and i > 0:
-                tex += " \\hline "
-            
-            row_cells = []
-            if show_row_labels:
-                row_cells.append(get_label(r_idx, row_bits, row_labels))
-            
-            for c_idx in active_cols:
-                val = dense[r_idx, c_idx]
-                if val == 0: row_cells.append("0") 
-                elif val == 1: row_cells.append("1")
-                else: row_cells.append(f"{val:.{precision}g}")
-            
-            tex += " & ".join(row_cells) + " \\\\ "
-
-        tex += " \\hline " # Bottom box border
-        tex += "\\end{array}"
-
-        # 6. Dimension Footer
-        if show_dims:
-            dim_str = f"({rows_n} \\times {cols_n})"
-            tex = f"\\begin{{array}}{{r}} {tex} \\\\ \\scriptstyle {dim_str} \\end{{array}}"
-
-        return Latex(f"$$ {tex} $$")
+    def to_katex(self, precision=2, show_labels=False, show_dims=False, 
+                     h_lines=[], v_lines=[], corner_label="", 
+                     show_all=True, row_labels=None, col_labels=None):
+            from IPython.display import Latex
+            import math
     
+            # 1. Determine which rows and columns to display
+            rows_n, cols_n = self.matrix.shape
+            if show_all:
+                active_rows = list(range(rows_n))
+                active_cols = list(range(cols_n))
+            else:
+                coo = self.matrix.tocoo()
+                active_rows = sorted(list(set(coo.row)))
+                active_cols = sorted(list(set(coo.col)))
+    
+            if not active_rows or not active_cols:
+                return Latex("$$ \\text{Empty Matrix} $$")
+    
+            # 2. Label helper logic
+            row_bits = int(math.log2(rows_n))
+            col_bits = int(math.log2(cols_n))
+            
+            def get_label(idx, bits, custom_list):
+                if custom_list and idx < len(custom_list):
+                    return f"\\text{{{custom_list[idx]}}}"
+                # Default to LaTeX curly quotes bitstring
+                return f"\\text{{``{bin(idx)[2:].zfill(bits)}''}}"
+    
+            # 3. Build Column Alignment String (The Box)
+            # r for labels, | border, c for data, | border
+            align = "r" if show_labels else "" 
+            align += "|"
+            for i, c_idx in enumerate(active_cols):
+                align += "c"
+                # Draw internal vertical separator if specified
+                if c_idx in v_lines and i < len(active_cols) - 1:
+                    align += "|"
+            align += "|"
+            
+            # 4. Build Table Header
+            tex = f"\\begin{{array}}{{{align}}} "
+            if show_labels:
+                headers = [f"\\text{{{corner_label}}}"] 
+                for c in active_cols:
+                    col_label = "~" if cols_n == 1 else get_label(c, col_bits, col_labels)
+                    headers.append(col_label)
+                tex += " & ".join(headers) + " \\\\ "
+    
+            tex += " \\hline " # Top box border
+    
+            # 5. Build Rows
+            dense = self.matrix.toarray()
+            for i, r_idx in enumerate(active_rows):
+                # Internal horizontal separator
+                if r_idx in h_lines and i > 0:
+                    tex += " \\hline "
+                
+                row_cells = []
+                if show_labels:
+                    row_label = "~" if rows_n == 1 else get_label(r_idx, row_bits, row_labels)
+                    row_cells.append(row_label)
+                
+                for c_idx in active_cols:
+                    val = dense[r_idx, c_idx]
+                    if val == 0: row_cells.append("0") 
+                    elif val == 1: row_cells.append("1")
+                    else: row_cells.append(f"{val:.{precision}g}")
+                
+                tex += " & ".join(row_cells) + " \\\\ "
+    
+            tex += " \\hline " # Bottom box border
+            tex += "\\end{array}"
+    
+            # 6. Dimension Footer
+            if show_dims:
+                dim_str = f"({rows_n} \\times {cols_n})"
+                tex = f"\\begin{{array}}{{r}} {tex} \\\\ \\scriptstyle {dim_str} \\end{{array}}"
+    
+            return Latex(f"$$ {tex} $$")
+        
     def _repr_latex_(self):
         """Internal hook for Jupyter to render LaTeX automatically."""
         return self.to_katex().data
@@ -526,63 +547,63 @@ split = join.reverse()
 
 # Logic gates
 
-not_g = TransitionMatrix([
+not_q = TransitionMatrix([
     [0, 1],
     [1, 0]
 ])
 
-and_g = TransitionMatrix([
+and_q = TransitionMatrix([
     [1, 0],
     [1, 0],
     [1, 0],
     [0, 1]
 ])
 
-nand_g = and_g @ not_g
+nand_q = and_q @ not_q
 
-or_g = TransitionMatrix([
+or_q = TransitionMatrix([
     [1, 0],
     [0, 1],
     [0, 1],
     [0, 1]
 ])
 
-nor_g = or_g @ not_g
+nor_q = or_q @ not_q
 
-xor_g = TransitionMatrix([
+xor_q = TransitionMatrix([
     [1, 0],
     [0, 1],
     [0, 1],
     [1, 0]
 ])
 
-triple_xor_gate = (xor_g ^ identity) @ xor_g
+triple_xor_gate = (xor_q ^ identity) @ xor_q
 
-# This is the easy way to define NXOR
-#nxor_gate = xor_gate @ not_gate
+# This is the easy way to define XNOR
+#xnor_q = xor_q @ not_q
 
 # This is the hard way to define NXOR. We do it here only to prove that the molecule theory works
-nxor_g = ((fork ^ fork) @ (identity ^ jumper ^ identity) @ merge).normalize()
+xnor_q = ((fork ^ fork) @ (identity ^ jumper ^ identity) @ merge).normalize()
 
 # Reversed logic gates
 
-not_rev_g = not_g
+not_rev_q = not_q
 
-and_rev_g = and_g.reverse()
-nand_rev_g = nand_g.reverse()
+and_rev_q = and_q.reverse()
+nand_rev_q = nand_q.reverse()
 
-or_rev_g = or_g.reverse()
-nor_rev_g = nor_g.reverse()
+or_rev_q = or_q.reverse()
+nor_rev_q = nor_q.reverse()
 
-xor_rev_g = xor_g.reverse()
-nxor_rev_g = nxor_g.reverse()
+xor_rev_q = xor_q.reverse()
+xnor_rev_q = xnor_q.reverse()
 
 # Quaternions
 
 i_multiply = (split ^ identity ^ split) @ (identity ^ triple_xor_gate ^ negate)
-j_multiply = (split ^ identity ^ identity) @ (negate ^ xor_g ^ identity)
-k_multiply = (identity ^ identity ^ split) @ (negate ^ xor_g ^ negate)
+j_multiply = (split ^ identity ^ identity) @ (negate ^ xor_q ^ identity)
+k_multiply = (identity ^ identity ^ split) @ (negate ^ xor_q ^ negate)
 neg_multiply = (identity ^ negate ^ identity)
-i_ident_multiply = (identity ^ identity ^ split) @ (identity ^ xor_g ^ negate)
+i_ident_multiply = (identity ^ identity ^ split) @ (identity ^ xor_q ^ negate)
 
 # Qubits

@@ -242,7 +242,7 @@ window.Quarto = {
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/boolean-logic/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="340c9ce8" class="cell" data-execution_count="1">
+<div id="cee90f18" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -257,32 +257,53 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>pip install <span class="op">-</span>q <span class="op">-</span>r requirements.txt</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"../.."</span>) <span class="co"># Select root directory</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qmc <span class="im">import</span> <span class="op">*</span> <span class="co"># QMC library</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qmc <span class="im">import</span> <span class="op">*</span> <span class="co"># QMC library</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reload_ext autoreload</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<section id="logical-states" class="level3">
-<h3 class="anchored" data-anchor-id="logical-states">Logical States</h3>
+<hr>
+<section id="logical-states" class="level2">
+<h2 class="anchored" data-anchor-id="logical-states">Logical States</h2>
 <p>Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.</p>
 <p>Logic gates are the foundational building blocks of digital electronics and modern computing. They manipulate binary signals—units of information represented by bits that take one of two distinct values: “0” (false, low, off) or “1” (true, high, on).</p>
-<p>Throughout this blog, we will express all circuits in matrix form. So, we might as well get comfortable with this concept right from the start.</p>
-<p>We define the logical states as:<br>
-<span class="math display">\[
-\text{ZERO} = \begin{bmatrix} 1 &amp; 0 \end{bmatrix}
-\]</span><br>
-and<br>
-<span class="math display">\[
-\text{ONE} = \begin{bmatrix} 0 &amp; 1 \end{bmatrix}
-\]</span></p>
 <hr>
 </section>
-<section id="logical-gates" class="level3">
-<h3 class="anchored" data-anchor-id="logical-gates">Logical Gates</h3>
+<section id="logical-gates" class="level2">
+<h2 class="anchored" data-anchor-id="logical-gates">Logical Gates</h2>
 <p>Basic logic gates are the elementary building blocks of any digital system. These gates are: <strong>NOT</strong>, <strong>AND</strong>, <strong>OR</strong>, <strong>NAND</strong>, <strong>NOR</strong>, <strong>XOR</strong>, and <strong>XNOR</strong>. Each gate exhibits a specific behavior, formally defined by a truth table that maps its inputs to its output.</p>
-<section id="the-not-gate-inverter" class="level4">
-<h4 class="anchored" data-anchor-id="the-not-gate-inverter">The NOT Gate (Inverter)</h4>
+<section id="the-not-gate-inverter" class="level3">
+<h3 class="anchored" data-anchor-id="the-not-gate-inverter">The NOT Gate (Inverter)</h3>
 <p>The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.</p>
 <p>Symbol :</p>
-<div id="4cf1cbea" class="cell" data-execution_count="2">
+<div id="74a553fe" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set global configuration for clean technical typography</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">14</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Add an input lead line on the left, labeled 'A'</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    input_line <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.5</span>).label(<span class="st">'A'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Add the NOT gate (inverter with bubble) connected to the input</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The output label 'Y' can be written with LaTeX notation: $\overline{A}$</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    not_gate <span class="op">=</span> d.add(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        logic.Not()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        .right()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        .at(input_line.end)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Add an output lead line extending to the right, labeled 'Y'</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">1.5</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        .at(not_gate.out)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">'$Y$'</span>, loc<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -311,19 +332,70 @@ and<br>
 </tbody>
 </table>
 <p>The output is the inverse of the input.</p>
-<p>Matrix form : <span class="math display">\[
-\text{Not} = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
-\]</span></p>
+<p>Throughout this blog, we will express all circuits in matrix form. So, we might as well get comfortable with this concept right from the start.</p>
+<p>You can think of a matrix as a “box” that embodies a function.</p>
+<p>They all share the exact same format:<br>
+- <strong>The rows</strong> correspond to an enumeration of all possible input combinations.<br>
+- <strong>The columns</strong> correspond to an enumeration of all possible output combinations.</p>
+<p>If a function has <span class="math inline">\(M\)</span> binary inputs and <span class="math inline">\(N\)</span> binary outputs, the resulting matrix will have <span class="math inline">\(2^M\)</span> rows and <span class="math inline">\(2^N\)</span> columns.</p>
+<p>The column containing the value <strong>1</strong> marks the precise spot where a given input maps to its corresponding output. This is known as a transition matrix in mathematics.</p>
+<p>Here is the matrix representing the NOT gate. Labels representing the inputs on the left and the outputs on the top have been added for increased readability :</p>
+<div id="cccd7ff7" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Not"</span>, <span class="st">"="</span>, not_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Not =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``0''} &amp; 0 &amp; 1 \\ \text{``1''} &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<p>Rather than using standard matrix brackets, transition matrices are intentionally rendered as closed grid boxes. This visually reinforces their role as discrete computational components mapping input configurations to output states.<br>
+(Yes, this is a feature, not a bug.)</p>
+<p>Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).</p>
+<div id="ee273fd3" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Zero"</span>, <span class="st">"="</span>, zero_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"and"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"One"</span>, <span class="st">"="</span>, one_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Zero =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ and \]</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ One =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
 </section>
-<section id="the-and-gate" class="level4">
-<h4 class="anchored" data-anchor-id="the-and-gate">The AND Gate</h4>
+<section id="the-and-gate" class="level3">
+<h3 class="anchored" data-anchor-id="the-and-gate">The AND Gate</h3>
 <p>The output is <code>1</code> only if both inputs <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="a468dd6d" class="cell" data-execution_count="3">
+<div id="cc5d5a18" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set global configuration for crisp, technical diagrams</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">14</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Add the 2-input AND gate</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right())</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Add input lead lines on the left, labeled 'A' and 'B'</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in1).label(<span class="st">'A'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in2).label(<span class="st">'B'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Add the output lead line on the right, labeled 'Y'</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(and_gate.out).label(<span class="st">'Y'</span>, loc<span class="op">=</span><span class="st">'right'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -360,25 +432,44 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p>Matrix form : <span class="math display">\[
-{\text{And}} = \begin{bmatrix}
-1 &amp; 0 \\
-1 &amp; 0 \\
-1 &amp; 0 \\
-0 &amp; 1
-\end{bmatrix}
-\]</span></p>
+<p>Matrix form :</p>
+<div id="3345d5f8" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"And"</span>, <span class="st">"="</span>, and_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ And =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 1 &amp; 0 \\ \text{``01''} &amp; 1 &amp; 0 \\ \text{``10''} &amp; 1 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
 <hr>
 </section>
-<section id="the-or-gate" class="level4">
-<h4 class="anchored" data-anchor-id="the-or-gate">The OR Gate</h4>
+<section id="the-or-gate" class="level3">
+<h3 class="anchored" data-anchor-id="the-or-gate">The OR Gate</h3>
 <p>The output is <code>1</code> if at least one of the inputs is <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="19346339" class="cell" data-execution_count="4">
+<div id="2811cffd" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set global configuration for crisp, technical diagrams</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">14</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Add the 2-input OR gate</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.Or().right())</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Add input lead lines on the left, labeled 'A' and 'B'</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in1).label(<span class="st">'A'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in2).label(<span class="st">'B'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Add the output lead line on the right, labeled 'Y'</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(and_gate.out).label(<span class="st">'Y'</span>, loc<span class="op">=</span><span class="st">'right'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-5-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -415,25 +506,44 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p>Matrix form : <span class="math display">\[
-{\text{Or}} = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; 1 \\
-0 &amp; 1 \\
-0 &amp; 1
-\end{bmatrix}
-\]</span></p>
+<p>Matrix form :</p>
+<div id="0139a95c" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Or"</span>, <span class="st">"="</span>, or_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Or =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 1 &amp; 0 \\ \text{``01''} &amp; 0 &amp; 1 \\ \text{``10''} &amp; 0 &amp; 1 \\ \text{``11''} &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
 <hr>
 </section>
-<section id="the-nand-gate-not-and" class="level4">
-<h4 class="anchored" data-anchor-id="the-nand-gate-not-and">The NAND Gate (NOT-AND)</h4>
+<section id="the-nand-gate-not-and" class="level3">
+<h3 class="anchored" data-anchor-id="the-nand-gate-not-and">The NAND Gate (NOT-AND)</h3>
 <p>The output is <code>0</code> only when both inputs are <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="d393ae43" class="cell" data-execution_count="5">
+<div id="5ba254b0" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set global configuration for crisp, technical diagrams</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">14</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Add the 2-input NAND gate</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.Nand().right())</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Add input lead lines on the left, labeled 'A' and 'B'</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in1).label(<span class="st">'A'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in2).label(<span class="st">'B'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Add the output lead line on the right, labeled 'Y'</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(and_gate.out).label(<span class="st">'Y'</span>, loc<span class="op">=</span><span class="st">'right'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-10-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -470,25 +580,44 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p>Matrix form : <span class="math display">\[
-{\text{Nand}} = \begin{bmatrix}
-0 &amp; 1 \\
-0 &amp; 1 \\
-0 &amp; 1 \\
-1 &amp; 0
-\end{bmatrix}
-\]</span></p>
+<p>Matrix form :</p>
+<div id="e17c6cdf" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Nand"</span>, <span class="st">"="</span>, nand_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Nand =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 0 &amp; 1 \\ \text{``01''} &amp; 0 &amp; 1 \\ \text{``10''} &amp; 0 &amp; 1 \\ \text{``11''} &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
 <hr>
 </section>
-<section id="the-nor-gate-not-or" class="level4">
-<h4 class="anchored" data-anchor-id="the-nor-gate-not-or">The NOR Gate (NOT-OR)</h4>
+<section id="the-nor-gate-not-or" class="level3">
+<h3 class="anchored" data-anchor-id="the-nor-gate-not-or">The NOR Gate (NOT-OR)</h3>
 <p>The output is <code>1</code> only when both inputs are <code>0</code>.</p>
 <p>Symbol :</p>
-<div id="72d42950" class="cell" data-execution_count="6">
+<div id="6f21a4b5" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set global configuration for crisp, technical diagrams</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">14</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Add the 2-input NOR gate</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.Nor().right())</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Add input lead lines on the left, labeled 'A' and 'B'</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in1).label(<span class="st">'A'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in2).label(<span class="st">'B'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Add the output lead line on the right, labeled 'Y'</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(and_gate.out).label(<span class="st">'Y'</span>, loc<span class="op">=</span><span class="st">'right'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-12-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -525,25 +654,44 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p>Matrix form : <span class="math display">\[
-{\text{Nor}} = \begin{bmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
-1 &amp; 0 \\
-1 &amp; 0
-\end{bmatrix}
-\]</span></p>
+<p>Matrix form :</p>
+<div id="8cc71a61" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Nor"</span>, <span class="st">"="</span>, nor_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Nor =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 0 &amp; 1 \\ \text{``01''} &amp; 1 &amp; 0 \\ \text{``10''} &amp; 1 &amp; 0 \\ \text{``11''} &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
 <hr>
 </section>
-<section id="the-xor-gate-exclusive-or" class="level4">
-<h4 class="anchored" data-anchor-id="the-xor-gate-exclusive-or">The XOR Gate (Exclusive OR)</h4>
+<section id="the-xor-gate-exclusive-or" class="level3">
+<h3 class="anchored" data-anchor-id="the-xor-gate-exclusive-or">The XOR Gate (Exclusive OR)</h3>
 <p>The output is <code>1</code> if the inputs are different, and <code>0</code> if they are identical.</p>
 <p>Symbol :</p>
-<div id="0bc9e23f" class="cell" data-execution_count="7">
+<div id="62db373b" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set global configuration for crisp, technical diagrams</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">14</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Add the 2-input XOR gate</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.Xor().right())</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Add input lead lines on the left, labeled 'A' and 'B'</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in1).label(<span class="st">'A'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in2).label(<span class="st">'B'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Add the output lead line on the right, labeled 'Y'</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(and_gate.out).label(<span class="st">'Y'</span>, loc<span class="op">=</span><span class="st">'right'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-8-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-14-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -580,25 +728,44 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p>Matrix form : <span class="math display">\[
-{\text{Xor}} = \begin{bmatrix}
-1 &amp; 0 \\
-0 &amp; 1 \\
-0 &amp; 1 \\
-1 &amp; 0
-\end{bmatrix}
-\]</span></p>
+<p>Matrix form :</p>
+<div id="8f8fed52" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Xor"</span>, <span class="st">"="</span>, xor_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Xor =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 1 &amp; 0 \\ \text{``01''} &amp; 0 &amp; 1 \\ \text{``10''} &amp; 0 &amp; 1 \\ \text{``11''} &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
 <hr>
 </section>
-<section id="the-xnor-gate-equivalence-gate" class="level4">
-<h4 class="anchored" data-anchor-id="the-xnor-gate-equivalence-gate">The XNOR Gate (Equivalence Gate)</h4>
+<section id="the-xnor-gate-equivalence-gate" class="level3">
+<h3 class="anchored" data-anchor-id="the-xnor-gate-equivalence-gate">The XNOR Gate (Equivalence Gate)</h3>
 <p>The inverse of XOR. The output is <code>1</code> only if the inputs are identical.</p>
 <p>Symbol :</p>
-<div id="609fbbf7" class="cell" data-execution_count="8">
+<div id="07ebfb7a" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set global configuration for crisp, technical diagrams</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">14</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Add the 2-input XNOR gate</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.Xnor().right())</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Add input lead lines on the left, labeled 'A' and 'B'</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in1).label(<span class="st">'A'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.in2).label(<span class="st">'B'</span>, loc<span class="op">=</span><span class="st">'left'</span>))</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Add the output lead line on the right, labeled 'Y'</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(and_gate.out).label(<span class="st">'Y'</span>, loc<span class="op">=</span><span class="st">'right'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-9-output-1.svg" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/cell-16-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -635,71 +802,121 @@ and<br>
 </tr>
 </tbody>
 </table>
-<p>Matrix form : <span class="math display">\[
-{\text{Xnor}} = \begin{bmatrix}
-0 &amp; 1 \\
-1 &amp; 0 \\
-1 &amp; 0 \\
-0 &amp; 1
-\end{bmatrix}
-\]</span></p>
-<hr>
-</section>
-</section>
-<section id="matrix-representation" class="level3">
-<h3 class="anchored" data-anchor-id="matrix-representation">Matrix representation</h3>
-<p>You might be wondering what all these matrices actually contain. You can think of a matrix as a “box” that embodies a function.</p>
-<p>They all share the exact same format:<br>
-- <strong>The rows</strong> correspond to an enumeration of all possible input combinations.<br>
-- <strong>The columns</strong> correspond to an enumeration of all possible output combinations.</p>
-<p>If a function has <span class="math inline">\(M\)</span> binary inputs and <span class="math inline">\(N\)</span> binary outputs, the resulting matrix will have <span class="math inline">\(2^M\)</span> rows and <span class="math inline">\(2^N\)</span> columns.</p>
-<p>The column containing the value <strong>1</strong> marks the precise spot where a given input maps to its corresponding output.</p>
-<p>For example, here is the matrix representation of the AND gate with the rows and column labels added:</p>
-<div id="a42fd412" class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="449">
-<p><span class="math display">\[ \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 1 &amp; 0 \\ \text{``01''} &amp; 1 &amp; 0 \\ \text{``10''} &amp; 1 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 1 \\  \hline \end{array} \]</span></p>
-</div>
-</div>
-<p>As expected, the output is <code>1</code>, only if both inputs are <code>1</code>.</p>
-<p>Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).</p>
-<p>Logical <code>0</code>:</p>
-<div id="ce376aac" class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="450">
-<p><span class="math display">\[ \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 1 &amp; 0 \\  \hline \end{array} \]</span></p>
-</div>
-</div>
-<p>Logical <code>1</code>:</p>
-<div id="56130d67" class="cell" data-execution_count="11">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="451">
-<p><span class="math display">\[ \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 0 &amp; 1 \\  \hline \end{array} \]</span></p>
-</div>
-</div>
-<hr>
-</section>
-<section id="matrix-arithmetic" class="level3">
-<h3 class="anchored" data-anchor-id="matrix-arithmetic">Matrix arithmetic</h3>
-<p>The beauty of this representation is that functions can be chained together end-to-end using standard matrix multiplication.</p>
-<p>For example, if we have a state corresponding to the bit “1” and pass it through a NOT gate, we can simply compute: <span class="math inline">\(\text{One} \cdot \text{NOT}\)</span>.</p>
-<div id="650268c3" class="cell" data-execution_count="12">
+<p>Matrix form :</p>
+<div id="0b0bc0eb" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Xnor"</span>, <span class="st">"="</span>, xnor_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown">
-<p><span class="math display">\[  \begin{array}{|cc|}  \hline 0 &amp; 1 \\  \hline \end{array}  \cdot  \begin{array}{|cc|}  \hline 0 &amp; 1 \\ 1 &amp; 0 \\  \hline \end{array}  =  \begin{array}{|cc|}  \hline 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+<p><span class="math display">\[ Xnor =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 0 &amp; 1 \\ \text{``01''} &amp; 1 &amp; 0 \\ \text{``10''} &amp; 1 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="matrix-arithmetic" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-arithmetic">Matrix arithmetic</h2>
+<p>The beauty of this representation is that functions can be chained together end-to-end using standard matrix multiplication.</p>
+<p>For example, if we have a state corresponding to the bit “1” and pass it through a NOT gate, we can simply compute:</p>
+<div id="c488ed14" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"One"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Not"</span>, <span class="st">"="</span>, one_out.to_katex(show_labels<span class="op">=</span><span class="va">False</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, not_q.to_katex(show_labels<span class="op">=</span><span class="va">False</span>), <span class="st">"="</span>, (one_out <span class="op">@</span> not_q).to_katex(show_labels<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ One \cdot Not =  \begin{array}{|cc|}  \hline 0 &amp; 1 \\  \hline \end{array}  \cdot  \begin{array}{|cc|}  \hline 0 &amp; 1 \\ 1 &amp; 0 \\  \hline \end{array}  =  \begin{array}{|cc|}  \hline 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
 </div>
 </div>
 <p>And this yields the expected result: Zero.</p>
+<section id="kronecker-product" class="level4">
+<h4 class="anchored" data-anchor-id="kronecker-product">Kronecker Product</h4>
 <p>For logic gates with two inputs, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, one might naively expect something like <span class="math inline">\(A \cdot B \cdot \text{AND}\)</span>. However, that will not work dimensionally. <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <span class="math inline">\(1 \times 2\)</span> matrices, whereas the <span class="math inline">\(\text{AND}\)</span> gate is a <span class="math inline">\(4 \times 2\)</span> matrix.</p>
-<p>To give the inputs <span class="math inline">\((A, B)\)</span> the proper dimension to interface with the AND gate, they must first be combined using the <strong>Kronecker tensor product</strong> (<span class="math inline">\(A \otimes B\)</span>).</p>
-<div id="1caf8257" class="cell" data-execution_count="13">
+<p>To give the inputs, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, the proper dimension to interface with the AND gate, they must first be combined using the <strong>Kronecker tensor product</strong> (<span class="math inline">\(A \otimes B\)</span>).</p>
+<p>This operation takes two matrices of arbitrary sizes and constructs a larger composite matrix. It is the fundamental mathematical tool used to describe the <strong>joint state</strong> of independent systems.</p>
+<section id="the-formal-rule" class="level5">
+<h5 class="anchored" data-anchor-id="the-formal-rule">The Formal Rule</h5>
+<p>If matrix <span class="math inline">\(A\)</span> has dimensions <span class="math inline">\(m \times n\)</span> and matrix <span class="math inline">\(B\)</span> has dimensions <span class="math inline">\(p \times q\)</span>, their Kronecker product <span class="math inline">\(A \otimes B\)</span> is a block matrix of size <span class="math inline">\((m \cdot p) \times (n \cdot q)\)</span> obtained by multiplying every single element of <span class="math inline">\(A\)</span> by the entire matrix <span class="math inline">\(B\)</span>:</p>
+<p><span class="math display">\[
+A \otimes B = \begin{pmatrix}
+a_{11} B &amp; a_{12} B &amp; \cdots &amp; a_{1n} B \\
+a_{21} B &amp; a_{22} B &amp; \cdots &amp; a_{2n} B \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} B &amp; a_{m2} B &amp; \cdots &amp; a_{mn} B
+\end{pmatrix}
+\]</span></p>
+</section>
+<section id="a-concrete-example-with-input-bits-row-vectors" class="level5">
+<h5 class="anchored" data-anchor-id="a-concrete-example-with-input-bits-row-vectors">A Concrete Example with Input Bits (Row Vectors)</h5>
+<p>In our framework, single-bit inputs are represented as <span class="math inline">\(1 \times 2\)</span> matrices.</p>
+<p>To find the composite matrix for the input pair <span class="math inline">\((A = 1, B = 0)\)</span>, we compute <span class="math inline">\(\text{One} \otimes \text{Zero}\)</span>:</p>
+<p><span class="math display">\[
+\text{One} \otimes \text{Zero} =
+\begin{pmatrix} 0 &amp; 1 \end{pmatrix} \otimes \begin{pmatrix} 1 &amp; 0 \end{pmatrix}
+\]</span></p>
+<p>We distribute each component of the first vector across the second vector:</p>
+<p><span class="math display">\[
+\text{One} \otimes \text{Zero} =
+\begin{pmatrix} 0 \cdot \begin{pmatrix} 1 &amp; 0 \end{pmatrix} &amp; 1 \cdot \begin{pmatrix} 1 &amp; 0 \end{pmatrix} \end{pmatrix}
+= \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \end{pmatrix}
+\]</span></p>
+<p>The resulting <span class="math inline">\(1 \times 4\)</span> matrix cleanly indexes the fourth basis state (corresponding to binary <code>"10"</code>), making it dimensionally compatible with any 2-input gate matrix.</p>
+<p>Here`s an enumeration of all 4 possibilities for A and B with labels included:</p>
+<div id="3d411536" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>display_inline(zero_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, zero_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="st">"="</span>, (zero_out <span class="op">^</span> zero_out).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>display_inline(zero_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, one_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="st">"="</span>, (zero_out <span class="op">^</span> one_out).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>display_inline(one_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, zero_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="st">"="</span>, (one_out <span class="op">^</span> zero_out).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>display_inline(one_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, one_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="st">"="</span>, (one_out <span class="op">^</span> one_out).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown">
-<p><span class="math display">\[  \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 1 &amp; 0 \\  \hline \end{array}  \otimes  \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{|cccc|} \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline 0 &amp; 1 &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
+<p><span class="math display">\[  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 1 &amp; 0 \\  \hline \end{array}  \otimes  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 1 &amp; 0 \\  \hline \end{array}  =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
 </div>
-</div>
-<p>Once the inputs are combined into a single matrix, we can multiply them directly by the logic gate:</p>
-<div id="9a767294" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display cell-output-markdown">
-<p><span class="math display">\[  \begin{array}{|cccc|} \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \cdot  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 1 &amp; 0 \\ \text{``01''} &amp; 1 &amp; 0 \\ \text{``10''} &amp; 1 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{|cc|} \text{``0''} &amp; \text{``1''} \\  \hline 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+<p><span class="math display">\[  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 1 &amp; 0 \\  \hline \end{array}  \otimes  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0 &amp; 1 \\  \hline \end{array}  \otimes  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 1 &amp; 0 \\  \hline \end{array}  =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0 &amp; 1 \\  \hline \end{array}  \otimes  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
 </div>
 </div>
+<p>Notice how the output string labels combine? This makes it easy to find any mistake.</p>
+<p>Let`s now take for example A=“1” and B=“1” and pass them through an AND gate :</p>
+<div id="9988704c" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> one_out</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> one_out</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>AB <span class="op">=</span> (A <span class="op">^</span> B)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"(A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B)"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"And"</span>, <span class="st">"="</span>, AB, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, and_q, <span class="st">"="</span>, (AB) <span class="op">@</span> and_q)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ (A \otimes B) \cdot And =  \begin{array}{|cccc|}  \hline 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \cdot  \begin{array}{|cc|}  \hline 1 &amp; 0 \\ 1 &amp; 0 \\ 1 &amp; 0 \\ 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{|cc|}  \hline 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<p>And we get a “1” as expected.</p>
 <hr>
+</section>
+</section>
+</section>
+<section id="universal-gates" class="level2">
+<h2 class="anchored" data-anchor-id="universal-gates">Universal gates</h2>
+<p>NAND and NOR gates are known as <strong>universal gates</strong> because they can be used to construct every other logic gate on their own. This means that, given enough NAND or NOR gates, any arbitrary logic circuit can be realized.</p>
+<p>The following is an XOR gate constructed using only NOR gates :</p>
+<p><img src="xor with nor.png" class="img-fluid"></p>
+<p>These elementary gates serve as the building blocks for much more complex digital architectures — such as the Arithmetic Logic Unit (ALU), which lies at the very heart of modern microprocessors:</p>
+<p><img src="alu.jpg" class="img-fluid"></p>
+<hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/computing-universe/index.html">“The Computing Universe”</a></strong></p>
 
 
 </section>

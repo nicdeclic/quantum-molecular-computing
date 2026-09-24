@@ -36,37 +36,31 @@ if 'google.colab' in sys.modules:
 sys.path.insert(0, "../..") # Select root directory
 from qmc import * # QMC library
 
+%reload_ext autoreload
+%autoreload 2
+
 ```
 
-### Logical States 
+---
+
+## Logical States 
 
 Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.  
 
 Logic gates are the foundational building blocks of digital electronics and modern computing. They manipulate binary signals—units of information represented by bits that take one of two distinct values: "0" (false, low, off) or "1" (true, high, on).
 
-Throughout this blog, we will express all circuits in matrix form. So, we might as well get comfortable with this concept right from the start.
-
-We define the logical states as:  
- $$
- \text{ZERO} = \begin{bmatrix} 1 & 0 \end{bmatrix}
- $$  
- and  
- $$
- \text{ONE} = \begin{bmatrix} 0 & 1 \end{bmatrix}
- $$
-
 ---
 
-### Logical Gates 
+## Logical Gates 
 
 Basic logic gates are the elementary building blocks of any digital system. These gates are: **NOT**, **AND**, **OR**, **NAND**, **NOR**, **XOR**, and **XNOR**. Each gate exhibits a specific behavior, formally defined by a truth table that maps its inputs to its output.  
 
-#### The NOT Gate (Inverter)
+### The NOT Gate (Inverter)
 The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.
 
 Symbol :
 ```{python}
-#| echo: false
+#| code-fold: true
 
 # 1. Initialize the drawing context
 with schemdraw.Drawing() as d:
@@ -104,19 +98,51 @@ with schemdraw.Drawing() as d:
 
 The output is the inverse of the input.
 
-Matrix form :
-$$
-\text{Not} = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
-$$
+  
 
+Throughout this blog, we will express all circuits in matrix form. So, we might as well get comfortable with this concept right from the start.
 
-#### The AND Gate
+You can think of a matrix as a “box” that embodies a function.
+
+They all share the exact same format:  
+- **The rows** correspond to an enumeration of all possible input combinations.  
+- **The columns** correspond to an enumeration of all possible output combinations.  
+
+If a function has $M$ binary inputs and $N$ binary outputs, the resulting matrix will have $2^M$ rows and $2^N$ columns.  
+
+The column containing the value **1** marks the precise spot where a given input maps to its corresponding output. This is known as a transition matrix in mathematics.
+
+Here is the matrix representing the NOT gate. Labels representing the inputs on the left and the outputs on the top have been added for increased readability :
+
+```{python}
+#| code-fold: true
+
+display_inline("Not", "=", not_q.to_katex(show_labels=True))
+
+```
+
+Rather than using standard matrix brackets, transition matrices are intentionally rendered as closed grid boxes. This visually reinforces their role as discrete computational components mapping input configurations to output states.  
+(Yes, this is a feature, not a bug.)
+
+Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).
+
+```{python}
+#| code-fold: true
+
+display_inline("Zero", "=", zero_out.to_katex(show_labels=True))
+display_inline("and")
+display_inline("One", "=", one_out.to_katex(show_labels=True))
+
+```
+
+### The AND Gate
 
 The output is `1` only if both inputs $A$ and $B$ are `1`.
 
 Symbol :
 ```{python}
-#| echo: false
+#| code-fold: true
+
 # 1. Initialize the drawing context
 with schemdraw.Drawing() as d:
     # Set global configuration for crisp, technical diagrams
@@ -143,24 +169,23 @@ with schemdraw.Drawing() as d:
 : Truth Table: AND Gate {.table .table-bordered .table-hover}
 
 Matrix form :
-$$
-{\text{And}} = \begin{bmatrix}
-1 & 0 \\
-1 & 0 \\
-1 & 0 \\
-0 & 1
-\end{bmatrix}
-$$
+```{python}
+#| code-fold: true
+
+display_inline("And", "=", and_q.to_katex(show_labels=True))
+
+```
 
 ---
 
-#### The OR Gate
+### The OR Gate
 
 The output is `1` if at least one of the inputs is `1`.
 
 Symbol :
 ```{python}
-#| echo: false
+#| code-fold: true
+
 # 1. Initialize the drawing context
 with schemdraw.Drawing() as d:
     # Set global configuration for crisp, technical diagrams
@@ -187,24 +212,23 @@ with schemdraw.Drawing() as d:
 : Truth Table: OR Gate {.table .table-bordered .table-hover}
 
 Matrix form :
-$$
-{\text{Or}} = \begin{bmatrix}
-1 & 0 \\
-0 & 1 \\
-0 & 1 \\
-0 & 1
-\end{bmatrix}
-$$
+```{python}
+#| code-fold: true
+
+display_inline("Or", "=", or_q.to_katex(show_labels=True))
+
+```
 
 ---
 
-#### The NAND Gate (NOT-AND)
+### The NAND Gate (NOT-AND)
 
 The output is `0` only when both inputs are `1`.
 
 Symbol :
 ```{python}
-#| echo: false
+#| code-fold: true
+
 # 1. Initialize the drawing context
 with schemdraw.Drawing() as d:
     # Set global configuration for crisp, technical diagrams
@@ -231,24 +255,23 @@ with schemdraw.Drawing() as d:
 : Truth Table: NAND Gate {.table .table-bordered .table-hover}
 
 Matrix form :
-$$
-{\text{Nand}} = \begin{bmatrix}
-0 & 1 \\
-0 & 1 \\
-0 & 1 \\
-1 & 0
-\end{bmatrix}
-$$
+```{python}
+#| code-fold: true
+
+display_inline("Nand", "=", nand_q.to_katex(show_labels=True))
+
+```
 
 ---
 
-#### The NOR Gate (NOT-OR)
+### The NOR Gate (NOT-OR)
 
 The output is `1` only when both inputs are `0`.
 
 Symbol :
 ```{python}
-#| echo: false
+#| code-fold: true
+
 # 1. Initialize the drawing context
 with schemdraw.Drawing() as d:
     # Set global configuration for crisp, technical diagrams
@@ -275,24 +298,23 @@ with schemdraw.Drawing() as d:
 : Truth Table: NOR Gate {.table .table-bordered .table-hover}
 
 Matrix form :
-$$
-{\text{Nor}} = \begin{bmatrix}
-0 & 1 \\
-1 & 0 \\
-1 & 0 \\
-1 & 0
-\end{bmatrix}
-$$
+```{python}
+#| code-fold: true
+
+display_inline("Nor", "=", nor_q.to_katex(show_labels=True))
+
+```
 
 ---
 
-#### The XOR Gate (Exclusive OR)
+### The XOR Gate (Exclusive OR)
 
 The output is `1` if the inputs are different, and `0` if they are identical.
 
 Symbol :
 ```{python}
-#| echo: false
+#| code-fold: true
+
 # 1. Initialize the drawing context
 with schemdraw.Drawing() as d:
     # Set global configuration for crisp, technical diagrams
@@ -319,24 +341,23 @@ with schemdraw.Drawing() as d:
 : Truth Table: XOR Gate {.table .table-bordered .table-hover}
 
 Matrix form :
-$$
-{\text{Xor}} = \begin{bmatrix}
-1 & 0 \\
-0 & 1 \\
-0 & 1 \\
-1 & 0
-\end{bmatrix}
-$$
+```{python}
+#| code-fold: true
+
+display_inline("Xor", "=", xor_q.to_katex(show_labels=True))
+
+```
 
 ---
 
-#### The XNOR Gate (Equivalence Gate)
+### The XNOR Gate (Equivalence Gate)
 
 The inverse of XOR. The output is `1` only if the inputs are identical.
 
 Symbol :
 ```{python}
-#| echo: false
+#| code-fold: true
+
 # 1. Initialize the drawing context
 with schemdraw.Drawing() as d:
     # Set global configuration for crisp, technical diagrams
@@ -363,107 +384,113 @@ with schemdraw.Drawing() as d:
 : Truth Table: XNOR Gate {.table .table-bordered .table-hover}
 
 Matrix form :
-$$
-{\text{Xnor}} = \begin{bmatrix}
-0 & 1 \\
-1 & 0 \\
-1 & 0 \\
-0 & 1
-\end{bmatrix}
-$$
-
----
-
-### Matrix representation
-
-You might be wondering what all these matrices actually contain. You can think of a matrix as a "box" that embodies a function.  
-
-They all share the exact same format:  
-- **The rows** correspond to an enumeration of all possible input combinations.  
-- **The columns** correspond to an enumeration of all possible output combinations.  
-
-If a function has $M$ binary inputs and $N$ binary outputs, the resulting matrix will have $2^M$ rows and $2^N$ columns.  
-
-The column containing the value **1** marks the precise spot where a given input maps to its corresponding output.  
-
-For example, here is the matrix representation of the AND gate with the rows and column labels added:
-
 ```{python}
-#| echo: false
-# Print in LaTex format
-and_g.to_katex()
-```
-As expected, the output is `1`, only if both inputs are `1`.
+#| code-fold: true
 
-Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).
+display_inline("Xnor", "=", xnor_q.to_katex(show_labels=True))
 
-Logical `0`:
-```{python}
-#| echo: false
-# Print in LaTex format
-zero_out.to_katex()
-```
-
-Logical `1`:
-```{python}
-#| echo: false
-# Print in LaTex format
-one_out.to_katex()
 ```
 
 ---
 
-### Matrix arithmetic
+## Matrix arithmetic
 
 The beauty of this representation is that functions can be chained together end-to-end using standard matrix multiplication.
 
-For example, if we have a state corresponding to the bit "1" and pass it through a NOT gate, we can simply compute: $\text{One} \cdot \text{NOT}$.
+For example, if we have a state corresponding to the bit "1" and pass it through a NOT gate, we can simply compute:
 
 ```{python}
-#| echo: false
-from IPython.display import display, Latex
+#| code-fold: true
 
-def display_inline(*elements):
-    """
-    Affiche des matrices et des symboles/textes côte à côte sur une seule ligne.
-    """
-    parts = []
-    for elem in elements:
-        # Si c'est une de vos matrices TransitionMatrix
-        if hasattr(elem, "_repr_latex_"):
-            # On récupère le code LaTeX sans les '$$'
-            parts.append(elem._repr_latex_().strip("$"))
-        else:
-            # Si c'est du texte ou un symbole (ex: r"\cdot", "=", r"\otimes")
-            parts.append(str(elem))
-            
-    # On assemble tout à l'intérieur d'un seul bloc '$$ ... $$'
-    full_latex = "$$ " + " ".join(parts) + " $$"
-    display(Latex(full_latex))
-
-display_inline(one_out.to_katex(show_labels=False), r"\cdot", not_g.to_katex(show_labels=False), "=", (one_out @ not_g).to_katex(show_labels=False))
+display_inline("One", r"\cdot", "Not", "=", one_out.to_katex(show_labels=False), r"\cdot", not_q.to_katex(show_labels=False), "=", (one_out @ not_q).to_katex(show_labels=False))
 
 ```
 And this yields the expected result: Zero.
 
+#### Kronecker Product
+
 For logic gates with two inputs, $A$ and $B$, one might naively expect something like $A \cdot B \cdot \text{AND}$. However, that will not work dimensionally. $A$ and $B$ are $1 \times 2$ matrices, whereas the $\text{AND}$ gate is a $4 \times 2$ matrix. 
 
-To give the inputs $(A, B)$ the proper dimension to interface with the AND gate, they must first be combined using the **Kronecker tensor product** ($A \otimes B$).
+To give the inputs, $A$ and $B$, the proper dimension to interface with the AND gate, they must first be combined using the **Kronecker tensor product** ($A \otimes B$).
 
+This operation takes two matrices of arbitrary sizes and constructs a larger composite matrix. It is the fundamental mathematical tool used to describe the **joint state** of independent systems.
+
+##### The Formal Rule
+If matrix $A$ has dimensions $m \times n$ and matrix $B$ has dimensions $p \times q$, their Kronecker product $A \otimes B$ is a block matrix of size $(m \cdot p) \times (n \cdot q)$ obtained by multiplying every single element of $A$ by the entire matrix $B$:
+
+$$
+A \otimes B = \begin{pmatrix}
+a_{11} B & a_{12} B & \cdots & a_{1n} B \\
+a_{21} B & a_{22} B & \cdots & a_{2n} B \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} B & a_{m2} B & \cdots & a_{mn} B
+\end{pmatrix}
+$$
+
+##### A Concrete Example with Input Bits (Row Vectors)
+In our framework, single-bit inputs are represented as $1 \times 2$ matrices.
+
+To find the composite matrix for the input pair $(A = 1, B = 0)$, we compute $\text{One} \otimes \text{Zero}$:
+
+$$
+\text{One} \otimes \text{Zero} = 
+\begin{pmatrix} 0 & 1 \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \end{pmatrix}
+$$
+
+We distribute each component of the first vector across the second vector:
+
+$$
+\text{One} \otimes \text{Zero} = 
+\begin{pmatrix} 0 \cdot \begin{pmatrix} 1 & 0 \end{pmatrix} & 1 \cdot \begin{pmatrix} 1 & 0 \end{pmatrix} \end{pmatrix}
+= \begin{pmatrix} 0 & 0 & 1 & 0 \end{pmatrix}
+$$
+
+The resulting $1 \times 4$ matrix cleanly indexes the fourth basis state (corresponding to binary `"10"`), making it dimensionally compatible with any 2-input gate matrix.
+
+Here`s an enumeration of all 4 possibilities for A and B with labels included:
 ```{python}
-#| echo: false
-# Print in LaTex format the equation A @ B
-# Let`s enumerate all 4 possibilities for A and B.
+#| code-fold: true
 
-display_inline(zero_out, r"\otimes", one_out, "=", zero_out ^ one_out)
+display_inline(zero_out.to_katex(show_labels=True), r"\otimes", zero_out.to_katex(show_labels=True), "=", (zero_out ^ zero_out).to_katex(show_labels=True))
+
+display_inline(zero_out.to_katex(show_labels=True), r"\otimes", one_out.to_katex(show_labels=True), "=", (zero_out ^ one_out).to_katex(show_labels=True))
+
+display_inline(one_out.to_katex(show_labels=True), r"\otimes", zero_out.to_katex(show_labels=True), "=", (one_out ^ zero_out).to_katex(show_labels=True))
+
+display_inline(one_out.to_katex(show_labels=True), r"\otimes", one_out.to_katex(show_labels=True), "=", (one_out ^ one_out).to_katex(show_labels=True))
 ```
 
-Once the inputs are combined into a single matrix, we can multiply them directly by the logic gate:
+Notice how the output string labels combine? This makes it easy to find any mistake.
+
+Let`s now take for example A="1" and B="1" and pass them through an AND gate :
 ```{python}
-#| echo: false
-# Print in LaTex format the equation (A @ B) * AND
-one_one = (one_out ^ one_out)
-display_inline(one_one, r"\cdot", and_g, "=", (one_one) @ and_g)
+#| code-fold: true
+
+A = one_out
+B = one_out
+
+AB = (A ^ B)
+
+display_inline("(A", r"\otimes", "B)", r"\cdot", "And", "=", AB, r"\cdot", and_q, "=", (AB) @ and_q)
 ```
+
+And we get a "1" as expected.
 
 ---
+
+## Universal gates
+
+NAND and NOR gates are known as **universal gates** because they can be used to construct every other logic gate on their own. This means that, given enough NAND or NOR gates, any arbitrary logic circuit can be realized.
+
+The following is an XOR gate constructed using only NOR gates :
+
+![](xor with nor.png)  
+
+These elementary gates serve as the building blocks for much more complex digital architectures — such as the Arithmetic Logic Unit (ALU), which lies at the very heart of modern microprocessors:
+
+![](alu.jpg)  
+
+---
+
+👉 **Next chapter :**  
+**["The Computing Universe"](/posts/computing-universe/index.html)**
