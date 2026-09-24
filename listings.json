@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/computing-universe/index.html",
       "/posts/quick-intro/index.html",
       "/posts/boolean-logic/index.html",
       "/posts/welcome/index.html"
