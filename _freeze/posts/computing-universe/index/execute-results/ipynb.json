@@ -1,0 +1,12 @@
+{
+  "hash": "a49423dbc3681320fa5929655ec6764c",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"The Computing Universe\"\ndescription: \"\"\nauthor: \"NicDeclic\"\ndate: \"2026-09-24\"\ncategories: [Introduction]\nimage: \"computing.jpg\"\n---\n\n![](computing.jpg)  \n\n::: {.text-end}\n> *\" \"*  \n> — **Professor Alvin**\n:::\n\n---\n\n[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/computing-universe/index.ipynb)\n\n::: {#cc4ff8e6 .cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see library imports\"}\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../..\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\n```\n:::\n\n\n---\n\n---\n\n---\njupyter:\n  kernelspec:\n    display_name: Python 3 (ipykernel)\n    language: python\n    name: python3\n    path: C:\\Users\\Nick2\\AppData\\Local\\Python\\pythoncore-3.14-64\\share\\jupyter\\kernels\\python3\n---\n",
+    "supporting": [
+      "index_files\\figure-ipynb"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

@@ -10,7 +10,147 @@
 <atom:link href="https://nicdeclic.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>Open Research Notes &amp; Dynamic Notebooks</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 17 Sep 2026 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 24 Sep 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>The Computing Universe</title>
+  <dc:creator>NicDeclic </dc:creator>
+  <link>https://nicdeclic.com/posts/computing-universe/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><img src="https://nicdeclic.com/posts/computing-universe/computing.jpg" class="img-fluid"></p>
+<div class="text-end">
+<blockquote class="blockquote">
+<p><em>“Truth is not a stone to be thrown. It is a river that polishes the rocks. Drink from it too quickly, and you will taste only sand.”</em><br>
+— <strong>Professor Alvin</strong></p>
+</blockquote>
+</div>
+<hr>
+<section id="logical-systems" class="level2">
+<h2 class="anchored" data-anchor-id="logical-systems">Logical Systems</h2>
+<p>While we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems. These alternative substrates demonstrate that Boolean logic is fundamentally an abstract mathematical concept that can be embodied in countless physical forms, often in surprising and ingenious ways. Here are a few notable examples:</p>
+<section id="electromechanical-relays" class="level3">
+<h3 class="anchored" data-anchor-id="electromechanical-relays">Electromechanical Relays</h3>
+<p>Relays are electromechanical devices that use an electromagnet to physically open or close an electrical circuit. They were widely used in early computing machinery, such as early electromechanical Turing machines, to implement logic gates. Although slower and more prone to mechanical wear than transistors, relays were a pivotal milestone in the history of computer engineering.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/computing-universe/relay.png" height="300" class="figure-img"></p>
+<figcaption>Component</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/computing-universe/relay2.jpg" height="300" class="figure-img"></p>
+<figcaption>Schematic</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="vacuum-tubes" class="level3">
+<h3 class="anchored" data-anchor-id="vacuum-tubes">Vacuum Tubes</h3>
+<p>Following relays, thermionic valves (vacuum tubes) became the dominant technology for constructing logic gates. Despite being bulky, fragile, and power-hungry, these devices played a crucial role in the birth of electronic computing, powering machines like ENIAC.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/computing-universe/tube.jpg" height="300" class="figure-img"></p>
+<figcaption>Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/computing-universe/tube2.jpg" height="300" class="figure-img"></p>
+<figcaption>Schematic</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="mechanical-systems-marbles-gears" class="level3">
+<h3 class="anchored" data-anchor-id="mechanical-systems-marbles-gears">Mechanical Systems (Marbles, Gears)</h3>
+<p>Purely mechanical systems can be designed to represent binary states (for example, the physical position of a marble or the discrete rotation of a gear) and execute logical operations. While intrinsically slow, these systems offer a tactile, highly visual demonstration of computation.</p>
+<ul>
+<li>Marble-based logic systems:</li>
+</ul>
+<p><img src="https://binarymarbles.weebly.com/uploads/3/0/0/2/30021777/and_orig.jpg" class="img-fluid"></p>
+<ul>
+<li>LEGO-based mechanisms:</li>
+</ul>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/DiK5n6fU7B4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<ul>
+<li>Pulley and weight systems:</li>
+</ul>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://player.vimeo.com/video/93042377?fl=pl&amp;fe=vl" frameborder="0" title="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="fluidics-water-air" class="level3">
+<h3 class="anchored" data-anchor-id="fluidics-water-air">Fluidics (Water, Air)</h3>
+<p>Fluidic logic systems utilize liquids or gases to represent bits (such as the presence, absence, or pressure level of a fluid within a channel) to perform operations without moving mechanical parts. These setups are often used to demonstrate control logic in harsh, radiation-heavy environments or for intuitive educational models.</p>
+<ul>
+<li>Water-based fluidic systems:</li>
+</ul>
+<p><img src="https://nicdeclic.com/posts/computing-universe/fluid.jpg" class="img-fluid"></p>
+</section>
+<section id="optics-lasers-mirrors" class="level3">
+<h3 class="anchored" data-anchor-id="optics-lasers-mirrors">Optics (Lasers, Mirrors)</h3>
+<p>Optical computing leverages photons to represent bits and process information. By manipulating light beams through lasers, beam splitters, mirrors, and non-linear optical crystals, logic gates can theoretically operate at the speed of light with minimal heat dissipation.</p>
+<ul>
+<li>Laser-based optical systems:</li>
+</ul>
+<p><img src="https://nicdeclic.com/posts/computing-universe/optical.jpg" height="400"></p>
+</section>
+<section id="unconventional-binary-substrates" class="level3">
+<h3 class="anchored" data-anchor-id="unconventional-binary-substrates">Unconventional Binary Substrates</h3>
+<p>Beyond these classical media, an almost limitless variety of physical systems can compute. Researchers have successfully implemented logic using plant root growth patterns, DNA strand displacement, engineered bacterial colonies, magnetic domain walls, and even swarms of soldier crabs.</p>
+<p><strong><a href="https://www.technologyreview.com/2012/04/12/186779/computer-scientists-build-computer-using-swarms-of-crabs/">“Computer Scientists Build Computer Using Swarms of Crabs”</a></strong></p>
+<p>Exploring these alternative substrates does more than broaden our intellectual appreciation of logic; it paves the way for technologies that could disrupt medicine, molecular robotics, distributed sensing, and environmental monitoring.<br>
+While many remain at the proof-of-concept stage, they stand as a testament to human ingenuity and our ability to rethink the physical foundations of computation.</p>
+<hr>
+</section>
+<section id="designing-a-universal-physical-computer" class="level3">
+<h3 class="anchored" data-anchor-id="designing-a-universal-physical-computer">Designing a Universal Physical Computer</h3>
+<p>Imagine we now want to create a computer using an entirely new physical substrate, capable of executing arbitrary algorithms. To achieve this, the system must not only implement a set of universal logic gates, but it must also satisfy rigorous operational criteria to function as a <strong>Turing-complete</strong> machine:</p>
+<ul>
+<li><strong>Physical State Representation:</strong> First and foremost, we must unambiguously define how Boolean states are physically encoded. The reliability of this encoding is vital to ensure deterministic, noise-resilient operations. In classical electronics, “0” and “1” correspond to low and high voltage thresholds; in a mechanical computer, they might correspond to the spatial coordinates of a marble or the angle of a latch.</li>
+<li><strong>Signal Propagation and Fan-out:</strong> The system must reliably transmit signals across space while minimizing dissipation and crosstalk. This requires an efficient transport mechanism capable of driving the output of one gate into the inputs of multiple subsequent gates (fan-out) without signal degradation. In electronics, this is achieved through metallic traces; in fluidics, via micro-channels; in optics, through waveguides or optical fibers.</li>
+<li><strong>State Retention and Control:</strong> Finally, a complete computational architecture demands memory (the ability to store intermediate states) and a control mechanism. Control ensures that operations occur in a well-defined sequence and that system states evolve coherently over time.</li>
+</ul>
+<hr>
+</section>
+<section id="the-scaling-wall-from-silicon-to-molecules" class="level3">
+<h3 class="anchored" data-anchor-id="the-scaling-wall-from-silicon-to-molecules">The Scaling Wall: From Silicon to Molecules</h3>
+<p>From an engineering standpoint, computational performance has historically been driven by scaling. To increase throughput and reduce latency, the prevailing strategy has been aggressive miniaturization—shrinking physical components to pack higher circuit densities onto a single die while boosting operating clock frequencies.</p>
+<p>However, this scaling paradigm is now running into hard physical barriers. At the sub-nanometer scale, traditional silicon transistors run headlong into destructive quantum phenomena, such as parasitic electron tunneling and quantum interference, which trigger leakage currents and compromise deterministic switching. These effects, once negligible, now pose severe technical and thermodynamic bottlenecks.</p>
+<p>Rather than treating quantum effects as adversaries to be suppressed, a radically different approach is to <strong>embrace and exploit them</strong>.</p>
+<p>By harnessing quantum behavior natively, we can design computational architectures operating on fundamentally new principles. This paradigm shift leads directly to a compelling frontier: <strong>implementing computational logic at the molecular scale.</strong></p>
+<p>By turning quantum mechanics into an asset rather than an obstacle, this strategy marks a clean conceptual break from traditional computing. It reveals how Boolean logic, though classical in its abstract formulation, can be mapped onto domains where quantum mechanics governs the physical substrate—opening up entirely uncharted territories for the future of information processing.</p>
+<hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/quantum-chemistry/index.html">“Quantum Chemistry”</a></strong></p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Introduction</category>
+  <guid>https://nicdeclic.com/posts/computing-universe/</guid>
+  <pubDate>Thu, 24 Sep 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://nicdeclic.com/posts/computing-universe/computing.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Quantum Molecular Computing Explained to a 5 Year Old</title>
   <dc:creator>NicDeclic </dc:creator>

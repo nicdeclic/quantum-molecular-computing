@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="NicDeclic">
+<meta name="dcterms.date" content="2026-09-24">
+<meta name="description" content="While we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems.">
 
-<title>Open Research Notes &amp; Dynamic Notebooks – Quantum Molecular Computing</title>
+<title>The Computing Universe – Quantum Molecular Computing</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,26 +32,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/logo.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-97cbdf4c33b0c1d59c3c8504f205f74a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-97cbdf4c33b0c1d59c3c8504f205f74a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,68 +77,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Quantum Molecular Computing" href="index.xml" data-external="1"></head>
+<link rel="stylesheet" href="../../styles.css">
+</head>
 
 <body class="nav-fixed quarto-light">
 
@@ -146,11 +89,11 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logo-white.png" alt="" class="navbar-logo light-content">
-    <img src="./images/logo-white.png" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo-white.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo-white.png" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Quantum Molecular Computing</span>
     </a>
   </div>
@@ -161,7 +104,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About The Author</span></a>
   </li>  
   <li class="nav-item compact">
@@ -179,194 +122,178 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Open Research Notes &amp; Dynamic Notebooks</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">The Computing Universe</h1>
+                  <div>
+        <div class="description">
+          While we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Introduction</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>NicDeclic </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 24, 2026</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="SW50cm9kdWN0aW9u">Introduction <span class="quarto-category-count">(4)</span></div><div class="category" data-category="UGhpbG9zb3BoeQ==">Philosophy <span class="quarto-category-count">(1)</span></div></div></div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<div style="font-size: 1.3em;">
-<p>👉 <strong>New to this site? Start reading here:</strong><br>
-<strong><a href="./posts/welcome/index.html">“Welcome To A New Branch Of Quantum Computing!”</a></strong></p>
+<p><img src="computing.jpg" class="img-fluid"></p>
+<div class="text-end">
+<blockquote class="blockquote">
+<p><em>“Truth is not a stone to be thrown. It is a river that polishes the rocks. Drink from it too quickly, and you will taste only sand.”</em><br>
+— <strong>Professor Alvin</strong></p>
+</blockquote>
 </div>
 <hr>
+<section id="logical-systems" class="level2">
+<h2 class="anchored" data-anchor-id="logical-systems">Logical Systems</h2>
+<p>While we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems. These alternative substrates demonstrate that Boolean logic is fundamentally an abstract mathematical concept that can be embodied in countless physical forms, often in surprising and ingenious ways. Here are a few notable examples:</p>
+<section id="electromechanical-relays" class="level3">
+<h3 class="anchored" data-anchor-id="electromechanical-relays">Electromechanical Relays</h3>
+<p>Relays are electromechanical devices that use an electromagnet to physically open or close an electrical circuit. They were widely used in early computing machinery, such as early electromechanical Turing machines, to implement logic gates. Although slower and more prone to mechanical wear than transistors, relays were a pivotal milestone in the history of computer engineering.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="relay.png" height="300" class="figure-img"></p>
+<figcaption>Component</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="relay2.jpg" height="300" class="figure-img"></p>
+<figcaption>Schematic</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="vacuum-tubes" class="level3">
+<h3 class="anchored" data-anchor-id="vacuum-tubes">Vacuum Tubes</h3>
+<p>Following relays, thermionic valves (vacuum tubes) became the dominant technology for constructing logic gates. Despite being bulky, fragile, and power-hungry, these devices played a crucial role in the birth of electronic computing, powering machines like ENIAC.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tube.jpg" height="300" class="figure-img"></p>
+<figcaption>Components</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tube2.jpg" height="300" class="figure-img"></p>
+<figcaption>Schematic</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="mechanical-systems-marbles-gears" class="level3">
+<h3 class="anchored" data-anchor-id="mechanical-systems-marbles-gears">Mechanical Systems (Marbles, Gears)</h3>
+<p>Purely mechanical systems can be designed to represent binary states (for example, the physical position of a marble or the discrete rotation of a gear) and execute logical operations. While intrinsically slow, these systems offer a tactile, highly visual demonstration of computation.</p>
+<ul>
+<li>Marble-based logic systems:</li>
+</ul>
+<p><img src="https://binarymarbles.weebly.com/uploads/3/0/0/2/30021777/and_orig.jpg" class="img-fluid"></p>
+<ul>
+<li>LEGO-based mechanisms:</li>
+</ul>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/DiK5n6fU7B4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<ul>
+<li>Pulley and weight systems:</li>
+</ul>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://player.vimeo.com/video/93042377?fl=pl&amp;fe=vl" frameborder="0" title="" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="fluidics-water-air" class="level3">
+<h3 class="anchored" data-anchor-id="fluidics-water-air">Fluidics (Water, Air)</h3>
+<p>Fluidic logic systems utilize liquids or gases to represent bits (such as the presence, absence, or pressure level of a fluid within a channel) to perform operations without moving mechanical parts. These setups are often used to demonstrate control logic in harsh, radiation-heavy environments or for intuitive educational models.</p>
+<ul>
+<li>Water-based fluidic systems:</li>
+</ul>
+<p><img src="fluid.jpg" class="img-fluid"></p>
+</section>
+<section id="optics-lasers-mirrors" class="level3">
+<h3 class="anchored" data-anchor-id="optics-lasers-mirrors">Optics (Lasers, Mirrors)</h3>
+<p>Optical computing leverages photons to represent bits and process information. By manipulating light beams through lasers, beam splitters, mirrors, and non-linear optical crystals, logic gates can theoretically operate at the speed of light with minimal heat dissipation.</p>
+<ul>
+<li>Laser-based optical systems:</li>
+</ul>
+<p><img src="optical.jpg" height="400"></p>
+</section>
+<section id="unconventional-binary-substrates" class="level3">
+<h3 class="anchored" data-anchor-id="unconventional-binary-substrates">Unconventional Binary Substrates</h3>
+<p>Beyond these classical media, an almost limitless variety of physical systems can compute. Researchers have successfully implemented logic using plant root growth patterns, DNA strand displacement, engineered bacterial colonies, magnetic domain walls, and even swarms of soldier crabs.</p>
+<p><strong><a href="https://www.technologyreview.com/2012/04/12/186779/computer-scientists-build-computer-using-swarms-of-crabs/">“Computer Scientists Build Computer Using Swarms of Crabs”</a></strong></p>
+<p>Exploring these alternative substrates does more than broaden our intellectual appreciation of logic; it paves the way for technologies that could disrupt medicine, molecular robotics, distributed sensing, and environmental monitoring.<br>
+While many remain at the proof-of-concept stage, they stand as a testament to human ingenuity and our ability to rethink the physical foundations of computation.</p>
+<hr>
+</section>
+<section id="designing-a-universal-physical-computer" class="level3">
+<h3 class="anchored" data-anchor-id="designing-a-universal-physical-computer">Designing a Universal Physical Computer</h3>
+<p>Imagine we now want to create a computer using an entirely new physical substrate, capable of executing arbitrary algorithms. To achieve this, the system must not only implement a set of universal logic gates, but it must also satisfy rigorous operational criteria to function as a <strong>Turing-complete</strong> machine:</p>
+<ul>
+<li><strong>Physical State Representation:</strong> First and foremost, we must unambiguously define how Boolean states are physically encoded. The reliability of this encoding is vital to ensure deterministic, noise-resilient operations. In classical electronics, “0” and “1” correspond to low and high voltage thresholds; in a mechanical computer, they might correspond to the spatial coordinates of a marble or the angle of a latch.</li>
+<li><strong>Signal Propagation and Fan-out:</strong> The system must reliably transmit signals across space while minimizing dissipation and crosstalk. This requires an efficient transport mechanism capable of driving the output of one gate into the inputs of multiple subsequent gates (fan-out) without signal degradation. In electronics, this is achieved through metallic traces; in fluidics, via micro-channels; in optics, through waveguides or optical fibers.</li>
+<li><strong>State Retention and Control:</strong> Finally, a complete computational architecture demands memory (the ability to store intermediate states) and a control mechanism. Control ensures that operations occur in a well-defined sequence and that system states evolve coherently over time.</li>
+</ul>
+<hr>
+</section>
+<section id="the-scaling-wall-from-silicon-to-molecules" class="level3">
+<h3 class="anchored" data-anchor-id="the-scaling-wall-from-silicon-to-molecules">The Scaling Wall: From Silicon to Molecules</h3>
+<p>From an engineering standpoint, computational performance has historically been driven by scaling. To increase throughput and reduce latency, the prevailing strategy has been aggressive miniaturization—shrinking physical components to pack higher circuit densities onto a single die while boosting operating clock frequencies.</p>
+<p>However, this scaling paradigm is now running into hard physical barriers. At the sub-nanometer scale, traditional silicon transistors run headlong into destructive quantum phenomena, such as parasitic electron tunneling and quantum interference, which trigger leakage currents and compromise deterministic switching. These effects, once negligible, now pose severe technical and thermodynamic bottlenecks.</p>
+<p>Rather than treating quantum effects as adversaries to be suppressed, a radically different approach is to <strong>embrace and exploit them</strong>.</p>
+<p>By harnessing quantum behavior natively, we can design computational architectures operating on fundamentally new principles. This paradigm shift leads directly to a compelling frontier: <strong>implementing computational logic at the molecular scale.</strong></p>
+<p>By turning quantum mechanics into an asset rather than an obstacle, this strategy marks a clean conceptual break from traditional computing. It reveals how Boolean logic, though classical in its abstract formulation, can be mapped onto domains where quantum mechanics governs the physical substrate—opening up entirely uncharted territories for the future of information processing.</p>
+<hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/quantum-chemistry/index.html">“Quantum Chemistry”</a></strong></p>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title" data-direction="asc">
-        Title
-      </option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-      <option value="listing-author" data-direction="asc">
-        Author
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="SW50cm9kdWN0aW9u" data-listing-date-sort="1790222400000" data-listing-file-modified-sort="1790280696649" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="875">
-<div class="thumbnail"><a href="./posts/computing-universe/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/computing-universe/computing.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/computing-universe/index.html" class="no-external">The Computing Universe</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW50cm9kdWN0aW9u'); return false;">Introduction</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/computing-universe/index.html" class="no-external">
-<p>While we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/computing-universe/index.html" class="no-external">
-<div class="listing-date">
-Sep 24, 2026
-</div>
-<div class="listing-author">
-NicDeclic
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="SW50cm9kdWN0aW9u" data-listing-date-sort="1789617600000" data-listing-file-modified-sort="1789761491321" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
-<div class="thumbnail"><a href="./posts/quick-intro/index.html" class="no-external">
-
-<img loading="lazy" src="./images/5year old toys.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/quick-intro/index.html" class="no-external">Quantum Molecular Computing Explained to a 5 Year Old</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW50cm9kdWN0aW9u'); return false;">Introduction</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/quick-intro/index.html" class="no-external">
-<p>Despite all the underlying complexity… the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/quick-intro/index.html" class="no-external">
-<div class="listing-date">
-Sep 17, 2026
-</div>
-<div class="listing-author">
-NicDeclic
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="SW50cm9kdWN0aW9u" data-listing-date-sort="1789531200000" data-listing-file-modified-sort="1790273841924" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2101">
-<div class="thumbnail"><a href="./posts/boolean-logic/index.html" class="no-external">
-
-<img loading="lazy" src="./images/boolean_logic.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/boolean-logic/index.html" class="no-external">A Refresher on Boolean Logic</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW50cm9kdWN0aW9u'); return false;">Introduction</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/boolean-logic/index.html" class="no-external">
-<p>Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/boolean-logic/index.html" class="no-external">
-<div class="listing-date">
-Sep 16, 2026
-</div>
-<div class="listing-author">
-NicDeclic
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="SW50cm9kdWN0aW9uJTJDUGhpbG9zb3BoeQ==" data-listing-date-sort="1789444800000" data-listing-file-modified-sort="1789762131007" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="543">
-<div class="thumbnail"><a href="./posts/welcome/index.html" class="no-external">
-
-<img loading="lazy" src="./images/splash.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To A New Branch Of Quantum Computing!</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW50cm9kdWN0aW9u'); return false;">Introduction</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGhpbG9zb3BoeQ=='); return false;">Philosophy</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/welcome/index.html" class="no-external">
-<p>Whether you are a seasoned quantum physicist, a curious software engineer, a student wandering through the fringes of the web, or simply someone fascinated by the architecture of reality: <strong>welcome aboard.</strong></p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-Sep 15, 2026
-</div>
-<div class="listing-author">
-NicDeclic
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
