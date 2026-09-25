@@ -10,7 +10,690 @@
 <atom:link href="https://nicdeclic.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>Open Research Notes &amp; Dynamic Notebooks</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 24 Sep 2026 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 25 Sep 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>Quantum Chemistry</title>
+  <dc:creator>NicDeclic </dc:creator>
+  <link>https://nicdeclic.com/posts/quantum-chemistry/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/quantum chemistry.jpg" class="img-fluid"></p>
+<div class="text-end">
+<blockquote class="blockquote">
+<p><em>“An atom has no identity of its own. Only a function within the whole.”</em><br>
+— <strong>Professor Alvin</strong></p>
+</blockquote>
+</div>
+<hr>
+<p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<div id="4fc495e3" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to see library imports</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> sys</span>
+<span id="cb1-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'google.colab'</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> sys.modules:</span>
+<span id="cb1-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Download qmc.py from GitHub</span></span>
+<span id="cb1-4">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>wget <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>raw.githubusercontent.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>nicdeclic<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>quantum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>molecular<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>computing<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>qmc.py</span>
+<span id="cb1-5">    </span>
+<span id="cb1-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Download requirements.txt from GitHub</span></span>
+<span id="cb1-7">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>wget <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>raw.githubusercontent.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>nicdeclic<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>quantum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>molecular<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>computing<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>requirements.txt</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Install dependencies</span></span>
+<span id="cb1-10">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>pip install <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>r requirements.txt</span>
+<span id="cb1-11"></span>
+<span id="cb1-12">sys.path.insert(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"../.."</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Select root directory</span></span>
+<span id="cb1-13"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> qmc <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># QMC library</span></span>
+<span id="cb1-14"></span>
+<span id="cb1-15"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>reload_ext autoreload</span>
+<span id="cb1-16"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>autoreload <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span></code></pre></div></div>
+</details>
+</div>
+<hr>
+<section id="computing-molecules" class="level2">
+<h2 class="anchored" data-anchor-id="computing-molecules">Computing Molecules</h2>
+<p>Could it be that the capacity to process and manipulate information is woven into the very fabric of molecules?</p>
+<p>We now turn to explore the untapped potential of atoms and their chemical bonds to create sophisticated computational systems.</p>
+<hr>
+</section>
+<section id="chemical-bonds" class="level2">
+<h2 class="anchored" data-anchor-id="chemical-bonds">Chemical Bonds</h2>
+<p>The molecules of primary interest here are those with carbon atoms, owing to their fundamental ability to form four covalent bonds. While other elements, such as silicon, share this tetravalent property, carbon will serve as our foundational element throughout this blog due to its central role in organic chemistry.</p>
+<p>Carbon atoms do not dance alone in this molecular choreography; they interact with other key elements, notably hydrogen (which typically forms one bond), oxygen (which forms two), and nitrogen (which forms three). Combined with carbon, these elements constitute the elemental building blocks of a rich and complex chemistry:</p>
+<div id="59af630e" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> schemdraw.Drawing() <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> d:</span>
+<span id="cb2-2">    d.config(fontsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14</span>)</span>
+<span id="cb2-3"></span>
+<span id="cb2-4">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Row 1: Single Bond (H - C) ---</span></span>
+<span id="cb2-5">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Line(lw<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>).at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)).to((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>))</span>
+<span id="cb2-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Draw dots AFTER the line so they sit cleanly on top</span></span>
+<span id="cb2-7">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Dot(radius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.45</span>).at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)).color(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#1E88E5'</span>).fill(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#E3F2FD'</span>).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'H'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>)</span>
+<span id="cb2-8">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Dot(radius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.45</span>).at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)).color(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#424242'</span>).fill(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#E0E0E0'</span>).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'C'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>)</span>
+<span id="cb2-9">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Label().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.6</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Hydrogen – Carbon: 1 bond'</span>, halign<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'left'</span>, valign<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>)</span>
+<span id="cb2-10"></span>
+<span id="cb2-11">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Row 2: Double Bond (O = C) ---</span></span>
+<span id="cb2-12">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Line(lw<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.5</span>).at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)).to((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>))</span>
+<span id="cb2-13">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Dot(radius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.45</span>).at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)).color(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#E53935'</span>).fill(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#FFCDD2'</span>).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'O'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>)</span>
+<span id="cb2-14">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Dot(radius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.45</span>).at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)).color(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#424242'</span>).fill(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#E0E0E0'</span>).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'C'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>)</span>
+<span id="cb2-15">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Label().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.6</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Oxygen – Carbon: 2 bonds'</span>, halign<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'left'</span>, valign<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>)</span>
+<span id="cb2-16"></span>
+<span id="cb2-17">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># --- Row 3: Triple Bond (N ≡ C) ---</span></span>
+<span id="cb2-18">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Line(lw<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7.5</span>).at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)).to((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>))</span>
+<span id="cb2-19">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Dot(radius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.45</span>).at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)).color(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#43A047'</span>).fill(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#C8E6C9'</span>).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'N'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>)</span>
+<span id="cb2-20">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Dot(radius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.45</span>).at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)).color(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#424242'</span>).fill(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'#E0E0E0'</span>).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'C'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'black'</span>)</span>
+<span id="cb2-21">    d <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> elm.Label().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.6</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Nitrogen – Carbon: 3 bonds'</span>, halign<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'left'</span>, valign<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'center'</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-3-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Chemical bonds can naturally be harnessed to encode discrete binary states. For instance, a single bond between two carbon atoms can be defined as representing a state <strong>“0”</strong>, whereas a double bond can represent a state <strong>“1”</strong>. We will not be using triple bonds here.</p>
+<hr>
+</section>
+<section id="orbitals" class="level2">
+<h2 class="anchored" data-anchor-id="orbitals">Orbitals</h2>
+<p>Where do these specific bond valencies and spatial bond angles actually originate? The answer lies within the concept of atomic and molecular orbitals.</p>
+<p>An orbital is a region of space around an atomic nucleus where the probability of finding an electron is highest. These regions are governed by mathematical wavefunctions—the direct solutions to the fundamental equations of quantum mechanics.</p>
+<p>These orbitals exhibit varied geometries and scales, classified by sets of quantum numbers. The <img src="https://latex.codecogs.com/png.latex?s">, <img src="https://latex.codecogs.com/png.latex?p">, <img src="https://latex.codecogs.com/png.latex?d">, and <img src="https://latex.codecogs.com/png.latex?f"> subshells, for instance, possess distinct spatial shapes that directly dictate how atoms bond. The <img src="https://latex.codecogs.com/png.latex?p">-orbitals, with their characteristic dumbbell-shaped lobes oriented along Cartesian axes, are critically important for the formation of the covalent bonds prevalent in organic and aromatic architectures.</p>
+<p>When atomic orbitals interact, they combine to produce <strong>hybrid orbitals</strong>, which ultimately govern the geometry of molecular structures. For carbon:<br>
+* <strong><img src="https://latex.codecogs.com/png.latex?sp%5E3"> hybridization</strong> yields four single bonds symmetrically arranged in a three-dimensional tetrahedron (with <img src="https://latex.codecogs.com/png.latex?%5Capprox%20109.5%5E%5Ccirc"> angles).<br>
+* <strong><img src="https://latex.codecogs.com/png.latex?sp%5E2"> hybridization</strong> yields planar geometries (<img src="https://latex.codecogs.com/png.latex?%5Capprox%20120%5E%5Ccirc"> angles), creating the structural framework for double bonds.<br>
+* <strong><img src="https://latex.codecogs.com/png.latex?sp"> hybridization</strong> yields linear geometries (<img src="https://latex.codecogs.com/png.latex?180%5E%5Ccirc"> angles), establishing triple bonds.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/hybrid orbitals.jpg" class="quarto-figure quarto-figure-center figure-img" height="400"></p>
+</figure>
+</div>
+<section id="delocalization-in-conjugated-systems" class="level3">
+<h3 class="anchored" data-anchor-id="delocalization-in-conjugated-systems">Delocalization in Conjugated Systems</h3>
+<p>In conjugated and aromatic systems, electrons are free to delocalize across multiple atomic centers:</p>
+<p>Take benzene as the quintessential example: the <img src="https://latex.codecogs.com/png.latex?%5Cpi"> (pi) electrons that form the alternating double bonds are not strictly bound between adjacent pairs of carbon atoms. Instead, they form a continuous, delocalized electron cloud extending uniformly over the entire hexagonal ring.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/delocalized.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>This resonance phenomenon is a direct physical manifestation of quantum mechanics. It demonstrates how quantum entities occupy coherent superpositions rather than classical point-like positions. To be clear: these are not localized particles mechanically “spinning in circles” around the ring, but rather an integrated, collective electronic state.</p>
+<p>This delocalization is far from a mere theoretical curiosity; it carries profound practical implications. The continuous nature of the <img src="https://latex.codecogs.com/png.latex?%5Cpi">-cloud dictates the molecule’s chemical stability, its electronic band structure, its charge transport capabilities, and its optical response.</p>
+<hr>
+</section>
+</section>
+<section id="the-initial-spark-trivalent-carbon-nodes" class="level2">
+<h2 class="anchored" data-anchor-id="the-initial-spark-trivalent-carbon-nodes">The Initial Spark: Trivalent Carbon Nodes</h2>
+<p>The computational potential of a carbon atom bonded to three adjacent atoms (<img src="https://latex.codecogs.com/png.latex?sp%5E2"> planar center) is particularly intriguing. Such an atom acts naturally as a <strong>branching node</strong> within a molecular graph, where each chemical bond functions as a logical interconnect.</p>
+<p>To satisfy carbon’s fundamental tetravalence (four total bonds), <strong>exactly one</strong> of these three bonds can be a double bond at any given moment, while the remaining two must be single bonds. Consequently, the local bond configuration at this trivalent node can manifest in three mutually exclusive states:</p>
+<ol type="1">
+<li>Bond <img src="https://latex.codecogs.com/png.latex?a"> is double; bonds <img src="https://latex.codecogs.com/png.latex?b"> and <img src="https://latex.codecogs.com/png.latex?c"> are single.</li>
+<li>Bond <img src="https://latex.codecogs.com/png.latex?b"> is double; bonds <img src="https://latex.codecogs.com/png.latex?a"> and <img src="https://latex.codecogs.com/png.latex?c"> are single.</li>
+<li>Bond <img src="https://latex.codecogs.com/png.latex?c"> is double; bonds <img src="https://latex.codecogs.com/png.latex?a"> and <img src="https://latex.codecogs.com/png.latex?b"> are single.</li>
+</ol>
+<p>This set of degenerate configurations corresponds directly to the resonance structures of the molecular node.</p>
+<p>We can express this physical valence constraint through the following Boolean relation:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%20(A%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20B%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20C)%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20(A%20%5Cmathbin%7B%5Ctext%7BAnd%7D%7D%20B%20%5Cmathbin%7B%5Ctext%7BAnd%7D%7D%20C)%20=%20%5Ctext%7B%221%22%7D%20"></p>
+<p>Or represented as an equivalent logic circuit:</p>
+<div id="5be70919" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> schemdraw.Drawing() <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> d:</span>
+<span id="cb3-2">    d.config(fontsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, unit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>)</span>
+<span id="cb3-3"></span>
+<span id="cb3-4">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Gates: 3-input XOR (top) and 3-input AND (bottom)</span></span>
+<span id="cb3-5">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># inputs=3 exposes anchors: in1, in2, in3</span></span>
+<span id="cb3-6">    xor3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.Xor(inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>).right().at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)))</span>
+<span id="cb3-7">    and3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.And(inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>).right().at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)))</span>
+<span id="cb3-8"></span>
+<span id="cb3-9">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Final 2-input XOR combining both branches</span></span>
+<span id="cb3-10">    xor_final <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.Xor().right().at((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)))</span>
+<span id="cb3-11">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|-'</span>).at(xor3.out).to(xor_final.in1))</span>
+<span id="cb3-12">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|-'</span>).at(and3.out).to(xor_final.in2))</span>
+<span id="cb3-13"></span>
+<span id="cb3-14">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Output line constrained to "1"</span></span>
+<span id="cb3-15">    d.add(elm.Line().right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>).at(xor_final.out).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'"1"'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'right'</span>))</span>
+<span id="cb3-16"></span>
+<span id="cb3-17">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Clean input bus routing for A, B, C</span></span>
+<span id="cb3-18">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Input A (top pin: in1)</span></span>
+<span id="cb3-19">    d.add(elm.Line().left(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>).at(xor3.in1).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'A'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'left'</span>))</span>
+<span id="cb3-20">    d.add(elm.Dot().at((xor3.in1[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>,xor3.in1[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])))</span>
+<span id="cb3-21">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|-'</span>).at((xor3.in1[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>,xor3.in1[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])).to(and3.in1))</span>
+<span id="cb3-22"></span>
+<span id="cb3-23">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Input B (middle pin: in2)</span></span>
+<span id="cb3-24">    d.add(elm.Line().left(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>).at(xor3.in2).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'B'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'left'</span>))</span>
+<span id="cb3-25">    d.add(elm.Dot().at((xor3.in2[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>,xor3.in2[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])))</span>
+<span id="cb3-26">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|-'</span>).at((xor3.in2[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>,xor3.in2[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])).to(and3.in2))</span>
+<span id="cb3-27"></span>
+<span id="cb3-28">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Input C (bottom pin: in3)</span></span>
+<span id="cb3-29">    d.add(elm.Line().left(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>).at(xor3.in3).label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'C'</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'left'</span>))</span>
+<span id="cb3-30">    d.add(elm.Dot().at((xor3.in3[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,xor3.in3[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])))</span>
+<span id="cb3-31">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'|-'</span>).at((xor3.in3[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,xor3.in3[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])).to(and3.in3))</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-4-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Given that combining an <strong>AND</strong> operation with an <strong>XOR</strong> operation provides the functional completeness required to synthesize a universal <strong>NAND</strong> gate, we immediately see that all the necessary mathematical ingredients for universal computation are naturally embedded within the valence rules of a single carbon node.</p>
+<p>There is clearly substantial theoretical potential here — the challenge is simply learning how to tame and harness it…</p>
+<p>It was precisely this early, encouraging realization that provided the initial momentum to dive deeper into the exploration of molecular quantum circuits.</p>
+<hr>
+</section>
+<section id="protobits" class="level2">
+<h2 class="anchored" data-anchor-id="protobits">Protobits</h2>
+<hr>
+
+
+</section>
+
+ ]]></description>
+  <category>Introduction</category>
+  <guid>https://nicdeclic.com/posts/quantum-chemistry/</guid>
+  <pubDate>Fri, 25 Sep 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://nicdeclic.com/posts/quantum-chemistry/quantum chemistry.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>The Computing Universe</title>
   <dc:creator>NicDeclic </dc:creator>
@@ -31,7 +714,8 @@
 <hr>
 <section id="logical-systems" class="level2">
 <h2 class="anchored" data-anchor-id="logical-systems">Logical Systems</h2>
-<p>While we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems. These alternative substrates demonstrate that Boolean logic is fundamentally an abstract mathematical concept that can be embodied in countless physical forms, often in surprising and ingenious ways. Here are a few notable examples:</p>
+<p>While we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems. These alternative substrates demonstrate that Boolean logic is fundamentally an abstract mathematical concept that can be embodied in countless physical forms, often in surprising and ingenious ways.<br>
+Here are a few notable examples:</p>
 <section id="electromechanical-relays" class="level3">
 <h3 class="anchored" data-anchor-id="electromechanical-relays">Electromechanical Relays</h3>
 <p>Relays are electromechanical devices that use an electromagnet to physically open or close an electrical circuit. They were widely used in early computing machinery, such as early electromechanical Turing machines, to implement logic gates. Although slower and more prone to mechanical wear than transistors, relays were a pivotal milestone in the history of computer engineering.</p>
@@ -130,8 +814,8 @@ While many remain at the proof-of-concept stage, they stand as a testament to hu
 </ul>
 <hr>
 </section>
-<section id="the-scaling-wall-from-silicon-to-molecules" class="level3">
-<h3 class="anchored" data-anchor-id="the-scaling-wall-from-silicon-to-molecules">The Scaling Wall: From Silicon to Molecules</h3>
+<section id="the-scaling-wall-from-silicon-transistors-to-molecules" class="level3">
+<h3 class="anchored" data-anchor-id="the-scaling-wall-from-silicon-transistors-to-molecules">The Scaling Wall: From Silicon Transistors to Molecules</h3>
 <p>From an engineering standpoint, computational performance has historically been driven by scaling. To increase throughput and reduce latency, the prevailing strategy has been aggressive miniaturization—shrinking physical components to pack higher circuit densities onto a single die while boosting operating clock frequencies.</p>
 <p>However, this scaling paradigm is now running into hard physical barriers. At the sub-nanometer scale, traditional silicon transistors run headlong into destructive quantum phenomena, such as parasitic electron tunneling and quantum interference, which trigger leakage currents and compromise deterministic switching. These effects, once negligible, now pose severe technical and thermodynamic bottlenecks.</p>
 <p>Rather than treating quantum effects as adversaries to be suppressed, a radically different approach is to <strong>embrace and exploit them</strong>.</p>
@@ -1575,7 +2259,7 @@ font-style: inherit;">@</span> and_q)</span></code></pre></div></div>
 <p>👉 <strong>Quick start:</strong><br>
 <strong><a href="../../posts/quick-intro/index.html">“Quantum Molecular Computing Explained to a 5 Year Old”</a></strong></p>
 <hr>
-<p>👉 <strong>Ready to learn the theory? Click here:</strong><br>
+<p>👉 <strong>Ready to dive into theory? Click here:</strong><br>
 <strong><a href="../../posts/boolean-logic/index.html">“A Refresher on Boolean Logic”</a></strong></p>
 
 

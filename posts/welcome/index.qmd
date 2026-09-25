@@ -70,5 +70,5 @@ And yet, despite all the underlying complexity... the fundamental rules are so s
 
 ---
 
-👉 **Ready to learn the theory? Click here:**  
+👉 **Ready to dive into theory? Click here:**  
 **["A Refresher on Boolean Logic"](/posts/boolean-logic/index.html)**

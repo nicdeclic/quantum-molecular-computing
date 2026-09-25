@@ -2,11 +2,15 @@ import numpy as np
 from scipy import sparse
 import math
 
-from IPython.display import display, Latex
+from IPython.display import display, Latex, SVG
 
 import schemdraw
 import schemdraw.logic as logic
 import schemdraw.elements as elm
+
+from rdkit import Chem
+from rdkit.Chem.Draw import rdMolDraw2D
+
 
 #
 # Utilities
