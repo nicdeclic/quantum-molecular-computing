@@ -16,6 +16,240 @@ image: "/images/5year old toys.jpg"
 
 ---
 
-![](/images/construction.png)
+```{python}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Click to see library imports"
+
+import sys
+if 'google.colab' in sys.modules:
+    # 1. Download qmc.py from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py
+    
+    # 2. Download requirements.txt from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt
+
+    # 3. Install dependencies
+    !pip install -q -r requirements.txt
+
+sys.path.insert(0, "../..") # Select root directory
+from qmc import * # QMC library
+
+%reload_ext autoreload
+%autoreload 2
+
+```
+
+Young children possess a thinking process that is naturally fluid and intuitive, whereas adults often hold a more rigid worldview shaped by years of conventional, classical education.
+
+Quantum computing operates through superpositions and probabilities — concepts that often feel deeply counterintuitive to a mind conditioned by binary logic.
+
+Children, however, are entirely comfortable with a world where anything is possible, where something can simultaneously be "this" and "that," much like a quantum state in superposition. In many ways, their cognitive style is far closer to the natural quantum fabric of reality.
+
+That is why playful, hands-on experiences often provide the best entry point for truly grasping quantum computing — even for adults!
+
+Using an HB pencil and a sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting, observing, and playing with structures to watch the mechanics reveal themselves.
+
+Ready to give it a try?
 
 ---
+
+## Rules of the Game
+
+* You can only draw filled circles, thin lines and thick lines.  
+* Each circle can only be connected by lines, never more than 3 lines.  
+* There can only be **one thick line** per circle.  
+
+Have fun building a structure that follows these rules!    
+
+Start with something simple. Here are a few suggestions :
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 3
+#| fig-cap: 
+#|   - "Double Honeycomb structure"
+#|   - "Letter Enveloppe structure"
+#|   - "Triple Honeycomb structure"
+
+
+# Create a conjugated carbon molecule
+mol1 = CarbonMolecule("Double Honeycomb")
+
+# Add atoms
+c1_1 = mol1.add_atom(x=-0.25, y=1)
+c1_2 = mol1.add_atom(x=0.25, y=1)
+c1_3 = mol1.add_atom(x=-0.5, y=0.5)
+c1_4 = mol1.add_atom(x=0.5, y=0.5)
+c1_5 = mol1.add_atom(x=-0.25, y=0)
+c1_6 = mol1.add_atom(x=0.25, y=0)
+c1_7 = mol1.add_atom(x=-0.5, y=-0.5)
+c1_8 = mol1.add_atom(x=0.5, y=-0.5)
+c1_9 = mol1.add_atom(x=-0.25, y=-1)
+c1_10 = mol1.add_atom(x=0.25, y=-1)
+
+# Add bonds
+b1_1 = mol1.add_bond(c1_1, c1_2, order="single")
+b1_2 = mol1.add_bond(c1_2, c1_4, order="single")
+b1_3 = mol1.add_bond(c1_1, c1_3, order="single")
+b1_4 = mol1.add_bond(c1_3, c1_5, order="single")
+b1_5 = mol1.add_bond(c1_4, c1_6, order="single")
+b1_6 = mol1.add_bond(c1_5, c1_6, order="single")
+b1_7 = mol1.add_bond(c1_5, c1_7, order="single")
+b1_8 = mol1.add_bond(c1_6, c1_8, order="single")
+b1_9 = mol1.add_bond(c1_7, c1_9, order="single")
+b1_10 = mol1.add_bond(c1_8, c1_10, order="single")
+b1_11 = mol1.add_bond(c1_9, c1_10, order="single")
+
+# Draw with Schemdraw
+mol1.draw()
+
+
+# Create a conjugated carbon molecule
+mol2 = CarbonMolecule("Letter Enveloppe")
+
+# Add atoms
+c2_1 = mol2.add_atom(x=-0.8, y=0.5)
+c2_2 = mol2.add_atom(x=0.8, y=0.5)
+c2_3 = mol2.add_atom(x=-0.3, y=0)
+c2_4 = mol2.add_atom(x=0.3, y=0)
+c2_5 = mol2.add_atom(x=-0.8, y=-0.5)
+c2_6 = mol2.add_atom(x=0.8, y=-0.5)
+
+# Add bonds
+b2_1 = mol2.add_bond(c2_1, c2_2, order="single")
+b2_2 = mol2.add_bond(c2_1, c2_5, order="single")
+b2_3 = mol2.add_bond(c2_2, c2_6, order="single")
+b2_4 = mol2.add_bond(c2_1, c2_3, order="single")
+b2_5 = mol2.add_bond(c2_2, c2_4, order="single")
+b2_6 = mol2.add_bond(c2_3, c2_4, order="single")
+b2_7 = mol2.add_bond(c2_3, c2_5, order="single")
+b2_8 = mol2.add_bond(c2_4, c2_6, order="single")
+b2_9 = mol2.add_bond(c2_5, c2_6, order="single")
+
+# Draw with Schemdraw
+mol2.draw()
+
+
+# Create a conjugated carbon molecule
+mol3 = CarbonMolecule("Triple Honeycomb")
+
+# Add atoms
+c3_1 = mol3.add_atom(x=-0.25, y=1)
+c3_2 = mol3.add_atom(x=0.25, y=1)
+c3_3 = mol3.add_atom(x=-0.5, y=0.5)
+c3_4 = mol3.add_atom(x=0.5, y=0.5)
+c3_5 = mol3.add_atom(x=-0.25, y=0)
+c3_6 = mol3.add_atom(x=0.25, y=0)
+c3_7 = mol3.add_atom(x=-0.5, y=-0.5)
+c3_8 = mol3.add_atom(x=0.5, y=-0.5)
+c3_9 = mol3.add_atom(x=-0.25, y=-1)
+c3_10 = mol3.add_atom(x=0.25, y=-1)
+c3_11 = mol3.add_atom(x=1, y=0.5)
+c3_12 = mol3.add_atom(x=1.25, y=0)
+c3_13 = mol3.add_atom(x=1, y=-0.5)
+
+# Add bonds
+b3_1 = mol3.add_bond(c3_1, c3_2, order="single")
+b3_2 = mol3.add_bond(c3_2, c3_4, order="single")
+b3_3 = mol3.add_bond(c3_1, c3_3, order="single")
+b3_4 = mol3.add_bond(c3_3, c3_5, order="single")
+b3_5 = mol3.add_bond(c3_4, c3_6, order="single")
+b3_6 = mol3.add_bond(c3_5, c3_6, order="single")
+b3_7 = mol3.add_bond(c3_5, c3_7, order="single")
+b3_8 = mol3.add_bond(c3_6, c3_8, order="single")
+b3_9 = mol3.add_bond(c3_7, c3_9, order="single")
+b3_10 = mol3.add_bond(c3_8, c3_10, order="single")
+b3_11 = mol3.add_bond(c3_9, c3_10, order="single")
+b3_12 = mol3.add_bond(c3_4, c3_11, order="single")
+b3_13 = mol3.add_bond(c3_11, c3_12, order="single")
+b3_14 = mol3.add_bond(c3_12, c3_13, order="single")
+b3_15 = mol3.add_bond(c3_13, c3_8, order="single")
+
+# Draw with Schemdraw
+mol3.draw()
+
+```
+
+---
+
+## The Thick Lines Game
+
+- Very often a structure has multiple solutions.
+- Can you find all possibilities ? Draw all possibilities of your structure.  
+
+Example: The Double Honeycomb structure has 3 possibilities.
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 3
+
+all_resonances = mol1.resonance()
+
+for i, res_mol in enumerate(all_resonances):
+    res_mol.draw() 
+
+```
+
+---
+
+## The Magical Box Game
+
+![](/images/construction.png)  
+
+- Imagine qu’un magicien place tes structures dans une boîte spéciale qui fait de la magie avec les couleurs !  
+- Imagine that a magician has placed all of your structures in a special box.
+
+- Choisis :   
+    - Où mettre les couleurs (les entrées).   
+    - Où sortiront les couleurs (les sorties).   
+
+- Choisi les couleurs que tu veux voir aux entrées.  
+
+- Trouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.  
+
+- Si tu n’en trouves pas, essaie d’autres couleurs.   
+
+- Regarde les sorties pour voir ce qui ressort !  
+
+- Essaie toutes les combinaisons possibles et note ce qui arrive.   
+
+---
+
+## What is the magic box used for?
+
+- Imagine toi que les entrées sont une question et les sorties sont la réponse.   
+
+- Peux-tu trouver une combinaison spéciale ?   
+
+- À quoi pourrait-elle servir ?   
+
+- Les barres bleues et rouges peuvent représenter tout ce que tu veux.  
+
+---
+
+## Reverse Magic !
+
+- Now, invert inputs and outputs.   
+- Surprise ! The box also works in reverse !   
+- Cette fois, les entrées sont la réponse et les sorties sont la question.  
+
+---
+
+And that is all there is to it! With a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.
+
+Quantum molecular computing may seem daunting at first glance, but at its core, it is governed by simple, deterministic rules—much like the constraints of a board game. You no longer have an excuse to claim that quantum mechanics is inherently too complicated or counterintuitive to comprehend!
+
+However, it must be acknowledged that truly mastering the game remains a genuine challenge.
+
+Two fundamental questions remain:
+
+* **How do we engineer specific structures to achieve a desired computational outcome?**  
+and  
+* **What are the ultimate limits and true computational power of quantum molecular systems?**
+
+---
+
+👉 **You are now ready to dive into the theory :**  
+**["A Refresher on Boolean Logic"](/posts/boolean-logic/index.html)**

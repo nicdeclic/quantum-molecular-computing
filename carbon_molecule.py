@@ -12,7 +12,7 @@ import schemdraw
 import schemdraw.elements as elm
 
 
-@dataclass
+@dataclass(eq=False)
 class Atom:
     """Represents a carbon atom node."""
     x: float
@@ -25,7 +25,7 @@ class Atom:
         return (self.x, self.y)
 
 
-@dataclass
+@dataclass(eq=False)
 class Bond:
     """
     Represents a chemical bond (protobit) between two atoms.
@@ -349,3 +349,115 @@ class CarbonMolecule:
         fig.subplots_adjust(left=0, right=1, bottom=0, top=1)
 
         plt.show()
+
+    def resonance(self) -> List["CarbonMolecule"]:
+        """
+        Enumerates all valid chemical resonance structures using backtracking.
+        
+        Strict valency rule enforced:
+        Every single carbon atom MUST have EXACTLY ONE double bond connected to it.
+        """
+        floating_bonds = [b for b in self.bonds if b.state_type == "floating"]
+        
+        # Build lookup table: atom -> list of connected bonds
+        atom_bonds: Dict[Atom, List[Bond]] = {a: [] for a in self.atoms}
+        for b in self.bonds:
+            atom_bonds[b.atom1].append(b)
+            atom_bonds[b.atom2].append(b)
+
+        # Build equivalence groups for couplers (Union-Find)
+        parent = {b: b for b in self.bonds}
+
+        def find(b):
+            if parent[b] != b:
+                parent[b] = find(parent[b])
+            return parent[b]
+
+        def union(b1, b2):
+            root1, root2 = find(b1), find(b2)
+            if root1 != root2:
+                parent[root2] = root1
+
+        for c in self.couplers:
+            union(c.bond1, c.bond2)
+
+        # Pre-assign fixed bonds
+        current_assignment: Dict[Bond, str] = {}
+        for b in self.bonds:
+            if b.state_type == "fixed":
+                current_assignment[b] = b.order
+
+        valid_solutions: List[Dict[Bond, str]] = []
+
+        def is_valid_partial() -> bool:
+            # During search: An atom cannot have MORE THAN 1 double bond
+            for atom, connected in atom_bonds.items():
+                double_count = 0
+                for b in connected:
+                    if b in current_assignment and current_assignment[b] == "double":
+                        double_count += 1
+                if double_count > 1:
+                    return False
+
+            # Coupler constraint: coupled bonds must share the exact same order
+            groups: Dict[Bond, str] = {}
+            for b, val in current_assignment.items():
+                root = find(b)
+                if root in groups:
+                    if groups[root] != val:
+                        return False
+                else:
+                    groups[root] = val
+
+            return True
+
+        def is_valid_complete() -> bool:
+            # Final check: EVERY atom must have EXACTLY ONE double bond
+            for atom, connected in atom_bonds.items():
+                double_count = 0
+                for b in connected:
+                    if current_assignment.get(b) == "double":
+                        double_count += 1
+                if double_count != 1:  # Must be strictly 1
+                    return False
+            return True
+
+        def backtrack(index: int):
+            if not is_valid_partial():
+                return
+
+            if index == len(floating_bonds):
+                # All bonds assigned -> verify that EVERY atom has exactly 1 double bond
+                if is_valid_complete():
+                    valid_solutions.append(dict(current_assignment))
+                return
+
+            bond = floating_bonds[index]
+
+            # Try 'double' first, then 'single'
+            current_assignment[bond] = "double"
+            backtrack(index + 1)
+
+            current_assignment[bond] = "single"
+            backtrack(index + 1)
+
+            # Cleanup
+            del current_assignment[bond]
+
+        # Launch search
+        backtrack(0)
+
+        # Reconstruct valid CarbonMolecule instances
+        resonances: List["CarbonMolecule"] = []
+        for sol_idx, solution in enumerate(valid_solutions):
+            new_mol = CarbonMolecule(name=f"{self.name}_resonance_{sol_idx + 1}")
+            new_mol.copy_from(self)
+
+            for original_bond, solved_order in solution.items():
+                idx = self.bonds.index(original_bond)
+                new_mol.bonds[idx].order = solved_order
+
+            resonances.append(new_mol)
+
+        return resonances
+    

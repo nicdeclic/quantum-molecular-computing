@@ -29,6 +29,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -177,10 +212,271 @@ ul.task-list li input[type="checkbox"] {
 </blockquote>
 </div>
 <hr>
-<p><img src="../../images/construction.png" class="img-fluid"></p>
+<div id="d1488a84" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to see library imports</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'google.colab'</span> <span class="kw">in</span> sys.modules:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Download qmc.py from GitHub</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>q https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>nicdeclic<span class="op">/</span>quantum<span class="op">-</span>molecular<span class="op">-</span>computing<span class="op">/</span>main<span class="op">/</span>qmc.py</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Download requirements.txt from GitHub</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>q https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>nicdeclic<span class="op">/</span>quantum<span class="op">-</span>molecular<span class="op">-</span>computing<span class="op">/</span>main<span class="op">/</span>requirements.txt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Install dependencies</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>pip install <span class="op">-</span>q <span class="op">-</span>r requirements.txt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"../.."</span>) <span class="co"># Select root directory</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qmc <span class="im">import</span> <span class="op">*</span> <span class="co"># QMC library</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reload_ext autoreload</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Young children possess a thinking process that is naturally fluid and intuitive, whereas adults often hold a more rigid worldview shaped by years of conventional, classical education.</p>
+<p>Quantum computing operates through superpositions and probabilities — concepts that often feel deeply counterintuitive to a mind conditioned by binary logic.</p>
+<p>Children, however, are entirely comfortable with a world where anything is possible, where something can simultaneously be “this” and “that,” much like a quantum state in superposition. In many ways, their cognitive style is far closer to the natural quantum fabric of reality.</p>
+<p>That is why playful, hands-on experiences often provide the best entry point for truly grasping quantum computing — even for adults!</p>
+<p>Using an HB pencil and a sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting, observing, and playing with structures to watch the mechanics reveal themselves.</p>
+<p>Ready to give it a try?</p>
 <hr>
+<section id="rules-of-the-game" class="level2">
+<h2 class="anchored" data-anchor-id="rules-of-the-game">Rules of the Game</h2>
+<ul>
+<li>You can only draw filled circles, thin lines and thick lines.<br>
+</li>
+<li>Each circle can only be connected by lines, never more than 3 lines.<br>
+</li>
+<li>There can only be <strong>one thick line</strong> per circle.</li>
+</ul>
+<p>Have fun building a structure that follows these rules!</p>
+<p>Start with something simple. Here are a few suggestions :</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mol1 <span class="op">=</span> CarbonMolecule(<span class="st">"Double Honeycomb"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>c1_1 <span class="op">=</span> mol1.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c1_2 <span class="op">=</span> mol1.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>c1_3 <span class="op">=</span> mol1.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>c1_4 <span class="op">=</span> mol1.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>c1_5 <span class="op">=</span> mol1.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>c1_6 <span class="op">=</span> mol1.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>c1_7 <span class="op">=</span> mol1.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>c1_8 <span class="op">=</span> mol1.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>c1_9 <span class="op">=</span> mol1.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>c1_10 <span class="op">=</span> mol1.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>b1_1 <span class="op">=</span> mol1.add_bond(c1_1, c1_2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>b1_2 <span class="op">=</span> mol1.add_bond(c1_2, c1_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>b1_3 <span class="op">=</span> mol1.add_bond(c1_1, c1_3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>b1_4 <span class="op">=</span> mol1.add_bond(c1_3, c1_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>b1_5 <span class="op">=</span> mol1.add_bond(c1_4, c1_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>b1_6 <span class="op">=</span> mol1.add_bond(c1_5, c1_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>b1_7 <span class="op">=</span> mol1.add_bond(c1_5, c1_7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>b1_8 <span class="op">=</span> mol1.add_bond(c1_6, c1_8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>b1_9 <span class="op">=</span> mol1.add_bond(c1_7, c1_9, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>b1_10 <span class="op">=</span> mol1.add_bond(c1_8, c1_10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>b1_11 <span class="op">=</span> mol1.add_bond(c1_9, c1_10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>mol1.draw()</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>mol2 <span class="op">=</span> CarbonMolecule(<span class="st">"Letter Enveloppe"</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>c2_1 <span class="op">=</span> mol2.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>c2_2 <span class="op">=</span> mol2.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>c2_3 <span class="op">=</span> mol2.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>c2_4 <span class="op">=</span> mol2.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>c2_5 <span class="op">=</span> mol2.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>c2_6 <span class="op">=</span> mol2.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>b2_1 <span class="op">=</span> mol2.add_bond(c2_1, c2_2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>b2_2 <span class="op">=</span> mol2.add_bond(c2_1, c2_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>b2_3 <span class="op">=</span> mol2.add_bond(c2_2, c2_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>b2_4 <span class="op">=</span> mol2.add_bond(c2_1, c2_3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>b2_5 <span class="op">=</span> mol2.add_bond(c2_2, c2_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>b2_6 <span class="op">=</span> mol2.add_bond(c2_3, c2_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>b2_7 <span class="op">=</span> mol2.add_bond(c2_3, c2_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>b2_8 <span class="op">=</span> mol2.add_bond(c2_4, c2_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>b2_9 <span class="op">=</span> mol2.add_bond(c2_5, c2_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>mol2.draw()</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>mol3 <span class="op">=</span> CarbonMolecule(<span class="st">"Triple Honeycomb"</span>)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>c3_1 <span class="op">=</span> mol3.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>c3_2 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>c3_3 <span class="op">=</span> mol3.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>c3_4 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>c3_5 <span class="op">=</span> mol3.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>c3_6 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>c3_7 <span class="op">=</span> mol3.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>c3_8 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>c3_9 <span class="op">=</span> mol3.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>c3_10 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>c3_11 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>c3_12 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">1.25</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>c3_13 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>b3_1 <span class="op">=</span> mol3.add_bond(c3_1, c3_2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>b3_2 <span class="op">=</span> mol3.add_bond(c3_2, c3_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>b3_3 <span class="op">=</span> mol3.add_bond(c3_1, c3_3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>b3_4 <span class="op">=</span> mol3.add_bond(c3_3, c3_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>b3_5 <span class="op">=</span> mol3.add_bond(c3_4, c3_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>b3_6 <span class="op">=</span> mol3.add_bond(c3_5, c3_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>b3_7 <span class="op">=</span> mol3.add_bond(c3_5, c3_7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>b3_8 <span class="op">=</span> mol3.add_bond(c3_6, c3_8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>b3_9 <span class="op">=</span> mol3.add_bond(c3_7, c3_9, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>b3_10 <span class="op">=</span> mol3.add_bond(c3_8, c3_10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>b3_11 <span class="op">=</span> mol3.add_bond(c3_9, c3_10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>b3_12 <span class="op">=</span> mol3.add_bond(c3_4, c3_11, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>b3_13 <span class="op">=</span> mol3.add_bond(c3_11, c3_12, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>b3_14 <span class="op">=</span> mol3.add_bond(c3_12, c3_13, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>b3_15 <span class="op">=</span> mol3.add_bond(c3_13, c3_8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>mol3.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="1beafe96" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-1.png" width="138" height="234" class="figure-img"></p>
+<figcaption>Double Honeycomb structure</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-2.png" width="196" height="138" class="figure-img"></p>
+<figcaption>Letter Enveloppe structure</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-3.png" width="210" height="234" class="figure-img"></p>
+<figcaption>Triple Honeycomb structure</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-thick-lines-game" class="level2">
+<h2 class="anchored" data-anchor-id="the-thick-lines-game">The Thick Lines Game</h2>
+<ul>
+<li>Very often a structure has multiple solutions.</li>
+<li>Can you find all possibilities ? Draw all possibilities of your structure.</li>
+</ul>
+<p>Example: The Double Honeycomb structure has 3 possibilities.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol1.resonance()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="6b57c363" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-magical-box-game" class="level2">
+<h2 class="anchored" data-anchor-id="the-magical-box-game">The Magical Box Game</h2>
+<p><img src="../../images/construction.png" class="img-fluid"></p>
+<ul>
+<li><p>Imagine qu’un magicien place tes structures dans une boîte spéciale qui fait de la magie avec les couleurs !<br>
+</p></li>
+<li><p>Imagine that a magician has placed all of your structures in a special box.</p></li>
+<li><p>Choisis :</p>
+<ul>
+<li>Où mettre les couleurs (les entrées).<br>
+</li>
+<li>Où sortiront les couleurs (les sorties).</li>
+</ul></li>
+<li><p>Choisi les couleurs que tu veux voir aux entrées.</p></li>
+<li><p>Trouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.</p></li>
+<li><p>Si tu n’en trouves pas, essaie d’autres couleurs.</p></li>
+<li><p>Regarde les sorties pour voir ce qui ressort !</p></li>
+<li><p>Essaie toutes les combinaisons possibles et note ce qui arrive.</p></li>
+</ul>
+<hr>
+</section>
+<section id="what-is-the-magic-box-used-for" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-magic-box-used-for">What is the magic box used for?</h2>
+<ul>
+<li><p>Imagine toi que les entrées sont une question et les sorties sont la réponse.</p></li>
+<li><p>Peux-tu trouver une combinaison spéciale ?</p></li>
+<li><p>À quoi pourrait-elle servir ?</p></li>
+<li><p>Les barres bleues et rouges peuvent représenter tout ce que tu veux.</p></li>
+</ul>
+<hr>
+</section>
+<section id="reverse-magic" class="level2">
+<h2 class="anchored" data-anchor-id="reverse-magic">Reverse Magic !</h2>
+<ul>
+<li>Now, invert inputs and outputs.<br>
+</li>
+<li>Surprise ! The box also works in reverse !<br>
+</li>
+<li>Cette fois, les entrées sont la réponse et les sorties sont la question.</li>
+</ul>
+<hr>
+<p>And that is all there is to it! With a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.</p>
+<p>Quantum molecular computing may seem daunting at first glance, but at its core, it is governed by simple, deterministic rules—much like the constraints of a board game. You no longer have an excuse to claim that quantum mechanics is inherently too complicated or counterintuitive to comprehend!</p>
+<p>However, it must be acknowledged that truly mastering the game remains a genuine challenge.</p>
+<p>Two fundamental questions remain:</p>
+<ul>
+<li><strong>How do we engineer specific structures to achieve a desired computational outcome?</strong><br>
+and<br>
+</li>
+<li><strong>What are the ultimate limits and true computational power of quantum molecular systems?</strong></li>
+</ul>
+<hr>
+<p>👉 <strong>You are now ready to dive into the theory :</strong><br>
+<strong><a href="../../posts/boolean-logic/index.html">“A Refresher on Boolean Logic”</a></strong></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
