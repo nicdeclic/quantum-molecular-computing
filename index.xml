@@ -1061,10 +1061,895 @@ While many remain at the proof-of-concept stage, they stand as a testament to hu
 </blockquote>
 </div>
 <hr>
-<p><img src="https://nicdeclic.com/images/construction.png" class="img-fluid"></p>
+<div id="d1488a84" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to see library imports</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> sys</span>
+<span id="cb1-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'google.colab'</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> sys.modules:</span>
+<span id="cb1-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Download qmc.py from GitHub</span></span>
+<span id="cb1-4">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>wget <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>raw.githubusercontent.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>nicdeclic<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>quantum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>molecular<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>computing<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>qmc.py</span>
+<span id="cb1-5">    </span>
+<span id="cb1-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Download requirements.txt from GitHub</span></span>
+<span id="cb1-7">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>wget <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>raw.githubusercontent.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>nicdeclic<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>quantum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>molecular<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>computing<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>requirements.txt</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Install dependencies</span></span>
+<span id="cb1-10">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>pip install <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>r requirements.txt</span>
+<span id="cb1-11"></span>
+<span id="cb1-12">sys.path.insert(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"../.."</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Select root directory</span></span>
+<span id="cb1-13"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> qmc <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># QMC library</span></span>
+<span id="cb1-14"></span>
+<span id="cb1-15"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>reload_ext autoreload</span>
+<span id="cb1-16"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>autoreload <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span></code></pre></div></div>
+</details>
+</div>
+<p>Young children possess a thinking process that is naturally fluid and intuitive, whereas adults often hold a more rigid worldview shaped by years of conventional, classical education.</p>
+<p>Quantum computing operates through superpositions and probabilities — concepts that often feel deeply counterintuitive to a mind conditioned by binary logic.</p>
+<p>Children, however, are entirely comfortable with a world where anything is possible, where something can simultaneously be “this” and “that,” much like a quantum state in superposition. In many ways, their cognitive style is far closer to the natural quantum fabric of reality.</p>
+<p>That is why playful, hands-on experiences often provide the best entry point for truly grasping quantum computing — even for adults!</p>
+<p>Using an HB pencil and a sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting, observing, and playing with structures to watch the mechanics reveal themselves.</p>
+<p>Ready to give it a try?</p>
 <hr>
+<section id="rules-of-the-game" class="level2">
+<h2 class="anchored" data-anchor-id="rules-of-the-game">Rules of the Game</h2>
+<ul>
+<li>You can only draw filled circles, thin lines and thick lines.<br>
+</li>
+<li>Each circle can only be connected by lines, never more than 3 lines.<br>
+</li>
+<li>There can only be <strong>one thick line</strong> per circle.</li>
+</ul>
+<p>Have fun building a structure that follows these rules!</p>
+<p>Start with something simple. Here are a few suggestions :</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-2">mol1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Double Honeycomb"</span>)</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add atoms</span></span>
+<span id="cb2-5">c1_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-6">c1_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-7">c1_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-8">c1_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-9">c1_5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-10">c1_6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-11">c1_7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-12">c1_8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-13">c1_9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-14">c1_10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-15"></span>
+<span id="cb2-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add bonds</span></span>
+<span id="cb2-17">b1_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_1, c1_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-18">b1_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_2, c1_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-19">b1_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_1, c1_3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-20">b1_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_3, c1_5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-21">b1_5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_4, c1_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-22">b1_6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_5, c1_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-23">b1_7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_5, c1_7, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-24">b1_8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_6, c1_8, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-25">b1_9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_7, c1_9, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-26">b1_10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_8, c1_10, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-27">b1_11 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_9, c1_10, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-28"></span>
+<span id="cb2-29"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Draw with Schemdraw</span></span>
+<span id="cb2-30">mol1.draw()</span>
+<span id="cb2-31"></span>
+<span id="cb2-32"></span>
+<span id="cb2-33"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-34">mol2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Letter Enveloppe"</span>)</span>
+<span id="cb2-35"></span>
+<span id="cb2-36"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add atoms</span></span>
+<span id="cb2-37">c2_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-38">c2_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-39">c2_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-40">c2_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-41">c2_5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-42">c2_6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-43"></span>
+<span id="cb2-44"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add bonds</span></span>
+<span id="cb2-45">b2_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_1, c2_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-46">b2_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_1, c2_5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-47">b2_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_2, c2_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-48">b2_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_1, c2_3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-49">b2_5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_2, c2_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-50">b2_6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_3, c2_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-51">b2_7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_3, c2_5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-52">b2_8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_4, c2_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-53">b2_9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_5, c2_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-54"></span>
+<span id="cb2-55"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Draw with Schemdraw</span></span>
+<span id="cb2-56">mol2.draw()</span>
+<span id="cb2-57"></span>
+<span id="cb2-58"></span>
+<span id="cb2-59"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-60">mol3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Triple Honeycomb"</span>)</span>
+<span id="cb2-61"></span>
+<span id="cb2-62"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add atoms</span></span>
+<span id="cb2-63">c3_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-64">c3_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-65">c3_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-66">c3_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-67">c3_5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-68">c3_6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-69">c3_7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-70">c3_8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-71">c3_9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-72">c3_10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb2-73">c3_11 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-74">c3_12 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-75">c3_13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-76"></span>
+<span id="cb2-77"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add bonds</span></span>
+<span id="cb2-78">b3_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_1, c3_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-79">b3_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_2, c3_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-80">b3_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_1, c3_3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-81">b3_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_3, c3_5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-82">b3_5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_4, c3_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-83">b3_6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_5, c3_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-84">b3_7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_5, c3_7, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-85">b3_8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_6, c3_8, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-86">b3_9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_7, c3_9, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-87">b3_10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_8, c3_10, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-88">b3_11 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_9, c3_10, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-89">b3_12 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_4, c3_11, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-90">b3_13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_11, c3_12, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-91">b3_14 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_12, c3_13, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-92">b3_15 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_13, c3_8, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-93"></span>
+<span id="cb2-94"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Draw with Schemdraw</span></span>
+<span id="cb2-95">mol3.draw()</span></code></pre></div></div>
+</details>
+<div id="1beafe96" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quick-intro/index_files/figure-html/cell-3-output-1.png" width="138" height="234" class="figure-img"></p>
+<figcaption>Double Honeycomb structure</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quick-intro/index_files/figure-html/cell-3-output-2.png" width="196" height="138" class="figure-img"></p>
+<figcaption>Letter Enveloppe structure</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quick-intro/index_files/figure-html/cell-3-output-3.png" width="210" height="234" class="figure-img"></p>
+<figcaption>Triple Honeycomb structure</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-thick-lines-game" class="level2">
+<h2 class="anchored" data-anchor-id="the-thick-lines-game">The Thick Lines Game</h2>
+<ul>
+<li>Very often a structure has multiple solutions.</li>
+<li>Can you find all possibilities ? Draw all possibilities of your structure.</li>
+</ul>
+<p>Example: The Double Honeycomb structure has 3 possibilities.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">all_resonances <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.resonance()</span>
+<span id="cb3-2"></span>
+<span id="cb3-3"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, res_mol <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(all_resonances):</span>
+<span id="cb3-4">    res_mol.draw() </span></code></pre></div></div>
+</details>
+<div id="6b57c363" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quick-intro/index_files/figure-html/cell-4-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quick-intro/index_files/figure-html/cell-4-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quick-intro/index_files/figure-html/cell-4-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-magical-box-game" class="level2">
+<h2 class="anchored" data-anchor-id="the-magical-box-game">The Magical Box Game</h2>
+<p><img src="https://nicdeclic.com/images/construction.png" class="img-fluid"></p>
+<ul>
+<li><p>Imagine qu’un magicien place tes structures dans une boîte spéciale qui fait de la magie avec les couleurs !<br>
+</p></li>
+<li><p>Imagine that a magician has placed all of your structures in a special box.</p></li>
+<li><p>Choisis :</p>
+<ul>
+<li>Où mettre les couleurs (les entrées).<br>
+</li>
+<li>Où sortiront les couleurs (les sorties).</li>
+</ul></li>
+<li><p>Choisi les couleurs que tu veux voir aux entrées.</p></li>
+<li><p>Trouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.</p></li>
+<li><p>Si tu n’en trouves pas, essaie d’autres couleurs.</p></li>
+<li><p>Regarde les sorties pour voir ce qui ressort !</p></li>
+<li><p>Essaie toutes les combinaisons possibles et note ce qui arrive.</p></li>
+</ul>
+<hr>
+</section>
+<section id="what-is-the-magic-box-used-for" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-magic-box-used-for">What is the magic box used for?</h2>
+<ul>
+<li><p>Imagine toi que les entrées sont une question et les sorties sont la réponse.</p></li>
+<li><p>Peux-tu trouver une combinaison spéciale ?</p></li>
+<li><p>À quoi pourrait-elle servir ?</p></li>
+<li><p>Les barres bleues et rouges peuvent représenter tout ce que tu veux.</p></li>
+</ul>
+<hr>
+</section>
+<section id="reverse-magic" class="level2">
+<h2 class="anchored" data-anchor-id="reverse-magic">Reverse Magic !</h2>
+<ul>
+<li>Now, invert inputs and outputs.<br>
+</li>
+<li>Surprise ! The box also works in reverse !<br>
+</li>
+<li>Cette fois, les entrées sont la réponse et les sorties sont la question.</li>
+</ul>
+<hr>
+<p>And that is all there is to it! With a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.</p>
+<p>Quantum molecular computing may seem daunting at first glance, but at its core, it is governed by simple, deterministic rules—much like the constraints of a board game. You no longer have an excuse to claim that quantum mechanics is inherently too complicated or counterintuitive to comprehend!</p>
+<p>However, it must be acknowledged that truly mastering the game remains a genuine challenge.</p>
+<p>Two fundamental questions remain:</p>
+<ul>
+<li><strong>How do we engineer specific structures to achieve a desired computational outcome?</strong><br>
+and<br>
+</li>
+<li><strong>What are the ultimate limits and true computational power of quantum molecular systems?</strong></li>
+</ul>
+<hr>
+<p>👉 <strong>You are now ready to dive into the theory :</strong><br>
+<strong><a href="../../posts/boolean-logic/index.html">“A Refresher on Boolean Logic”</a></strong></p>
 
 
+</section>
 
  ]]></description>
   <category>Introduction</category>
