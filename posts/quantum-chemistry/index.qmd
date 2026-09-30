@@ -84,7 +84,8 @@ with schemdraw.Drawing() as d:
     d += elm.Label().at((3.6, -4)).label('Nitrogen – Carbon: 3 bonds', halign='left', valign='center')
 ```
 
-Chemical bonds can naturally be harnessed to encode discrete binary states. For instance, a single bond between two carbon atoms can be defined as representing a state **"0"**, whereas a double bond can represent a state **"1"**. We will not be using triple bonds here. 
+Chemical bonds can naturally be harnessed to encode discrete binary states. For instance, a single bond between two carbon atoms can be defined as representing a state **"0"**, whereas a double bond can represent a state **"1"**.  
+We will not be using triple bonds here for reasons that will become clear soon. 
 
 ---
 
@@ -96,7 +97,8 @@ An orbital is a region of space around an atomic nucleus where the probability o
 
 These orbitals exhibit varied geometries and scales, classified by sets of quantum numbers. The $s$, $p$, $d$, and $f$ subshells, for instance, possess distinct spatial shapes that directly dictate how atoms bond. The $p$-orbitals, with their characteristic dumbbell-shaped lobes oriented along Cartesian axes, are critically important for the formation of the covalent bonds prevalent in organic and aromatic architectures.  
 
-When atomic orbitals interact, they combine to produce **hybrid orbitals**, which ultimately govern the geometry of molecular structures. For carbon:  
+When atomic orbitals interact, they combine to produce **hybrid orbitals**, which ultimately govern the geometry of molecular structures.  
+For carbon:  
 * **$sp^3$ hybridization** yields four single bonds symmetrically arranged in a three-dimensional tetrahedron (with $\approx 109.5^\circ$ angles).  
 * **$sp^2$ hybridization** yields planar geometries ($\approx 120^\circ$ angles), creating the structural framework for double bonds.  
 * **$sp$ hybridization** yields linear geometries ($180^\circ$ angles), establishing triple bonds.  
@@ -111,7 +113,8 @@ Take benzene as the quintessential example: the $\pi$ (pi) electrons that form t
 
 ![](delocalized.jpg){fig-align="center"}   
 
-This resonance phenomenon is a direct physical manifestation of quantum mechanics. It demonstrates how quantum entities occupy coherent superpositions rather than classical point-like positions. To be clear: these are not localized particles mechanically "spinning in circles" around the ring, but rather an integrated, collective electronic state.  
+This resonance phenomenon is a direct physical manifestation of quantum mechanics. It demonstrates how quantum entities occupy coherent superpositions rather than classical point-like positions.  
+To be clear: these are not localized particles mechanically "spinning in circles" around the ring, but rather an integrated, collective electronic state.  
 
 This delocalization is far from a mere theoretical curiosity; it carries profound practical implications. The continuous nature of the $\pi$-cloud dictates the molecule's chemical stability, its electronic band structure, its charge transport capabilities, and its optical response.  
 
@@ -123,11 +126,50 @@ The computational potential of a carbon atom bonded to three adjacent atoms ($sp
 
 To satisfy carbon's fundamental tetravalence (four total bonds), **exactly one** of these three bonds can be a double bond at any given moment, while the remaining two must be single bonds. Consequently, the local bond configuration at this trivalent node can manifest in three mutually exclusive states:
 
-1. Bond $a$ is double; bonds $b$ and $c$ are single.
-2. Bond $b$ is double; bonds $a$ and $c$ are single.
-3. Bond $c$ is double; bonds $a$ and $b$ are single.
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 3
 
-This set of degenerate configurations corresponds directly to the resonance structures of the molecular node.
+# Create a conjugated 3-carbon node
+mol = CarbonMolecule("TrivalentNode")
+
+# Add 4 atoms (Center node + 3 branches)
+c_center = mol.add_atom(x=0, y=0, isotope="C12")
+c_top    = mol.add_atom(x=0, y=1.0, isotope="C12", visible=False, label="C1")
+c_left   = mol.add_atom(x=-0.865, y=-0.5, isotope="C12", visible=False, label="C2")
+c_right  = mol.add_atom(x=0.865, y=-0.5, isotope="C12", visible=False, label="C3")
+
+# Add bonds (one double bond, two single bonds)
+b1 = mol.add_bond(c_center, c_top, order="double", label="A")
+b2 = mol.add_bond(c_center, c_left, order="single", label="B")
+b3 = mol.add_bond(c_center, c_right, order="single", label="C")
+
+# Add a quantum coupler between bonds b2 and b3
+# mol.add_coupler(b2, b3, label="J_coupling")
+
+# Draw with Schemdraw
+mol.draw()
+
+# Second resonance
+b1.order = "single"
+b2.order = "double"
+
+mol.draw()
+
+# Third resonance
+b2.order = "single"
+b3.order = "double"
+
+mol.draw()
+
+```
+
+1. Bond $A$ is double; bonds $B$ and $C$ are single.
+2. Bond $B$ is double; bonds $A$ and $C$ are single.
+3. Bond $C$ is double; bonds $A$ and $B$ are single.
+
+This set of configurations corresponds directly to the resonance structures of the molecular node.
 
 We can express this physical valence constraint through the following Boolean relation:
 
@@ -175,9 +217,9 @@ with schemdraw.Drawing() as d:
 
 Given that combining an **AND** operation with an **XOR** operation provides the functional completeness required to synthesize a universal **NAND** gate, we immediately see that all the necessary mathematical ingredients for universal computation are naturally embedded within the valence rules of a single carbon node.
 
-There is clearly substantial theoretical potential here — the challenge is simply learning how to tame and harness it... 
+There is clearly substantial potential here — the challenge now is simply learning how to tame and harness it... 
 
-It was precisely this early, encouraging realization that provided the initial momentum to dive deeper into the exploration of molecular quantum circuits.
+It was precisely this early, encouraging realization that provided the initial momentum to dive deeper into the exploration of conjugated carbon circuits.
 
 ---
 
