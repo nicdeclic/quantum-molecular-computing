@@ -1061,7 +1061,7 @@ While many remain at the proof-of-concept stage, they stand as a testament to hu
 </blockquote>
 </div>
 <hr>
-<div id="d1488a84" class="cell" data-execution_count="1">
+<div id="f85acac1" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -1164,20 +1164,20 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 <p>Quantum computing operates through superpositions and probabilities — concepts that often feel deeply counterintuitive to a mind conditioned by binary logic.</p>
 <p>Children, however, are entirely comfortable with a world where anything is possible, where something can simultaneously be “this” and “that,” much like a quantum state in superposition. In many ways, their cognitive style is far closer to the natural quantum fabric of reality.</p>
 <p>That is why playful, hands-on experiences often provide the best entry point for truly grasping quantum computing — even for adults!</p>
-<p>Using an HB pencil and a sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting, observing, and playing with structures to watch the mechanics reveal themselves.</p>
-<p>Ready to give it a try?</p>
+<p>With nothing more than an ordinary pencil and a blank sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting with and observing structures to see the mechanics reveal themselves.</p>
+<p>Ready to play?</p>
 <hr>
-<section id="rules-of-the-game" class="level2">
-<h2 class="anchored" data-anchor-id="rules-of-the-game">Rules of the Game</h2>
+<section id="game-1-the-dots-and-lines-game" class="level2">
+<h2 class="anchored" data-anchor-id="game-1-the-dots-and-lines-game">Game 1: The Dots and Lines Game</h2>
 <ul>
-<li>You can only draw filled circles, thin lines and thick lines.<br>
+<li>You can only draw dots, thin lines and thick lines.<br>
 </li>
-<li>Each circle can only be connected by lines, never more than 3 lines.<br>
+<li>Each dot can only be connected by 2 or 3 lines.<br>
 </li>
-<li>There can only be <strong>one thick line</strong> per circle.</li>
+<li>There can only be <strong>one thick line</strong> per dot.</li>
 </ul>
-<p>Have fun building a structure that follows these rules!</p>
-<p>Start with something simple. Here are a few suggestions :</p>
+<p>Have fun finding a shape that follows these rules!</p>
+<p>Start small. Here are a few suggestions :</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
@@ -1397,7 +1397,7 @@ font-style: inherit;"># Create a conjugated carbon molecule</span></span>
 background-color: null;
 font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Letter Enveloppe"</span>)</span>
+font-style: inherit;">"Letter Envelope"</span>)</span>
 <span id="cb2-35"></span>
 <span id="cb2-36"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1812,7 +1812,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb2-95">mol3.draw()</span></code></pre></div></div>
 </details>
-<div id="1beafe96" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div id="c3d959ef" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1826,7 +1826,7 @@ font-style: inherit;"># Draw with Schemdraw</span></span>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://nicdeclic.com/posts/quick-intro/index_files/figure-html/cell-3-output-2.png" width="196" height="138" class="figure-img"></p>
-<figcaption>Letter Enveloppe structure</figcaption>
+<figcaption>Letter Envelope structure</figcaption>
 </figure>
 </div>
 </div>
@@ -1842,13 +1842,15 @@ font-style: inherit;"># Draw with Schemdraw</span></span>
 </div>
 <hr>
 </section>
-<section id="the-thick-lines-game" class="level2">
-<h2 class="anchored" data-anchor-id="the-thick-lines-game">The Thick Lines Game</h2>
+<section id="game-2-the-shape-shifter" class="level2">
+<h2 class="anchored" data-anchor-id="game-2-the-shape-shifter">Game 2: The Shape-Shifter</h2>
+<p>Very often, a drawing has more than one way to follow the rules. Can you find all the possibilities ?</p>
 <ul>
-<li>Very often a structure has multiple solutions.</li>
-<li>Can you find all possibilities ? Draw all possibilities of your structure.</li>
+<li><p>Redraw the <strong>exact same dots right next to your drawing</strong> on your page.</p></li>
+<li><p>Can you place all the lines so that <strong>at least one line has a different thickness</strong> compared to the other drawing(s) ?</p></li>
+<li><p>Keep redrawing until you cannot find any new ways!</p></li>
 </ul>
-<p>Example: The Double Honeycomb structure has 3 possibilities.</p>
+<p>Example: The Double Honeycomb structure has <strong>3 different winning drawings</strong>.</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">all_resonances <span class="op" style="color: #5E5E5E;
@@ -1866,7 +1868,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="6b57c363" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="cb5b9447" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1893,56 +1895,79 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 </div>
 <hr>
 </section>
-<section id="the-magical-box-game" class="level2">
-<h2 class="anchored" data-anchor-id="the-magical-box-game">The Magical Box Game</h2>
-<p><img src="https://nicdeclic.com/images/construction.png" class="img-fluid"></p>
+<section id="game-3-the-mystery-box" class="level2">
+<h2 class="anchored" data-anchor-id="game-3-the-mystery-box">Game 3: The Mystery Box</h2>
 <ul>
-<li><p>Imagine qu’un magicien place tes structures dans une boîte spéciale qui fait de la magie avec les couleurs !<br>
-</p></li>
-<li><p>Imagine that a magician has placed all of your structures in a special box.</p></li>
-<li><p>Choisis :</p>
+<li>Now, imagine that you have a mysterious box with buttons and lights on its surface.</li>
+</ul>
+<p><img src="https://i.etsystatic.com/12310412/r/il/a7e70f/2042059967/il_794xN.2042059967_29tm.jpg" class="img-fluid"></p>
 <ul>
-<li>Où mettre les couleurs (les entrées).<br>
-</li>
-<li>Où sortiront les couleurs (les sorties).</li>
-</ul></li>
-<li><p>Choisi les couleurs que tu veux voir aux entrées.</p></li>
-<li><p>Trouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.</p></li>
-<li><p>Si tu n’en trouves pas, essaie d’autres couleurs.</p></li>
-<li><p>Regarde les sorties pour voir ce qui ressort !</p></li>
-<li><p>Essaie toutes les combinaisons possibles et note ce qui arrive.</p></li>
+<li><p>Some of the switches and lights are connected to the lines of your drawings.</p></li>
+<li><p>Look at your first drawing. Decide which lines are buttons and which are lights. Not all lines need to be connected.</p></li>
+<li><p>Now, place your drawings into the box. The mysterious box combines all your drawings into one!</p></li>
 </ul>
 <hr>
 </section>
-<section id="what-is-the-magic-box-used-for" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-the-magic-box-used-for">What is the magic box used for?</h2>
+<section id="game-4-how-the-mystery-box-answers" class="level2">
+<h2 class="anchored" data-anchor-id="game-4-how-the-mystery-box-answers">Game 4: How the Mystery Box Answers</h2>
 <ul>
-<li><p>Imagine toi que les entrées sont une question et les sorties sont la réponse.</p></li>
-<li><p>Peux-tu trouver une combinaison spéciale ?</p></li>
-<li><p>À quoi pourrait-elle servir ?</p></li>
-<li><p>Les barres bleues et rouges peuvent représenter tout ce que tu veux.</p></li>
+<li><p>A switch controls the thickness of a line. (for example: ‘OFF’ means ‘thin line’. ‘ON’ means ‘thick line’).</p></li>
+<li><p>A light shows the thickness of a line. (for example: ‘thin line’ means ‘light OFF’. ‘thick line’ means ‘light ON’).</p></li>
+<li><p>Choose how you want to set your switches. (for example: <em>Top line is thick, bottom line is thin</em>).</p></li>
+<li><p>Identify all the drawings that match your pattern. If you can’t find any, you get no answer, try a different pattern.</p></li>
+<li><p>If you find one matching drawing, look at the lines connected to the lights: <strong>that is the Box’s answer!</strong></p></li>
+<li><p>If you find more than one matching drawing: <strong>close your eyes and select randomly ONE of the matching drawings.</strong></p></li>
 </ul>
 <hr>
 </section>
-<section id="reverse-magic" class="level2">
-<h2 class="anchored" data-anchor-id="reverse-magic">Reverse Magic !</h2>
+<section id="game-5-what-is-the-mystery-box-for" class="level2">
+<h2 class="anchored" data-anchor-id="game-5-what-is-the-mystery-box-for">Game 5: What is the Mystery Box For?</h2>
 <ul>
-<li>Now, invert inputs and outputs.<br>
-</li>
-<li>Surprise ! The box also works in reverse !<br>
-</li>
-<li>Cette fois, les entrées sont la réponse et les sorties sont la question.</li>
+<li><p>Try every combination (for example: thin/thin, thin/thick, thick/thin, thick/thick). Note down the results.</p></li>
+<li><p>The lines can stand for anything you want: a thick line on the left could mean: <em>“Is it raining outside?”</em>. A thick line on the right could answer: <em>“Take an umbrella!”</em>.</p></li>
+<li><p>What could the box be used for ? Find something useful.</p></li>
 </ul>
 <hr>
-<p>And that is all there is to it! With a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.</p>
+</section>
+<section id="game-6-reverse-mystery" class="level2">
+<h2 class="anchored" data-anchor-id="game-6-reverse-mystery">Game 6: Reverse Mystery !</h2>
+<ul>
+<li><p>What if you change the buttons into lights, and the lights into buttons?</p></li>
+<li><p>Surprise ! The box also works in reverse !</p></li>
+<li><p>You can run forward, ask a question to find an answer, or run backward, start with an answer to reveal a question that created it!</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quick-intro/double arrow.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="the-mystery-revealed-you-just-built-a-quantum-computer" class="level2">
+<h2 class="anchored" data-anchor-id="the-mystery-revealed-you-just-built-a-quantum-computer">The Mystery Revealed: You Just Built a Quantum Computer</h2>
+<p>Now, it is time to reveal what you were actually doing with your pencil:</p>
+<p>You were not just doodling on paper. <strong>You were simulating a Quantum Molecular Computer:</strong></p>
+<ol type="1">
+<li><strong>The Dots</strong> are Carbon atoms.</li>
+<li><strong>The thin and thick lines</strong> are single and double chemical bonds (<img src="https://latex.codecogs.com/png.latex?%5Csigma"> and <img src="https://latex.codecogs.com/png.latex?%5Cpi"> bonds).</li>
+<li><strong>The multiple drawings on your page</strong> are quantum superpositions of molecular resonance states.</li>
+<li><strong>Landing your finger on one drawing with your eyes closed</strong> is a quantum measurement!</li>
+<li><strong>Running the drawings backwards</strong> is reversible quantum computation!</li>
+</ol>
+<p>With a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.</p>
 <p>Quantum molecular computing may seem daunting at first glance, but at its core, it is governed by simple, deterministic rules—much like the constraints of a board game. You no longer have an excuse to claim that quantum mechanics is inherently too complicated or counterintuitive to comprehend!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quick-intro/eureka.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
 <p>However, it must be acknowledged that truly mastering the game remains a genuine challenge.</p>
 <p>Two fundamental questions remain:</p>
 <ul>
-<li><strong>How do we engineer specific structures to achieve a desired computational outcome?</strong><br>
+<li><strong>How do we build specific structures to achieve a desired computational outcome?</strong><br>
 and<br>
 </li>
-<li><strong>What are the ultimate limits and true computational power of quantum molecular systems?</strong></li>
+<li><strong>What is the true computational power of quantum molecular systems?</strong></li>
 </ul>
 <hr>
 <p>👉 <strong>You are now ready to dive into the theory :</strong><br>
@@ -1953,6 +1978,7 @@ and<br>
 
  ]]></description>
   <category>Introduction</category>
+  <category>Intuition</category>
   <guid>https://nicdeclic.com/posts/quick-intro/</guid>
   <pubDate>Thu, 17 Sep 2026 04:00:00 GMT</pubDate>
   <media:content url="https://nicdeclic.com/images/5year old toys.jpg" medium="image" type="image/jpeg"/>
