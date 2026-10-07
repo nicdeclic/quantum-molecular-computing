@@ -24,20 +24,8 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.insert(0, CURRENT_DIR)
 
-from transition_matrix import TransitionMatrix
-from carbon_molecule import CarbonMolecule, Atom, Bond, Coupler
-
-# Optional: define what is exported when someone writes 'from qmc import *'
-__all__ = [
-    "TransitionMatrix",
-    "CarbonMolecule",
-    "Atom",
-    "Bond",
-    "Coupler",
-    "schemdraw", 
-    "logic",     
-    "elm"   
-]
+from transition_matrix import *
+from carbon_molecule import *
 
 
 #
@@ -61,3 +49,13 @@ def display_inline(*elements):
     full_latex = "$$ " + " ".join(parts) + " $$"
     display(Latex(full_latex))
 
+def quote_latex(text: str) -> str:
+    """
+    Wraps a string with LaTeX typographical opening (``) and closing ('') quotes.
+    Suitable for use inside math mode, e.g. with display_inline().
+    
+    Example:
+        quote_latex("01") -> r"\text{``01''}"
+    """
+    # Escapes backslashes if present and formats as LaTeX text with curly quotes
+    return rf"\text{{``{text}''}}"

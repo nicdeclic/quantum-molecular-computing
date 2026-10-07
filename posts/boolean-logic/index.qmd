@@ -447,7 +447,7 @@ $$
 
 The resulting $1 \times 4$ matrix cleanly indexes the fourth basis state (corresponding to binary `"10"`), making it dimensionally compatible with any 2-input gate matrix.
 
-Here`s an enumeration of all 4 possibilities for A and B with labels included:
+Let's look at an enumeration of all 4 possibilities for A and B with labels included:
 ```{python}
 #| code-fold: true
 
@@ -460,7 +460,25 @@ display_inline(one_out.to_katex(show_labels=True), r"\otimes", zero_out.to_katex
 display_inline(one_out.to_katex(show_labels=True), r"\otimes", one_out.to_katex(show_labels=True), "=", (one_out ^ one_out).to_katex(show_labels=True))
 ```
 
-Notice how the output string labels combine? This makes it easy to find any mistake.
+Notice how the output labels combine into one string? This makes it easy to find any mistake.
+
+It is even possible to write the equation in string format:  
+```{python}
+#| code-fold: true
+
+zero=TransitionMatrix().from_bitstring("0")
+one=TransitionMatrix().from_bitstring("1")
+
+display_inline(zero.to_katex(as_sum=True), r"\otimes", one.to_katex(as_sum=True), "=", (zero ^ one).to_katex(as_sum=True))
+```
+
+Longer sequences also work just fine:  
+```{python}
+#| code-fold: true
+display_inline(zero.to_katex(as_sum=True), r"\otimes", one.to_katex(as_sum=True), r"\otimes", zero.to_katex(as_sum=True), "=", (zero ^ one ^ zero).to_katex(as_sum=True))
+
+display_inline(zero.to_katex(as_sum=True), r"\otimes", one.to_katex(as_sum=True), r"\otimes", zero.to_katex(as_sum=True), r"\otimes", one.to_katex(as_sum=True), r"\otimes", one.to_katex(as_sum=True), r"\otimes", one.to_katex(as_sum=True), "=", (zero ^ one ^ zero ^ one ^ one ^ one).to_katex(as_sum=True))
+```
 
 Let`s now take for example A="1" and B="1" and pass them through an AND gate :
 ```{python}

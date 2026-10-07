@@ -23,7 +23,7 @@ class TransitionMatrix:
             raise ValueError(f"Invalid dimension: {dim_name} ({n}) must be a power of 2.")
 
     @classmethod
-    def bitstring(cls, bitstr):
+    def from_bitstring(cls, bitstr):
         """Converts a bitstring to a sparse row vector."""
         n = len(bitstr)
         size = 2**n
@@ -117,7 +117,7 @@ class TransitionMatrix:
     
     def to_katex(self, precision=2, show_labels=False, show_dims=False, 
                      h_lines=[], v_lines=[], corner_label="", 
-                     show_all=True, row_labels=None, col_labels=None):
+                     show_all=True, row_labels=None, col_labels=None, as_sum=False):
             from IPython.display import Latex
             import math
     
@@ -133,6 +133,49 @@ class TransitionMatrix:
     
             if not active_rows or not active_cols:
                 return Latex("$$ \\text{Empty Matrix} $$")
+
+            # --- display as sum of bitstrings ---
+            if as_sum:
+                dense = self.matrix.toarray()
+                row_bits = int(math.log2(rows_n))
+                col_bits = int(math.log2(cols_n))
+                terms = []
+
+                for r in active_rows:
+                    for c in active_cols:
+                        val = dense[r, c]
+                        if np.isclose(val, 0.0):
+                            continue
+
+                        # Gestion du coefficient
+                        if np.isclose(val, 1.0):
+                            coeff_str = ""
+                        elif np.isclose(val, -1.0):
+                            coeff_str = "-"
+                        else:
+                            coeff_str = f"{val:.{precision}g} "
+
+                        # Bitstrings avec guillemets LaTeX
+                        r_str = f"\\text{{``{bin(r)[2:].zfill(row_bits)}''}}"
+                        c_str = f"\\text{{``{bin(c)[2:].zfill(col_bits)}''}}"
+
+                        # Simplifications selon les dimensions
+                        if rows_n == 1:
+                            term = f"{coeff_str}{c_str}"
+                        elif cols_n == 1:
+                            term = f"{coeff_str}{r_str}^T"
+                        else:
+                            term = f"{coeff_str}{r_str}^T {c_str}"
+
+                        terms.append(term)
+
+                if not terms:
+                    return Latex("$$ 0 $$")
+                
+                # Assemblage avec le signe '+'
+                sum_tex = " + ".join(terms).replace("+ -", "- ")
+                return Latex(f"$$ {sum_tex} $$")
+        # ----------------------------------------------------------------------
     
             # 2. Label helper logic
             row_bits = int(math.log2(rows_n))

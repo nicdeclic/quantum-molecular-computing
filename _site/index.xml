@@ -30,7 +30,7 @@
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="4a693e94" class="cell" data-execution_count="1">
+<div id="947aae3e" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -130,17 +130,14 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 </details>
 </div>
 <hr>
-<section id="computing-molecules" class="level2">
-<h2 class="anchored" data-anchor-id="computing-molecules">Computing Molecules</h2>
 <p>Could it be that the capacity to process and manipulate information is woven into the very fabric of molecules?</p>
 <p>We now turn to explore the untapped potential of atoms and their chemical bonds to create sophisticated computational systems.</p>
 <hr>
-</section>
 <section id="chemical-bonds" class="level2">
 <h2 class="anchored" data-anchor-id="chemical-bonds">Chemical Bonds</h2>
 <p>The molecules of primary interest here are those with carbon atoms, owing to their fundamental ability to form four covalent bonds. While other elements, such as silicon, share this tetravalent property, carbon will serve as our foundational element throughout this blog due to its central role in organic chemistry.</p>
 <p>Carbon atoms do not dance alone in this molecular choreography; they interact with other key elements, notably hydrogen (which typically forms one bond), oxygen (which forms two), and nitrogen (which forms three). Combined with carbon, these elements constitute the elemental building blocks of a rich and complex chemistry:</p>
-<div id="0cf316e4" class="cell" data-execution_count="2">
+<div id="7a98f960" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="cf" style="color: #003B4F;
@@ -445,7 +442,7 @@ font-style: inherit;">'center'</span>)</span></code></pre></div></div>
 </div>
 </div>
 <p>Chemical bonds can naturally be harnessed to encode discrete binary states. For instance, a single bond between two carbon atoms can be defined as representing a state <strong>“0”</strong>, whereas a double bond can represent a state <strong>“1”</strong>.<br>
-We will not be using triple bonds here for reasons that will become clear soon.</p>
+We will not be using triple bonds here for reasons that will soon become clear.</p>
 <hr>
 </section>
 <section id="orbitals" class="level2">
@@ -662,41 +659,39 @@ font-style: inherit;">"double"</span></span>
 <span id="cb3-30"></span>
 <span id="cb3-31">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="23982438" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="1bfc96d9" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="3">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-4-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="208"></p>
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-4-output-1.png" width="208" height="186" class="figure-img"></p>
+<figcaption>1. Bond <img src="https://latex.codecogs.com/png.latex?A"> is double; bonds <img src="https://latex.codecogs.com/png.latex?B"> and <img src="https://latex.codecogs.com/png.latex?C"> are single.</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-4-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="208"></p>
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-4-output-2.png" width="208" height="186" class="figure-img"></p>
+<figcaption>2. Bond <img src="https://latex.codecogs.com/png.latex?B"> is double; bonds <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?C"> are single.</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-4-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="208"></p>
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-4-output-3.png" width="208" height="186" class="figure-img"></p>
+<figcaption>3. Bond <img src="https://latex.codecogs.com/png.latex?C"> is double; bonds <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B"> are single.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<ol type="1">
-<li>Bond <img src="https://latex.codecogs.com/png.latex?A"> is double; bonds <img src="https://latex.codecogs.com/png.latex?B"> and <img src="https://latex.codecogs.com/png.latex?C"> are single.</li>
-<li>Bond <img src="https://latex.codecogs.com/png.latex?B"> is double; bonds <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?C"> are single.</li>
-<li>Bond <img src="https://latex.codecogs.com/png.latex?C"> is double; bonds <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B"> are single.</li>
-</ol>
 <p>This set of configurations corresponds directly to the resonance structures of the molecular node.</p>
 <p>We can express this physical valence constraint through the following Boolean relation:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%20(A%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20B%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20C)%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20(A%20%5Cmathbin%7B%5Ctext%7BAnd%7D%7D%20B%20%5Cmathbin%7B%5Ctext%7BAnd%7D%7D%20C)%20=%20%5Ctext%7B%221%22%7D%20"></p>
 <p>Or represented as an equivalent logic circuit:</p>
-<div id="7c9c2cbd" class="cell" data-execution_count="4">
+<div id="944dde2e" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="cf" style="color: #003B4F;
@@ -1812,7 +1807,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb2-95">mol3.draw()</span></code></pre></div></div>
 </details>
-<div id="c3d959ef" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div id="c3d959ef" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1868,7 +1863,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="cb5b9447" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="cb5b9447" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2002,7 +1997,7 @@ and<br>
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/boolean-logic/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="cee90f18" class="cell" data-execution_count="1">
+<div id="098f1744" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -2115,7 +2110,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-not-gate-inverter">The NOT Gate (Inverter)</h3>
 <p>The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.</p>
 <p>Symbol :</p>
-<div id="74a553fe" class="cell" data-execution_count="2">
+<div id="349c6f87" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
@@ -2223,7 +2218,7 @@ font-style: inherit;">'right'</span>)</span>
 <p>If a function has <img src="https://latex.codecogs.com/png.latex?M"> binary inputs and <img src="https://latex.codecogs.com/png.latex?N"> binary outputs, the resulting matrix will have <img src="https://latex.codecogs.com/png.latex?2%5EM"> rows and <img src="https://latex.codecogs.com/png.latex?2%5EN"> columns.</p>
 <p>The column containing the value <strong>1</strong> marks the precise spot where a given input maps to its corresponding output. This is known as a transition matrix in mathematics.</p>
 <p>Here is the matrix representing the NOT gate. Labels representing the inputs on the left and the outputs on the top have been added for increased readability :</p>
-<div id="cccd7ff7" class="cell" data-execution_count="3">
+<div id="a9bec7df" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">display_inline(<span class="st" style="color: #20794D;
@@ -2243,7 +2238,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <p>Rather than using standard matrix brackets, transition matrices are intentionally rendered as closed grid boxes. This visually reinforces their role as discrete computational components mapping input configurations to output states.<br>
 (Yes, this is a feature, not a bug.)</p>
 <p>Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).</p>
-<div id="ee273fd3" class="cell" data-execution_count="4">
+<div id="7478bcb3" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">display_inline(<span class="st" style="color: #20794D;
@@ -2283,7 +2278,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-and-gate">The AND Gate</h3>
 <p>The output is <code>1</code> only if both inputs <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B"> are <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="cc5d5a18" class="cell" data-execution_count="5">
+<div id="47c474d8" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
@@ -2391,7 +2386,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="3345d5f8" class="cell" data-execution_count="6">
+<div id="eb5cbec6" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">display_inline(<span class="st" style="color: #20794D;
@@ -2414,7 +2409,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-or-gate">The OR Gate</h3>
 <p>The output is <code>1</code> if at least one of the inputs is <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="2811cffd" class="cell" data-execution_count="7">
+<div id="bd0c498b" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
@@ -2522,7 +2517,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="0139a95c" class="cell" data-execution_count="8">
+<div id="7a64cc5d" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">display_inline(<span class="st" style="color: #20794D;
@@ -2545,7 +2540,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-nand-gate-not-and">The NAND Gate (NOT-AND)</h3>
 <p>The output is <code>0</code> only when both inputs are <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="5ba254b0" class="cell" data-execution_count="9">
+<div id="4157de25" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
@@ -2653,7 +2648,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="e17c6cdf" class="cell" data-execution_count="10">
+<div id="a2b1ed13" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">display_inline(<span class="st" style="color: #20794D;
@@ -2676,7 +2671,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-nor-gate-not-or">The NOR Gate (NOT-OR)</h3>
 <p>The output is <code>1</code> only when both inputs are <code>0</code>.</p>
 <p>Symbol :</p>
-<div id="6f21a4b5" class="cell" data-execution_count="11">
+<div id="cc0c2161" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
@@ -2784,7 +2779,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="8cc71a61" class="cell" data-execution_count="12">
+<div id="eca2802f" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">display_inline(<span class="st" style="color: #20794D;
@@ -2807,7 +2802,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-xor-gate-exclusive-or">The XOR Gate (Exclusive OR)</h3>
 <p>The output is <code>1</code> if the inputs are different, and <code>0</code> if they are identical.</p>
 <p>Symbol :</p>
-<div id="62db373b" class="cell" data-execution_count="13">
+<div id="113f92c1" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
@@ -2915,7 +2910,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="8f8fed52" class="cell" data-execution_count="14">
+<div id="e31fda84" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">display_inline(<span class="st" style="color: #20794D;
@@ -2938,7 +2933,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-xnor-gate-equivalence-gate">The XNOR Gate (Equivalence Gate)</h3>
 <p>The inverse of XOR. The output is <code>1</code> only if the inputs are identical.</p>
 <p>Symbol :</p>
-<div id="07ebfb7a" class="cell" data-execution_count="15">
+<div id="0f20ac8e" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
@@ -3046,7 +3041,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="0b0bc0eb" class="cell" data-execution_count="16">
+<div id="6efa1901" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">display_inline(<span class="st" style="color: #20794D;
@@ -3070,7 +3065,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h2 class="anchored" data-anchor-id="matrix-arithmetic">Matrix arithmetic</h2>
 <p>The beauty of this representation is that functions can be chained together end-to-end using standard matrix multiplication.</p>
 <p>For example, if we have a state corresponding to the bit “1” and pass it through a NOT gate, we can simply compute:</p>
-<div id="c488ed14" class="cell" data-execution_count="17">
+<div id="4269cf3f" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">display_inline(<span class="st" style="color: #20794D;
@@ -3132,8 +3127,8 @@ font-style: inherit;">False</span>))</span></code></pre></div></div>
 <p>We distribute each component of the first vector across the second vector:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BOne%7D%20%5Cotimes%20%5Ctext%7BZero%7D%20=%0A%5Cbegin%7Bpmatrix%7D%200%20%5Ccdot%20%5Cbegin%7Bpmatrix%7D%201%20&amp;%200%20%5Cend%7Bpmatrix%7D%20&amp;%201%20%5Ccdot%20%5Cbegin%7Bpmatrix%7D%201%20&amp;%200%20%5Cend%7Bpmatrix%7D%20%5Cend%7Bpmatrix%7D%0A=%20%5Cbegin%7Bpmatrix%7D%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5Cend%7Bpmatrix%7D%0A"></p>
 <p>The resulting <img src="https://latex.codecogs.com/png.latex?1%20%5Ctimes%204"> matrix cleanly indexes the fourth basis state (corresponding to binary <code>"10"</code>), making it dimensionally compatible with any 2-input gate matrix.</p>
-<p>Here`s an enumeration of all 4 possibilities for A and B with labels included:</p>
-<div id="3d411536" class="cell" data-execution_count="18">
+<p>Let’s look at an enumeration of all 4 possibilities for A and B with labels included:</p>
+<div id="2ce0598d" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">display_inline(zero_out.to_katex(show_labels<span class="op" style="color: #5E5E5E;
@@ -3245,25 +3240,187 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20%5Cotimes%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
 </div>
 </div>
-<p>Notice how the output string labels combine? This makes it easy to find any mistake.</p>
-<p>Let`s now take for example A=“1” and B=“1” and pass them through an AND gate :</p>
-<div id="9988704c" class="cell" data-execution_count="19">
+<p>Notice how the output labels combine into one string? This makes it easy to find any mistake.</p>
+<p>It is even possible to write the equation in string format:</p>
+<div id="09fdb0eb" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">A <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">zero<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> one_out</span>
-<span id="cb19-2">B <span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>TransitionMatrix().from_bitstring(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">=</span> one_out</span>
+font-style: inherit;">"0"</span>)</span>
+<span id="cb19-2">one<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>TransitionMatrix().from_bitstring(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>)</span>
 <span id="cb19-3"></span>
-<span id="cb19-4">AB <span class="op" style="color: #5E5E5E;
+<span id="cb19-4">display_inline(zero.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, one.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, (zero <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> one).to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Ctext%7B%60%600''%7D%20%20%5Cotimes%20%20%5Ctext%7B%60%601''%7D%20%20=%20%20%5Ctext%7B%60%6001''%7D%20%20"></p>
+</div>
+</div>
+<p>Longer sequences also work just fine:</p>
+<div id="95546424" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">display_inline(zero.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, one.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, zero.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, (zero <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> one <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> zero).to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb20-2"></span>
+<span id="cb20-3">display_inline(zero.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, one.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, zero.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, one.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, one.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, one.to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, (zero <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> one <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> zero <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> one <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> one <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> one).to_katex(as_sum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Ctext%7B%60%600''%7D%20%20%5Cotimes%20%20%5Ctext%7B%60%601''%7D%20%20%5Cotimes%20%20%5Ctext%7B%60%600''%7D%20%20=%20%20%5Ctext%7B%60%60010''%7D%20%20"></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Ctext%7B%60%600''%7D%20%20%5Cotimes%20%20%5Ctext%7B%60%601''%7D%20%20%5Cotimes%20%20%5Ctext%7B%60%600''%7D%20%20%5Cotimes%20%20%5Ctext%7B%60%601''%7D%20%20%5Cotimes%20%20%5Ctext%7B%60%601''%7D%20%20%5Cotimes%20%20%5Ctext%7B%60%601''%7D%20%20=%20%20%5Ctext%7B%60%60010111''%7D%20%20"></p>
+</div>
+</div>
+<p>Let`s now take for example A=“1” and B=“1” and pass them through an AND gate :</p>
+<div id="abd6ea42" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1">A <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> one_out</span>
+<span id="cb21-2">B <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> one_out</span>
+<span id="cb21-3"></span>
+<span id="cb21-4">AB <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> (A <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">^</span> B)</span>
-<span id="cb19-5"></span>
-<span id="cb19-6">display_inline(<span class="st" style="color: #20794D;
+<span id="cb21-5"></span>
+<span id="cb21-6">display_inline(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"(A"</span>, <span class="vs" style="color: #20794D;
 background-color: null;

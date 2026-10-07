@@ -43,8 +43,6 @@ from qmc import * # QMC library
 
 ---
 
-## Computing Molecules
-
 Could it be that the capacity to process and manipulate information is woven into the very fabric of molecules?  
 
 We now turn to explore the untapped potential of atoms and their chemical bonds to create sophisticated computational systems.
@@ -85,7 +83,7 @@ with schemdraw.Drawing() as d:
 ```
 
 Chemical bonds can naturally be harnessed to encode discrete binary states. For instance, a single bond between two carbon atoms can be defined as representing a state **"0"**, whereas a double bond can represent a state **"1"**.  
-We will not be using triple bonds here for reasons that will become clear soon. 
+We will not be using triple bonds here for reasons that will soon become clear. 
 
 ---
 
@@ -130,6 +128,10 @@ To satisfy carbon's fundamental tetravalence (four total bonds), **exactly one**
 #| code-fold: true
 #| fig-align: center
 #| layout-ncol: 3
+#| fig-cap: 
+#|   - "1. Bond $A$ is double; bonds $B$ and $C$ are single."
+#|   - "2. Bond $B$ is double; bonds $A$ and $C$ are single."
+#|   - "3. Bond $C$ is double; bonds $A$ and $B$ are single."
 
 # Create a conjugated 3-carbon node
 mol = CarbonMolecule("TrivalentNode")
@@ -164,10 +166,6 @@ b3.order = "double"
 mol.draw()
 
 ```
-
-1. Bond $A$ is double; bonds $B$ and $C$ are single.
-2. Bond $B$ is double; bonds $A$ and $C$ are single.
-3. Bond $C$ is double; bonds $A$ and $B$ are single.
 
 This set of configurations corresponds directly to the resonance structures of the molecular node.
 
