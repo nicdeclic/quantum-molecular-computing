@@ -242,7 +242,7 @@ window.Quarto = {
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/boolean-logic/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="cee90f18" class="cell" data-execution_count="1">
+<div id="098f1744" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -277,7 +277,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-not-gate-inverter">The NOT Gate (Inverter)</h3>
 <p>The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.</p>
 <p>Symbol :</p>
-<div id="74a553fe" class="cell" data-execution_count="2">
+<div id="349c6f87" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
@@ -340,7 +340,7 @@ window.Quarto = {
 <p>If a function has <span class="math inline">\(M\)</span> binary inputs and <span class="math inline">\(N\)</span> binary outputs, the resulting matrix will have <span class="math inline">\(2^M\)</span> rows and <span class="math inline">\(2^N\)</span> columns.</p>
 <p>The column containing the value <strong>1</strong> marks the precise spot where a given input maps to its corresponding output. This is known as a transition matrix in mathematics.</p>
 <p>Here is the matrix representing the NOT gate. Labels representing the inputs on the left and the outputs on the top have been added for increased readability :</p>
-<div id="cccd7ff7" class="cell" data-execution_count="3">
+<div id="a9bec7df" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Not"</span>, <span class="st">"="</span>, not_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -352,7 +352,7 @@ window.Quarto = {
 <p>Rather than using standard matrix brackets, transition matrices are intentionally rendered as closed grid boxes. This visually reinforces their role as discrete computational components mapping input configurations to output states.<br>
 (Yes, this is a feature, not a bug.)</p>
 <p>Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).</p>
-<div id="ee273fd3" class="cell" data-execution_count="4">
+<div id="7478bcb3" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Zero"</span>, <span class="st">"="</span>, zero_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span>
@@ -374,7 +374,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-and-gate">The AND Gate</h3>
 <p>The output is <code>1</code> only if both inputs <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="cc5d5a18" class="cell" data-execution_count="5">
+<div id="47c474d8" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
@@ -433,7 +433,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="3345d5f8" class="cell" data-execution_count="6">
+<div id="eb5cbec6" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"And"</span>, <span class="st">"="</span>, and_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -448,7 +448,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-or-gate">The OR Gate</h3>
 <p>The output is <code>1</code> if at least one of the inputs is <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="2811cffd" class="cell" data-execution_count="7">
+<div id="bd0c498b" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
@@ -507,7 +507,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="0139a95c" class="cell" data-execution_count="8">
+<div id="7a64cc5d" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Or"</span>, <span class="st">"="</span>, or_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -522,7 +522,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-nand-gate-not-and">The NAND Gate (NOT-AND)</h3>
 <p>The output is <code>0</code> only when both inputs are <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="5ba254b0" class="cell" data-execution_count="9">
+<div id="4157de25" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
@@ -581,7 +581,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="e17c6cdf" class="cell" data-execution_count="10">
+<div id="a2b1ed13" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Nand"</span>, <span class="st">"="</span>, nand_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -596,7 +596,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-nor-gate-not-or">The NOR Gate (NOT-OR)</h3>
 <p>The output is <code>1</code> only when both inputs are <code>0</code>.</p>
 <p>Symbol :</p>
-<div id="6f21a4b5" class="cell" data-execution_count="11">
+<div id="cc0c2161" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
@@ -655,7 +655,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="8cc71a61" class="cell" data-execution_count="12">
+<div id="eca2802f" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Nor"</span>, <span class="st">"="</span>, nor_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -670,7 +670,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-xor-gate-exclusive-or">The XOR Gate (Exclusive OR)</h3>
 <p>The output is <code>1</code> if the inputs are different, and <code>0</code> if they are identical.</p>
 <p>Symbol :</p>
-<div id="62db373b" class="cell" data-execution_count="13">
+<div id="113f92c1" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
@@ -729,7 +729,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="8f8fed52" class="cell" data-execution_count="14">
+<div id="e31fda84" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Xor"</span>, <span class="st">"="</span>, xor_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -744,7 +744,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="the-xnor-gate-equivalence-gate">The XNOR Gate (Equivalence Gate)</h3>
 <p>The inverse of XOR. The output is <code>1</code> only if the inputs are identical.</p>
 <p>Symbol :</p>
-<div id="07ebfb7a" class="cell" data-execution_count="15">
+<div id="0f20ac8e" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Initialize the drawing context</span></span>
@@ -803,7 +803,7 @@ window.Quarto = {
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="0b0bc0eb" class="cell" data-execution_count="16">
+<div id="6efa1901" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Xnor"</span>, <span class="st">"="</span>, xnor_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -819,7 +819,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="matrix-arithmetic">Matrix arithmetic</h2>
 <p>The beauty of this representation is that functions can be chained together end-to-end using standard matrix multiplication.</p>
 <p>For example, if we have a state corresponding to the bit “1” and pass it through a NOT gate, we can simply compute:</p>
-<div id="c488ed14" class="cell" data-execution_count="17">
+<div id="4269cf3f" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"One"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Not"</span>, <span class="st">"="</span>, one_out.to_katex(show_labels<span class="op">=</span><span class="va">False</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, not_q.to_katex(show_labels<span class="op">=</span><span class="va">False</span>), <span class="st">"="</span>, (one_out <span class="op">@</span> not_q).to_katex(show_labels<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -861,8 +861,8 @@ a_{m1} B &amp; a_{m2} B &amp; \cdots &amp; a_{mn} B
 = \begin{pmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \end{pmatrix}
 \]</span></p>
 <p>The resulting <span class="math inline">\(1 \times 4\)</span> matrix cleanly indexes the fourth basis state (corresponding to binary <code>"10"</code>), making it dimensionally compatible with any 2-input gate matrix.</p>
-<p>Here`s an enumeration of all 4 possibilities for A and B with labels included:</p>
-<div id="3d411536" class="cell" data-execution_count="18">
+<p>Let’s look at an enumeration of all 4 possibilities for A and B with labels included:</p>
+<div id="2ce0598d" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>display_inline(zero_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, zero_out.to_katex(show_labels<span class="op">=</span><span class="va">True</span>), <span class="st">"="</span>, (zero_out <span class="op">^</span> zero_out).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span>
@@ -886,17 +886,45 @@ a_{m1} B &amp; a_{m2} B &amp; \cdots &amp; a_{mn} B
 <p><span class="math display">\[  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0 &amp; 1 \\  \hline \end{array}  \otimes  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
 </div>
 </div>
-<p>Notice how the output string labels combine? This makes it easy to find any mistake.</p>
-<p>Let`s now take for example A=“1” and B=“1” and pass them through an AND gate :</p>
-<div id="9988704c" class="cell" data-execution_count="19">
+<p>Notice how the output labels combine into one string? This makes it easy to find any mistake.</p>
+<p>It is even possible to write the equation in string format:</p>
+<div id="09fdb0eb" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> one_out</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> one_out</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>zero<span class="op">=</span>TransitionMatrix().from_bitstring(<span class="st">"0"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>one<span class="op">=</span>TransitionMatrix().from_bitstring(<span class="st">"1"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>AB <span class="op">=</span> (A <span class="op">^</span> B)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"(A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B)"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"And"</span>, <span class="st">"="</span>, AB, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, and_q, <span class="st">"="</span>, (AB) <span class="op">@</span> and_q)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>display_inline(zero.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, one.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="st">"="</span>, (zero <span class="op">^</span> one).to_katex(as_sum<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[  \text{``0''}  \otimes  \text{``1''}  =  \text{``01''}  \]</span></p>
+</div>
+</div>
+<p>Longer sequences also work just fine:</p>
+<div id="95546424" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>display_inline(zero.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, one.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, zero.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="st">"="</span>, (zero <span class="op">^</span> one <span class="op">^</span> zero).to_katex(as_sum<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>display_inline(zero.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, one.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, zero.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, one.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, one.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, one.to_katex(as_sum<span class="op">=</span><span class="va">True</span>), <span class="st">"="</span>, (zero <span class="op">^</span> one <span class="op">^</span> zero <span class="op">^</span> one <span class="op">^</span> one <span class="op">^</span> one).to_katex(as_sum<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[  \text{``0''}  \otimes  \text{``1''}  \otimes  \text{``0''}  =  \text{``010''}  \]</span></p>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[  \text{``0''}  \otimes  \text{``1''}  \otimes  \text{``0''}  \otimes  \text{``1''}  \otimes  \text{``1''}  \otimes  \text{``1''}  =  \text{``010111''}  \]</span></p>
+</div>
+</div>
+<p>Let`s now take for example A=“1” and B=“1” and pass them through an AND gate :</p>
+<div id="abd6ea42" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> one_out</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> one_out</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>AB <span class="op">=</span> (A <span class="op">^</span> B)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"(A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B)"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"And"</span>, <span class="st">"="</span>, AB, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, and_q, <span class="st">"="</span>, (AB) <span class="op">@</span> and_q)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p><span class="math display">\[ (A \otimes B) \cdot And =  \begin{array}{|cccc|}  \hline 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \cdot  \begin{array}{|cc|}  \hline 1 &amp; 0 \\ 1 &amp; 0 \\ 1 &amp; 0 \\ 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{|cc|}  \hline 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
