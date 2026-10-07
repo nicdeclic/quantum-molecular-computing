@@ -3,7 +3,7 @@ title: "Quantum Molecular Computing Explained to a 5 Year Old"
 description: "Despite all the underlying complexity... the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat."
 author: "NicDeclic"
 date: "2026-09-17"
-categories: [Introduction]
+categories: [Introduction, Intuition]
 image: "/images/5year old toys.jpg"
 ---
 
@@ -48,21 +48,21 @@ Children, however, are entirely comfortable with a world where anything is possi
 
 That is why playful, hands-on experiences often provide the best entry point for truly grasping quantum computing — even for adults!
 
-Using an HB pencil and a sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting, observing, and playing with structures to watch the mechanics reveal themselves.
+With nothing more than an ordinary pencil and a blank sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting with and observing structures to see the mechanics reveal themselves.  
 
-Ready to give it a try?
+Ready to play?  
 
 ---
 
-## Rules of the Game
+## Game 1: The Dots and Lines Game
 
-* You can only draw filled circles, thin lines and thick lines.  
-* Each circle can only be connected by lines, never more than 3 lines.  
-* There can only be **one thick line** per circle.  
+* You can only draw dots, thin lines and thick lines.  
+* Each dot can only be connected by 2 or 3 lines.  
+* There can only be **one thick line** per dot.
 
-Have fun building a structure that follows these rules!    
+Have fun finding a shape that follows these rules!
 
-Start with something simple. Here are a few suggestions :
+Start small. Here are a few suggestions :
 
 ```{python}
 #| code-fold: true
@@ -70,7 +70,7 @@ Start with something simple. Here are a few suggestions :
 #| layout-ncol: 3
 #| fig-cap: 
 #|   - "Double Honeycomb structure"
-#|   - "Letter Enveloppe structure"
+#|   - "Letter Envelope structure"
 #|   - "Triple Honeycomb structure"
 
 
@@ -107,7 +107,7 @@ mol1.draw()
 
 
 # Create a conjugated carbon molecule
-mol2 = CarbonMolecule("Letter Enveloppe")
+mol2 = CarbonMolecule("Letter Envelope")
 
 # Add atoms
 c2_1 = mol2.add_atom(x=-0.8, y=0.5)
@@ -174,12 +174,17 @@ mol3.draw()
 
 ---
 
-## The Thick Lines Game
+## Game 2: The Shape-Shifter
 
-- Very often a structure has multiple solutions.
-- Can you find all possibilities ? Draw all possibilities of your structure.  
+Very often, a drawing has more than one way to follow the rules. Can you find all the possibilities ?  
 
-Example: The Double Honeycomb structure has 3 possibilities.
+* Redraw the **exact same dots right next to your drawing** on your page.
+
+* Can you place all the lines so that **at least one line has a different thickness** compared to the other drawing(s) ?
+
+* Keep redrawing until you cannot find any new ways!
+
+Example: The Double Honeycomb structure has **3 different winning drawings**.
 ```{python}
 #| code-fold: true
 #| fig-align: center
@@ -194,60 +199,83 @@ for i, res_mol in enumerate(all_resonances):
 
 ---
 
-## The Magical Box Game
+## Game 3: The Mystery Box
+ 
+* Now, imagine that you have a mysterious box with buttons and lights on its surface.  
 
-![](/images/construction.png)  
+![](https://i.etsystatic.com/12310412/r/il/a7e70f/2042059967/il_794xN.2042059967_29tm.jpg)
 
-- Imagine qu’un magicien place tes structures dans une boîte spéciale qui fait de la magie avec les couleurs !  
-- Imagine that a magician has placed all of your structures in a special box.
+* Some of the switches and lights are connected to the lines of your drawings.  
 
-- Choisis :   
-    - Où mettre les couleurs (les entrées).   
-    - Où sortiront les couleurs (les sorties).   
+* Look at your first drawing. Decide which lines are buttons and which are lights. Not all lines need to be connected. 
 
-- Choisi les couleurs que tu veux voir aux entrées.  
-
-- Trouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.  
-
-- Si tu n’en trouves pas, essaie d’autres couleurs.   
-
-- Regarde les sorties pour voir ce qui ressort !  
-
-- Essaie toutes les combinaisons possibles et note ce qui arrive.   
+* Now, place your drawings into the box. The mysterious box combines all your drawings into one!
 
 ---
 
-## What is the magic box used for?
+## Game 4: How the Mystery Box Answers
 
-- Imagine toi que les entrées sont une question et les sorties sont la réponse.   
+* A switch controls the thickness of a line. (for example: 'OFF' means 'thin line'. 'ON' means 'thick line').
 
-- Peux-tu trouver une combinaison spéciale ?   
+* A light shows the thickness of a line. (for example: 'thin line' means 'light OFF'. 'thick line' means 'light ON').
 
-- À quoi pourrait-elle servir ?   
+* Choose how you want to set your switches. (for example: *Top line is thick, bottom line is thin*).  
 
-- Les barres bleues et rouges peuvent représenter tout ce que tu veux.  
+* Identify all the drawings that match your pattern. If you can't find any, you get no answer, try a different pattern.  
+
+* If you find one matching drawing, look at the lines connected to the lights: **that is the Box's answer!**  
+
+* If you find more than one matching drawing: **close your eyes and select randomly ONE of the matching drawings.**  
 
 ---
 
-## Reverse Magic !
+## Game 5: What is the Mystery Box For?
 
-- Now, invert inputs and outputs.   
+* Try every combination (for example: thin/thin, thin/thick, thick/thin, thick/thick). Note down the results.  
+
+* The lines can stand for anything you want: a thick line on the left could mean: *"Is it raining outside?"*. A thick line on the right could answer: *"Take an umbrella!"*.  
+
+* What could the box be used for ? Find something useful.  
+
+---
+
+## Game 6: Reverse Mystery !
+
+- What if you change the buttons into lights, and the lights into buttons?  
+
 - Surprise ! The box also works in reverse !   
-- Cette fois, les entrées sont la réponse et les sorties sont la question.  
+
+- You can run forward, ask a question to find an answer, or run backward, start with an answer to reveal a question that created it!  
+
+![](double arrow.jpg){fig-align="center"}
 
 ---
 
-And that is all there is to it! With a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.
+## The Mystery Revealed: You Just Built a Quantum Computer
 
-Quantum molecular computing may seem daunting at first glance, but at its core, it is governed by simple, deterministic rules—much like the constraints of a board game. You no longer have an excuse to claim that quantum mechanics is inherently too complicated or counterintuitive to comprehend!
+Now, it is time to reveal what you were actually doing with your pencil:
 
-However, it must be acknowledged that truly mastering the game remains a genuine challenge.
+You were not just doodling on paper. **You were simulating a Quantum Molecular Computer:**
 
-Two fundamental questions remain:
+1. **The Dots** are Carbon atoms.
+2. **The thin and thick lines** are single and double chemical bonds ($\sigma$ and $\pi$ bonds).
+3. **The multiple drawings on your page** are quantum superpositions of molecular resonance states.
+4. **Landing your finger on one drawing with your eyes closed** is a quantum measurement!
+5. **Running the drawings backwards** is reversible quantum computation!
 
-* **How do we engineer specific structures to achieve a desired computational outcome?**  
+With a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.  
+
+Quantum molecular computing may seem daunting at first glance, but at its core, it is governed by simple, deterministic rules—much like the constraints of a board game. You no longer have an excuse to claim that quantum mechanics is inherently too complicated or counterintuitive to comprehend!  
+
+![](eureka.jpg){fig-align="center"}
+
+However, it must be acknowledged that truly mastering the game remains a genuine challenge.  
+
+Two fundamental questions remain:  
+
+* **How do we build specific structures to achieve a desired computational outcome?**  
 and  
-* **What are the ultimate limits and true computational power of quantum molecular systems?**
+* **What is the true computational power of quantum molecular systems?**
 
 ---
 

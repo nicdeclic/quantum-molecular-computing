@@ -95,7 +95,7 @@
     "href": "index.html",
     "title": "Open Research Notes & Dynamic Notebooks",
     "section": "",
-    "text": "👉 New to this site? Start reading here:\n“Welcome To A New Branch Of Quantum Computing!”\n\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nQuantum Chemistry\n\n\n\nIntroduction\n\n\n\nIs it possible that the capacity to process and manipulate information is woven into the very fabric of molecules? We now turn to explore the untapped potential of atoms and their chemical bonds to create sophisticated computational systems.\n\n\n\n\n\nSep 25, 2026\n\n\nNicDeclic\n\n\n\n\n\n\n\n\n\n\n\n\nThe Computing Universe\n\n\n\nIntroduction\n\n\n\nWhile we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems.\n\n\n\n\n\nSep 24, 2026\n\n\nNicDeclic\n\n\n\n\n\n\n\n\n\n\n\n\nQuantum Molecular Computing Explained to a 5 Year Old\n\n\n\nIntroduction\n\n\n\nDespite all the underlying complexity… the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat.\n\n\n\n\n\nSep 17, 2026\n\n\nNicDeclic\n\n\n\n\n\n\n\n\n\n\n\n\nA Refresher on Boolean Logic\n\n\n\nIntroduction\n\n\n\nBefore diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.\n\n\n\n\n\nSep 16, 2026\n\n\nNicDeclic\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To A New Branch Of Quantum Computing!\n\n\n\nIntroduction\n\nPhilosophy\n\n\n\nWhether you are a seasoned quantum physicist, a curious software engineer, a student wandering through the fringes of the web, or simply someone fascinated by the architecture of reality: welcome aboard.\n\n\n\n\n\nSep 15, 2026\n\n\nNicDeclic\n\n\n\n\n\nNo matching items"
+    "text": "👉 New to this site? Start reading here:\n“Welcome To A New Branch Of Quantum Computing!”\n\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nQuantum Chemistry\n\n\n\nIntroduction\n\n\n\nIs it possible that the capacity to process and manipulate information is woven into the very fabric of molecules? We now turn to explore the untapped potential of atoms and their chemical bonds to create sophisticated computational systems.\n\n\n\n\n\nSep 25, 2026\n\n\nNicDeclic\n\n\n\n\n\n\n\n\n\n\n\n\nThe Computing Universe\n\n\n\nIntroduction\n\n\n\nWhile we are most familiar with logic gates built using silicon transistors, there are many other fascinating ways to implement logical systems.\n\n\n\n\n\nSep 24, 2026\n\n\nNicDeclic\n\n\n\n\n\n\n\n\n\n\n\n\nQuantum Molecular Computing Explained to a 5 Year Old\n\n\n\nIntroduction\n\nIntuition\n\n\n\nDespite all the underlying complexity… the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat.\n\n\n\n\n\nSep 17, 2026\n\n\nNicDeclic\n\n\n\n\n\n\n\n\n\n\n\n\nA Refresher on Boolean Logic\n\n\n\nIntroduction\n\n\n\nBefore diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential.\n\n\n\n\n\nSep 16, 2026\n\n\nNicDeclic\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To A New Branch Of Quantum Computing!\n\n\n\nIntroduction\n\nPhilosophy\n\n\n\nWhether you are a seasoned quantum physicist, a curious software engineer, a student wandering through the fringes of the web, or simply someone fascinated by the architecture of reality: welcome aboard.\n\n\n\n\n\nSep 15, 2026\n\n\nNicDeclic\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/computing-universe/index.html#logical-systems",
@@ -109,42 +109,7 @@
     "href": "posts/quick-intro/index.html",
     "title": "Quantum Molecular Computing Explained to a 5 Year Old",
     "section": "",
-    "text": "Click to see library imports\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../..\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\nYoung children possess a thinking process that is naturally fluid and intuitive, whereas adults often hold a more rigid worldview shaped by years of conventional, classical education.\nQuantum computing operates through superpositions and probabilities — concepts that often feel deeply counterintuitive to a mind conditioned by binary logic.\nChildren, however, are entirely comfortable with a world where anything is possible, where something can simultaneously be “this” and “that,” much like a quantum state in superposition. In many ways, their cognitive style is far closer to the natural quantum fabric of reality.\nThat is why playful, hands-on experiences often provide the best entry point for truly grasping quantum computing — even for adults!\nUsing an HB pencil and a sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting, observing, and playing with structures to watch the mechanics reveal themselves.\nReady to give it a try?"
-  },
-  {
-    "objectID": "posts/quick-intro/index.html#règles-du-jeu",
-    "href": "posts/quick-intro/index.html#règles-du-jeu",
-    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
-    "section": "Règles du jeu",
-    "text": "Règles du jeu\n\nTu as des billes en métal, des barres bleues magnétiques et des barres rouges magnétiques.\n\nChaque bille doit être attachée à un maximum de 3 barres.\n\nIl ne doit y avoir qu’une seule barre rouge par bille.\n\nAmuse-toi à construire une structure avec ces règles ! Commence par quelque chose de simple.\n\nVoici quelques suggestions:"
-  },
-  {
-    "objectID": "posts/quick-intro/index.html#le-jeu-des-barres-rouges",
-    "href": "posts/quick-intro/index.html#le-jeu-des-barres-rouges",
-    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
-    "section": "Le jeu des barres rouges",
-    "text": "Le jeu des barres rouges\n\nSouvent, tu peux placer les barres rouges à plusieurs endroits différents.\n\nPeux-tu trouver toutes les possibilités ?\n\nConstruis une structure différente pour chaque possibilité."
-  },
-  {
-    "objectID": "posts/quick-intro/index.html#la-boîte-magique",
-    "href": "posts/quick-intro/index.html#la-boîte-magique",
-    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
-    "section": "La boîte magique",
-    "text": "La boîte magique\n\nImagine qu’un magicien place tes structures dans une boîte spéciale qui fait de la magie avec les couleurs !\nChoisis :\n\nOù mettre les couleurs (les entrées).\n\nOù sortiront les couleurs (les sorties).\n\nChoisi les couleurs que tu veux voir aux entrées.\nTrouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.\nSi tu n’en trouves pas, essaie d’autres couleurs.\nRegarde les sorties pour voir ce qui ressort !\nEssaie toutes les combinaisons possibles et note ce qui arrive."
-  },
-  {
-    "objectID": "posts/quick-intro/index.html#trouver-une-utilité-à-la-boîte-magique",
-    "href": "posts/quick-intro/index.html#trouver-une-utilité-à-la-boîte-magique",
-    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
-    "section": "Trouver une utilité à la boîte magique",
-    "text": "Trouver une utilité à la boîte magique\n\nImagine toi que les entrées sont une question et les sorties sont la réponse.\nPeux-tu trouver une combinaison spéciale ?\nÀ quoi pourrait-elle servir ?\nLes barres bleues et rouges peuvent représenter tout ce que tu veux."
-  },
-  {
-    "objectID": "posts/quick-intro/index.html#la-magie-à-lenvers",
-    "href": "posts/quick-intro/index.html#la-magie-à-lenvers",
-    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
-    "section": "La magie à l’envers !",
-    "text": "La magie à l’envers !\n\nMaintenant, inverse les entrées et les sorties.\n\nSurprise ! La boîte fonctionne aussi à l’envers !\n\nCette fois, les entrées sont la réponse et les sorties sont la question.\n\n\nEt voilà ! Avec un peu d’expérimentation vous aurez une bonne compréhension du fonctionnement.\nL’informatique quantique peut paraître complexe au premier abord, mais en réalité, elle repose sur des règles simples, semblables à celles d’un jeu. Vous n’avez donc plus d’excuse pour dire que c’est trop compliquée ou non intuitif.\nCependant, il faut reconnaître que la maîtrise du jeu lui-même demeure un défi. Il reste à comprendre :\n\nComment construire les structures pour obtenir le résultat voulu?\nEt\n\nQuel est le potentiel de l’informatique quantique ?\n\n\n👉 You are now ready to dive into theory :\n“A Refresher on Boolean Logic”"
+    "text": "Click to see library imports\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../..\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\nYoung children possess a thinking process that is naturally fluid and intuitive, whereas adults often hold a more rigid worldview shaped by years of conventional, classical education.\nQuantum computing operates through superpositions and probabilities — concepts that often feel deeply counterintuitive to a mind conditioned by binary logic.\nChildren, however, are entirely comfortable with a world where anything is possible, where something can simultaneously be “this” and “that,” much like a quantum state in superposition. In many ways, their cognitive style is far closer to the natural quantum fabric of reality.\nThat is why playful, hands-on experiences often provide the best entry point for truly grasping quantum computing — even for adults!\nWith nothing more than an ordinary pencil and a blank sheet of paper, we can intuitively understand how this all works without wrestling with difficult mathematics. All it takes is experimenting with and observing structures to see the mechanics reveal themselves.\nReady to play?"
   },
   {
     "objectID": "posts/quick-intro/index.html#rules-of-the-game",
@@ -154,13 +119,6 @@
     "text": "Rules of the Game\n\nYou can only draw filled circles, thin lines and thick lines.\n\nEach circle can only be connected by lines, never more than 3 lines.\n\nThere can only be one thick line per circle.\n\nHave fun building a structure that follows these rules!\nStart with something simple. Here are a few suggestions :\n\nCode\n# Create a conjugated carbon molecule\nmol1 = CarbonMolecule(\"Double Honeycomb\")\n\n# Add atoms\nc1_1 = mol1.add_atom(x=-0.25, y=1)\nc1_2 = mol1.add_atom(x=0.25, y=1)\nc1_3 = mol1.add_atom(x=-0.5, y=0.5)\nc1_4 = mol1.add_atom(x=0.5, y=0.5)\nc1_5 = mol1.add_atom(x=-0.25, y=0)\nc1_6 = mol1.add_atom(x=0.25, y=0)\nc1_7 = mol1.add_atom(x=-0.5, y=-0.5)\nc1_8 = mol1.add_atom(x=0.5, y=-0.5)\nc1_9 = mol1.add_atom(x=-0.25, y=-1)\nc1_10 = mol1.add_atom(x=0.25, y=-1)\n\n# Add bonds\nb1_1 = mol1.add_bond(c1_1, c1_2, order=\"single\")\nb1_2 = mol1.add_bond(c1_2, c1_4, order=\"single\")\nb1_3 = mol1.add_bond(c1_1, c1_3, order=\"single\")\nb1_4 = mol1.add_bond(c1_3, c1_5, order=\"single\")\nb1_5 = mol1.add_bond(c1_4, c1_6, order=\"single\")\nb1_6 = mol1.add_bond(c1_5, c1_6, order=\"single\")\nb1_7 = mol1.add_bond(c1_5, c1_7, order=\"single\")\nb1_8 = mol1.add_bond(c1_6, c1_8, order=\"single\")\nb1_9 = mol1.add_bond(c1_7, c1_9, order=\"single\")\nb1_10 = mol1.add_bond(c1_8, c1_10, order=\"single\")\nb1_11 = mol1.add_bond(c1_9, c1_10, order=\"single\")\n\n# Draw with Schemdraw\nmol1.draw()\n\n\n# Create a conjugated carbon molecule\nmol2 = CarbonMolecule(\"Letter Enveloppe\")\n\n# Add atoms\nc2_1 = mol2.add_atom(x=-0.8, y=0.5)\nc2_2 = mol2.add_atom(x=0.8, y=0.5)\nc2_3 = mol2.add_atom(x=-0.3, y=0)\nc2_4 = mol2.add_atom(x=0.3, y=0)\nc2_5 = mol2.add_atom(x=-0.8, y=-0.5)\nc2_6 = mol2.add_atom(x=0.8, y=-0.5)\n\n# Add bonds\nb2_1 = mol2.add_bond(c2_1, c2_2, order=\"single\")\nb2_2 = mol2.add_bond(c2_1, c2_5, order=\"single\")\nb2_3 = mol2.add_bond(c2_2, c2_6, order=\"single\")\nb2_4 = mol2.add_bond(c2_1, c2_3, order=\"single\")\nb2_5 = mol2.add_bond(c2_2, c2_4, order=\"single\")\nb2_6 = mol2.add_bond(c2_3, c2_4, order=\"single\")\nb2_7 = mol2.add_bond(c2_3, c2_5, order=\"single\")\nb2_8 = mol2.add_bond(c2_4, c2_6, order=\"single\")\nb2_9 = mol2.add_bond(c2_5, c2_6, order=\"single\")\n\n# Draw with Schemdraw\nmol2.draw()\n\n\n# Create a conjugated carbon molecule\nmol3 = CarbonMolecule(\"Triple Honeycomb\")\n\n# Add atoms\nc3_1 = mol3.add_atom(x=-0.25, y=1)\nc3_2 = mol3.add_atom(x=0.25, y=1)\nc3_3 = mol3.add_atom(x=-0.5, y=0.5)\nc3_4 = mol3.add_atom(x=0.5, y=0.5)\nc3_5 = mol3.add_atom(x=-0.25, y=0)\nc3_6 = mol3.add_atom(x=0.25, y=0)\nc3_7 = mol3.add_atom(x=-0.5, y=-0.5)\nc3_8 = mol3.add_atom(x=0.5, y=-0.5)\nc3_9 = mol3.add_atom(x=-0.25, y=-1)\nc3_10 = mol3.add_atom(x=0.25, y=-1)\nc3_11 = mol3.add_atom(x=1, y=0.5)\nc3_12 = mol3.add_atom(x=1.25, y=0)\nc3_13 = mol3.add_atom(x=1, y=-0.5)\n\n# Add bonds\nb3_1 = mol3.add_bond(c3_1, c3_2, order=\"single\")\nb3_2 = mol3.add_bond(c3_2, c3_4, order=\"single\")\nb3_3 = mol3.add_bond(c3_1, c3_3, order=\"single\")\nb3_4 = mol3.add_bond(c3_3, c3_5, order=\"single\")\nb3_5 = mol3.add_bond(c3_4, c3_6, order=\"single\")\nb3_6 = mol3.add_bond(c3_5, c3_6, order=\"single\")\nb3_7 = mol3.add_bond(c3_5, c3_7, order=\"single\")\nb3_8 = mol3.add_bond(c3_6, c3_8, order=\"single\")\nb3_9 = mol3.add_bond(c3_7, c3_9, order=\"single\")\nb3_10 = mol3.add_bond(c3_8, c3_10, order=\"single\")\nb3_11 = mol3.add_bond(c3_9, c3_10, order=\"single\")\nb3_12 = mol3.add_bond(c3_4, c3_11, order=\"single\")\nb3_13 = mol3.add_bond(c3_11, c3_12, order=\"single\")\nb3_14 = mol3.add_bond(c3_12, c3_13, order=\"single\")\nb3_15 = mol3.add_bond(c3_13, c3_8, order=\"single\")\n\n# Draw with Schemdraw\nmol3.draw()\n\n\n\n\n\n\n\nDouble Honeycomb structure\n\n\n\n\n\n\n\nLetter Enveloppe structure\n\n\n\n\n\n\n\nTriple Honeycomb structure"
   },
   {
-    "objectID": "posts/quick-intro/index.html#à-quoi-sert-la-boîte-magique",
-    "href": "posts/quick-intro/index.html#à-quoi-sert-la-boîte-magique",
-    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
-    "section": "À quoi sert la boîte magique?",
-    "text": "À quoi sert la boîte magique?\n\nImagine toi que les entrées sont une question et les sorties sont la réponse.\nPeux-tu trouver une combinaison spéciale ?\nÀ quoi pourrait-elle servir ?\nLes barres bleues et rouges peuvent représenter tout ce que tu veux."
-  },
-  {
     "objectID": "posts/quick-intro/index.html#the-thick-lines-game",
     "href": "posts/quick-intro/index.html#the-thick-lines-game",
     "title": "Quantum Molecular Computing Explained to a 5 Year Old",
@@ -168,31 +126,115 @@
     "text": "The Thick Lines Game\n\nVery often a structure has multiple solutions.\nCan you find all possibilities ? Draw all possibilities of your structure.\n\nExample: The Double Honeycomb structure has 3 possibilities.\n\nCode\nall_resonances = mol1.resonance()\n\nfor i, res_mol in enumerate(all_resonances):\n    res_mol.draw()"
   },
   {
-    "objectID": "posts/quick-intro/index.html#the-magical-box",
-    "href": "posts/quick-intro/index.html#the-magical-box",
-    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
-    "section": "The Magical Box",
-    "text": "The Magical Box\n\nImagine qu’un magicien place tes structures dans une boîte spéciale qui fait de la magie avec les couleurs !\n\nImagine that a magician has placed all of your structures in a special box.\nChoisis :\n\nOù mettre les couleurs (les entrées).\n\nOù sortiront les couleurs (les sorties).\n\nChoisi les couleurs que tu veux voir aux entrées.\nTrouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.\nSi tu n’en trouves pas, essaie d’autres couleurs.\nRegarde les sorties pour voir ce qui ressort !\nEssaie toutes les combinaisons possibles et note ce qui arrive."
-  },
-  {
-    "objectID": "posts/quick-intro/index.html#reverse-magic",
-    "href": "posts/quick-intro/index.html#reverse-magic",
-    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
-    "section": "Reverse Magic !",
-    "text": "Reverse Magic !\n\nNow, invert inputs and outputs.\n\nSurprise ! The box also works in reverse !\n\nCette fois, les entrées sont la réponse et les sorties sont la question.\n\n\nAnd that is all there is to it! With a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.\nQuantum molecular computing may seem daunting at first glance, but at its core, it is governed by simple, deterministic rules—much like the constraints of a board game. You no longer have an excuse to claim that quantum mechanics is inherently too complicated or counterintuitive to comprehend!\nHowever, it must be acknowledged that truly mastering the game remains a genuine challenge.\nTwo fundamental questions remain:\n\nHow do we engineer specific structures to achieve a desired computational outcome?\nand\n\nWhat are the ultimate limits and true computational power of quantum molecular systems?\n\n\n👉 You are now ready to dive into the theory :\n“A Refresher on Boolean Logic”"
-  },
-  {
     "objectID": "posts/quick-intro/index.html#the-magical-box-game",
     "href": "posts/quick-intro/index.html#the-magical-box-game",
     "title": "Quantum Molecular Computing Explained to a 5 Year Old",
     "section": "The Magical Box Game",
-    "text": "The Magical Box Game\n\n\nImagine qu’un magicien place tes structures dans une boîte spéciale qui fait de la magie avec les couleurs !\n\nImagine that a magician has placed all of your structures in a special box.\nChoisis :\n\nOù mettre les couleurs (les entrées).\n\nOù sortiront les couleurs (les sorties).\n\nChoisi les couleurs que tu veux voir aux entrées.\nTrouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.\nSi tu n’en trouves pas, essaie d’autres couleurs.\nRegarde les sorties pour voir ce qui ressort !\nEssaie toutes les combinaisons possibles et note ce qui arrive."
+    "text": "The Magical Box Game\n\nImagine that a magician places all your structures in a special box.\nChoose :\n\nOù mettre les couleurs (les entrées).\n\nOù sortiront les couleurs (les sorties).\n\nChoisi les couleurs que tu veux voir aux entrées.\nTrouve toutes les structures qui correspondent à tes couleurs et choisis-en une au hasard.\nIf you don’t find any, try other combinations.\nObserve les sorties pour voir ce qui ressort !\nTry all possible combinations and note what happens."
   },
   {
     "objectID": "posts/quick-intro/index.html#what-is-the-magic-box-used-for",
     "href": "posts/quick-intro/index.html#what-is-the-magic-box-used-for",
     "title": "Quantum Molecular Computing Explained to a 5 Year Old",
     "section": "What is the magic box used for?",
-    "text": "What is the magic box used for?\n\nImagine toi que les entrées sont une question et les sorties sont la réponse.\nPeux-tu trouver une combinaison spéciale ?\nÀ quoi pourrait-elle servir ?\nLes barres bleues et rouges peuvent représenter tout ce que tu veux."
+    "text": "What is the magic box used for?\n\nImagine that the inputs are a question and the outputs are the corresponding answer.\nCan you find a special combination ?\nWhat could it be used for ?\nThin and thick lines can represent anything you want."
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#reverse-magic",
+    "href": "posts/quick-intro/index.html#reverse-magic",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Reverse Magic !",
+    "text": "Reverse Magic !\n\nWhat if you invert the buttons and the lights?\nSurprise ! The box also works in reverse !\nYou can run forward to find an answer, or run backward to reveal the question that created it."
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-1-the-dots-and-lines-game",
+    "href": "posts/quick-intro/index.html#game-1-the-dots-and-lines-game",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 1: The Dots and Lines Game",
+    "text": "Game 1: The Dots and Lines Game\n\nYou can only draw dots, thin lines and thick lines.\n\nEach dot can only be connected by 2 or 3 lines.\n\nThere can only be one thick line per dot.\n\nHave fun finding a shape that follows these rules!\nStart small. Here are a few suggestions :\n\nCode\n# Create a conjugated carbon molecule\nmol1 = CarbonMolecule(\"Double Honeycomb\")\n\n# Add atoms\nc1_1 = mol1.add_atom(x=-0.25, y=1)\nc1_2 = mol1.add_atom(x=0.25, y=1)\nc1_3 = mol1.add_atom(x=-0.5, y=0.5)\nc1_4 = mol1.add_atom(x=0.5, y=0.5)\nc1_5 = mol1.add_atom(x=-0.25, y=0)\nc1_6 = mol1.add_atom(x=0.25, y=0)\nc1_7 = mol1.add_atom(x=-0.5, y=-0.5)\nc1_8 = mol1.add_atom(x=0.5, y=-0.5)\nc1_9 = mol1.add_atom(x=-0.25, y=-1)\nc1_10 = mol1.add_atom(x=0.25, y=-1)\n\n# Add bonds\nb1_1 = mol1.add_bond(c1_1, c1_2, order=\"single\")\nb1_2 = mol1.add_bond(c1_2, c1_4, order=\"single\")\nb1_3 = mol1.add_bond(c1_1, c1_3, order=\"single\")\nb1_4 = mol1.add_bond(c1_3, c1_5, order=\"single\")\nb1_5 = mol1.add_bond(c1_4, c1_6, order=\"single\")\nb1_6 = mol1.add_bond(c1_5, c1_6, order=\"single\")\nb1_7 = mol1.add_bond(c1_5, c1_7, order=\"single\")\nb1_8 = mol1.add_bond(c1_6, c1_8, order=\"single\")\nb1_9 = mol1.add_bond(c1_7, c1_9, order=\"single\")\nb1_10 = mol1.add_bond(c1_8, c1_10, order=\"single\")\nb1_11 = mol1.add_bond(c1_9, c1_10, order=\"single\")\n\n# Draw with Schemdraw\nmol1.draw()\n\n\n# Create a conjugated carbon molecule\nmol2 = CarbonMolecule(\"Letter Envelope\")\n\n# Add atoms\nc2_1 = mol2.add_atom(x=-0.8, y=0.5)\nc2_2 = mol2.add_atom(x=0.8, y=0.5)\nc2_3 = mol2.add_atom(x=-0.3, y=0)\nc2_4 = mol2.add_atom(x=0.3, y=0)\nc2_5 = mol2.add_atom(x=-0.8, y=-0.5)\nc2_6 = mol2.add_atom(x=0.8, y=-0.5)\n\n# Add bonds\nb2_1 = mol2.add_bond(c2_1, c2_2, order=\"single\")\nb2_2 = mol2.add_bond(c2_1, c2_5, order=\"single\")\nb2_3 = mol2.add_bond(c2_2, c2_6, order=\"single\")\nb2_4 = mol2.add_bond(c2_1, c2_3, order=\"single\")\nb2_5 = mol2.add_bond(c2_2, c2_4, order=\"single\")\nb2_6 = mol2.add_bond(c2_3, c2_4, order=\"single\")\nb2_7 = mol2.add_bond(c2_3, c2_5, order=\"single\")\nb2_8 = mol2.add_bond(c2_4, c2_6, order=\"single\")\nb2_9 = mol2.add_bond(c2_5, c2_6, order=\"single\")\n\n# Draw with Schemdraw\nmol2.draw()\n\n\n# Create a conjugated carbon molecule\nmol3 = CarbonMolecule(\"Triple Honeycomb\")\n\n# Add atoms\nc3_1 = mol3.add_atom(x=-0.25, y=1)\nc3_2 = mol3.add_atom(x=0.25, y=1)\nc3_3 = mol3.add_atom(x=-0.5, y=0.5)\nc3_4 = mol3.add_atom(x=0.5, y=0.5)\nc3_5 = mol3.add_atom(x=-0.25, y=0)\nc3_6 = mol3.add_atom(x=0.25, y=0)\nc3_7 = mol3.add_atom(x=-0.5, y=-0.5)\nc3_8 = mol3.add_atom(x=0.5, y=-0.5)\nc3_9 = mol3.add_atom(x=-0.25, y=-1)\nc3_10 = mol3.add_atom(x=0.25, y=-1)\nc3_11 = mol3.add_atom(x=1, y=0.5)\nc3_12 = mol3.add_atom(x=1.25, y=0)\nc3_13 = mol3.add_atom(x=1, y=-0.5)\n\n# Add bonds\nb3_1 = mol3.add_bond(c3_1, c3_2, order=\"single\")\nb3_2 = mol3.add_bond(c3_2, c3_4, order=\"single\")\nb3_3 = mol3.add_bond(c3_1, c3_3, order=\"single\")\nb3_4 = mol3.add_bond(c3_3, c3_5, order=\"single\")\nb3_5 = mol3.add_bond(c3_4, c3_6, order=\"single\")\nb3_6 = mol3.add_bond(c3_5, c3_6, order=\"single\")\nb3_7 = mol3.add_bond(c3_5, c3_7, order=\"single\")\nb3_8 = mol3.add_bond(c3_6, c3_8, order=\"single\")\nb3_9 = mol3.add_bond(c3_7, c3_9, order=\"single\")\nb3_10 = mol3.add_bond(c3_8, c3_10, order=\"single\")\nb3_11 = mol3.add_bond(c3_9, c3_10, order=\"single\")\nb3_12 = mol3.add_bond(c3_4, c3_11, order=\"single\")\nb3_13 = mol3.add_bond(c3_11, c3_12, order=\"single\")\nb3_14 = mol3.add_bond(c3_12, c3_13, order=\"single\")\nb3_15 = mol3.add_bond(c3_13, c3_8, order=\"single\")\n\n# Draw with Schemdraw\nmol3.draw()\n\n\n\n\n\n\n\nDouble Honeycomb structure\n\n\n\n\n\n\n\nLetter Envelope structure\n\n\n\n\n\n\n\nTriple Honeycomb structure"
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-2-the-shape-shifter",
+    "href": "posts/quick-intro/index.html#game-2-the-shape-shifter",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 2: The Shape-Shifter",
+    "text": "Game 2: The Shape-Shifter\nVery often, a drawing has more than one way to follow the rules. Can you find all the possibilities ?\n\nRedraw the exact same dots right next to your drawing on your page.\nCan you place all the lines so that at least one line has a different thickness compared to the other drawing(s) ?\nKeep redrawing until you cannot find any new ways!\n\nExample: The Double Honeycomb structure has 3 different winning drawings.\n\nCode\nall_resonances = mol1.resonance()\n\nfor i, res_mol in enumerate(all_resonances):\n    res_mol.draw()"
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-3-the-mystery-box",
+    "href": "posts/quick-intro/index.html#game-3-the-mystery-box",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 3: The Mystery Box",
+    "text": "Game 3: The Mystery Box\n\nNow, imagine that you have a mysterious box with buttons and lights on its surface.\n\n\n\nSome of the switches and lights are connected to the lines of your drawings.\nLook at your first drawing. Decide which lines are buttons and which are lights. Not all lines need to be connected.\nNow, place your drawings into the box. The mysterious box combines all your drawings into one!"
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#what-is-the-magic-box-doing",
+    "href": "posts/quick-intro/index.html#what-is-the-magic-box-doing",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "What is the Magic Box Doing?",
+    "text": "What is the Magic Box Doing?\nThe lines can stand for anything you want: * A thick line on the left could mean: “Is it raining outside?” * A thick line on the right could answer: “Take an umbrella!”\n\nWhat could it be used for ?\nThin and thick lines can represent anything you want."
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#the-mystery-revealed-you-just-built-a-quantum-computer",
+    "href": "posts/quick-intro/index.html#the-mystery-revealed-you-just-built-a-quantum-computer",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "The Mystery Revealed: You Just Built a Quantum Computer",
+    "text": "The Mystery Revealed: You Just Built a Quantum Computer\nNow, it is time to reveal what you were actually doing with your pencil:\nYou were not just doodling on paper. You were simulating a Quantum Molecular Computer:\n\nThe Dots are Carbon atoms.\nThe thin and thick lines are single and double chemical bonds (\\(\\sigma\\) and \\(\\pi\\) bonds).\nThe multiple drawings on your page are quantum superpositions of molecular resonance states.\nLanding your finger on one drawing with your eyes closed is a quantum measurement!\nRunning the drawings backwards is reversible quantum computation!\n\nWith a little hands-on experimentation, you will quickly develop a solid intuitive grasp of how the mechanics work.\nQuantum molecular computing may seem daunting at first glance, but at its core, it is governed by simple, deterministic rules—much like the constraints of a board game. You no longer have an excuse to claim that quantum mechanics is inherently too complicated or counterintuitive to comprehend!\n\n\n\n\n\nHowever, it must be acknowledged that truly mastering the game remains a genuine challenge.\nTwo fundamental questions remain:\n\nHow do we build specific structures to achieve a desired computational outcome?\nand\n\nWhat is the true computational power of quantum molecular systems?\n\n\n👉 You are now ready to dive into the theory :\n“A Refresher on Boolean Logic”"
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-3-the-magic-mystery-box",
+    "href": "posts/quick-intro/index.html#game-3-the-magic-mystery-box",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 3: The Magic Mystery Box",
+    "text": "Game 3: The Magic Mystery Box\n\nNow, let’s turn our sheet of paper into a magic box.\nLook at your first drawing.\n\nYou can decide that some of the lines are buttons and some others lights.\n* These are your Buttons\n\nHow the Mystery Box Answers:\n\nChoose how you want to set the lines on the left (for example: Top line is thick, bottom line is thin).\nAmong the drawings that match: close your eyes and land your finger randomly on one of them on the page!\nOpen your eyes and look at the lines on the right side of that chosen drawing: that is the Box’s answer!\n\nTry every combination on the left (thin/thin, thin/thick, thick/thin, thick/thick). Note down what lines appear on the right each time directly on your sheet!"
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-4-what-is-the-magic-mystery-box-doing",
+    "href": "posts/quick-intro/index.html#game-4-what-is-the-magic-mystery-box-doing",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 4: What is the Magic Mystery Box Doing?",
+    "text": "Game 4: What is the Magic Mystery Box Doing?\nThe lines can stand for anything you want: * A thick line on the left could mean: “Is it raining outside?” * A thick line on the right could answer: “Take an umbrella!”\n\nWhat could it be used for ?\nThin and thick lines can represent anything you want."
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-5-reverse-magic",
+    "href": "posts/quick-intro/index.html#game-5-reverse-magic",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 5: Reverse Magic !",
+    "text": "Game 5: Reverse Magic !\n\nWhat if you invert the buttons and the lights?\nSurprise ! The box also works in reverse !\nYou can run forward to find an answer, or run backward to reveal the question that created it."
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-4-what-is-the-mystery-box-doing",
+    "href": "posts/quick-intro/index.html#game-4-what-is-the-mystery-box-doing",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 4: What is the Mystery Box Doing?",
+    "text": "Game 4: What is the Mystery Box Doing?\n\nHow the Mystery Box Answers:\n\nChoose how you want to set the lines on the left (for example: Top line is thick, bottom line is thin).\nAmong the drawings that match: close your eyes and land your finger randomly on one of them on the page!\nOpen your eyes and look at the lines on the right side of that chosen drawing: that is the Box’s answer!\n\nTry every combination on the left (thin/thin, thin/thick, thick/thin, thick/thick). Note down what lines appear on the right each time directly on your sheet!\nThe lines can stand for anything you want: * A thick line on the left could mean: “Is it raining outside?” * A thick line on the right could answer: “Take an umbrella!”\n\nWhat could it be used for ?\nThin and thick lines can represent anything you want."
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-5-reverse-mystery",
+    "href": "posts/quick-intro/index.html#game-5-reverse-mystery",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 5: Reverse Mystery !",
+    "text": "Game 5: Reverse Mystery !\n\nWhat if you change the buttons into lights, and the lights into buttons?\nSurprise ! The box also works in reverse !\nYou can run forward, ask a question to find an answer, or run backward, start with an answer to reveal the question that created it!"
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-4-how-the-mystery-box-answers",
+    "href": "posts/quick-intro/index.html#game-4-how-the-mystery-box-answers",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 4: How the Mystery Box Answers",
+    "text": "Game 4: How the Mystery Box Answers\n\nA switch controls the thickness of a line. (for example: ‘OFF’ means ‘thin line’. ‘ON’ means ‘thick line’).\nA light shows the thickness of a line. (for example: ‘thin line’ means ‘light OFF’. ‘thick line’ means ‘light ON’).\nChoose how you want to set your switches. (for example: Top line is thick, bottom line is thin).\nIdentify all the drawings that match your pattern. If you can’t find any, you get no answer, try a different pattern.\nIf you find one matching drawing, look at the lines connected to the lights: that is the Box’s answer!\nIf you find more than one matching drawing: close your eyes and select randomly ONE of the matching drawings."
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-5-what-is-the-mystery-box-for",
+    "href": "posts/quick-intro/index.html#game-5-what-is-the-mystery-box-for",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 5: What is the Mystery Box For?",
+    "text": "Game 5: What is the Mystery Box For?\n\nTry every combination (for example: thin/thin, thin/thick, thick/thin, thick/thick). Note down the results.\nThe lines can stand for anything you want: a thick line on the left could mean: “Is it raining outside?”. A thick line on the right could answer: “Take an umbrella!”.\nWhat could the box be used for ? Find something useful."
+  },
+  {
+    "objectID": "posts/quick-intro/index.html#game-6-reverse-mystery",
+    "href": "posts/quick-intro/index.html#game-6-reverse-mystery",
+    "title": "Quantum Molecular Computing Explained to a 5 Year Old",
+    "section": "Game 6: Reverse Mystery !",
+    "text": "Game 6: Reverse Mystery !\n\nWhat if you change the buttons into lights, and the lights into buttons?\nSurprise ! The box also works in reverse !\nYou can run forward, ask a question to find an answer, or run backward, start with an answer to reveal a question that created it!"
   }
 ]
