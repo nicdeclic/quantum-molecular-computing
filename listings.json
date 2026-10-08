@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/protobits/index.html",
       "/posts/quantum-chemistry/index.html",
       "/posts/computing-universe/index.html",
       "/posts/quick-intro/index.html",

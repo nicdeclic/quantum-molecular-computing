@@ -10,7 +10,35 @@
 <atom:link href="https://nicdeclic.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>Open Research Notes &amp; Dynamic Notebooks</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Fri, 25 Sep 2026 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 08 Oct 2026 04:00:00 GMT</lastBuildDate>
+<item>
+  <title>The Emergence of Protobits</title>
+  <dc:creator>NicDeclic </dc:creator>
+  <link>https://nicdeclic.com/posts/protobits/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><img src="https://nicdeclic.com/posts/protobits/protobit.jpg" class="img-fluid"></p>
+<div class="text-end">
+<blockquote class="blockquote">
+<p><em>“To create is not to add. It is to strip away the noise, the fear, the walls.”</em><br>
+— <strong>Professor Alvin</strong></p>
+</blockquote>
+</div>
+<hr>
+
+
+
+ ]]></description>
+  <category>Introduction</category>
+  <category>Protobits</category>
+  <guid>https://nicdeclic.com/posts/protobits/</guid>
+  <pubDate>Thu, 08 Oct 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://nicdeclic.com/posts/protobits/protobit.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Quantum Chemistry</title>
   <dc:creator>NicDeclic </dc:creator>
@@ -30,7 +58,7 @@
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="947aae3e" class="cell" data-execution_count="1">
+<div id="854f27b5" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -137,7 +165,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 <h2 class="anchored" data-anchor-id="chemical-bonds">Chemical Bonds</h2>
 <p>The molecules of primary interest here are those with carbon atoms, owing to their fundamental ability to form four covalent bonds. While other elements, such as silicon, share this tetravalent property, carbon will serve as our foundational element throughout this blog due to its central role in organic chemistry.</p>
 <p>Carbon atoms do not dance alone in this molecular choreography; they interact with other key elements, notably hydrogen (which typically forms one bond), oxygen (which forms two), and nitrogen (which forms three). Combined with carbon, these elements constitute the elemental building blocks of a rich and complex chemistry:</p>
-<div id="7a98f960" class="cell" data-execution_count="2">
+<div id="e43c173c" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="cf" style="color: #003B4F;
@@ -659,7 +687,7 @@ font-style: inherit;">"double"</span></span>
 <span id="cb3-30"></span>
 <span id="cb3-31">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="1bfc96d9" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="4c369ec8" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -691,7 +719,7 @@ font-style: inherit;">"double"</span></span>
 <p>We can express this physical valence constraint through the following Boolean relation:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%20(A%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20B%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20C)%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20(A%20%5Cmathbin%7B%5Ctext%7BAnd%7D%7D%20B%20%5Cmathbin%7B%5Ctext%7BAnd%7D%7D%20C)%20=%20%5Ctext%7B%221%22%7D%20"></p>
 <p>Or represented as an equivalent logic circuit:</p>
-<div id="944dde2e" class="cell" data-execution_count="4">
+<div id="b2f2b803" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="cf" style="color: #003B4F;
@@ -884,9 +912,121 @@ font-style: inherit;">1</span>])).to(and3.in3))</span></code></pre></div></div>
 <p>It was precisely this early, encouraging realization that provided the initial momentum to dive deeper into the exploration of conjugated carbon circuits.</p>
 <hr>
 </section>
-<section id="protobits" class="level2">
-<h2 class="anchored" data-anchor-id="protobits">Protobits</h2>
+<section id="skeletal-structures" class="level2">
+<h2 class="anchored" data-anchor-id="skeletal-structures">Skeletal Structures</h2>
+<p>Eventually, after systematically testing every possible combination, it became clear that only two fundamental types of connections are strictly necessary:</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/junction-2.png" height="150" class="figure-img"></p>
+<figcaption>A carbon atom bonded to one hydrogen atom plus two other carbon atoms…</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/junction-3.png" height="150" class="figure-img"></p>
+<figcaption>… Or a carbon atom bonded directly to three other carbon atoms.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Because the presence of hydrogen atoms can be unambiguously deduced by counting the number of carbon-carbon bonds, we can streamline our drawings by adopting <strong>skeletal structures</strong>.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/phenalene-hydrogen.png" height="400" class="figure-img"></p>
+<figcaption>Schematic of a Phenalene molecule (<img src="https://latex.codecogs.com/png.latex?%5Ctext%7BC%7D_%7B13%7D%5Ctext%7BH%7D_9">).</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/phenalene.png" height="250" class="figure-img"></p>
+<figcaption>Equivalent skeletal structure. All hydrogen atoms have been omitted.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Notice the subtle yet crucial differences compared to standard skeletal notation.</p>
+<p>The convention of drawing double bonds offset to one specific side of a ring — even when that <img src="https://latex.codecogs.com/png.latex?%5Cpi">-bond is physically shared across two fused rings — is far too crude and misleading.</p>
+<p>As we move forward, we will be analyzing the resonance manifolds of highly intricate molecular networks. The last thing we need is to bog down our analysis with ambiguous notations. Clarity is paramount.</p>
+<div id="d82d7aec" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. SMILES representation of 1H-phenalene</span></span>
+<span id="cb5-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Phenalene consists of three fused benzene rings sharing a central carbon atom</span></span>
+<span id="cb5-3">phenalene_smiles <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C1=CC2=CC=CC3=CC=CC(=C1)C23"</span></span>
+<span id="cb5-4">mol <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Chem.MolFromSmiles(phenalene_smiles)</span>
+<span id="cb5-5"></span>
+<span id="cb5-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb5-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Option A: Skeletal Structure (Standard)</span></span>
+<span id="cb5-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb5-9">drawer_skeletal <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> rdMolDraw2D.MolDraw2DSVG(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">350</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>)</span>
+<span id="cb5-10">opts <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> drawer_skeletal.drawOptions()</span>
+<span id="cb5-11">opts.bondLineWidth <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span></span>
+<span id="cb5-12">opts.clearBackground <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span></span>
+<span id="cb5-13"></span>
+<span id="cb5-14">drawer_skeletal.DrawMolecule(mol)</span>
+<span id="cb5-15">drawer_skeletal.FinishDrawing()</span>
+<span id="cb5-16"></span>
+<span id="cb5-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Display the standard skeletal structure</span></span>
+<span id="cb5-18">SVG(drawer_skeletal.GetDrawingText())</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></p>
+<figcaption>X - Standard skeltal structure. Avoid using this notation form. - X</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/protobits/index.html">“The Emergence of Protobits”</a></strong></p>
 
 
 </section>
@@ -951,8 +1091,8 @@ Here are a few notable examples:</p>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/computing-universe/tube.jpg" height="300" class="figure-img"></p>
-<figcaption>Components</figcaption>
+<p><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Philips_12AX7WA_tube.jpg/250px-Philips_12AX7WA_tube.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail" height="300" class="figure-img"></p>
+<figcaption>Component</figcaption>
 </figure>
 </div>
 </div>
