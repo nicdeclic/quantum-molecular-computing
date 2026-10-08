@@ -34,7 +34,7 @@ Relays are electromechanical devices that use an electromagnet to physically ope
 Following relays, thermionic valves (vacuum tubes) became the dominant technology for constructing logic gates. Despite being bulky, fragile, and power-hungry, these devices played a crucial role in the birth of electronic computing, powering machines like ENIAC.
 
 ::: {layout-ncol=2 layout-valign="center"}
-![Components](tube.jpg){height="300px"}
+![Component](https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Philips_12AX7WA_tube.jpg/250px-Philips_12AX7WA_tube.jpg?utm_source=commons.wikimedia.org&utm_campaign=parser&utm_content=thumbnail){height="300px"}
 
 ![Schematic](tube2.jpg){height="300px"}
 :::

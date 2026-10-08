@@ -221,6 +221,58 @@ It was precisely this early, encouraging realization that provided the initial m
 
 ---
 
-## Protobits
+## Skeletal Structures
+
+Eventually, after systematically testing every possible combination, it became clear that only two fundamental types of connections are strictly necessary:  
+
+::: {layout-ncol=2 layout-valign="center"}
+![A carbon atom bonded to one hydrogen atom plus two other carbon atoms...](junction-2.png){height="150px"}
+
+![... Or a carbon atom bonded directly to three other carbon atoms.](junction-3.png){height="150px"}
+:::
+
+Because the presence of hydrogen atoms can be unambiguously deduced by counting the number of carbon-carbon bonds, we can streamline our drawings by adopting **skeletal structures**.  
+  
+
+::: {layout-ncol=2 layout-valign="center"}
+![Schematic of a Phenalene molecule ($\text{C}_{13}\text{H}_9$).](phenalene-hydrogen.png){height="400px"}
+
+![Equivalent skeletal structure. All hydrogen atoms have been omitted.](phenalene.png){height="250px"}
+:::
+
+Notice the subtle yet crucial differences compared to standard skeletal notation.  
+
+The convention of drawing double bonds offset to one specific side of a ring — even when that $\pi$-bond is physically shared across two fused rings — is far too crude and misleading.  
+
+As we move forward, we will be analyzing the resonance manifolds of highly intricate molecular networks. The last thing we need is to bog down our analysis with ambiguous notations. Clarity is paramount.  
+
+```{python}
+#| code-fold: true
+#| fig-align: left
+#| fig-cap: "X - Standard skeltal structure. Avoid using this notation form. - X"
+
+# 1. SMILES representation of 1H-phenalene
+# Phenalene consists of three fused benzene rings sharing a central carbon atom
+phenalene_smiles = "C1=CC2=CC=CC3=CC=CC(=C1)C23"
+mol = Chem.MolFromSmiles(phenalene_smiles)
+
+# ==========================================
+# Option A: Skeletal Structure (Standard)
+# ==========================================
+drawer_skeletal = rdMolDraw2D.MolDraw2DSVG(350, 300)
+opts = drawer_skeletal.drawOptions()
+opts.bondLineWidth = 2.5
+opts.clearBackground = True
+
+drawer_skeletal.DrawMolecule(mol)
+drawer_skeletal.FinishDrawing()
+
+# Display the standard skeletal structure
+SVG(drawer_skeletal.GetDrawingText())
+
+```
 
 ---
+
+👉 **Next chapter :**  
+**["The Emergence of Protobits"](/posts/protobits/index.html)**

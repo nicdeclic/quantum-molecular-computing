@@ -1,0 +1,17 @@
+---
+title: "The Emergence of Protobits"
+description: ""
+author: "NicDeclic"
+date: "2026-10-08"
+categories: [Introduction, Protobits]
+image: "protobit.jpg"
+---
+
+![](protobit.jpg)  
+
+::: {.text-end}
+> *“To create is not to add. It is to strip away the noise, the fear, the walls.”*  
+> — **Professor Alvin**
+:::
+
+---
