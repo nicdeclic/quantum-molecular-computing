@@ -32,7 +32,7 @@ if 'google.colab' in sys.modules:
     # 3. Install dependencies
     !pip install -q -r requirements.txt
 
-sys.path.insert(0, "../..") # Select root directory
+sys.path.insert(0, "../../src") # Select root directory
 from qmc import * # QMC library
 
 %reload_ext autoreload
@@ -60,7 +60,7 @@ Ready to play?
 * Each dot can only be connected by 2 or 3 lines.  
 * There can only be **one thick line** per dot.
 
-Have fun finding a shape that follows these rules!
+Have fun finding a structure that follows these rules!
 
 Start small. Here are a few suggestions :
 
@@ -171,6 +171,8 @@ b3_15 = mol3.add_bond(c3_13, c3_8, order="single")
 mol3.draw()
 
 ```
+
+Some of the structures will not work. You might need to add or remove lines to make them follow the rules.
 
 ---
 

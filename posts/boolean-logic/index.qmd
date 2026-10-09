@@ -33,7 +33,7 @@ if 'google.colab' in sys.modules:
     # 3. Install dependencies
     !pip install -q -r requirements.txt
 
-sys.path.insert(0, "../..") # Select root directory
+sys.path.insert(0, "../../src") # Select root directory
 from qmc import * # QMC library
 
 %reload_ext autoreload
