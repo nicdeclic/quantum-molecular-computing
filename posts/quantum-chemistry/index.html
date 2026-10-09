@@ -242,7 +242,7 @@ window.Quarto = {
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="854f27b5" class="cell" data-execution_count="1">
+<div id="ef9d4c0f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -256,7 +256,7 @@ window.Quarto = {
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Install dependencies</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>pip install <span class="op">-</span>q <span class="op">-</span>r requirements.txt</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"../.."</span>) <span class="co"># Select root directory</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"../../src"</span>) <span class="co"># Select root directory</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qmc <span class="im">import</span> <span class="op">*</span> <span class="co"># QMC library</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reload_ext autoreload</span>
@@ -271,7 +271,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="chemical-bonds">Chemical Bonds</h2>
 <p>The molecules of primary interest here are those with carbon atoms, owing to their fundamental ability to form four covalent bonds. While other elements, such as silicon, share this tetravalent property, carbon will serve as our foundational element throughout this blog due to its central role in organic chemistry.</p>
 <p>Carbon atoms do not dance alone in this molecular choreography; they interact with other key elements, notably hydrogen (which typically forms one bond), oxygen (which forms two), and nitrogen (which forms three). Combined with carbon, these elements constitute the elemental building blocks of a rich and complex chemistry:</p>
-<div id="e43c173c" class="cell" data-execution_count="2">
+<div id="5c055c05" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
@@ -376,7 +376,7 @@ To be clear: these are not localized particles mechanically “spinning in circl
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="4c369ec8" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="eaa5ee6e" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -408,7 +408,7 @@ To be clear: these are not localized particles mechanically “spinning in circl
 <p>We can express this physical valence constraint through the following Boolean relation:</p>
 <p><span class="math display">\[ (A \mathbin{\text{Xor}} B \mathbin{\text{Xor}} C) \mathbin{\text{Xor}} (A \mathbin{\text{And}} B \mathbin{\text{And}} C) = \text{"1"} \]</span></p>
 <p>Or represented as an equivalent logic circuit:</p>
-<div id="b2f2b803" class="cell" data-execution_count="4">
+<div id="84269555" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
@@ -458,7 +458,7 @@ To be clear: these are not localized particles mechanically “spinning in circl
 </section>
 <section id="skeletal-structures" class="level2">
 <h2 class="anchored" data-anchor-id="skeletal-structures">Skeletal Structures</h2>
-<p>Eventually, after systematically testing every possible combination, it became clear that only two fundamental types of connections are strictly necessary:</p>
+<p>After systematically testing every possible combination, it became clear that only two fundamental types of connections are strictly necessary:</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -500,40 +500,16 @@ To be clear: these are not localized particles mechanically “spinning in circl
 </div>
 </div>
 </div>
-<p>Notice the subtle yet crucial differences compared to standard skeletal notation.</p>
-<p>The convention of drawing double bonds offset to one specific side of a ring — even when that <span class="math inline">\(\pi\)</span>-bond is physically shared across two fused rings — is far too crude and misleading.</p>
-<p>As we move forward, we will be analyzing the resonance manifolds of highly intricate molecular networks. The last thing we need is to bog down our analysis with ambiguous notations. Clarity is paramount.</p>
-<div id="d82d7aec" class="cell" data-execution_count="5">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. SMILES representation of 1H-phenalene</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Phenalene consists of three fused benzene rings sharing a central carbon atom</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>phenalene_smiles <span class="op">=</span> <span class="st">"C1=CC2=CC=CC3=CC=CC(=C1)C23"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> Chem.MolFromSmiles(phenalene_smiles)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ==========================================</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Option A: Skeletal Structure (Standard)</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ==========================================</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>drawer_skeletal <span class="op">=</span> rdMolDraw2D.MolDraw2DSVG(<span class="dv">350</span>, <span class="dv">300</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>opts <span class="op">=</span> drawer_skeletal.drawOptions()</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>opts.bondLineWidth <span class="op">=</span> <span class="fl">2.5</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>opts.clearBackground <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>drawer_skeletal.DrawMolecule(mol)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>drawer_skeletal.FinishDrawing()</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the standard skeletal structure</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>SVG(drawer_skeletal.GetDrawingText())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<p>Notice the subtle yet crucial differences compared to standard skeletal notation:</p>
+<p>The convention of drawing double bonds offset to one specific side of a ring — even when that <span class="math inline">\(\pi\)</span>-bond is physically shared across two fused rings — is far too crude and misleading. Particularly when looking for symmetries.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></p>
-<figcaption>X - Standard skeltal structure. Avoid using this notation form. - X</figcaption>
+<p><img src="Phenalene-skeletal.png" height="300" class="figure-img"></p>
+<figcaption>X - Standard skeletal structure. Avoid using this notation. - X</figcaption>
 </figure>
 </div>
-</div>
-</div>
+<p>Dotted carbon atoms should also be drawn. As we move forward, we will be analyzing the resonance manifolds of highly intricate molecular networks. Sometimes the lines get curvy and it isn’t clear anymore where the atoms are.</p>
+<p>The last thing we need is to bog down our analysis with ambiguous notations. Clarity is paramount.</p>
 <hr>
 <p>👉 <strong>Next chapter :</strong><br>
 <strong><a href="../../posts/protobits/index.html">“The Emergence of Protobits”</a></strong></p>

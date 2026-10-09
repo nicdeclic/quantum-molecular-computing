@@ -29,8 +29,64 @@
 </blockquote>
 </div>
 <hr>
+<p><img src="https://nicdeclic.com/images/construction.png" class="img-fluid"></p>
+<section id="junction-resonances" class="level2">
+<h2 class="anchored" data-anchor-id="junction-resonances">Junction Resonances</h2>
+<p>Let us now explore the resonance manifolds of various molecular junctions.</p>
+<p>We begin with a simple elementary case: the <strong>linear junction</strong>.</p>
+<p>This junction exhibits two distinct resonance modes:</p>
+<p>We can compile these resonance states into a truth table where each row corresponds to one of the possible resonance configurations.</p>
+<p>As we can observe, the state of <img src="https://latex.codecogs.com/png.latex?B"> is always the exact inverse of <img src="https://latex.codecogs.com/png.latex?A">. This yields a truth table functionally identical to a classical <strong>NOT gate</strong>.</p>
+<p>You can practice by sketching an arbitrary simple junction and determining its allowed resonance modes. It is a remarkably effective exercise for developing a physical feel for how these molecular networks behave.</p>
+<p>Through this exercise, you will quickly encounter the <strong>triangular junction</strong>:</p>
+<p>It features four resonance modes:</p>
+<p>And here is the resulting truth table:</p>
+<p>Notice that this table directly mirrors the behavior of a <strong>XNOR gate</strong>.</p>
+<p>Now let us examine a slightly more intricate topology: the <strong>“H” junction</strong>.</p>
+<p>This junction possesses five resonance modes:</p>
+<p>And here is the resulting table:</p>
+<p>Note that the table above does not correspond to any standard logic gate or combination of classical boolean gates. In fact, the vast majority of molecular topologies behave this way.</p>
+<p>Finally, consider the <strong>square junction</strong>:</p>
+<p>It exhibits seven resonance modes in total:</p>
+<p>The resulting table:</p>
+<p>Here, a fundamentally new situation arises: the first two rows, consisting entirely of zeros, repeat themselves. Consequently, this specific resonance mode carries <strong>twice the statistical weight</strong> of the others.</p>
+<p>Classical boolean logic provides no native vocabulary to express such non-uniform states.</p>
+<p>Deterministic certainty dissolves here. We are forced to broaden our theoretical horizons into statistics.</p>
+<hr>
+</section>
+<section id="probabilistic-bits-p-bits" class="level2">
+<h2 class="anchored" data-anchor-id="probabilistic-bits-p-bits">Probabilistic Bits (p-bits)</h2>
+<p>Probabilistic bits provide a robust mathematical framework for encoding and processing information. By applying this formalism to carbon-carbon bonds, we can natively capture the stochastic nature of chemical systems and open up new frontiers in molecular computing.</p>
+<p>Think of a coin toss. Once flipped, the coin can land on tails (state <strong>“0”</strong>) or heads (state <strong>“1”</strong>). With a fair coin, there is an equal probability—a 50% chance—of landing on state “0” and a 50% chance of landing on state “1”.</p>
+<p>We could also bias the coin so that it carries a one-in-four chance (25%) of landing on “0”, and a three-in-four chance (75%) of landing on “1”.</p>
+<p>The limiting boundary case occurs when there is a 0% chance of being in one state and a 100% chance of being in the other. Under these conditions, deterministic certainty is recovered, and the probabilistic bit collapses back into a classical boolean bit.</p>
+<p>Mathematically, we formulate probabilistic bits using the exact same transition matrices introduced earlier. The only operational difference lies in the values of the matrix elements.</p>
+<p>Any continuous probability distribution is physically admissible, provided that two fundamental axioms are satisfied:<br>
+1. Every individual element must lie strictly within the closed interval <img src="https://latex.codecogs.com/png.latex?%5B0,%201%5D">.<br>
+2. The elements along each row must sum to exactly <strong>1</strong> (equivalent to 100%—the total probability space).</p>
+<p>Consequently, there is no probability leak into unmodeled states (for example, ruling out the pathological edge case where the coin lands balanced on its side).</p>
+<ul>
+<li><strong>A fair coin:</strong> <img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Bbmatrix%7D%201/2%20&amp;%201/2%20%5Cend%7Bbmatrix%7D"> (any deviation represents a biased coin).</li>
+</ul>
+<p>The first element quantifies the probability of observing a <strong>“0”</strong>; the second element quantifies the probability of observing a <strong>“1”</strong>.</p>
+<hr>
+</section>
+<section id="protobits" class="level2">
+<h2 class="anchored" data-anchor-id="protobits">Protobits</h2>
+<hr>
+</section>
+<section id="common-objections" class="level2">
+<h2 class="anchored" data-anchor-id="common-objections">Common Objections</h2>
+<ul>
+<li><p><strong>“A molecule featuring a three-membered ring would be energetically unstable due to extreme ring strain.”</strong></p></li>
+<li><p><strong>“Several of these proposed topologies are non-aromatic, meaning their resonance structures are by no means equiprobable.”</strong></p></li>
+<li><p><strong>“Larger molecular networks would suffer from rapid environmental decoherence in any realistic, noisy medium.”</strong></p></li>
+<li><p><strong>“How are the physical inputs and outputs concretely interfaced with the rest of the circuit?”</strong></p></li>
+</ul>
+<hr>
 
 
+</section>
 
  ]]></description>
   <category>Introduction</category>
@@ -58,7 +114,7 @@
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="854f27b5" class="cell" data-execution_count="1">
+<div id="ef9d4c0f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -134,7 +190,7 @@ font-style: inherit;">-</span>r requirements.txt</span>
 background-color: null;
 font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"../.."</span>) <span class="co" style="color: #5E5E5E;
+font-style: inherit;">"../../src"</span>) <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Select root directory</span></span>
 <span id="cb1-13"><span class="im" style="color: #00769E;
@@ -165,7 +221,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 <h2 class="anchored" data-anchor-id="chemical-bonds">Chemical Bonds</h2>
 <p>The molecules of primary interest here are those with carbon atoms, owing to their fundamental ability to form four covalent bonds. While other elements, such as silicon, share this tetravalent property, carbon will serve as our foundational element throughout this blog due to its central role in organic chemistry.</p>
 <p>Carbon atoms do not dance alone in this molecular choreography; they interact with other key elements, notably hydrogen (which typically forms one bond), oxygen (which forms two), and nitrogen (which forms three). Combined with carbon, these elements constitute the elemental building blocks of a rich and complex chemistry:</p>
-<div id="e43c173c" class="cell" data-execution_count="2">
+<div id="5c055c05" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="cf" style="color: #003B4F;
@@ -687,7 +743,7 @@ font-style: inherit;">"double"</span></span>
 <span id="cb3-30"></span>
 <span id="cb3-31">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="4c369ec8" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="eaa5ee6e" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -719,7 +775,7 @@ font-style: inherit;">"double"</span></span>
 <p>We can express this physical valence constraint through the following Boolean relation:</p>
 <p><img src="https://latex.codecogs.com/png.latex?%20(A%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20B%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20C)%20%5Cmathbin%7B%5Ctext%7BXor%7D%7D%20(A%20%5Cmathbin%7B%5Ctext%7BAnd%7D%7D%20B%20%5Cmathbin%7B%5Ctext%7BAnd%7D%7D%20C)%20=%20%5Ctext%7B%221%22%7D%20"></p>
 <p>Or represented as an equivalent logic circuit:</p>
-<div id="b2f2b803" class="cell" data-execution_count="4">
+<div id="84269555" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="cf" style="color: #003B4F;
@@ -914,7 +970,7 @@ font-style: inherit;">1</span>])).to(and3.in3))</span></code></pre></div></div>
 </section>
 <section id="skeletal-structures" class="level2">
 <h2 class="anchored" data-anchor-id="skeletal-structures">Skeletal Structures</h2>
-<p>Eventually, after systematically testing every possible combination, it became clear that only two fundamental types of connections are strictly necessary:</p>
+<p>After systematically testing every possible combination, it became clear that only two fundamental types of connections are strictly necessary:</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -956,74 +1012,16 @@ font-style: inherit;">1</span>])).to(and3.in3))</span></code></pre></div></div>
 </div>
 </div>
 </div>
-<p>Notice the subtle yet crucial differences compared to standard skeletal notation.</p>
-<p>The convention of drawing double bonds offset to one specific side of a ring — even when that <img src="https://latex.codecogs.com/png.latex?%5Cpi">-bond is physically shared across two fused rings — is far too crude and misleading.</p>
-<p>As we move forward, we will be analyzing the resonance manifolds of highly intricate molecular networks. The last thing we need is to bog down our analysis with ambiguous notations. Clarity is paramount.</p>
-<div id="d82d7aec" class="cell" data-execution_count="5">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># 1. SMILES representation of 1H-phenalene</span></span>
-<span id="cb5-2"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Phenalene consists of three fused benzene rings sharing a central carbon atom</span></span>
-<span id="cb5-3">phenalene_smiles <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"C1=CC2=CC=CC3=CC=CC(=C1)C23"</span></span>
-<span id="cb5-4">mol <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> Chem.MolFromSmiles(phenalene_smiles)</span>
-<span id="cb5-5"></span>
-<span id="cb5-6"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ==========================================</span></span>
-<span id="cb5-7"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Option A: Skeletal Structure (Standard)</span></span>
-<span id="cb5-8"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># ==========================================</span></span>
-<span id="cb5-9">drawer_skeletal <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> rdMolDraw2D.MolDraw2DSVG(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">350</span>, <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">300</span>)</span>
-<span id="cb5-10">opts <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> drawer_skeletal.drawOptions()</span>
-<span id="cb5-11">opts.bondLineWidth <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">2.5</span></span>
-<span id="cb5-12">opts.clearBackground <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> <span class="va" style="color: #111111;
-background-color: null;
-font-style: inherit;">True</span></span>
-<span id="cb5-13"></span>
-<span id="cb5-14">drawer_skeletal.DrawMolecule(mol)</span>
-<span id="cb5-15">drawer_skeletal.FinishDrawing()</span>
-<span id="cb5-16"></span>
-<span id="cb5-17"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Display the standard skeletal structure</span></span>
-<span id="cb5-18">SVG(drawer_skeletal.GetDrawingText())</span></code></pre></div></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<p>Notice the subtle yet crucial differences compared to standard skeletal notation:</p>
+<p>The convention of drawing double bonds offset to one specific side of a ring — even when that <img src="https://latex.codecogs.com/png.latex?%5Cpi">-bond is physically shared across two fused rings — is far too crude and misleading. Particularly when looking for symmetries.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry/index_files/figure-html/cell-6-output-1.svg" class="img-fluid figure-img"></p>
-<figcaption>X - Standard skeltal structure. Avoid using this notation form. - X</figcaption>
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry/Phenalene-skeletal.png" height="300" class="figure-img"></p>
+<figcaption>X - Standard skeletal structure. Avoid using this notation. - X</figcaption>
 </figure>
 </div>
-</div>
-</div>
+<p>Dotted carbon atoms should also be drawn. As we move forward, we will be analyzing the resonance manifolds of highly intricate molecular networks. Sometimes the lines get curvy and it isn’t clear anymore where the atoms are.</p>
+<p>The last thing we need is to bog down our analysis with ambiguous notations. Clarity is paramount.</p>
 <hr>
 <p>👉 <strong>Next chapter :</strong><br>
 <strong><a href="../../posts/protobits/index.html">“The Emergence of Protobits”</a></strong></p>
@@ -1196,7 +1194,7 @@ While many remain at the proof-of-concept stage, they stand as a testament to hu
 </blockquote>
 </div>
 <hr>
-<div id="f85acac1" class="cell" data-execution_count="1">
+<div id="fb13450d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -1272,7 +1270,7 @@ font-style: inherit;">-</span>r requirements.txt</span>
 background-color: null;
 font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"../.."</span>) <span class="co" style="color: #5E5E5E;
+font-style: inherit;">"../../src"</span>) <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Select root directory</span></span>
 <span id="cb1-13"><span class="im" style="color: #00769E;
@@ -1311,7 +1309,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 </li>
 <li>There can only be <strong>one thick line</strong> per dot.</li>
 </ul>
-<p>Have fun finding a shape that follows these rules!</p>
+<p>Have fun finding a structure that follows these rules!</p>
 <p>Start small. Here are a few suggestions :</p>
 <details class="code-fold">
 <summary>Code</summary>
@@ -1947,7 +1945,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb2-95">mol3.draw()</span></code></pre></div></div>
 </details>
-<div id="c3d959ef" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div id="c546c5cc" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -1975,6 +1973,7 @@ font-style: inherit;"># Draw with Schemdraw</span></span>
 </div>
 </div>
 </div>
+<p>Some of the structures will not work. You might need to add or remove lines to make them follow the rules.</p>
 <hr>
 </section>
 <section id="game-2-the-shape-shifter" class="level2">
@@ -2003,7 +2002,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="cb5b9447" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="1ca1af34" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2137,7 +2136,7 @@ and<br>
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/boolean-logic/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="098f1744" class="cell" data-execution_count="1">
+<div id="231b18a7" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -2213,7 +2212,7 @@ font-style: inherit;">-</span>r requirements.txt</span>
 background-color: null;
 font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"../.."</span>) <span class="co" style="color: #5E5E5E;
+font-style: inherit;">"../../src"</span>) <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Select root directory</span></span>
 <span id="cb1-13"><span class="im" style="color: #00769E;
@@ -2250,7 +2249,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-not-gate-inverter">The NOT Gate (Inverter)</h3>
 <p>The NOT gate is the simplest of all logic gates. It takes a single input and returns its inverse.</p>
 <p>Symbol :</p>
-<div id="349c6f87" class="cell" data-execution_count="2">
+<div id="747a2575" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
@@ -2358,7 +2357,7 @@ font-style: inherit;">'right'</span>)</span>
 <p>If a function has <img src="https://latex.codecogs.com/png.latex?M"> binary inputs and <img src="https://latex.codecogs.com/png.latex?N"> binary outputs, the resulting matrix will have <img src="https://latex.codecogs.com/png.latex?2%5EM"> rows and <img src="https://latex.codecogs.com/png.latex?2%5EN"> columns.</p>
 <p>The column containing the value <strong>1</strong> marks the precise spot where a given input maps to its corresponding output. This is known as a transition matrix in mathematics.</p>
 <p>Here is the matrix representing the NOT gate. Labels representing the inputs on the left and the outputs on the top have been added for increased readability :</p>
-<div id="a9bec7df" class="cell" data-execution_count="3">
+<div id="7d0f003c" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">display_inline(<span class="st" style="color: #20794D;
@@ -2378,7 +2377,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <p>Rather than using standard matrix brackets, transition matrices are intentionally rendered as closed grid boxes. This visually reinforces their role as discrete computational components mapping input configurations to output states.<br>
 (Yes, this is a feature, not a bug.)</p>
 <p>Even the logical states follow the same format. You can think of a logical state as a function with zero input and one output (the logical state).</p>
-<div id="7478bcb3" class="cell" data-execution_count="4">
+<div id="750de4bb" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">display_inline(<span class="st" style="color: #20794D;
@@ -2418,7 +2417,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-and-gate">The AND Gate</h3>
 <p>The output is <code>1</code> only if both inputs <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B"> are <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="47c474d8" class="cell" data-execution_count="5">
+<div id="2d92d9c4" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
@@ -2526,7 +2525,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="eb5cbec6" class="cell" data-execution_count="6">
+<div id="3b298e56" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">display_inline(<span class="st" style="color: #20794D;
@@ -2549,7 +2548,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-or-gate">The OR Gate</h3>
 <p>The output is <code>1</code> if at least one of the inputs is <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="bd0c498b" class="cell" data-execution_count="7">
+<div id="cffe91f8" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
@@ -2657,7 +2656,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="7a64cc5d" class="cell" data-execution_count="8">
+<div id="d798fc4b" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">display_inline(<span class="st" style="color: #20794D;
@@ -2680,7 +2679,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-nand-gate-not-and">The NAND Gate (NOT-AND)</h3>
 <p>The output is <code>0</code> only when both inputs are <code>1</code>.</p>
 <p>Symbol :</p>
-<div id="4157de25" class="cell" data-execution_count="9">
+<div id="c1ae866a" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
@@ -2788,7 +2787,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="a2b1ed13" class="cell" data-execution_count="10">
+<div id="7a7e4ec0" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">display_inline(<span class="st" style="color: #20794D;
@@ -2811,7 +2810,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-nor-gate-not-or">The NOR Gate (NOT-OR)</h3>
 <p>The output is <code>1</code> only when both inputs are <code>0</code>.</p>
 <p>Symbol :</p>
-<div id="cc0c2161" class="cell" data-execution_count="11">
+<div id="51515eed" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="co" style="color: #5E5E5E;
@@ -2919,7 +2918,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="eca2802f" class="cell" data-execution_count="12">
+<div id="a83f0f46" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">display_inline(<span class="st" style="color: #20794D;
@@ -2942,7 +2941,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-xor-gate-exclusive-or">The XOR Gate (Exclusive OR)</h3>
 <p>The output is <code>1</code> if the inputs are different, and <code>0</code> if they are identical.</p>
 <p>Symbol :</p>
-<div id="113f92c1" class="cell" data-execution_count="13">
+<div id="49ecd544" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="co" style="color: #5E5E5E;
@@ -3050,7 +3049,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="e31fda84" class="cell" data-execution_count="14">
+<div id="c6bef2cb" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">display_inline(<span class="st" style="color: #20794D;
@@ -3073,7 +3072,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h3 class="anchored" data-anchor-id="the-xnor-gate-equivalence-gate">The XNOR Gate (Equivalence Gate)</h3>
 <p>The inverse of XOR. The output is <code>1</code> only if the inputs are identical.</p>
 <p>Symbol :</p>
-<div id="0f20ac8e" class="cell" data-execution_count="15">
+<div id="5bcc2480" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="co" style="color: #5E5E5E;
@@ -3181,7 +3180,7 @@ font-style: inherit;">'right'</span>))</span></code></pre></div></div>
 </tbody>
 </table>
 <p>Matrix form :</p>
-<div id="6efa1901" class="cell" data-execution_count="16">
+<div id="a1fe49a2" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">display_inline(<span class="st" style="color: #20794D;
@@ -3205,7 +3204,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <h2 class="anchored" data-anchor-id="matrix-arithmetic">Matrix arithmetic</h2>
 <p>The beauty of this representation is that functions can be chained together end-to-end using standard matrix multiplication.</p>
 <p>For example, if we have a state corresponding to the bit “1” and pass it through a NOT gate, we can simply compute:</p>
-<div id="4269cf3f" class="cell" data-execution_count="17">
+<div id="876ddb73" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">display_inline(<span class="st" style="color: #20794D;
@@ -3268,7 +3267,7 @@ font-style: inherit;">False</span>))</span></code></pre></div></div>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Ctext%7BOne%7D%20%5Cotimes%20%5Ctext%7BZero%7D%20=%0A%5Cbegin%7Bpmatrix%7D%200%20%5Ccdot%20%5Cbegin%7Bpmatrix%7D%201%20&amp;%200%20%5Cend%7Bpmatrix%7D%20&amp;%201%20%5Ccdot%20%5Cbegin%7Bpmatrix%7D%201%20&amp;%200%20%5Cend%7Bpmatrix%7D%20%5Cend%7Bpmatrix%7D%0A=%20%5Cbegin%7Bpmatrix%7D%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5Cend%7Bpmatrix%7D%0A"></p>
 <p>The resulting <img src="https://latex.codecogs.com/png.latex?1%20%5Ctimes%204"> matrix cleanly indexes the fourth basis state (corresponding to binary <code>"10"</code>), making it dimensionally compatible with any 2-input gate matrix.</p>
 <p>Let’s look at an enumeration of all 4 possibilities for A and B with labels included:</p>
-<div id="2ce0598d" class="cell" data-execution_count="18">
+<div id="0851782f" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">display_inline(zero_out.to_katex(show_labels<span class="op" style="color: #5E5E5E;
@@ -3382,7 +3381,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 </div>
 <p>Notice how the output labels combine into one string? This makes it easy to find any mistake.</p>
 <p>It is even possible to write the equation in string format:</p>
-<div id="09fdb0eb" class="cell" data-execution_count="19">
+<div id="1ac5bd9d" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">zero<span class="op" style="color: #5E5E5E;
@@ -3425,7 +3424,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 </div>
 </div>
 <p>Longer sequences also work just fine:</p>
-<div id="95546424" class="cell" data-execution_count="20">
+<div id="d7abf6cf" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">display_inline(zero.to_katex(as_sum<span class="op" style="color: #5E5E5E;
@@ -3544,7 +3543,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 </div>
 </div>
 <p>Let`s now take for example A=“1” and B=“1” and pass them through an AND gate :</p>
-<div id="abd6ea42" class="cell" data-execution_count="21">
+<div id="26ca5234" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1">A <span class="op" style="color: #5E5E5E;
