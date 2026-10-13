@@ -28,6 +28,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -201,27 +236,279 @@ window.Quarto = {
 </blockquote>
 </div>
 <hr>
-<p><img src="../../images/construction.png" class="img-fluid"></p>
+<div id="327de6f7" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to see library imports</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'google.colab'</span> <span class="kw">in</span> sys.modules:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Download qmc.py from GitHub</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>q https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>nicdeclic<span class="op">/</span>quantum<span class="op">-</span>molecular<span class="op">-</span>computing<span class="op">/</span>main<span class="op">/</span>qmc.py</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Download requirements.txt from GitHub</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>q https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>nicdeclic<span class="op">/</span>quantum<span class="op">-</span>molecular<span class="op">-</span>computing<span class="op">/</span>main<span class="op">/</span>requirements.txt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Install dependencies</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>pip install <span class="op">-</span>q <span class="op">-</span>r requirements.txt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"../../src"</span>) <span class="co"># Select root directory</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qmc <span class="im">import</span> <span class="op">*</span> <span class="co"># QMC library</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reload_ext autoreload</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 <section id="junction-resonances" class="level2">
 <h2 class="anchored" data-anchor-id="junction-resonances">Junction Resonances</h2>
 <p>Let us now explore the resonance manifolds of various molecular junctions.</p>
 <p>We begin with a simple elementary case: the <strong>linear junction</strong>.</p>
+<div id="bb2290c7" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Molecule</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mol1 <span class="op">=</span> CarbonMolecule(<span class="st">"linear junction"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol1.add_atom(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=</span><span class="dv">0</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol1.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol1.add_atom(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="fl">0.0</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol1.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol1.add_bond(c2, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>mol1.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="138" height="90"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>This junction exhibits two distinct resonance modes:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol1.resonance()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="c659fbef" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <p>We can compile these resonance states into a truth table where each row corresponds to one of the possible resonance configurations.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="0b3c2a20" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{array}{|c|c|} \hline \mathbf{A} &amp; \mathbf{B} \\ \hline 0 &amp; 1 \\ 1 &amp; 0 \\ \hline \end{array}\]</span></p>
+</div>
+</div>
+</div>
 <p>As we can observe, the state of <span class="math inline">\(B\)</span> is always the exact inverse of <span class="math inline">\(A\)</span>. This yields a truth table functionally identical to a classical <strong>NOT gate</strong>.</p>
 <p>You can practice by sketching an arbitrary simple junction and determining its allowed resonance modes. It is a remarkably effective exercise for developing a physical feel for how these molecular networks behave.</p>
 <p>Through this exercise, you will quickly encounter the <strong>triangular junction</strong>:</p>
+<div id="50d77d6f" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Molecule</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mol2 <span class="op">=</span> CarbonMolecule(<span class="st">"triangular junction"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol2.add_atom(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=</span><span class="fl">0.75</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol2.add_atom(x<span class="op">=-</span><span class="fl">0.75</span>, y<span class="op">=-</span><span class="fl">0.75</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol2.add_atom(x<span class="op">=</span><span class="fl">0.75</span>, y<span class="op">=-</span><span class="fl">0.75</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol2.add_atom(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=</span><span class="fl">0.25</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol2.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=-</span><span class="fl">0.25</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol2.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=-</span><span class="fl">0.25</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol2.add_bond(c1, c4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol2.add_bond(c2, c5, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol2.add_bond(c3, c6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"C"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol2.add_bond(c4, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol2.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol2.add_bond(c6, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>mol2.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-6-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="186" height="186"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>It features four resonance modes:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol2.resonance()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="ec71b08b" class="cell quarto-layout-panel" data-layout-ncol="4" data-execution_count="6">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <p>And here is the resulting truth table:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="77019a13" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{array}{|c|c|c|} \hline \mathbf{A} &amp; \mathbf{B} &amp; \mathbf{C} \\ \hline 0 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 1 \\ \hline \end{array}\]</span></p>
+</div>
+</div>
+</div>
 <p>Notice that this table directly mirrors the behavior of a <strong>XNOR gate</strong>.</p>
 <p>Now let us examine a slightly more intricate topology: the <strong>“H” junction</strong>.</p>
+<div id="d66461ec" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Molecule</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mol3 <span class="op">=</span> CarbonMolecule(<span class="st">'"H" junction'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=-</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="dv">0</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="dv">0</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">1.5</span>, y<span class="op">=</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol3.add_atom(x<span class="op">=</span><span class="fl">1.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol3.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol3.add_bond(c2, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol3.add_bond(c5, c4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"C"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol3.add_bond(c6, c4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"D"</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol3.add_bond(c3, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>mol3.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-9-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="186" height="138"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>This junction possesses five resonance modes:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol3.resonance()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="f1a405a8" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="9">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <p>And here is the resulting table:</p>
-<p>Note that the table above does not correspond to any standard logic gate or combination of classical boolean gates. In fact, the vast majority of molecular topologies behave this way.</p>
-<p>Finally, consider the <strong>square junction</strong>:</p>
-<p>It exhibits seven resonance modes in total:</p>
-<p>The resulting table:</p>
-<p>Here, a fundamentally new situation arises: the first two rows, consisting entirely of zeros, repeat themselves. Consequently, this specific resonance mode carries <strong>twice the statistical weight</strong> of the others.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="4cc2ca38" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{array}{|c|c|c|c|} \hline \mathbf{A} &amp; \mathbf{B} &amp; \mathbf{C} &amp; \mathbf{D} \\ \hline 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ \hline \end{array}\]</span></p>
+</div>
+</div>
+</div>
+<p>Note that the table above does not correspond to any standard logic gate. Some row values are missing. So even a combination of classical boolean gates wouldn’t be able to represent this logic. The vast majority of molecular topologies behave this way.</p>
 <p>Classical boolean logic provides no native vocabulary to express such non-uniform states.</p>
 <p>Deterministic certainty dissolves here. We are forced to broaden our theoretical horizons into statistics.</p>
 <hr>
@@ -229,22 +516,192 @@ window.Quarto = {
 <section id="probabilistic-bits-p-bits" class="level2">
 <h2 class="anchored" data-anchor-id="probabilistic-bits-p-bits">Probabilistic Bits (p-bits)</h2>
 <p>Probabilistic bits provide a robust mathematical framework for encoding and processing information. By applying this formalism to carbon-carbon bonds, we can natively capture the stochastic nature of chemical systems and open up new frontiers in molecular computing.</p>
-<p>Think of a coin toss. Once flipped, the coin can land on tails (state <strong>“0”</strong>) or heads (state <strong>“1”</strong>). With a fair coin, there is an equal probability—a 50% chance—of landing on state “0” and a 50% chance of landing on state “1”.</p>
+<p>Think of a coin toss. Once flipped, the coin can land on tails (state <strong>“0”</strong>) or heads (state <strong>“1”</strong>).</p>
+<p>With a fair coin, there is an equal probability—a 50% chance—of landing on state “0” and a 50% chance of landing on state “1”.</p>
+<p>Mathematically, we formulate probabilistic bits using the same transition matrices introduced earlier. The only operational difference lies in the values of the matrix elements.</p>
+<ul>
+<li><strong>A fair coin:</strong> :</li>
+</ul>
+<div id="c04e8321" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Fair"</span>, <span class="st">"="</span>, random.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Fair =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0.5 &amp; 0.5 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<p>The first element quantifies the probability of observing a <strong>“0”</strong>; the second element quantifies the probability of observing a <strong>“1”</strong>.</p>
 <p>We could also bias the coin so that it carries a one-in-four chance (25%) of landing on “0”, and a three-in-four chance (75%) of landing on “1”.</p>
+<ul>
+<li><strong>A biased coin:</strong> :</li>
+</ul>
+<div id="451d00d4" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>biased <span class="op">=</span> TransitionMatrix([</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.25</span>, <span class="fl">0.75</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Biased"</span>, <span class="st">"="</span>, biased.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Biased =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0.25 &amp; 0.75 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
 <p>The limiting boundary case occurs when there is a 0% chance of being in one state and a 100% chance of being in the other. Under these conditions, deterministic certainty is recovered, and the probabilistic bit collapses back into a classical boolean bit.</p>
-<p>Mathematically, we formulate probabilistic bits using the exact same transition matrices introduced earlier. The only operational difference lies in the values of the matrix elements.</p>
 <p>Any continuous probability distribution is physically admissible, provided that two fundamental axioms are satisfied:<br>
 1. Every individual element must lie strictly within the closed interval <span class="math inline">\([0, 1]\)</span>.<br>
-2. The elements along each row must sum to exactly <strong>1</strong> (equivalent to 100%—the total probability space).</p>
-<p>Consequently, there is no probability leak into unmodeled states (for example, ruling out the pathological edge case where the coin lands balanced on its side).</p>
-<ul>
-<li><strong>A fair coin:</strong> <span class="math inline">\(\begin{bmatrix} 1/2 &amp; 1/2 \end{bmatrix}\)</span> (any deviation represents a biased coin).</li>
-</ul>
-<p>The first element quantifies the probability of observing a <strong>“0”</strong>; the second element quantifies the probability of observing a <strong>“1”</strong>.</p>
+2. The elements along each row must sum to exactly <strong>1</strong> (equivalent to 100%—the total probability space). Consequently, there is no probability leak into unmodeled states (for example, ruling out the pathological edge case where the coin lands balanced on its side).</p>
+<p>And because of the missing row values we must add a third axiom:</p>
+<ol start="3" type="1">
+<li>The elements along a row representing an invalid state must sum to exactly <strong>0</strong> (dead-end).</li>
+</ol>
+<p>So for the “H” junction if we define A, B, C as inputs and D as the output, the transition matrix representing this molecular circuit would be:</p>
+<div id="1ec00f37" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>hjunction <span class="op">=</span> TransitionMatrix([</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>,<span class="dv">0</span>],</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>,<span class="dv">0</span>],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>,<span class="dv">1</span>],</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>,<span class="dv">0</span>],</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>,<span class="dv">1</span>],</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>,<span class="dv">0</span>],</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>,<span class="dv">0</span>],</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>,<span class="dv">0</span>]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Hjunction"</span>, <span class="st">"="</span>, hjunction.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown">
+<p><span class="math display">\[ Hjunction =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``000''} &amp; 1 &amp; 0 \\ \text{``001''} &amp; 0 &amp; 0 \\ \text{``010''} &amp; 0 &amp; 1 \\ \text{``011''} &amp; 1 &amp; 0 \\ \text{``100''} &amp; 0 &amp; 1 \\ \text{``101''} &amp; 1 &amp; 0 \\ \text{``110''} &amp; 0 &amp; 0 \\ \text{``111''} &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
 <hr>
+<p>Finally, consider the <strong>square junction</strong>:</p>
+<div id="5bb0a1cc" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Molecule</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mol4 <span class="op">=</span> CarbonMolecule(<span class="st">"square junction"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol4.add_atom(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol4.add_atom(x<span class="op">=</span><span class="dv">0</span>, y<span class="op">=-</span><span class="dv">1</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol4.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="dv">0</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol4.add_atom(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="dv">0</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol4.add_atom(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=-</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol4.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>c7 <span class="op">=</span> mol4.add_atom(x<span class="op">=</span><span class="fl">1.5</span>, y<span class="op">=</span><span class="fl">0.5</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>c8 <span class="op">=</span> mol4.add_atom(x<span class="op">=</span><span class="fl">1.5</span>, y<span class="op">=-</span><span class="dv">1</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol4.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol4.add_bond(c2, c6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol4.add_bond(c7, c4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"C"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol4.add_bond(c8, c5, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"D"</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol4.add_bond(c3, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol4.add_bond(c4, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol4.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol4.add_bond(c6, c3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>mol4.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="186" height="186"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It exhibits seven resonance modes in total:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol4.resonance()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    res_mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="be1bb04e" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="15">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The resulting table:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="66552b93" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{array}{|c|c|c|c|} \hline \mathbf{A} &amp; \mathbf{B} &amp; \mathbf{C} &amp; \mathbf{D} \\ \hline 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 0 &amp; 1 \\ 1 &amp; 0 &amp; 1 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 1 &amp; 1 \\ \hline \end{array}\]</span></p>
+</div>
+</div>
+</div>
+<p>Here, a fundamentally new situation arises: the first two rows, consisting entirely of zeros, repeat themselves. Consequently, this specific resonance mode carries <strong>twice the statistical weight</strong> of the others.</p>
+<hr>
+<p><img src="../../images/construction.png" class="img-fluid"></p>
 </section>
 <section id="protobits" class="level2">
 <h2 class="anchored" data-anchor-id="protobits">Protobits</h2>
+<p>A “poor man’s quantum computer” refers to a probabilistic computer built using p-bits (probabilistic bits) instead of traditional bits or quantum qubits.</p>
+<p>But conjugated carbon molecules are inherently quantum.</p>
 <hr>
 </section>
 <section id="common-objections" class="level2">

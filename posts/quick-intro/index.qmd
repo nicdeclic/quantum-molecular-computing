@@ -172,7 +172,7 @@ mol3.draw()
 
 ```
 
-Some of the structures will not work. You might need to add or remove lines to make them follow the rules.
+Some structures will not work. You may need to add or remove lines to ensure they comply with the rules.
 
 ---
 

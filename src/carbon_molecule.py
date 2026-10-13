@@ -354,8 +354,9 @@ class CarbonMolecule:
         """
         Enumerates all valid chemical resonance structures using backtracking.
         
-        Strict valency rule enforced:
-        Every single carbon atom MUST have EXACTLY ONE double bond connected to it.
+        Strict valency rules enforced:
+        - Visible atoms MUST have EXACTLY ONE double bond.
+        - Non-visible atoms (external leads) can have 0 or 1 double bond.
         """
         floating_bonds = [b for b in self.bonds if b.state_type == "floating"]
         
@@ -390,7 +391,7 @@ class CarbonMolecule:
         valid_solutions: List[Dict[Bond, str]] = []
 
         def is_valid_partial() -> bool:
-            # During search: An atom cannot have MORE THAN 1 double bond
+            # During search: No atom can have MORE than 1 double bond
             for atom, connected in atom_bonds.items():
                 double_count = 0
                 for b in connected:
@@ -412,14 +413,20 @@ class CarbonMolecule:
             return True
 
         def is_valid_complete() -> bool:
-            # Final check: EVERY atom must have EXACTLY ONE double bond
             for atom, connected in atom_bonds.items():
                 double_count = 0
                 for b in connected:
                     if current_assignment.get(b) == "double":
                         double_count += 1
-                if double_count != 1:  # Must be strictly 1
-                    return False
+                
+                # Rule: Visible atom must have strictly 1 double bond
+                if atom.visible:
+                    if double_count != 1:
+                        return False
+                # Non-visible atom can have 0 or 1 double bond
+                else:
+                    if double_count > 1:
+                        return False
             return True
 
         def backtrack(index: int):
@@ -427,18 +434,17 @@ class CarbonMolecule:
                 return
 
             if index == len(floating_bonds):
-                # All bonds assigned -> verify that EVERY atom has exactly 1 double bond
                 if is_valid_complete():
                     valid_solutions.append(dict(current_assignment))
                 return
 
             bond = floating_bonds[index]
 
-            # Try 'double' first, then 'single'
-            current_assignment[bond] = "double"
+            # Try 'single' (0) first, then 'double' (1)
+            current_assignment[bond] = "single"
             backtrack(index + 1)
 
-            current_assignment[bond] = "single"
+            current_assignment[bond] = "double"
             backtrack(index + 1)
 
             # Cleanup
@@ -460,4 +466,54 @@ class CarbonMolecule:
             resonances.append(new_mol)
 
         return resonances
-    
+
+    @staticmethod
+    def resonance_table(resonances: List["CarbonMolecule"]):
+        """
+        Generates a LaTeX truth table summarizing all resonance states.
+        
+        - Columns: Labeled bonds only (order: '1' for double, '0' for single).
+        - Rows: Each row corresponds to one resonance structure.
+        """
+        from IPython.display import Latex
+
+        if not resonances:
+            return Latex(r"$$ \text{No resonance states available} $$")
+
+        # 1. Identify bonds that have non-empty labels (using the first molecule as reference)
+        ref_mol = resonances[0]
+        labeled_bonds_indices = [
+            i for i, b in enumerate(ref_mol.bonds) if b.label.strip() != ""
+        ]
+
+        if not labeled_bonds_indices:
+            return Latex(r"$$ \text{No labeled bonds found to display} $$")
+
+        # 2. Extract column header names
+        headers = [ref_mol.bonds[i].label for i in labeled_bonds_indices]
+        num_cols = len(headers)
+
+        # Build LaTeX table format (e.g., "|c|c|c|")
+        align = "|" + "c|" * num_cols
+
+        # 3. Build LaTeX string
+        tex = [f"\\begin{{array}}{{{align}}}", "\\hline"]
+        
+        # Header row
+        header_row = " & ".join([f"\\mathbf{{{h}}}" for h in headers]) + " \\\\"
+        tex.append(header_row)
+        tex.append("\\hline")
+
+        # Data rows (one per resonance state)
+        for res_mol in resonances:
+            row_vals = []
+            for idx in labeled_bonds_indices:
+                val = "1" if res_mol.bonds[idx].order == "double" else "0"
+                row_vals.append(val)
+            tex.append(" & ".join(row_vals) + " \\\\")
+
+        tex.append("\\hline")
+        tex.append("\\end{array}")
+
+        latex_code = " ".join(tex)
+        return Latex(f"$${latex_code}$$")
