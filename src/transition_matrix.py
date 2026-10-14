@@ -310,6 +310,63 @@ class TransitionMatrix:
 
         return self
 
+    @classmethod
+    def from_resonances(cls, resonances: list):
+        """
+        Builds a 2^M x 2^N TransitionMatrix from a list of CarbonMolecule resonance states.
+        
+        M: Number of input bonds (role == 'input')
+        N: Number of output bonds (role == 'output')
+        
+        Each resonance adds +1 to the matrix cell corresponding to (input_index, output_index).
+        The resulting matrix rows are normalized to sum to 1 (or 0 if unreachable).
+        """
+        if not resonances:
+            raise ValueError("The resonance list cannot be empty.")
+
+        ref_mol = resonances[0]
+
+        # 1. Identify input and output bond indices
+        input_indices = [i for i, b in enumerate(ref_mol.bonds) if b.role == "input"]
+        output_indices = [i for i, b in enumerate(ref_mol.bonds) if b.role == "output"]
+
+        M = len(input_indices)
+        N = len(output_indices)
+
+        num_rows = 2**M
+        num_cols = 2**N
+
+        # 2. Accumulate counts in a dense matrix initialized to zero
+        counts = np.zeros((num_rows, num_cols), dtype=float)
+
+        for res_mol in resonances:
+            # Construct input bitstring (MSB to LSB)
+            in_bits = "".join(
+                "1" if res_mol.bonds[i].order == "double" else "0" 
+                for i in input_indices
+            )
+            # Construct output bitstring
+            out_bits = "".join(
+                "1" if res_mol.bonds[i].order == "double" else "0" 
+                for i in output_indices
+            )
+
+            # Convert bitstrings to integer coordinates
+            r_idx = int(in_bits, 2) if in_bits else 0
+            c_idx = int(out_bits, 2) if out_bits else 0
+
+            counts[r_idx, c_idx] += 1.0
+
+        # 3. Row normalization: each non-zero row sums to 1.0
+        row_sums = counts.sum(axis=1)
+        # Avoid division by zero for unreachable inputs
+        inv_sums = np.divide(1.0, row_sums, out=np.zeros_like(row_sums), where=row_sums != 0)
+        normalized_matrix = counts * inv_sums[:, np.newaxis]
+
+        # 4. Return as a TransitionMatrix instance
+        sp_mat = sparse.csr_matrix(normalized_matrix)
+        return cls(sp_mat)
+
 
 #
 # Functions
@@ -438,6 +495,7 @@ def random_qubit():
     psi = psi / np.linalg.norm(psi)
     
     return psi
+
 
 #
 # Common Transition matrices definitions

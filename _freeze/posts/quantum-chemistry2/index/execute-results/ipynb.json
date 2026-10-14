@@ -1,0 +1,12 @@
+{
+  "hash": "56d3508c5f80cc32f43a00513c49bc9e",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Quantum Chemistry Part 2\"\ndescription: \"\"\nauthor: \"NicDeclic\"\ndate: \"2026-10-14\"\ncategories: [Introduction, Chemistry]\nimage: \"/images/quantum-chemistry.jpg\"\n---\n\n![](/images/quantum-chemistry.jpg)  \n\n::: {.text-end}\n> *\"Your only adversary is the mirror that refuses to reflect all your colors.\"*  \n> — **Professor Alvin**\n:::\n\n---\n\n[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb)\n\n::: {#8c30fc9f .cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see library imports\"}\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../../src\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\n```\n:::\n\n\n---\n\n\n\n---\n\n👉 **Next chapter :**  \n**[\"The Emergence of Protobits\"](/posts/protobits/index.html)**\n\n---\njupyter:\n  kernelspec:\n    display_name: Python 3 (ipykernel)\n    language: python\n    name: python3\n    path: C:\\Users\\Nick2\\AppData\\Local\\Python\\pythoncore-3.14-64\\share\\jupyter\\kernels\\python3\n---\n",
+    "supporting": [
+      "index_files\\figure-ipynb"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

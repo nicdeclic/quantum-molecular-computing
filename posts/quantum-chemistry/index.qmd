@@ -1,13 +1,13 @@
 ---
-title: "Quantum Chemistry"
+title: "Quantum Chemistry Part 1"
 description: "Is it possible that the capacity to process and manipulate information is woven into the very fabric of molecules? We now turn to explore the untapped potential of atoms and their chemical bonds to create sophisticated computational systems."
 author: "NicDeclic"
 date: "2026-09-25"
-categories: [Introduction]
-image: "quantum chemistry.jpg"
+categories: [Introduction, Chemistry]
+image: "/images/quantum-chemistry.jpg"
 ---
 
-![](quantum chemistry.jpg)  
+![](/images/quantum-chemistry.jpg)  
 
 ::: {.text-end}
 > *"An atom has no identity of its own. Only a function within the whole."*  
@@ -138,17 +138,14 @@ mol = CarbonMolecule("TrivalentNode")
 
 # Add 4 atoms (Center node + 3 branches)
 c_center = mol.add_atom(x=0, y=0, isotope="C12")
-c_top    = mol.add_atom(x=0, y=1.0, isotope="C12", visible=False, label="C1")
-c_left   = mol.add_atom(x=-0.865, y=-0.5, isotope="C12", visible=False, label="C2")
-c_right  = mol.add_atom(x=0.865, y=-0.5, isotope="C12", visible=False, label="C3")
+c_top    = mol.add_atom(x=0, y=0.5, isotope="C12", visible=False, label="C1")
+c_left   = mol.add_atom(x=-0.435, y=-0.4, isotope="C12", visible=False, label="C2")
+c_right  = mol.add_atom(x=0.435, y=-0.4, isotope="C12", visible=False, label="C3")
 
 # Add bonds (one double bond, two single bonds)
 b1 = mol.add_bond(c_center, c_top, order="double", label="A")
 b2 = mol.add_bond(c_center, c_left, order="single", label="B")
 b3 = mol.add_bond(c_center, c_right, order="single", label="C")
-
-# Add a quantum coupler between bonds b2 and b3
-# mol.add_coupler(b2, b3, label="J_coupling")
 
 # Draw with Schemdraw
 mol.draw()
@@ -242,9 +239,9 @@ Because the presence of hydrogen atoms can be unambiguously deduced by counting 
 
 Notice the subtle yet crucial differences compared to standard skeletal notation:  
 
-The convention of drawing double bonds offset to one specific side of a ring — even when that $\pi$-bond is physically shared across two fused rings — is far too crude and misleading. Particularly when looking for symmetries.  
-
 ![X - Standard skeletal structure. Avoid using this notation. - X](Phenalene-skeletal.png){height="300px" fig-align="left"} 
+
+The convention of drawing double bonds offset to one specific side of a ring — even when that $\pi$-bond is physically shared across two fused rings — is far too crude and misleading. Particularly when looking for symmetries.  
 
 Dotted carbon atoms should also be drawn. As we move forward, we will be analyzing the resonance manifolds of highly intricate molecular networks. Sometimes the lines get curvy and it isn't clear anymore where the atoms are.
 
@@ -252,5 +249,259 @@ The last thing we need is to bog down our analysis with ambiguous notations. Cla
 
 ---
 
+## Junction Resonances
+
+Let us now explore the resonance manifolds of various molecular junctions.
+
+We begin with a simple elementary case: the **linear junction**.
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+
+# Create Molecule
+mol1 = CarbonMolecule("linear junction")
+
+# Add atoms
+c1 = mol1.add_atom(x=0, y=0, visible=False)
+c2 = mol1.add_atom(x=0.5, y=0.5, visible=True)
+c3 = mol1.add_atom(x=1, y=0.0, visible=False)
+
+# Add bonds
+b1 = mol1.add_bond(c1, c2, order="single", label="A")
+b2 = mol1.add_bond(c2, c3, order="single", label="B")
+
+# Draw with Schemdraw
+mol1.draw()
+
+```
+Note: in junctions we can see bonds that end without an atom. This simply illustrates that the atom is connected to another one outside the page. Obviously, in our physical reality, a bond can never end in a void.
+
+This junction exhibits two distinct resonance modes:
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 2
+
+all_resonances = mol1.resonance()
+
+for i, res_mol in enumerate(all_resonances):
+    res_mol.draw() 
+
+```
+
+We can compile these resonance states into a truth table where each row corresponds to one of the possible resonance configurations.
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+CarbonMolecule.resonance_table(all_resonances)
+
+```
+
+As we can observe, the state of $B$ is always the exact inverse of $A$. This yields a truth table functionally identical to a classical **NOT gate**.
+
+
+You can practice by sketching an arbitrary simple junction and determining its allowed resonance modes. It is a remarkably effective exercise for developing a physical feel for how these molecular networks behave.
+
+Through this exercise, you will quickly encounter the **triangular junction**:
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+
+# Create Molecule
+mol2 = CarbonMolecule("triangular junction")
+
+# Add atoms
+c1 = mol2.add_atom(x=0, y=0.75, visible=False)
+c2 = mol2.add_atom(x=-0.75, y=-0.75, visible=False)
+c3 = mol2.add_atom(x=0.75, y=-0.75, visible=False)
+c4 = mol2.add_atom(x=0, y=0.25, visible=True)
+c5 = mol2.add_atom(x=-0.25, y=-0.25, visible=True)
+c6 = mol2.add_atom(x=0.25, y=-0.25, visible=True)
+
+# Add bonds
+b1 = mol2.add_bond(c1, c4, order="single", label="A")
+b2 = mol2.add_bond(c2, c5, order="single", label="B")
+b3 = mol2.add_bond(c3, c6, order="single", label="C")
+b4 = mol2.add_bond(c4, c5, order="single")
+b5 = mol2.add_bond(c5, c6, order="single")
+b6 = mol2.add_bond(c6, c4, order="single")
+
+# Draw with Schemdraw
+mol2.draw()
+
+```
+
+It features four resonance modes:
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 4
+
+all_resonances = mol2.resonance()
+
+for i, res_mol in enumerate(all_resonances):
+    res_mol.draw() 
+
+```
+
+And here is the resulting truth table:
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+CarbonMolecule.resonance_table(all_resonances)
+
+```
+
+Notice that this table directly mirrors the behavior of a **XNOR gate**.
+
+
+
+Now let us examine a slightly more intricate topology: the **"H" junction**.
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+
+# Create Molecule
+mol3 = CarbonMolecule('"H" junction')
+
+# Add atoms
+c1 = mol3.add_atom(x=0, y=0.5, visible=False)
+c2 = mol3.add_atom(x=0, y=-0.5, visible=False)
+c3 = mol3.add_atom(x=0.5, y=0, visible=True)
+c4 = mol3.add_atom(x=1, y=0, visible=True)
+c5 = mol3.add_atom(x=1.5, y=0.5, visible=False)
+c6 = mol3.add_atom(x=1.5, y=-0.5, visible=False)
+
+# Add bonds
+b1 = mol3.add_bond(c1, c3, order="single", label="A", role="input")
+b2 = mol3.add_bond(c2, c3, order="single", label="B", role="input")
+b3 = mol3.add_bond(c5, c4, order="single", label="C", role="input")
+b4 = mol3.add_bond(c6, c4, order="single", label="D", role="output")
+b5 = mol3.add_bond(c3, c4, order="single")
+
+# Draw with Schemdraw
+mol3.draw()
+
+```
+
+This junction possesses five resonance modes:
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 3
+
+all_resonances = mol3.resonance()
+
+for i, res_mol in enumerate(all_resonances):
+    res_mol.draw() 
+
+```
+
+And here is the resulting table:
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+CarbonMolecule.resonance_table(all_resonances)
+
+```
+
+Note that the table above does not correspond to any standard logic gate. Some row values are missing. So even a combination of classical boolean gates wouldn't be able to represent this logic. The vast majority of molecular topologies behave this way.  
+
+---
+
+## Forbidden Transitions
+
+We need a consistent way to handle impossible or missing input configurations in our transition matrices. We achieve this by setting all elements along the corresponding row to **0** (representing an unreachable or dead-end state).
+
+For the "H" junction above, if we define $A$, $B$, and $C$ as inputs and $D$ as the output, the transition matrix representing this molecular circuit becomes:
+
+```{python}
+#| code-fold: true
+
+hjunction = TransitionMatrix.from_resonances(all_resonances)
+
+display_inline("Hjunction", "=", hjunction.to_katex(show_labels=True))
+
+```
+
+Because certain rows sum to less than 1 (zero, in fact), the matrix becomes **sub-stochastic**. This should not be a cause for concern: it is not a defect or a bug in a Markov chain. 
+
+We can compute with such matrices seamlessly. Simply think of an all-zero row as an algebraic placeholder indicating that a given input combination is physically forbidden by the molecule's valency rules.
+
+---
+
+## The Junction Snag
+
+Up to this point, our exploration has yielded two functional primitives: a **NOT gate** (from the linear junction) and a **XNOR gate** (from the triangular junction). 
+
+While promising, this set is insufficient for universal computation. In boolean algebra, $\{ \text{NOT}, \text{XNOR} \}$ generates only affine (linear) functions. To achieve a Turing-complete, universal logic family, we fundamentally require a non-linear primitive: an **AND gate** or an **OR gate**.
+
+Then comes the dramatic plot twist: **neither an AND gate nor an OR gate can be constructed using junctions alone.**
+
+To see why, consider a standard AND gate and imagine a simple feedback loop: if we tie its output back to one of its inputs, the remaining free input must still be capable of freely accepting either a `"0"` or a `"1"` while remaining topologically consistent. 
+
+```{python}
+#| code-fold: true
+
+# Initialize the schematic canvas
+with schemdraw.Drawing() as d:
+    d.config(fontsize=12, unit=2.5)
+
+    # 1. Place the 2-input AND gate
+    and_gate = d.add(logic.And().right())
+
+    # 2. Top Input: Lead wire connected to label "X"
+    d.add(
+        elm.Line()
+        .left(1.5)
+        .at(and_gate.in1)
+        .label("X", loc="left")
+    )
+
+    # 3. Output wire extending to the right
+    out_wire = d.add(
+        elm.Line()
+        .right(1)
+        .at(and_gate.out)
+    )
+
+    # 4. Feedback loop: wire routing from output back into the bottom input (in2)
+    d.add(elm.Line().down(1).at(out_wire.end))
+    d.add(elm.Line().left(3.6))
+    d.add(elm.Wire("|-").to(and_gate.in2))  # Clean 90-degree landing into input 2
+
+```
+
+Within a conjugated junction, however, this flexibility collapses. The strict local valency constraints (exactly one $\pi$-bond per $sp^2$ carbon) force rigid correlations across the entire network. The boundary bonds cannot fluctuate independently; their states are frozen into rigid, complementary pairs—either locked at `"0"` or locked at `"1"`. The network lacks the internal degree of freedom required to break symmetry.
+
+In other words, imagine a black box with a single carbon bond sticking out (representing the input 'X' to our self-looped AND gate). Whatever molecular topology sits inside that box, it will only ever succeed in clamping that sticking bond to a fixed `"0"` or a fixed `"1"`. **Never both simultaneously.** It cannot act as a truly independent, open-ended variable.
+
+Because we already possess a functional NOT gate, the ability to construct an OR gate would immediately yield an AND gate via **De Morgan's laws**:  
+
+$$\text{AND}(A, B) = \overline{\text{OR}(\overline{A}, \, \overline{B})}$$  
+
+The impossibility of constructing an AND gate therefore seals the fate of the OR gate as well. Neither can exist within these passive junctions, completely blocking our path toward a universal logic family.  
+
+This snag became a major roadblock — the kind of theoretical brick wall that stalls an investigation for months on end. Nature does not yield its computational secrets that easily!  
+
+A junction alone is too rigid, too linear. To break the deadlock, we must look beyond and introduce a new mechanism into the carbon backbone...
+
+---
+
 👉 **Next chapter :**  
-**["The Emergence of Protobits"](/posts/protobits/index.html)**
+**["Quantum Chemistry Part 2"](/posts/quantum-chemistry2/index.html)**
