@@ -44,66 +44,13 @@ from qmc import * # QMC library
 
 ---
 
-Finally, consider the **square junction**:
+## Reverse Computing
 
-```{python}
-#| code-fold: true
-#| fig-align: center
+- The choice of what bond is an input or an output is completely left to the observer. Molecules do not inherently have inputs and outputs.
 
-# Create Molecule
-mol4 = CarbonMolecule("square junction")
+- Transpose operation.
 
-# Add atoms
-c1 = mol4.add_atom(x=0, y=0.5, visible=False)
-c2 = mol4.add_atom(x=0, y=-1, visible=False)
-c3 = mol4.add_atom(x=0.5, y=0, visible=True)
-c4 = mol4.add_atom(x=1, y=0, visible=True)
-c5 = mol4.add_atom(x=1, y=-0.5, visible=True)
-c6 = mol4.add_atom(x=0.5, y=-0.5, visible=True)
-c7 = mol4.add_atom(x=1.5, y=0.5, visible=False)
-c8 = mol4.add_atom(x=1.5, y=-1, visible=False)
-
-# Add bonds
-b1 = mol4.add_bond(c1, c3, order="single", label="A")
-b2 = mol4.add_bond(c2, c6, order="single", label="B")
-b3 = mol4.add_bond(c7, c4, order="single", label="C")
-b4 = mol4.add_bond(c8, c5, order="single", label="D")
-b5 = mol4.add_bond(c3, c4, order="single")
-b6 = mol4.add_bond(c4, c5, order="single")
-b7 = mol4.add_bond(c5, c6, order="single")
-b8 = mol4.add_bond(c6, c3, order="single")
-
-# Draw with Schemdraw
-mol4.draw()
-
-```
-
-It exhibits seven resonance modes in total:
-
-```{python}
-#| code-fold: true
-#| fig-align: center
-#| layout-ncol: 3
-
-all_resonances = mol4.resonance()
-
-for i, res_mol in enumerate(all_resonances):
-    res_mol.draw()
-
-```
-
-The resulting truth table:
-
-```{python}
-#| code-fold: true
-#| fig-align: center
-#| layout-ncol: 1
-
-CarbonMolecule.resonance_table(all_resonances)
-
-```
-
-Here, a fundamentally new situation arises: the first two rows, consisting entirely of zeros, repeat themselves. Consequently, this specific resonance mode carries **twice the statistical weight** of the others. 
+- The resonance states must be bijective.
 
 ---
 
@@ -112,6 +59,12 @@ Here, a fundamentally new situation arises: the first two rows, consisting entir
 A "poor man’s quantum computer" refers to a probabilistic computer built using p-bits (probabilistic bits) instead of traditional bits or quantum qubits.
 
 But conjugated carbon molecules are inherently quantum.
+
+---
+
+## Decomposition of a Molecule in Matrix Form
+
+
 
 ---
 
@@ -127,3 +80,8 @@ But conjugated carbon molecules are inherently quantum.
 
 ---
 
+## ![](/images/warning.png){width=50px} Speculations & Wild Thoughts
+
+* The lyrics and vocal samples of the song "Set Theory" by Carbon Based Lifeforms "There are no answers. Only choices" were inspired by the 2002 sci-fi film Solaris.
+
+---
