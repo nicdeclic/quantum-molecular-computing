@@ -243,7 +243,7 @@ window.Quarto = {
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="6a1fcdce" class="cell" data-execution_count="1">
+<div id="6781ec77" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -304,7 +304,7 @@ window.Quarto = {
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="5bb5fb8e" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div id="c0fd69d1" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -334,7 +334,7 @@ window.Quarto = {
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="0981523b" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div id="5f91a218" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{array}{|c|c|} \hline \mathbf{A} &amp; \mathbf{B} \\ \hline 0 &amp; 1 \\ 0 &amp; 0 \\ 1 &amp; 0 \\ \hline \end{array}\]</span></p>
@@ -344,9 +344,9 @@ window.Quarto = {
 <p>Designating bond <span class="math inline">\(A\)</span> as an <strong>input</strong> and bond <span class="math inline">\(B\)</span> as an <strong>output</strong> reveals something remarkable:</p>
 <p>When input <span class="math inline">\(A\)</span> is held at state <strong>“0”</strong> (single bond), output <span class="math inline">\(B\)</span> is no longer clamped to a single, rigid outcome. Instead, it can naturally manifest in <strong>two distinct states: “0” or “1”</strong>.</p>
 <p>This is an immensely encouraging breakthrough. This internal branching is precisely the missing degree of freedom that eluded us when analyzing isolated junctions!</p>
-<p>And this is by no means an isolated anomaly. The overwhelming majority of closed-form conjugated networks exhibit this rich internal multiplicity. All it took was shifting our perspective: <strong>stepping back to appreciate the entire molecular forest rather than obsessing over an isolated junction tree.</strong></p>
+<p>And this is by no means an isolated anomaly. The overwhelming majority of closed-form conjugated networks exhibit this rich internal multiplicity. All it took was shifting the perspective: <strong>stepping back to appreciate the entire molecular forest rather than obsessing over an isolated junction tree.</strong></p>
 <p>However, this breakthrough carries a profound theoretical consequence: <strong>deterministic certainty dissolves here.</strong></p>
-<p>Because a single input state maps to multiple admissible physical configurations, classical boolean determinism can no longer describe the computation. We are inevitably forced to expand our mathematical framework into the domain of <strong>statistical mechanics</strong>.</p>
+<p>Because a single input state maps to multiple admissible physical configurations, classical boolean determinism can no longer describe the computation. We are inevitably forced to expand our mathematical framework into the domain of <strong>statistics</strong>.</p>
 <hr>
 </section>
 <section id="probabilistic-bits-p-bits" class="level2">
@@ -358,7 +358,7 @@ window.Quarto = {
 <ul>
 <li><strong>A fair coin:</strong></li>
 </ul>
-<div id="b6451d11" class="cell" data-execution_count="4">
+<div id="30a53324" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Fair"</span>, <span class="st">"="</span>, random.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -372,7 +372,7 @@ window.Quarto = {
 <ul>
 <li><strong>A biased coin:</strong></li>
 </ul>
-<div id="5bc5dae1" class="cell" data-execution_count="5">
+<div id="79b10473" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>biased <span class="op">=</span> TransitionMatrix([</span>
@@ -402,7 +402,7 @@ window.Quarto = {
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"DoubleHoneycomb"</span>, <span class="st">"="</span>, doubleHoneycomb.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="6dd3a95e" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="451621b9" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[ DoubleHoneycomb =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``0''} &amp; 0.5 &amp; 0.5 \\ \text{``1''} &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
@@ -459,7 +459,7 @@ window.Quarto = {
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="aaa872cf" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="0841fb28" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -500,16 +500,18 @@ window.Quarto = {
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="11ab6b81" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="2">
+<div id="37e18ac8" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-9-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-9-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
@@ -518,14 +520,16 @@ window.Quarto = {
 </div>
 </div>
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-9-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-9-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
@@ -539,10 +543,10 @@ window.Quarto = {
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="c2d2747f" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div id="fe911909" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><span class="math display">\[\begin{array}{|c|c|c|c|c|c|c|c|c|} \hline \mathbf{A} &amp; \mathbf{E1} &amp; \mathbf{E2} &amp; \mathbf{D1} &amp; \mathbf{D2} &amp; \mathbf{C} &amp; \mathbf{F1} &amp; \mathbf{F2} &amp; \mathbf{B} \\ \hline 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\ \hline \end{array}\]</span></p>
+<p><span class="math display">\[\begin{array}{|c|c|c|c|c|c|c|c|c|} \hline \mathbf{A} &amp; \mathbf{B} &amp; \mathbf{C} &amp; \mathbf{D1} &amp; \mathbf{D2} &amp; \mathbf{E1} &amp; \mathbf{E2} &amp; \mathbf{F1} &amp; \mathbf{F2} \\ \hline 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \hline \end{array}\]</span></p>
 </div>
 </div>
 </div>
@@ -555,30 +559,327 @@ window.Quarto = {
 <p>Not only is the NOR gate a <strong>universal logic primitive</strong> capable of synthesizing any classical computational function (NAND, AND, OR, XOR), but this molecular geometry natively provides <strong>two symmetric outputs for the price of one</strong> (<span class="math inline">\(E1\)</span> and <span class="math inline">\(E2\)</span> yield identical values, offering built-in fan-out).</p>
 <p>The universal logic deadlock is officially broken. We now possess a tangible molecular blueprint for universal boolean computation etched directly into a conjugated carbon skeleton.</p>
 <hr>
-<p><img src="../../images/construction.png" class="img-fluid"></p>
 </section>
-<section id="double-connections" class="level2">
-<h2 class="anchored" data-anchor-id="double-connections">Double Connections</h2>
+<section id="dual-rail-interconnects" class="level2">
+<h2 class="anchored" data-anchor-id="dual-rail-interconnects">Dual-Rail Interconnects</h2>
+<p>Now that we have successfully synthesized a universal NOR gate within a closed-form molecule, a critical architectural question emerges: <strong>how do we chain these logic gates together to build complex circuits?</strong></p>
+<p>The naive approach—connecting functional blocks via a single, isolated carbon bond as we did with elementary junctions—is no longer viable.</p>
+<p>Examine what happens when we open one of the inputs of our “Letter Envelope” molecule: it does not terminate in a single dangling bond, but rather in a <strong>symmetric pair of coupled branches</strong>. Due to the internal geometry of the resonance network, these two parallel branches are physically locked together—they will <strong>always carry the exact same logical state</strong> simultaneously.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Letter Envelope"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>c_1a <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>c_1b <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.4</span>, y<span class="op">=</span><span class="fl">0.7</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>c_2a <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>c_2b <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.4</span>, y<span class="op">=</span><span class="fl">0.7</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>c_3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>c_4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>c_5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>c_6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>b_1a <span class="op">=</span> mol.add_bond(c_1a, c_1b, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>b_1b <span class="op">=</span> mol.add_bond(c_2a, c_2b, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>b_2 <span class="op">=</span> mol.add_bond(c_1a, c_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>b_3 <span class="op">=</span> mol.add_bond(c_2a, c_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>b_4 <span class="op">=</span> mol.add_bond(c_1a, c_3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>b_5 <span class="op">=</span> mol.add_bond(c_2a, c_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>b_6 <span class="op">=</span> mol.add_bond(c_3, c_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>b_7 <span class="op">=</span> mol.add_bond(c_3, c_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>b_8 <span class="op">=</span> mol.add_bond(c_4, c_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>b_9 <span class="op">=</span> mol.add_bond(c_5, c_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol.resonance()</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="8ba9f469" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-11-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-11-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-11-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-11-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The engineering solution is as elegant as it is direct: <strong>instead of routing a single line, we route both branches in parallel.</strong></p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Top XNOR gate (Inputs: A, B -&gt; Output: D)</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    top_gate <span class="op">=</span> d.add(logic.Xnor().right().label(<span class="st">"XNOR 1"</span>, loc<span class="op">=</span><span class="st">"top"</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lead wire and label for Input B (top pin of top gate)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">2.5</span>).at(top_gate.in1).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output wire and label for Output D</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(top_gate.out).label(<span class="st">"D"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Bottom XNOR gate (Inputs: A, C -&gt; Output: E)</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Positioned neatly below the first gate</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    bottom_gate <span class="op">=</span> d.add(</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        logic.Xnor().right().at((top_gate.absanchors[<span class="st">"in1"</span>][<span class="dv">0</span>], top_gate.absanchors[<span class="st">"in1"</span>][<span class="dv">1</span>] <span class="op">-</span> <span class="fl">3.5</span>))</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"XNOR 2"</span>, loc<span class="op">=</span><span class="st">"bottom"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lead wire and label for Input C (bottom pin of bottom gate)</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">2.5</span>).at(bottom_gate.in2).label(<span class="st">"C"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output wire and label for Output E</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(bottom_gate.out).label(<span class="st">"E"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Shared Input A routing (Fan-out to top_gate.in2 and bottom_gate.in1)</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lead line from the left</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    mid_y <span class="op">=</span> (top_gate.in2[<span class="dv">1</span>] <span class="op">+</span> bottom_gate.in1[<span class="dv">1</span>]) <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    input_A <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.2</span>).at((top_gate.in1[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">2.5</span>, mid_y)).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route branch up into top gate (in2)</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(input_A.end).to(top_gate.in2))</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route branch down into bottom gate (in1)</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(input_A.end).to(bottom_gate.in1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="cf438a8e" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-12-output-1.svg" class="img-fluid figure-img"></p>
+<figcaption>Logic Circuit</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Connected Letter Envelopes"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>c1_1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>c1_2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>c1_3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>c1_4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>c1_5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>c1_6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>c2_1 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>c2_2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">3.4</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>c2_3 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">2.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>c2_4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">2.9</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>c2_5 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>c2_6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">3.4</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>c3_1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>c3_2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">3.4</span>, y<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>b1_2 <span class="op">=</span> mol.add_bond(c1_1, c1_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>b1_3 <span class="op">=</span> mol.add_bond(c1_2, c1_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>b1_4 <span class="op">=</span> mol.add_bond(c1_1, c1_3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>b1_5 <span class="op">=</span> mol.add_bond(c1_2, c1_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>b1_6 <span class="op">=</span> mol.add_bond(c1_3, c1_4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"D"</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>b1_7 <span class="op">=</span> mol.add_bond(c1_3, c1_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>b1_8 <span class="op">=</span> mol.add_bond(c1_4, c1_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>b1_9 <span class="op">=</span> mol.add_bond(c1_5, c1_6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>b2_2 <span class="op">=</span> mol.add_bond(c2_1, c2_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>b2_3 <span class="op">=</span> mol.add_bond(c2_2, c2_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>b2_4 <span class="op">=</span> mol.add_bond(c2_1, c2_3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>b2_5 <span class="op">=</span> mol.add_bond(c2_2, c2_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>b2_6 <span class="op">=</span> mol.add_bond(c2_3, c2_4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"E"</span>)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>b2_7 <span class="op">=</span> mol.add_bond(c2_3, c2_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>b2_8 <span class="op">=</span> mol.add_bond(c2_4, c2_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>b2_9 <span class="op">=</span> mol.add_bond(c2_5, c2_6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"C"</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>b3_1 <span class="op">=</span> mol.add_bond(c1_1, c3_1, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>b3_2 <span class="op">=</span> mol.add_bond(c3_1, c3_2, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>b3_3 <span class="op">=</span> mol.add_bond(c3_2, c2_2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>b3_4 <span class="op">=</span> mol.add_bond(c1_2, c2_1, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="d9f795e6" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-13-output-1.png" width="445" height="205" class="figure-img"></p>
+<figcaption>Equivalent Molecular Circuit</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>In modern computer architecture, this paradigm is well known as <strong>dual-rail logic</strong> (or differential signaling). In our molecular context, information is not propagated across a single wire, but through a two-lane conjugated pathway.</p>
+<p>Notice that the top branch incorporates two additional carbon atoms compared to the bottom branch. This specific geometric offset is not strictly mandatory: as long as we insert an <strong>even number of carbon atoms</strong> along the conjugated pathway, the wire remains logically equivalent and non-inverting (a pure identity interconnect).</p>
+<p>Conversely, inserting an <strong>odd number of carbon atoms</strong> into each branch introduces a parity shift in the alternating double/single bonds. This naturally inverts the logical state, effectively transforming the interconnect itself into a built-in <strong>NOT gate</strong> without requiring any additional circuit components.</p>
+<p>Furthermore, the upper branch was chosen to represent the value of A. However, the lower branch would have been equally suitable; they always have the same value anyway.</p>
 <hr>
 </section>
 <section id="cascading-parasitic-resonance-molecular-epilepsy" class="level2">
 <h2 class="anchored" data-anchor-id="cascading-parasitic-resonance-molecular-epilepsy">Cascading Parasitic Resonance (Molecular Epilepsy)</h2>
-<p>When a junction allows two unauthorized boundary states to infiltrate its truth table, these spurious modes do not remain localized. They infect adjacent nodes, triggering what we might call Cascading Parasitic Resonance — or, in more intuitive neuro-computational terms, a form of molecular epilepsy sweeping across the network.</p>
-<hr>
-</section>
-<section id="couplers" class="level2">
-<h2 class="anchored" data-anchor-id="couplers">Couplers</h2>
-<hr>
-</section>
-<section id="speculations-wild-thoughts" class="level2">
-<h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="../../images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
-<ul>
-<li>If biological neural networks rely on aromatic π-electron resonance networks within synaptic receptors for ultrafast signaling, what happens when a molecular coupler suffers a geometric defect?<br>
-Could an epileptic seizure be the macroscopic manifestation of a microscopic state - leakage cascade — where the breakdown of a single quantum molecular parity check forces millions of synapses into a runaway, hypersynchronous parasitic resonance?</li>
-</ul>
+<p>The path now seems crystal clear: with a universal NOR gate and dual-rail interconnects, it is theoretically possible to chain together as many logic gates as the architecture demands. The logic is universal, mathematically sound, and geometrically elegant.</p>
+<p>It feels as though the prototype has finally lifted off the runway, climbing smoothly and flying majestically into the sky.</p>
+<p>Total victory seems within reach, however, the system stalls mid-air and crashes unexpectedly.</p>
+<p>What on earth just happened?</p>
+<p>In any realistic digital circuit, signals do not merely propagate along a single, open pipeline. Functional processors are inherently dense, intertwined networks featuring branching, reconverging paths, and feedback loops.</p>
+<p>Every time we fuse two carbon networks together, we do not simply create an abstract connection: <strong>we synthesize a single, larger macro-molecule</strong></p>
+<p>To construct a circuit of even modest complexity, one must inevitably: <strong>open and interconnect two separate bonds within the very same molecule.</strong></p>
+<p>And that is where the physics turns against us.</p>
+<p>Opening a single bond is well-behaved: the dangling bonds remain strictly synchronized, faithfully executing the truth table.</p>
+<p>However, the moment we expose a <strong>second</strong> connection port on that same molecular envelope, an insidious form of crosstalk emerges. The extended boundary conditions crack open the state space, allowing <strong>four rogue, parasitic resonance modes</strong> to settle into the manifold.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Letter Envelope"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>c_1a <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>c_1b <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.4</span>, y<span class="op">=</span><span class="fl">0.7</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>c_2a <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>c_2b <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.4</span>, y<span class="op">=</span><span class="fl">0.7</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>c_3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>c_4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>c_5a <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>c_5b <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.4</span>, y<span class="op">=-</span><span class="fl">0.7</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>c_6a <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>c_6b <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.4</span>, y<span class="op">=-</span><span class="fl">0.7</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>b_1a <span class="op">=</span> mol.add_bond(c_1a, c_1b, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>b_1b <span class="op">=</span> mol.add_bond(c_2a, c_2b, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>b_2 <span class="op">=</span> mol.add_bond(c_1a, c_5a, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>b_3 <span class="op">=</span> mol.add_bond(c_2a, c_6a, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>b_4 <span class="op">=</span> mol.add_bond(c_1a, c_3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>b_5 <span class="op">=</span> mol.add_bond(c_2a, c_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>b_6 <span class="op">=</span> mol.add_bond(c_3, c_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>b_7 <span class="op">=</span> mol.add_bond(c_3, c_5a, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>b_8 <span class="op">=</span> mol.add_bond(c_4, c_6a, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>b_9a <span class="op">=</span> mol.add_bond(c_5a, c_5b, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>b_9b <span class="op">=</span> mol.add_bond(c_6a, c_6b, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol.resonance()</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="bebacff9" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-1.png" width="196" height="177" class="figure-img"></p>
+<figcaption>Valid State</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-2.png" width="196" height="177" class="figure-img"></p>
+<figcaption>Valid State</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-3.png" width="196" height="177" class="figure-img"></p>
+<figcaption>Unauthorized State</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-4.png" width="196" height="177" class="figure-img"></p>
+<figcaption>Unauthorized State</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-5.png" width="196" height="177" class="figure-img"></p>
+<figcaption>Unauthorized State</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-6.png" width="196" height="177" class="figure-img"></p>
+<figcaption>Unauthorized State</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-7.png" width="196" height="177" class="figure-img"></p>
+<figcaption>Valid State</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-8.png" width="196" height="177" class="figure-img"></p>
+<figcaption>Valid State</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>After connecting the two open bonds together, two unauthorized states will remain.</p>
+<p>These two unauthorized states do not remain polite, isolated local defects. Because the molecular <span class="math inline">\(\pi\)</span>-system is continuous, these parasitic modes propagate unimpeded throughout the entire network, corrupting every gate in their path like a wildfire.</p>
+<p>In formal physical terms, this catastrophic breakdown is known as <strong>Cascading Parasitic Resonance</strong>.</p>
+<p>A far more striking and visceral name for it, however, is <strong>“Molecular Epilepsy.”</strong></p>
+<p>This is not a mere poetic metaphor. If one were to construct an artificial neural network physically embodied in conjugated carbon molecules, this is hypothetically the exact pathology that would emerge: the moment an internal feedback loop loses its structural constraints, a runaway parasitic resonance takes over the network, mimicking the hypersynchronous seizure activity observed in biological neural tissue.</p>
+<p>In other words, the machine ceases to calculate. It convulses.</p>
 <hr>
 <p>👉 <strong>Next chapter :</strong><br>
-<strong><a href="../../posts/protobits/index.html">“The Emergence of Protobits”</a></strong></p>
+<strong><a href="../../posts/quantum-chemistry3/index.html">“Quantum Chemistry Part 3”</a></strong></p>
 
 
 </section>
