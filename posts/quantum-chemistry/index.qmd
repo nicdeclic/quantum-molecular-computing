@@ -451,7 +451,7 @@ Up to this point, our exploration has yielded two functional primitives: a **NOT
 
 While promising, this set is insufficient for universal computation. In boolean algebra, $\{ \text{NOT}, \text{XNOR} \}$ generates only affine (linear) functions. To achieve a Turing-complete, universal logic family, we fundamentally require a non-linear primitive: an **AND gate** or an **OR gate**.
 
-Then comes the dramatic plot twist: **neither an AND gate nor an OR gate can be constructed using junctions alone.**
+Then comes the dramatic plot twist: **neither an AND gate nor an OR gate can be constructed using boundary bonds of junctions alone.**
 
 To see why, consider a standard AND gate and imagine a simple feedback loop: if we tie its output back to one of its inputs, the remaining free input must still be capable of freely accepting either a `"0"` or a `"1"` while remaining topologically consistent. 
 

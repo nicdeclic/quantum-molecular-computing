@@ -1,0 +1,12 @@
+{
+  "hash": "cf0f7c67c9a43921f59a58f81b6e5243",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Quantum Chemistry Part 3\"\ndescription: \"\"\nauthor: \"NicDeclic\"\ndate: \"2026-10-16\"\ncategories: [Introduction, Chemistry]\nimage: \"/images/quantum-chemistry.jpg\"\n---\n\n![](/images/quantum-chemistry.jpg)  \n\n::: {.text-end}\n> *\"Harmony is not uniformity… it is cacophony learning to dance.\"*  \n> — **Professor Alvin**\n:::\n\n---\n\n[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb)\n\n::: {#c1b3ce94 .cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see library imports\"}\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../../src\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\n```\n:::\n\n\n---\n\n![](/images/construction.png) \n\n## Breaking the Molecular Epilepsy Deadlock\n\n---\n\n## Simplifying the Molecule\n\n---\n\n## Couplers\n\n---\n\n## ![](/images/warning.png){width=50px} Speculations & Wild Thoughts\n\n* If biological neural networks rely on aromatic π-electron resonance networks within synaptic receptors for ultrafast signaling, what happens when a molecular coupler suffers a geometric defect?  \nCould an epileptic seizure be the macroscopic manifestation of a microscopic state - leakage cascade — where the breakdown of a single quantum molecular parity check forces millions of synapses into a runaway, hypersynchronous parasitic resonance?  \n\n---\n\n👉 **Next chapter :**  \n**[\"The Emergence of Protobits\"](/posts/protobits/index.html)**\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

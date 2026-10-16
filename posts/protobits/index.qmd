@@ -2,7 +2,7 @@
 title: "The Emergence of Protobits"
 description: ""
 author: "NicDeclic"
-date: "2026-10-15"
+date: "2026-10-20"
 categories: [Introduction, Protobits]
 image: "protobit.jpg"
 ---

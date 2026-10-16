@@ -480,11 +480,12 @@ class CarbonMolecule:
         if not resonances:
             return Latex(r"$$ \text{No resonance states available} $$")
 
-        # 1. Identify bonds that have non-empty labels (using the first molecule as reference)
+        # 1. Identify and alphabetically sort bonds with non-empty labels
         ref_mol = resonances[0]
-        labeled_bonds_indices = [
-            i for i, b in enumerate(ref_mol.bonds) if b.label.strip() != ""
-        ]
+        labeled_bonds_indices = sorted(
+            [i for i, b in enumerate(ref_mol.bonds) if b.label.strip() != ""],
+            key=lambda i: ref_mol.bonds[i].label
+        )
 
         if not labeled_bonds_indices:
             return Latex(r"$$ \text{No labeled bonds found to display} $$")

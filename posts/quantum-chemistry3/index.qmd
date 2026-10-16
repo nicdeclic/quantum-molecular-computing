@@ -1,0 +1,68 @@
+---
+title: "Quantum Chemistry Part 3"
+description: ""
+author: "NicDeclic"
+date: "2026-10-16"
+categories: [Introduction, Chemistry]
+image: "/images/quantum-chemistry.jpg"
+---
+
+![](/images/quantum-chemistry.jpg)  
+
+::: {.text-end}
+> *"Harmony is not uniformity… it is cacophony learning to dance."*  
+> — **Professor Alvin**
+:::
+
+---
+
+[![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb)
+```{python}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Click to see library imports"
+
+import sys
+if 'google.colab' in sys.modules:
+    # 1. Download qmc.py from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py
+    
+    # 2. Download requirements.txt from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt
+
+    # 3. Install dependencies
+    !pip install -q -r requirements.txt
+
+sys.path.insert(0, "../../src") # Select root directory
+from qmc import * # QMC library
+
+%reload_ext autoreload
+%autoreload 2
+
+```
+
+---
+
+![](/images/construction.png) 
+
+## Breaking the Molecular Epilepsy Deadlock
+
+---
+
+## Simplifying the Molecule
+
+---
+
+## Couplers
+
+---
+
+## ![](/images/warning.png){width=50px} Speculations & Wild Thoughts
+
+* If biological neural networks rely on aromatic π-electron resonance networks within synaptic receptors for ultrafast signaling, what happens when a molecular coupler suffers a geometric defect?  
+Could an epileptic seizure be the macroscopic manifestation of a microscopic state - leakage cascade — where the breakdown of a single quantum molecular parity check forces millions of synapses into a runaway, hypersynchronous parasitic resonance?  
+
+---
+
+👉 **Next chapter :**  
+**["The Emergence of Protobits"](/posts/protobits/index.html)**
