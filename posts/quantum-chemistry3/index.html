@@ -8,6 +8,7 @@
 
 <meta name="author" content="NicDeclic">
 <meta name="dcterms.date" content="2026-10-16">
+<meta name="description" content="What is needed now is a way to remove the parasitic resonances. Based on the observation that, generally, the more complex a conjugated molecule is, the more resonance modes it possesses, it should therefore be possible to simplify the molecule. That is to say, reduce the complexity of the bonds in order to keep only the intended resonance modes.">
 
 <title>Quantum Chemistry Part 3 – Quantum Molecular Computing</title>
 <style>
@@ -112,6 +113,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -158,7 +188,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Quantum Chemistry Part 3</h1>
-                                <div class="quarto-categories">
+                  <div>
+        <div class="description">
+          What is needed now is a way to remove the parasitic resonances. Based on the observation that, generally, the more complex a conjugated molecule is, the more resonance modes it possesses, it should therefore be possible to simplify the molecule. That is to say, reduce the complexity of the bonds in order to keep only the intended resonance modes.
+        </div>
+      </div>
+                          <div class="quarto-categories">
                 <div class="quarto-category">Introduction</div>
                 <div class="quarto-category">Chemistry</div>
               </div>
@@ -208,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="c1b3ce94" class="cell" data-execution_count="1">
+<div id="6e27f368" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -229,18 +264,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<hr>
 <p><img src="../../images/construction.png" class="img-fluid"></p>
-<section id="breaking-the-molecular-epilepsy-deadlock" class="level2">
-<h2 class="anchored" data-anchor-id="breaking-the-molecular-epilepsy-deadlock">Breaking the Molecular Epilepsy Deadlock</h2>
+<hr>
+<section id="solving-molecular-epilepsy" class="level2">
+<h2 class="anchored" data-anchor-id="solving-molecular-epilepsy">Solving Molecular Epilepsy</h2>
+<p>What is needed now is a way to remove the parasitic resonances.</p>
+<p>Based on the observation that, generally, the more complex a conjugated molecule is, the more resonance modes it possesses, it should therefore be possible to simplify the molecule. That is to say, reduce the complexity of the bonds in order to keep only the intended resonance modes.</p>
 <hr>
 </section>
 <section id="simplifying-the-molecule" class="level2">
 <h2 class="anchored" data-anchor-id="simplifying-the-molecule">Simplifying the Molecule</h2>
+<p>If we take the “Letter Envelope” structure and connect the two outputs of the NOR gates together, we obtain the 4 intended resonances plus the 2 expected parasitic resonances.</p>
+<p>However, if we remove one of the connections, the molecule settles into a new, stable state without any parasites.</p>
+<p>This results in a new structure called the “Barred Eight”. It acts as the functional equivalent of an AND logic gate.</p>
+<p>Yet, more complex molecules require far more advanced transformations. It is not always as simple as removing a few bonds. At present, no general algorithm exists to automate this process. It remains an active area of research.</p>
 <hr>
 </section>
-<section id="couplers" class="level2">
-<h2 class="anchored" data-anchor-id="couplers">Couplers</h2>
+<section id="quantum-couplers" class="level2">
+<h2 class="anchored" data-anchor-id="quantum-couplers">Quantum Couplers</h2>
+<p>Another approach is to filter the connections directly, since that is where the parasitic resonances originate.</p>
+<p>Ideally, we would insert an intermediate filter molecule along the interconnect to ensure that both branches always maintain the exact same logical state.</p>
+<p>However, such a purely chemical filter cannot work: because it must itself be open at both ends to connect into the circuit, it will inevitably develop the exact same parasitic resonances. We would simply be reproducing the initial problem.</p>
+<p>To break this loop, we must rely on a different physical mechanism: <strong>quantum and electrostatic induction.</strong></p>
+<p>When two conjugated bonds are brought physically close to one another without touching, their <span class="math inline">\(\pi\)</span>-electron clouds interact across space. Just like electrical induction in classical physics, the alternating oscillation of electrons in one bond exerts an electrostatic and quantum exchange force on the neighbor:<br>
+* If one bond shifts into a double bond (<span class="math inline">\(\pi\)</span>-density), its local electric field repels or aligns the electron density of the adjacent bond.<br>
+* The two lines synchronize their states through the vacuum without sharing a single physical atom.</p>
+<p>This wireless, contact-free bridge is what we call a <strong>Quantum Coupler</strong> or <strong>Coupler</strong> in short.</p>
+<p>The coupling strength follows a strict physical scaling:<br>
+1. <strong>Shorter distance = stronger coupling:</strong> As the spatial gap narrows, the interaction strength increases drastically.<br>
+2. <strong>More bond pairs = higher efficiency:</strong> Chaining multiple coupled pairs in parallel reinforces the coherence.</p>
+<p>By keeping the distance short enough and using enough parallel bond pairs, the synchronization efficiency can approach virtually <strong>100%</strong>.</p>
+<hr>
+<section id="typology-of-couplers" class="level3">
+<h3 class="anchored" data-anchor-id="typology-of-couplers">Typology of Couplers</h3>
+<p>Several physical geometries can be engineered:</p>
+<ul>
+<li><strong>Parallel Coupler:</strong> The simplest design to build. The two branches of the dual-rail interconnect are simply routed parallel and brought into close physical proximity.<br>
+</li>
+<li><strong>Series Coupler:</strong> The molecular equivalent of an electrical transformer. Two closed conjugated loops are placed side-by-side, transferring logic states purely through mutual resonance induction.<br>
+</li>
+<li><strong><span class="math inline">\(\pi\)</span>-Stacking Coupler (Face-to-Face):</strong> Instead of lying in the same 2D plane, conjugated rings are stacked directly on top of each other (via aromatic <span class="math inline">\(\pi\)</span>-<span class="math inline">\(\pi\)</span> stacking). This vertical configuration is exceptionally powerful for routing signals out of the plane and designing <strong>three-dimensional (3D) molecular circuits</strong>.</li>
+</ul>
+<p>Beyond filtering parasites, couplers solve another major engineering hurdle: <strong>clean fan-out.</strong> They allow a single logic gate to cleanly broadcast its output to multiple gates without any physical wiring tangles or parasitic feedback.</p>
+<hr>
+</section>
+</section>
+<section id="finally-success" class="level2">
+<h2 class="anchored" data-anchor-id="finally-success">Finally Success?</h2>
+<p><strong>Yes! This time, the foundation holds.</strong></p>
+<p>Every essential building block has now been identified: from fundamental carbon junctions and resonance states to dual-rail interconnects, universal NOR logic, and parasitic-filtering couplers. The baseline theory is established, mathematically coherent, and fully functional!</p>
+<p><em>“But wait…”</em> the skeptic might object. <em>“This is still just theory on paper, isn’t it? Some concepts seem radically counterintuitive. Where is the tangible physical prototype?”</em></p>
+<p>First comes the blueprint, then comes the machine.</p>
+<p>Historically, every monumental breakthrough in computing began as quiet derivations on a notepad. Alan Turing did not begin with silicon microchips, and quantum computing existed purely on chalkboards decades before the first qubit was frozen in a lab.</p>
+<p>There are still vital, pioneering concepts waiting to be developed — and that is precisely what the upcoming posts will unpack.</p>
+<p>Research is a journey of relentless patience; one must embrace the discipline of advancing one careful step at a time. Once the theoretical landscape is mapped, designing the physical architecture will become infinitely clearer.</p>
+<p>Nevertheless, we must always keep a vigilant eye on physical reality — if only to ensure our feet remain firmly planted in the realm of the possible.</p>
+<p>With our foundation established, this is the perfect moment to confront the toughest questions head-on. Let us address the most common scientific objections below!</p>
+<hr>
+</section>
+<section id="common-objections" class="level2">
+<h2 class="anchored" data-anchor-id="common-objections">Common Objections</h2>
+<ul>
+<li><strong>“A molecule featuring a three-membered ring would be energetically unstable due to extreme ring strain.”</strong></li>
+</ul>
+<p>Quite right! If you ever read a headline announcing that a chemist has isolated a naked, three-membered conjugated carbon ring folded into an “envelope,” it would be nothing short of a miracle. The angle strain alone would tear it apart under ambient conditions.</p>
+<p>However, remember our golden rule of interconnects: <strong>inserting an even number of carbon atoms into any bond preserves the exact logical identity of the circuit.</strong></p>
+<p>As a practical rule of thumb in molecular architecture: <strong>if a topology suffers from geometric strain, expand it by inserting pairs of carbon atoms.</strong></p>
+<p>By doing so, the bond angles relax toward the natural <span class="math inline">\(120^\circ\)</span> planar geometry of stable <span class="math inline">\(sp^2\)</span> carbon. What begins as an overly strained toy graph eventually transitions into a thermodynamically stable, synthesizable molecule at ambient temperature and pressure.</p>
+<p>Take our strained “Letter Envelope” model as a prime example:<br>
+1. In its minimal form, the envelope contains tight, highly strained three- and four-membered triangular cycles.<br>
+2. If we systematically insert <strong>two carbon atoms</strong> into the perimeter bonds of each strained loop, the tight angles open up.<br>
+3. The strained triangles gracefully blossom into stable <strong>five- and six-membered rings</strong>—yielding the planar polycyclic architecture known as <strong>Pyracylene</strong> (<span class="math inline">\(\text{C}_{14}\text{H}_8\)</span>).</p>
+<p>Pyracylene is not a theoretical fantasy: it is a real, well-documented molecule synthesized in organic chemistry laboratories (and famously observed as dynamic defects in graphene sheets under electron-beam irradiation).</p>
+<p>The logic does not change; only the physical ring strain has been relieved.</p>
+<p>It must be noted, however, that pyracylene has often been characterized by physical chemists as <strong>“borderline aromatic”</strong> (owing to the delicate balance between its aromatic benzene-like cores and its antiaromatic cyclooctatetraene-like peripheries).</p>
+<p>Which brings us directly to the next objection…</p>
+<ul>
+<li><p><strong>“Several of these proposed topologies are non-aromatic, meaning their resonance structures are by no means equiprobable.”</strong></p></li>
+<li><p><strong>“Larger molecular networks would suffer from rapid environmental decoherence in any realistic, noisy medium.”</strong></p></li>
+<li><p><strong>“How are the physical inputs and outputs concretely interfaced with the rest of the circuit?”</strong></p></li>
+</ul>
 <hr>
 </section>
 <section id="speculations-wild-thoughts" class="level2">
