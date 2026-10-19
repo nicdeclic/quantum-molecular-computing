@@ -2,7 +2,7 @@
 title: "A Refresher on Boolean Logic"
 description: "Before diving into the fascinating realm of quantum logic, mastering the fundamentals of classical logic and traditional logic gates is essential."
 author: "NicDeclic"
-date: "2026-09-16"
+date: "2026-09-17"
 categories: [Introduction]
 image: "/images/boolean_logic.jpg"
 ---

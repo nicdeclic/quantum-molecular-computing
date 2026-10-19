@@ -64,20 +64,6 @@ But conjugated carbon molecules are inherently quantum.
 
 ## Decomposition of a Molecule in Matrix Form
 
-
-
----
-
-## Common Objections
-
-* **"A molecule featuring a three-membered ring would be energetically unstable due to extreme ring strain."**
-
-* **"Several of these proposed topologies are non-aromatic, meaning their resonance structures are by no means equiprobable."**
-
-* **"Larger molecular networks would suffer from rapid environmental decoherence in any realistic, noisy medium."**
-
-* **"How are the physical inputs and outputs concretely interfaced with the rest of the circuit?"**
-
 ---
 
 ## ![](/images/warning.png){width=50px} Speculations & Wild Thoughts

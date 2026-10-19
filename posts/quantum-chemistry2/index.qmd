@@ -43,7 +43,7 @@ from qmc import * # QMC library
 
 ---
 
-## Breaking the Rigidity Deadlock
+## Solving the Rigidity Deadlock
 
 Let us now step back and examine molecules in their complete, **closed-form** topologies—where every single carbon atom of the network is explicitly accounted for, with no dangling bonds or hidden external leads.  
 
@@ -177,7 +177,7 @@ Examining the matrix reveals an interesting hybrid behavior:
 
 ---
 
-## Breaking the Universal Logic Deadlock
+## Solving the Universal Logic Deadlock
 
 At first glance, one might worry that all these fractional probability matrices are merely drifting further away from our original goal: constructing deterministic, universal logic gates. 
 

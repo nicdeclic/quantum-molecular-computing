@@ -2,7 +2,7 @@
 title: "Quantum Molecular Computing Explained to a 5 Year Old"
 description: "Despite all the underlying complexity... the fundamental rules are so strikingly intuitive that a five-year-old could grasp them without breaking a sweat."
 author: "NicDeclic"
-date: "2026-09-17"
+date: "2026-09-16"
 categories: [Introduction, Intuition]
 image: "/images/5year old toys.jpg"
 ---

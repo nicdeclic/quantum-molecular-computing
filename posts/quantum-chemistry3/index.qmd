@@ -1,6 +1,6 @@
 ---
 title: "Quantum Chemistry Part 3"
-description: ""
+description: "What is needed now is a way to remove the parasitic resonances. Based on the observation that, generally, the more complex a conjugated molecule is, the more resonance modes it possesses, it should therefore be possible to simplify the molecule. That is to say, reduce the complexity of the bonds in order to keep only the intended resonance modes."
 author: "NicDeclic"
 date: "2026-10-16"
 categories: [Introduction, Chemistry]
@@ -41,19 +41,118 @@ from qmc import * # QMC library
 
 ```
 
+![](/images/construction.png)
+
 ---
 
-![](/images/construction.png) 
+## Solving Molecular Epilepsy
 
-## Breaking the Molecular Epilepsy Deadlock
+What is needed now is a way to remove the parasitic resonances.  
+
+Based on the observation that, generally, the more complex a conjugated molecule is, the more resonance modes it possesses, it should therefore be possible to simplify the molecule. That is to say, reduce the complexity of the bonds in order to keep only the intended resonance modes.  
 
 ---
 
 ## Simplifying the Molecule
 
+If we take the "Letter Envelope" structure and connect the two outputs of the NOR gates together, we obtain the 4 intended resonances plus the 2 expected parasitic resonances.  
+
+However, if we remove one of the connections, the molecule settles into a new, stable state without any parasites.   
+
+This results in a new structure called the "Barred Eight". It acts as the functional equivalent of an AND logic gate.  
+
+Yet, more complex molecules require far more advanced transformations. It is not always as simple as removing a few bonds. At present, no general algorithm exists to automate this process. It remains an active area of research.  
+
 ---
 
-## Couplers
+## Quantum Couplers
+
+Another approach is to filter the connections directly, since that is where the parasitic resonances originate.   
+
+Ideally, we would insert an intermediate filter molecule along the interconnect to ensure that both branches always maintain the exact same logical state.  
+
+However, such a purely chemical filter cannot work: because it must itself be open at both ends to connect into the circuit, it will inevitably develop the exact same parasitic resonances. We would simply be reproducing the initial problem.  
+
+To break this loop, we must rely on a different physical mechanism: **quantum and electrostatic induction.**  
+
+When two conjugated bonds are brought physically close to one another without touching, their $\pi$-electron clouds interact across space. Just like electrical induction in classical physics, the alternating oscillation of electrons in one bond exerts an electrostatic and quantum exchange force on the neighbor:  
+* If one bond shifts into a double bond ($\pi$-density), its local electric field repels or aligns the electron density of the adjacent bond.  
+* The two lines synchronize their states through the vacuum without sharing a single physical atom.  
+
+This wireless, contact-free bridge is what we call a **Quantum Coupler** or **Coupler** in short.  
+
+The coupling strength follows a strict physical scaling:  
+1. **Shorter distance = stronger coupling:** As the spatial gap narrows, the interaction strength increases drastically.  
+2. **More bond pairs = higher efficiency:** Chaining multiple coupled pairs in parallel reinforces the coherence.  
+
+By keeping the distance short enough and using enough parallel bond pairs, the synchronization efficiency can approach virtually **100%**.  
+
+---
+
+### Typology of Couplers
+
+Several physical geometries can be engineered:  
+
+* **Parallel Coupler:** The simplest design to build. The two branches of the dual-rail interconnect are simply routed parallel and brought into close physical proximity.  
+* **Series Coupler:** The molecular equivalent of an electrical transformer. Two closed conjugated loops are placed side-by-side, transferring logic states purely through mutual resonance induction.  
+* **$\pi$-Stacking Coupler (Face-to-Face):** Instead of lying in the same 2D plane, conjugated rings are stacked directly on top of each other (via aromatic $\pi$-$\pi$ stacking). This vertical configuration is exceptionally powerful for routing signals out of the plane and designing **three-dimensional (3D) molecular circuits**.  
+
+Beyond filtering parasites, couplers solve another major engineering hurdle: **clean fan-out.** They allow a single logic gate to cleanly broadcast its output to multiple gates without any physical wiring tangles or parasitic feedback.  
+
+---
+
+## Finally Success?
+
+**Yes! This time, the foundation holds.** 
+
+Every essential building block has now been identified: from fundamental carbon junctions and resonance states to dual-rail interconnects, universal NOR logic, and parasitic-filtering couplers. The baseline theory is established, mathematically coherent, and fully functional!
+
+*“But wait...”* the skeptic might object. *“This is still just theory on paper, isn’t it? Some concepts seem radically counterintuitive. Where is the tangible physical prototype?”*
+
+First comes the blueprint, then comes the machine. 
+
+Historically, every monumental breakthrough in computing began as quiet derivations on a notepad. Alan Turing did not begin with silicon microchips, and quantum computing existed purely on chalkboards decades before the first qubit was frozen in a lab. 
+
+There are still vital, pioneering concepts waiting to be developed — and that is precisely what the upcoming posts will unpack.
+
+Research is a journey of relentless patience; one must embrace the discipline of advancing one careful step at a time. Once the theoretical landscape is mapped, designing the physical architecture will become infinitely clearer.
+
+Nevertheless, we must always keep a vigilant eye on physical reality — if only to ensure our feet remain firmly planted in the realm of the possible. 
+
+With our foundation established, this is the perfect moment to confront the toughest questions head-on. Let us address the most common scientific objections below!
+
+---
+
+## Common Objections
+
+* **"A molecule featuring a three-membered ring would be energetically unstable due to extreme ring strain."**
+
+Quite right! If you ever read a headline announcing that a chemist has isolated a naked, three-membered conjugated carbon ring folded into an "envelope," it would be nothing short of a miracle. The angle strain alone would tear it apart under ambient conditions.  
+
+However, remember our golden rule of interconnects: **inserting an even number of carbon atoms into any bond preserves the exact logical identity of the circuit.**  
+
+As a practical rule of thumb in molecular architecture: **if a topology suffers from geometric strain, expand it by inserting pairs of carbon atoms.**  
+
+By doing so, the bond angles relax toward the natural $120^\circ$ planar geometry of stable $sp^2$ carbon. What begins as an overly strained toy graph eventually transitions into a thermodynamically stable, synthesizable molecule at ambient temperature and pressure.  
+
+Take our strained "Letter Envelope" model as a prime example:  
+1. In its minimal form, the envelope contains tight, highly strained three- and four-membered triangular cycles.  
+2. If we systematically insert **two carbon atoms** into the perimeter bonds of each strained loop, the tight angles open up.  
+3. The strained triangles gracefully blossom into stable **five- and six-membered rings**—yielding the planar polycyclic architecture known as **Pyracylene** ($\text{C}_{14}\text{H}_8$).  
+
+Pyracylene is not a theoretical fantasy: it is a real, well-documented molecule synthesized in organic chemistry laboratories (and famously observed as dynamic defects in graphene sheets under electron-beam irradiation).  
+
+The logic does not change; only the physical ring strain has been relieved.  
+
+It must be noted, however, that pyracylene has often been characterized by physical chemists as **"borderline aromatic"** (owing to the delicate balance between its aromatic benzene-like cores and its antiaromatic cyclooctatetraene-like peripheries).  
+
+Which brings us directly to the next objection...  
+
+* **"Several of these proposed topologies are non-aromatic, meaning their resonance structures are by no means equiprobable."**
+
+* **"Larger molecular networks would suffer from rapid environmental decoherence in any realistic, noisy medium."**
+
+* **"How are the physical inputs and outputs concretely interfaced with the rest of the circuit?"**
 
 ---
 

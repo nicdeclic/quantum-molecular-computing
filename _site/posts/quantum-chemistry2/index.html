@@ -243,7 +243,7 @@ window.Quarto = {
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="6781ec77" class="cell" data-execution_count="1">
+<div id="f1e15322" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -265,8 +265,8 @@ window.Quarto = {
 </details>
 </div>
 <hr>
-<section id="breaking-the-rigidity-deadlock" class="level2">
-<h2 class="anchored" data-anchor-id="breaking-the-rigidity-deadlock">Breaking the Rigidity Deadlock</h2>
+<section id="solving-the-rigidity-deadlock" class="level2">
+<h2 class="anchored" data-anchor-id="solving-the-rigidity-deadlock">Solving the Rigidity Deadlock</h2>
 <p>Let us now step back and examine molecules in their complete, <strong>closed-form</strong> topologies—where every single carbon atom of the network is explicitly accounted for, with no dangling bonds or hidden external leads.</p>
 <p>Consider the resonance manifold of a relatively simple structure: the <strong>Double Honeycomb</strong> (naphthalene-like fused rings).</p>
 <details class="code-fold">
@@ -304,7 +304,7 @@ window.Quarto = {
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="c0fd69d1" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="2">
+<div id="17f4ae43" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -334,7 +334,7 @@ window.Quarto = {
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="5f91a218" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="7c40d2c7" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{array}{|c|c|} \hline \mathbf{A} &amp; \mathbf{B} \\ \hline 0 &amp; 1 \\ 0 &amp; 0 \\ 1 &amp; 0 \\ \hline \end{array}\]</span></p>
@@ -358,7 +358,7 @@ window.Quarto = {
 <ul>
 <li><strong>A fair coin:</strong></li>
 </ul>
-<div id="30a53324" class="cell" data-execution_count="4">
+<div id="6b8de1a2" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Fair"</span>, <span class="st">"="</span>, random.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -372,7 +372,7 @@ window.Quarto = {
 <ul>
 <li><strong>A biased coin:</strong></li>
 </ul>
-<div id="79b10473" class="cell" data-execution_count="5">
+<div id="2db3ab91" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>biased <span class="op">=</span> TransitionMatrix([</span>
@@ -402,7 +402,7 @@ window.Quarto = {
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"DoubleHoneycomb"</span>, <span class="st">"="</span>, doubleHoneycomb.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="451621b9" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="6821f3fb" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[ DoubleHoneycomb =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``0''} &amp; 0.5 &amp; 0.5 \\ \text{``1''} &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
@@ -414,8 +414,8 @@ window.Quarto = {
 * When input <span class="math inline">\(A\)</span> is held at <strong>“1”</strong>, output <span class="math inline">\(B\)</span> collapses into a <strong>deterministic boolean bit</strong> strictly clamped to <strong>“0”</strong> (<span class="math inline">\([1.0 \quad 0.0]\)</span>).</p>
 <hr>
 </section>
-<section id="breaking-the-universal-logic-deadlock" class="level2">
-<h2 class="anchored" data-anchor-id="breaking-the-universal-logic-deadlock">Breaking the Universal Logic Deadlock</h2>
+<section id="solving-the-universal-logic-deadlock" class="level2">
+<h2 class="anchored" data-anchor-id="solving-the-universal-logic-deadlock">Solving the Universal Logic Deadlock</h2>
 <p>At first glance, one might worry that all these fractional probability matrices are merely drifting further away from our original goal: constructing deterministic, universal logic gates.</p>
 <p>Intuitively, however, a compelling hypothesis emerges: <strong>what happens if we mirror and fuse two identical junctions together?</strong></p>
 <p>Because both halves share identical resonance tables, connecting their boundaries should not induce chaotic frustration or instability. Instead, mutual geometric symmetry could act as an internal stabilizer, potentially maintaining deterministic transitions. It was by no means guaranteed, but it was an avenue demanding exploration.</p>
@@ -459,7 +459,7 @@ window.Quarto = {
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="0841fb28" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="ba285864" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -500,7 +500,7 @@ window.Quarto = {
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="37e18ac8" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="206c1344" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -543,7 +543,7 @@ window.Quarto = {
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="fe911909" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="d992fb59" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{array}{|c|c|c|c|c|c|c|c|c|} \hline \mathbf{A} &amp; \mathbf{B} &amp; \mathbf{C} &amp; \mathbf{D1} &amp; \mathbf{D2} &amp; \mathbf{E1} &amp; \mathbf{E2} &amp; \mathbf{F1} &amp; \mathbf{F2} \\ \hline 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \hline \end{array}\]</span></p>
@@ -597,7 +597,7 @@ window.Quarto = {
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="8ba9f469" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
+<div id="1b083088" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -670,7 +670,7 @@ window.Quarto = {
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route branch down into bottom gate (in1)</span></span>
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(input_A.end).to(bottom_gate.in1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cf438a8e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
+<div id="97d627c0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
@@ -732,7 +732,7 @@ window.Quarto = {
 <span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
 <span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="d9f795e6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div id="76afb262" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
@@ -797,7 +797,7 @@ window.Quarto = {
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="bebacff9" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="13">
+<div id="22fac354" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
