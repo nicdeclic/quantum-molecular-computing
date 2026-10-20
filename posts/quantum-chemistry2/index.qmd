@@ -456,9 +456,9 @@ Furthermore, the upper branch was chosen to represent the value of A. However, t
 
 The path now seems crystal clear: with a universal NOR gate and dual-rail interconnects, it is theoretically possible to  chain together as many logic gates as the architecture demands. The logic is universal, mathematically sound, and geometrically elegant.
 
-It feels as though the prototype has finally lifted off the runway, climbing smoothly and flying majestically into the sky.
+The foundation appears to be firmly laid. All that remains is to build upward.
 
-Total victory seems within reach, however, the system stalls mid-air and crashes unexpectedly.
+Yet, as the very first bricks are set into place, the entire structure shakes violently and collapses to the ground.
 
 What on earth just happened?
 

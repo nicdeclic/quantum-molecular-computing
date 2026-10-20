@@ -251,7 +251,7 @@ The last thing we need is to bog down our analysis with ambiguous notations. Cla
 
 ## Junction Resonances
 
-Let us now explore the resonance manifolds of various molecular junctions.
+Let us now explore the resonance manifolds (Kekulé states) of various molecular junctions.
 
 We begin with a simple elementary case: the **linear junction**.
 
