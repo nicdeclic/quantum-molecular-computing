@@ -295,30 +295,43 @@ class CarbonMolecule:
                         ha="center", va="center", zorder=4,
                         bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor="none", alpha=0.8))
 
-        # 2. Draw Couplers (Blue dashed line between bond midpoints)
+        # 2. Draw Couplers (Centered, parallel dashed blue line from P1 to P2)
         for c in self.couplers:
-            m1 = np.array(c.bond1.get_midpoint())
-            m2 = np.array(c.bond2.get_midpoint())
+            b1 = c.bond1
+            b2 = c.bond2
 
-            center = (m1 + m2) / 2.0
-            diff = m2 - m1
-            dist = np.linalg.norm(diff)
+            # Coordinates of the atoms forming bond 1
+            a1 = np.array([b1.atom1.x, b1.atom1.y])
+            b1_end = np.array([b1.atom2.x, b1.atom2.y])
 
-            if dist > 1e-4:
-                normal = np.array([-diff[1], diff[0]]) / dist
+            # Coordinates of the atoms forming bond 2
+            a2 = np.array([b2.atom1.x, b2.atom1.y])
+            b2_end = np.array([b2.atom2.x, b2.atom2.y])
+
+            # Candidate 1: Direct alignment (A1 <-> A2, B1 <-> B2)
+            p1_direct = (a1 + a2) / 2.0
+            p2_direct = (b1_end + b2_end) / 2.0
+
+            # Candidate 2: Inverted alignment (A1 <-> B2, B1 <-> A2)
+            p1_inv = (a1 + b2_end) / 2.0
+            p2_inv = (b1_end + a2) / 2.0
+
+            # Pick the pair that yields the longest line
+            if np.linalg.norm(p2_direct - p1_direct) >= np.linalg.norm(p2_inv - p1_inv):
+                p1, p2 = p1_direct, p2_direct
             else:
-                normal = np.array([0.0, 1.0])
+                p1, p2 = p1_inv, p2_inv
 
-            p_start = center - 0.25 * normal
-            p_end = center + 0.25 * normal
+            # Draw the dashed blue line from P1 to P2
+            ax.plot([p1[0], p2[0]], [p1[1], p2[1]],
+                    color="blue", lw=2.0, linestyle="--", zorder=2)
 
-            ax.plot([p_start[0], p_end[0]], [p_start[1], p_end[1]],
-                    color="blue", lw=1.5, linestyle="--", zorder=2)
-
+            # Draw the label at the center of the coupler line
             if c.label:
-                lbl_pos = center + 0.15 * normal
-                ax.text(lbl_pos[0], lbl_pos[1], c.label, color="blue", fontsize=7,
-                        ha="center", va="center", zorder=4)
+                mid_coupler = (p1 + p2) / 2.0
+                ax.text(mid_coupler[0], mid_coupler[1], c.label, color="blue", fontsize=8,
+                        ha="center", va="center", zorder=4,
+                        bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
 
         # 3. Draw Atoms
         atom_radius = 0.1

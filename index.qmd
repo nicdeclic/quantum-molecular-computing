@@ -13,7 +13,7 @@ title-block-banner: true
 ---
 
 ::: {style="font-size: 1.3em;"}
-👉 **New to this site? Start reading here:**  
+👉 **New to this site? Start reading about Conjugated Carbon Computing (CCC) here:**  
 **["Welcome To A New Branch Of Quantum Computing!"](posts/welcome/index.qmd)**
 :::
   
