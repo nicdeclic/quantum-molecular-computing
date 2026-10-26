@@ -10,7 +10,7 @@
 <atom:link href="https://nicdeclic.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>Open Research Notes &amp; Dynamic Notebooks</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Tue, 20 Oct 2026 04:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 30 Oct 2026 04:00:00 GMT</lastBuildDate>
 <item>
   <title>The Emergence of Protobits</title>
   <dc:creator>NicDeclic </dc:creator>
@@ -29,7 +29,7 @@
 </blockquote>
 </div>
 <hr>
-<div id="3d3848c6" class="cell" data-execution_count="1">
+<div id="f017810f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -163,8 +163,899 @@ font-style: inherit;">2</span></span></code></pre></div></div>
   <category>Introduction</category>
   <category>Protobits</category>
   <guid>https://nicdeclic.com/posts/protobits/</guid>
-  <pubDate>Tue, 20 Oct 2026 04:00:00 GMT</pubDate>
+  <pubDate>Fri, 30 Oct 2026 04:00:00 GMT</pubDate>
   <media:content url="https://nicdeclic.com/posts/protobits/protobit.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Toward a Physical Implementation</title>
+  <dc:creator>NicDeclic </dc:creator>
+  <link>https://nicdeclic.com/posts/toward-physical/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><img src="https://nicdeclic.com/images/carbon-chip.jpg" class="img-fluid"></p>
+<div class="text-end">
+<blockquote class="blockquote">
+<p><em>“Speak less. Listen more. The Earth has been whispering its secrets for billions of years.”</em><br>
+— <strong>Professor Alvin</strong></p>
+</blockquote>
+</div>
+<hr>
+<p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<div id="b271dd3f" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to see library imports</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> sys</span>
+<span id="cb1-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'google.colab'</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> sys.modules:</span>
+<span id="cb1-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Download qmc.py from GitHub</span></span>
+<span id="cb1-4">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>wget <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>raw.githubusercontent.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>nicdeclic<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>quantum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>molecular<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>computing<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>qmc.py</span>
+<span id="cb1-5">    </span>
+<span id="cb1-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Download requirements.txt from GitHub</span></span>
+<span id="cb1-7">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>wget <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>raw.githubusercontent.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>nicdeclic<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>quantum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>molecular<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>computing<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>requirements.txt</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Install dependencies</span></span>
+<span id="cb1-10">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>pip install <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>r requirements.txt</span>
+<span id="cb1-11"></span>
+<span id="cb1-12">sys.path.insert(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"../../src"</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Select root directory</span></span>
+<span id="cb1-13"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> qmc <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># QMC library</span></span>
+<span id="cb1-14"></span>
+<span id="cb1-15"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>reload_ext autoreload</span>
+<span id="cb1-16"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>autoreload <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span></code></pre></div></div>
+</details>
+</div>
+<hr>
+<p>Research is a journey of relentless patience; one must embrace the discipline of advancing one careful step at a time. Once the theoretical landscape is mapped, designing the physical architecture will become infinitely clearer.</p>
+<p>Nevertheless, we must always keep a vigilant eye on physical reality — if only to ensure our feet remain firmly planted in the realm of the possible.</p>
+<p>With our foundation established, this is the perfect moment to confront the toughest questions head-on. Let us address the most common scientific objections below!</p>
+<hr>
+<section id="common-objections" class="level2">
+<h2 class="anchored" data-anchor-id="common-objections">Common Objections</h2>
+<ul>
+<li><strong>“A molecule featuring a three-membered ring would be energetically unstable due to extreme ring strain.”</strong></li>
+</ul>
+<p>Quite right! If you ever read a headline announcing that a chemist has isolated a naked, three-membered conjugated carbon ring folded into an “envelope,” it would be nothing short of a miracle. The angle strain alone would tear it apart under ambient conditions.</p>
+<p><strong>The molecular graphs presented here are functional topologies — logical schematics rather than literal chemical blueprints.</strong></p>
+<p>However, remember our golden rule of interconnects: <strong>inserting an even number of carbon atoms into any bond preserves the exact logical identity of the circuit.</strong></p>
+<p>As a practical rule of thumb in molecular architecture: <strong>if a topology suffers from geometric strain or a lack of space, expand it by inserting pairs of carbon atoms.</strong></p>
+<p>By doing so, the bond angles relax toward the natural <img src="https://latex.codecogs.com/png.latex?120%5E%5Ccirc"> planar geometry of stable <img src="https://latex.codecogs.com/png.latex?sp%5E2"> carbon. What begins as an overly strained toy graph eventually transitions into a thermodynamically stable, synthesizable molecule at ambient temperature and pressure.</p>
+<p>Take our strained “Letter Envelope” model as a prime example:<br>
+1. In its minimal form, the envelope contains tight, highly strained three- and four-membered triangular cycles.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-2">mol <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Letter Envelope"</span>)</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add atoms</span></span>
+<span id="cb2-5">c2_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-6">c2_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-7">c2_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-8">c2_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-9">c2_5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-10">c2_6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-11"></span>
+<span id="cb2-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add bonds</span></span>
+<span id="cb2-13">b2_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_1, c2_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>)</span>
+<span id="cb2-14">b2_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_1, c2_5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"E1"</span>)</span>
+<span id="cb2-15">b2_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_2, c2_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"E2"</span>)</span>
+<span id="cb2-16">b2_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_1, c2_3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-17">b2_5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_2, c2_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-18">b2_6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_3, c2_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C"</span>)</span>
+<span id="cb2-19">b2_7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_3, c2_5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-20">b2_8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_4, c2_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-21">b2_9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2_5, c2_6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>)</span>
+<span id="cb2-22"></span>
+<span id="cb2-23">mol.draw() </span></code></pre></div></div>
+</details>
+<div id="344876c5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/toward-physical/index_files/figure-html/cell-3-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>If we systematically insert <strong>two carbon atoms</strong> into the perimeter bonds of each strained loop, the tight angles open up.<br>
+</li>
+<li>The strained triangles gracefully blossom into stable <strong>five- and six-membered rings</strong> — yielding the planar polycyclic architecture known as <strong>Pyracylene</strong> (<img src="https://latex.codecogs.com/png.latex?%5Ctext%7BC%7D_%7B14%7D%5Ctext%7BH%7D_8">).</li>
+</ol>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a conjugated carbon molecule</span></span>
+<span id="cb3-2">mol <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Pyracylene"</span>)</span>
+<span id="cb3-3"></span>
+<span id="cb3-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add atoms</span></span>
+<span id="cb3-5">c1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb3-6">c2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb3-7">c3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb3-8">c4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb3-9">c5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.9</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.33</span>)</span>
+<span id="cb3-10">c6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.9</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.33</span>)</span>
+<span id="cb3-11">c7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>)</span>
+<span id="cb3-12">c8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>)</span>
+<span id="cb3-13">c9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.9</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.33</span>)</span>
+<span id="cb3-14">c10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.9</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.33</span>)</span>
+<span id="cb3-15">c11 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb3-16">c12 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb3-17">c13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb3-18">c14 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb3-19"></span>
+<span id="cb3-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add bonds</span></span>
+<span id="cb3-21">b1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb3-22">b2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>)</span>
+<span id="cb3-23">b3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2, c4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>)</span>
+<span id="cb3-24">b4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c3, c5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"E1"</span>)</span>
+<span id="cb3-25">b5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c4, c6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"E2"</span>)</span>
+<span id="cb3-26">b6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c3, c7, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb3-27">b7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c4, c8, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb3-28">b8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c5, c9, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb3-29">b9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c6, c10, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb3-30">b10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c7, c8, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C"</span>)</span>
+<span id="cb3-31">b11 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c9, c11, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"E1"</span>)</span>
+<span id="cb3-32">b12 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c10, c12, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"E2"</span>)</span>
+<span id="cb3-33">b13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c7, c11, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb3-34">b14 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c8, c12, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb3-35">b15 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c11, c13, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>)</span>
+<span id="cb3-36">b16 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c12, c14, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>)</span>
+<span id="cb3-37">b17 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c13, c14, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb3-38"></span>
+<span id="cb3-39">mol.draw(scale<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>) </span></code></pre></div></div>
+</details>
+<div id="b2f433f8" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/toward-physical/index_files/figure-html/cell-4-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The resonances are functionally similar:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">all_resonances <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.resonance()</span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, res_mol <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(all_resonances):</span>
+<span id="cb4-4">    res_mol.draw(scale<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>) </span></code></pre></div></div>
+</details>
+<div id="6f3aec2f" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/toward-physical/index_files/figure-html/cell-5-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/toward-physical/index_files/figure-html/cell-5-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/toward-physical/index_files/figure-html/cell-5-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/toward-physical/index_files/figure-html/cell-5-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Pyracylene is not a theoretical fantasy: it is a real, well-documented molecule synthesized in organic chemistry laboratories (and famously observed as dynamic defects in graphene sheets under electron-beam irradiation).</p>
+<p>It must be noted, however, that pyracylene has often been characterized by physical chemists as <strong>“borderline aromatic”</strong> (owing to the delicate balance between its aromatic benzene-like cores and its antiaromatic cyclooctatetraene-like peripheries).</p>
+<p>Which brings us directly to the next objection…</p>
+<hr>
+<ul>
+<li><strong>“Several of these proposed topologies are non-aromatic, meaning their resonance structures are by no means equiprobable.”</strong></li>
+</ul>
+<p>This is a profound physical objection grounded in <strong>Hückel’s Rule of Aromaticity</strong>.</p>
+<p>In physical chemistry, a planar, cyclic conjugated ring is exceptionally stable (aromatic) if it possesses <img src="https://latex.codecogs.com/png.latex?(4n%20+%202)"> delocalized <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons (such as the 6 <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons in benzene).</p>
+<p>Conversely, when a ring contains <img src="https://latex.codecogs.com/png.latex?4n"> <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons (like cyclooctatetraene with 8 electrons), it enters an antiaromatic, electronically frustrated regime. To escape this high-energy penalty, the molecule undergoes a conformational distortion: it buckles out of the plane, warping into a non-planar geometry — much like a potato chip or a saddle.</p>
+<p>Once planarity is broken:<br>
+* The overlap between adjacent <img src="https://latex.codecogs.com/png.latex?p_z"> atomic orbitals collapses.<br>
+* The continuous <img src="https://latex.codecogs.com/png.latex?%5Cpi">-cloud fragments into localized, unequal bond lengths.<br>
+* The resonance states split into widely different energy levels, destroying the uniform probabilistic branching required for clean logic transitions.</p>
+<p>Constraining computational designs strictly to Hückel-compliant <img src="https://latex.codecogs.com/png.latex?(4n%20+%202)"> rings would tend to cripple our architectures. Efficient logic circuits inevitably demand topologies that violate standard aromatic electron counts.</p>
+<p>How do we overcome this energetic divergence? <strong>By enforcing planarity through mechanical tension.</strong></p>
+<p>If non-aromatic rings buckle because of electronic strain, we can physically prevent that distortion by anchoring the molecule within an external structural scaffold and adjusting its perimeter tension — much like stretching and tuning a drumhead.</p>
+<p>When clamped flat by external mechanical boundaries:<br>
+1. Out-of-plane buckling modes are geometrically suppressed.<br>
+2. Orbital overlap is uniformly restored across all carbon vertices.<br>
+3. The competing resonance configurations are forced into equipotential energy levels.</p>
+<p>Several realistic nanotechnology platforms could serve as this planarizing frame:</p>
+<ul>
+<li><strong>Perforated Graphene Frameworks:</strong> A pristine monolayer graphene sheet on a support can be nanolithographically patterned with nanopores. Molecular logic units can then be suspended across these nanometer-scale voids, anchored at the edges using natural heteroatomic “clips” — specifically divalent <strong>oxygen bridges (<img src="https://latex.codecogs.com/png.latex?C-O-C">, ether linkages)</strong> or trivalent <strong>nitrogen junctions (<img src="https://latex.codecogs.com/png.latex?C-N-C_2">, tertiary amine nodes)</strong> standard in organic synthesis.<br>
+</li>
+<li><strong>Protein and Enzyme Scaffolds:</strong> In biological systems, enzymes frequently force substrate molecules into chemically unnatural, high-energy planar transition states through rigid hydrophobic binding pockets. Supramolecular protein cages could act as macroscopic templates, mechanically clamping carbon logic circuits into the required planar topology.<br>
+</li>
+<li><strong>Atomically Flat Substrates (On-Surface Template Synthesis):</strong> A proven technique in modern molecular electronics consists of depositing molecular precursors onto ultra-flat crystalline surfaces—such as gold <img src="https://latex.codecogs.com/png.latex?Au(111)"> or thin insulating layers of sodium chloride (<img src="https://latex.codecogs.com/png.latex?NaCl">) on copper. Strong interfacial van der Waals forces act as an electrostatic press, physically flattening the carbon backbone against the substrate and completely quenching out-of-plane buckling modes.</li>
+<li><strong>Covalent Organic Frameworks (COFs):</strong> Rather than manually carving cavities into existing materials, one can synthesize self-assembling 2D crystalline polymer sheets known as COFs. These frameworks naturally form rigid, highly ordered porous networks. Molecular logic units can be engineered as modular tiles that integrate seamlessly into the lattice pores, leveraging the surrounding network as a built-in, thermally stable rigid chassis.</li>
+<li><strong>Nanotube Suspension Tensors:</strong> Suspending the molecular network between parallel single-walled carbon nanotubes (SWCNTs) allows for active, dynamic mechanical tuning. By applying controlled electrostatic fields or piezo-actuation across the nanotube anchors, the external tension on the circuit can be adjusted in real time—the nanomechanical equivalent of tuning pegs on a guitar.</li>
+</ul>
+<p>Admittedly, experimental optimal scaffolding techniques remains an open frontier. What matters at this stage is that viable physical pathways exist: <strong>there are no thermodynamics violation; we simply need to engineer the boundary constraints.</strong></p>
+<hr>
+<ul>
+<li><strong>“Larger molecular networks would suffer from rapid environmental decoherence in any realistic, noisy medium.”</strong></li>
+</ul>
+<p>There is indeed a fundamental spatial threshold — a <strong>coherence length</strong> — beyond which fragile quantum entanglement decays into classical noise.</p>
+<p>Crucially, this coherence length is not a fixed, rigid constant: it is heavily dictated by thermal thermodynamics.</p>
+<p>While cooling the system down to cryogenic temperatures (<img src="https://latex.codecogs.com/png.latex?4%5C%20%5Ctext%7BK%7D"> or millikelvin regimes) would trivially expand the coherence horizon across tens of micrometers — instantly covering millions of interconnected gates — our core design philosophy refuses the crutch of bulky, energy-expensive dilution refrigerators. The ultimate objective remains robust, room-temperature operation.</p>
+<p>In such environments, noise originates primarily from two physical culprits:<br>
+1. <strong>Lattice Vibrations (Phonons):</strong> Thermal agitations cause the carbon-carbon bonds to flex, stretch, and twist at picosecond timescales (<img src="https://latex.codecogs.com/png.latex?10%5E%7B-12%7D%5C%20%5Ctext%7Bs%7D">), disrupting the delicate phase relationships of the delocalized <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron wavefunctions.<br>
+2. <strong>Magnetic Spin Fluctuations:</strong> Uncontrolled nuclear spins (such as trace <img src="https://latex.codecogs.com/png.latex?%5E%7B13%7D%5Ctext%7BC%7D"> isotopes or surrounding solvent protons) generate fluctuating local magnetic fields that dephase electron spins.</p>
+<p>In pristine conjugated materials (such as graphene or polyenes) at room temperature, the electron mean free path and ballistic quantum coherence radius typically span from <strong>tens to hundreds of nanometers</strong> (roughly 50 to 500 carbon rings). Across a macroscopic chip, this boundary would inevitably be crossed.</p>
+<p>But here lies the remarkable resilience of molecular architectures: <strong>decoherence does not kill the machine.</strong></p>
+<p>As long as the molecular network remains electrically insulated from parasitic ground leaks, it does not catastrophically shut down when quantum coherence is lost. Instead, it undergoes <strong>graceful degradation</strong>, seamlessly transitioning from coherent quantum computing into <strong>massively parallel probabilistic computing</strong>.</p>
+<p>While a probabilistic p-bit network lacks the exponential speedup of pure quantum computation, it remains a formidable <strong>thermodynamic supercomputer</strong> — capable of solving problems at the sub-picosecond physical timescale of electron motion, while operating near the fundamental thermodynamic limits of minimal energy dissipation.</p>
+<p>Note however that in any realistic large-scale molecular circuit, computation inherently operates across two spatial tiers:<br>
+* <strong>Local Scale (Quantum Islands):</strong> Within individual logic gates, rings, and tightly coupled blocks (spanning a few nanometers), operation is <strong>100% coherent and quantum</strong>.<br>
+* <strong>Global Scale:</strong> Between distant sub-units separated by long interconnects, the signal propagates as <strong>incoherent, probabilistic bitstreams</strong>.</p>
+<p>So now the ultimate architectural challenge is straightforward: <strong>how do we expand the quantum islands until they engulf the entire circuit?</strong></p>
+<p>Several physical mechanisms can push the coherence horizon across the entire network:</p>
+<ol type="1">
+<li><strong>Topological Protection &amp; Chiral Edge Modes (Quantum Hall Analogs):</strong> By engineering the graph topology to mimic the Haldane model or quantum spin Hall phases, conduction electrons are confined to robust, unidirectional edge states. In these topological conduits, back-scattering against thermal phonons is physically forbidden, dramatically stretching the coherence length across macroscopic boundaries.<br>
+</li>
+<li><strong>Passive Stabilizer Couplers (Noiseless Subsystems):</strong> Our inter-branch couplers act as hardware-level, passive quantum error-correcting codes. By enforcing mutual parity between dual-rail lines through electrostatic and quantum exchange energy, the coupler creates an energetic penalty against phase-flip and bit-flip errors. Noise that attempts to perturb a single branch is energetically suppressed, confining quantum information inside an intrinsically protected <strong>noiseless subsystem (decoupling subspace)</strong> without requiring active error-detection cycles.<br>
+</li>
+<li><strong>Isotopic Purification:</strong> Synthesizing the carbon framework from <img src="https://latex.codecogs.com/png.latex?99.99%5C%25"> isotopically pure <strong>Carbon-12</strong> completely eradicates the nuclear spin bath. The <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons travel through a magnetically silent vacuum, extending room-temperature spin coherence by orders of magnitude.<br>
+</li>
+<li><strong>Phononic Bandgap Engineering:</strong> Designing the surrounding scaffolding (such as periodic perforated graphene or COFs) as an acoustic metamaterial creates a phononic bandgap. By acoustically isolating the molecular circuit, the specific vibrational frequencies responsible for thermal dephasing are physically barred from penetrating the computational core.<br>
+</li>
+<li><strong>Ultrafast Femtosecond Dynamics:</strong> Molecular <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron resonance and charge redistribution occur on the <strong>femtosecond scale (<img src="https://latex.codecogs.com/png.latex?10%5E%7B-15%7D%5C%20%5Ctext%7Bs%7D">)</strong>, completing logical transitions orders of magnitude faster than the picosecond onset of thermal lattice vibrations. The computation finishes before the environment even notices it has begun.</li>
+</ol>
+<hr>
+<ul>
+<li><strong>“How are the physical inputs and outputs concretely interfaced with the rest of the circuit?”</strong></li>
+</ul>
+<p>This is the classic “interconnect problem.” A computational model is useless if it remains trapped in an isolated mathematical vacuum. We must be able to write an input state into a carbon bond and read the output state from another bond.</p>
+<p>Fortunately, we do not need to invent new physics to interface with carbon bonds. Modern nanotechnology and physical chemistry already offer an exhaustive toolkit, which can be grouped into five distinct physical categories:</p>
+<section id="mechanical-methods-strain-geometry" class="level4">
+<h4 class="anchored" data-anchor-id="mechanical-methods-strain-geometry">1. Mechanical Methods (Strain &amp; Geometry)</h4>
+<p><em>The bond state is dictated by physically tuning atomic distances (<img src="https://latex.codecogs.com/png.latex?1.54%5C%20%5Ctext%7B%C3%85%7D"> for single bonds vs <img src="https://latex.codecogs.com/png.latex?1.34%5C%20%5Ctext%7B%C3%85%7D"> for double bonds).</em><br>
+* <strong>Writing (Inputs):</strong> Nanoscale piezoelectric actuators or Atomic Force Microscope (AFM) tips can gently stretch or compress boundary bonds, mechanically clamping them into an elongated single bond (<img src="https://latex.codecogs.com/png.latex?0">) or a contracted double bond (<img src="https://latex.codecogs.com/png.latex?1">).<br>
+* <strong>Reading (Outputs):</strong> Non-contact AFM (NC-AFM with a CO-functionalized tip) can directly “feel” and image the electronic bond order of terminal bonds with sub-angstrom resolution.</p>
+</section>
+<section id="chemical-electrochemical-methods-bond-valency" class="level4">
+<h4 class="anchored" data-anchor-id="chemical-electrochemical-methods-bond-valency">2. Chemical &amp; Electrochemical Methods (Bond Valency)</h4>
+<p><em>The bond state is controlled by reversibly adding or removing atoms and electrons.</em><br>
+* <strong>Writing (Inputs):</strong> Reversible protonation (attaching a single hydrogen ion <img src="https://latex.codecogs.com/png.latex?H%5E+">) saturates an input carbon atom into a four-way <img src="https://latex.codecogs.com/png.latex?%5Csigma">-node, permanently locking the adjacent conjugated pathway into a single bond (<img src="https://latex.codecogs.com/png.latex?0">). Removing the proton frees the <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron, restoring the double-bond state (<img src="https://latex.codecogs.com/png.latex?1">).<br>
+* <strong>Reading (Outputs):</strong> Double bonds are chemically far more reactive than single bonds (e.g., in cycloaddition reactions). The output state can trigger or inhibit a localized chemical cascade.</p>
+</section>
+<section id="electrostatic-inductive-methods-contact-free-fields" class="level4">
+<h4 class="anchored" data-anchor-id="electrostatic-inductive-methods-contact-free-fields">3. Electrostatic &amp; Inductive Methods (Contact-Free Fields)</h4>
+<p><em>Information is transferred across the vacuum using local electric fields (Stark effect) and our Couplers.</em><br>
+* <strong>Writing (Inputs):</strong> A metallic nano-gate positioned a single nanometer away applies a local voltage bias. The electrostatic field polarizes the <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron cloud, pushing double-bond density into the target bond without any physical contact.<br>
+* <strong>Reading (Outputs):</strong> A Single-Electron Transistor (SET) or capacitive sensor placed beside the terminal bond detects the minute electrostatic charge shift caused by single vs double bond transitions.</p>
+</section>
+<section id="optical-photonic-methods-speed-of-light" class="level4">
+<h4 class="anchored" data-anchor-id="optical-photonic-methods-speed-of-light">4. Optical &amp; Photonic Methods (Speed of Light)</h4>
+<p><em>Photons drive transitions and read results non-destructively.</em><br>
+* <strong>Writing (Inputs):</strong> Molecular photoswitches (such as azobenzene or diarylethene units) bonded to the input lines can be flipped between two conformations using specific wavelengths of light (UV vs visible laser pulses), injecting a <img src="https://latex.codecogs.com/png.latex?0"> or <img src="https://latex.codecogs.com/png.latex?1"> in femtoseconds.<br>
+* <strong>Reading (Outputs):</strong> Fluorescence spectroscopy. When the output circuit resolves to a continuous conjugated path (<img src="https://latex.codecogs.com/png.latex?1">), it fluoresces brightly under laser excitation; if the path is broken into single bonds (<img src="https://latex.codecogs.com/png.latex?0">), fluorescence is quenched. The output bit is read out with an ordinary photodetector.</p>
+</section>
+<section id="magnetic-spintronic-methods-the-13textc-nuclear-bridge" class="level4">
+<h4 class="anchored" data-anchor-id="magnetic-spintronic-methods-the-13textc-nuclear-bridge">5. Magnetic &amp; Spintronic Methods (The <img src="https://latex.codecogs.com/png.latex?%5E%7B13%7D%5Ctext%7BC%7D"> Nuclear Bridge)</h4>
+<p><em>Leveraging magnetic resonance and nuclear spins for ultra-stable read/write operations.</em><br>
+* <strong>Writing (Inputs):</strong> Radiofrequency (RF) pulses flip a designated terminal <img src="https://latex.codecogs.com/png.latex?%5E%7B13%7D%5Ctext%7BC%7D"> nuclear spin, which then imprints its logical state onto the surrounding <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons via hyperfine contact.<br>
+* <strong>Reading (Outputs):</strong> Nitrogen-Vacancy (NV) diamond magnetometers can optically detect the nanoscale magnetic signature of the output bond state non-invasively at room temperature.</p>
+</section>
+<section id="summary-matching-the-interface-to-the-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="summary-matching-the-interface-to-the-architecture">Summary: Matching the Interface to the Architecture</h3>
+<p>We do not have to rely on a single interface. The physical mechanism can be chosen to fit the exact purpose of the machine:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Application Target</th>
+<th style="text-align: left;">Optimal Input Method</th>
+<th style="text-align: left;">Optimal Output Method</th>
+<th style="text-align: left;">Key Advantage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Laboratory Prototyping</strong></td>
+<td style="text-align: left;">Piezoelectric / AFM tips</td>
+<td style="text-align: left;">Non-Contact AFM (NC-AFM)</td>
+<td style="text-align: left;">Direct, atomic-scale physical visualization</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>High-Speed Solid-State Chip</strong></td>
+<td style="text-align: left;">Electrostatic Nano-gates</td>
+<td style="text-align: left;">Optical Fluorescence / NV-Center</td>
+<td style="text-align: left;">Ultrafast, non-contact femtosecond operation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Autonomous Biological / Wet Computing</strong></td>
+<td style="text-align: left;">Chemical Protonation (<img src="https://latex.codecogs.com/png.latex?H%5E+"> / pH)</td>
+<td style="text-align: left;">Localized Enzyme / Redox Reactions</td>
+<td style="text-align: left;">Fully autonomous, liquid-compatible, zero power</td>
+</tr>
+</tbody>
+</table>
+<p>The interconnect hurdle is therefore not a conceptual dead-end. The molecular circuit can seamlessly plug into classical electronics, photonic waveguides, or biochemical environments depending on how we choose to bridge the scales.</p>
+<hr>
+</section>
+</section>
+<section id="speculations-wild-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="https://nicdeclic.com/images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
+<ul>
+<li><p><strong>Could an epileptic seizure be a molecular circuit bug?</strong><br>
+In the brain, synapses are packed with aromatic carbon rings. What if they use π-electron resonance for ultra-fast signaling? If a tiny molecular coupler stretches just a little too far, it breaks. In our circuits, that single broken coupler unleashes parasitic resonances that invade the entire network. Could an epileptic seizure simply be this exact bug happening at a biological scale — a runaway chain reaction of molecular noise that locks millions of synapses into a synchronized freeze?</p></li>
+<li><p><strong>Beyond <img src="https://latex.codecogs.com/png.latex?%5Cpi">-Logic:</strong><br>
+Back in 2006, M. H. van der Veen demonstrated that electrons shifting within conjugated molecules could perform logical operations (“<img src="https://latex.codecogs.com/png.latex?%5Cpi">-Logic”). However, that paradigm relied on active laser pulses to mechanically drive each gate through external photo-switching. My approach takes the fundamental next step: <strong>the internal computation requires no active pumping or external triggers.</strong> Once boundary conditions are set, the conjugated network computes natively, passively, and reversibly through spontaneous resonance relaxation. External interfaces — whether electrostatic, optical, or mechanical — are strictly reserved for reading and writing at the boundaries, leaving the internal logic to resolve itself purely through the self-consistent physics of the carbon backbone.</p></li>
+<li><p><strong>Penrose, Paramecia, and Sub-Cellular Computing:</strong><br>
+A single-celled paramecium has no neurons, no synapses, and no brain. Yet, it swims, avoids obstacles, hunts for food, mates, and learns from its environment. As Sir Roger Penrose and Stuart Hameroff famously wondered: if a neuron is just a binary on/off switch, how does a brainless, single cell compute complex behaviors? The answer may lie within: a single neuron is not a simple bit—it is already a complete molecular supercomputer. Information processing does not start at the neural network level; it is fundamentally driven by the quantum resonance of conjugated <img src="https://latex.codecogs.com/png.latex?%5Cpi">-systems inside the cell’s cytoskeleton.</p></li>
+<li><p><strong>The Slime Mold Paradox (Mazes Without a Brain):</strong><br>
+The slime mold (<em>Physarum polycephalum</em>) is a single giant cell without a nervous system. Yet, it famously solves mazes, re-creates the optimal topology of Tokyo’s railway network, and remembers past experiences. Standard biology describes this as passive chemical diffusion. But what if the cell’s internal protein lattice is actively executing logic? A molecule can compute by global wave relaxation through boundary conditions. The slime mold might be doing the exact same thing on a macroscopic scale: solving optimization problems not by stepping through lines of code, but through the natural physics of conjugated resonance.</p></li>
+<li><p><strong>Plant Memory and the Carbon Web:</strong><br>
+Plants lack a nervous system, yet the sensitive plant (<em>Mimosa pudica</em>) can learn to ignore harmless falls and retain that memory for weeks. Trees synchronize resource distribution across vast fungal networks and anticipate daily solar cycles long before dawn. Rather than relying on fragile electrical action potentials, plants may process and store environmental information directly within their rich architecture of aromatic compounds and carbon lattices. Life spent nearly four billion years computing with carbon bonds before it ever evolved a brain. Neurons might be high-speed cables connecting nature’s ancient, organic computers.</p></li>
+</ul>
+<hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/protobits/index.html">“The Emergence of Protobits”</a></strong></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Introduction</category>
+  <category>Physics</category>
+  <guid>https://nicdeclic.com/posts/toward-physical/</guid>
+  <pubDate>Fri, 23 Oct 2026 04:00:00 GMT</pubDate>
+  <media:content url="https://nicdeclic.com/images/carbon-chip.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Quantum Chemistry Part 3</title>
@@ -185,7 +1076,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="f211bdc8" class="cell" data-execution_count="1">
+<div id="b2638e62" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -493,7 +1384,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>) </span></code></pre></div></div>
 </details>
-<div id="826204d1" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
+<div id="961d70ab" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -567,7 +1458,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>) </span></code></pre></div></div>
 </details>
-<div id="c33b73b1" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
+<div id="e16d618c" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -786,7 +1677,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb4-29">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="77c769a4" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
+<div id="82acf930" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -824,7 +1715,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="5bf467e3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="c94b23f4" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20%5C%5C%20%5Chline%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%201%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%200%20%5C%5C%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -832,7 +1723,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 </div>
 </div>
 <p>Yet, more complex molecules require far more advanced transformations. It is not always as simple as removing a few bonds.<br>
-Unfortunately, At present, no general algorithm exists to automate this process. It remains an active area of research.</p>
+Unfortunately, at present, no general algorithm exists to automate this process. It remains an active area of research.</p>
 <hr>
 </section>
 <section id="quantum-couplers" class="level2">
@@ -1212,7 +2103,7 @@ font-style: inherit;">=</span> mol.add_coupler(b5, b13)</span>
 <span id="cb6-46"></span>
 <span id="cb6-47">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="8acc2bd4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="9e3d0abf" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1398,7 +2289,7 @@ font-style: inherit;">=</span> mol.add_coupler(b8, b2)</span>
 <span id="cb7-27"></span>
 <span id="cb7-28">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="53df9bdc" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="1e89e82d" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1418,34 +2309,6 @@ font-style: inherit;">=</span> mol.add_coupler(b8, b2)</span>
 </figure>
 </div>
 <p>Beyond filtering parasites, couplers solve another major engineering hurdle: <strong>clean fan-out.</strong> They allow a single logic gate to cleanly broadcast its output to multiple gates without any physical wiring tangles or parasitic feedback.</p>
-<hr>
-</section>
-</section>
-<section id="finally-success" class="level2">
-<h2 class="anchored" data-anchor-id="finally-success">Finally Success?</h2>
-<p><strong>Yes! This time, the foundation holds.</strong></p>
-<p>Every essential building block has now been identified: from fundamental carbon junctions and resonance states to dual-rail interconnects, universal NOR logic, and parasitic-filtering couplers. The baseline theory is established, mathematically coherent, and fully functional!</p>
-<p><em>“But wait…”</em> the skeptic might object. <em>“This is still just theory on paper, isn’t it? Some concepts seem radically counterintuitive. Where is the tangible physical prototype?”</em></p>
-<p>First comes the blueprint, then comes the machine.</p>
-<p>Historically, every monumental breakthrough in computing began as quiet derivations on a notepad. Alan Turing did not begin with silicon microchips, and quantum computing existed purely on chalkboards decades before the first qubit was frozen in a lab.</p>
-<p>There are still vital, pioneering concepts waiting to be developed — and that is precisely what the upcoming posts will unpack.</p>
-<p>Research is a journey of relentless patience; one must embrace the discipline of advancing one careful step at a time. Once the theoretical landscape is mapped, designing the physical architecture will become infinitely clearer.</p>
-<p>Nevertheless, we must always keep a vigilant eye on physical reality — if only to ensure our feet remain firmly planted in the realm of the possible.</p>
-<p>With our foundation established, this is the perfect moment to confront the toughest questions head-on. Let us address the most common scientific objections below!</p>
-<hr>
-</section>
-<section id="common-objections" class="level2">
-<h2 class="anchored" data-anchor-id="common-objections">Common Objections</h2>
-<ul>
-<li><strong>“A molecule featuring a three-membered ring would be energetically unstable due to extreme ring strain.”</strong></li>
-</ul>
-<p>Quite right! If you ever read a headline announcing that a chemist has isolated a naked, three-membered conjugated carbon ring folded into an “envelope,” it would be nothing short of a miracle. The angle strain alone would tear it apart under ambient conditions.</p>
-<p><strong>The molecular graphs presented here are functional topologies — logical schematics rather than literal chemical blueprints.</strong></p>
-<p>However, remember our golden rule of interconnects: <strong>inserting an even number of carbon atoms into any bond preserves the exact logical identity of the circuit.</strong></p>
-<p>As a practical rule of thumb in molecular architecture: <strong>if a topology suffers from geometric strain or a lack of space, expand it by inserting pairs of carbon atoms.</strong></p>
-<p>By doing so, the bond angles relax toward the natural <img src="https://latex.codecogs.com/png.latex?120%5E%5Ccirc"> planar geometry of stable <img src="https://latex.codecogs.com/png.latex?sp%5E2"> carbon. What begins as an overly strained toy graph eventually transitions into a thermodynamically stable, synthesizable molecule at ambient temperature and pressure.</p>
-<p>Take our strained “Letter Envelope” model as a prime example:<br>
-1. In its minimal form, the envelope contains tight, highly strained three- and four-membered triangular cycles.</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
@@ -1455,742 +2318,1134 @@ font-style: inherit;"># Create a conjugated carbon molecule</span></span>
 background-color: null;
 font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Letter Envelope"</span>)</span>
+font-style: inherit;">"Fan-out"</span>)</span>
 <span id="cb8-3"></span>
 <span id="cb8-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Add atoms</span></span>
-<span id="cb8-5">c2_1 <span class="op" style="color: #5E5E5E;
+<span id="cb8-5">c1 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.5</span>)</span>
-<span id="cb8-6">c2_2 <span class="op" style="color: #5E5E5E;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb8-6">c2 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.5</span>)</span>
-<span id="cb8-7">c2_3 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.3</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>)</span>
-<span id="cb8-8">c2_4 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.3</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0</span>)</span>
-<span id="cb8-9">c2_5 <span class="op" style="color: #5E5E5E;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb8-7">c3 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+font-style: inherit;">1.0</span>, y<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.5</span>)</span>
-<span id="cb8-10">c2_6 <span class="op" style="color: #5E5E5E;
+font-style: inherit;">0.0</span>)</span>
+<span id="cb8-8">c4 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+font-style: inherit;">1.0</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>)</span>
+<span id="cb8-9">c5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.5</span>)</span>
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb8-10">c6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span>
 <span id="cb8-11"></span>
-<span id="cb8-12"><span class="co" style="color: #5E5E5E;
+<span id="cb8-12">c7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.4</span>)</span>
+<span id="cb8-13">c8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.4</span>)</span>
+<span id="cb8-14">c9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb8-15">c10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb8-16"></span>
+<span id="cb8-17">c11 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.3</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>)</span>
+<span id="cb8-18">c12 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>)</span>
+<span id="cb8-19">c13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.2</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb8-20">c14 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.7</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb8-21"></span>
+<span id="cb8-22">c15 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.3</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>)</span>
+<span id="cb8-23">c16 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>)</span>
+<span id="cb8-24">c17 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.2</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb8-25">c18 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.7</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb8-26"></span>
+<span id="cb8-27"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Add bonds</span></span>
-<span id="cb8-13">b2_1 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_1, c2_2, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"A"</span>)</span>
-<span id="cb8-14">b2_2 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_1, c2_5, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"E1"</span>)</span>
-<span id="cb8-15">b2_3 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_2, c2_6, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"E2"</span>)</span>
-<span id="cb8-16">b2_4 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_1, c2_3, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>)</span>
-<span id="cb8-17">b2_5 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_2, c2_4, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>)</span>
-<span id="cb8-18">b2_6 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_3, c2_4, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"C"</span>)</span>
-<span id="cb8-19">b2_7 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_3, c2_5, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>)</span>
-<span id="cb8-20">b2_8 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_4, c2_6, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>)</span>
-<span id="cb8-21">b2_9 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_5, c2_6, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"B"</span>)</span>
-<span id="cb8-22"></span>
-<span id="cb8-23">mol.draw() </span></code></pre></div></div>
-</details>
-<div id="f3fee683" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-9-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<ol start="2" type="1">
-<li>If we systematically insert <strong>two carbon atoms</strong> into the perimeter bonds of each strained loop, the tight angles open up.<br>
-</li>
-<li>The strained triangles gracefully blossom into stable <strong>five- and six-membered rings</strong> — yielding the planar polycyclic architecture known as <strong>Pyracylene</strong> (<img src="https://latex.codecogs.com/png.latex?%5Ctext%7BC%7D_%7B14%7D%5Ctext%7BH%7D_8">).</li>
-</ol>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Create a conjugated carbon molecule</span></span>
-<span id="cb9-2">mol <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Pyracylene"</span>)</span>
-<span id="cb9-3"></span>
-<span id="cb9-4"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Add atoms</span></span>
-<span id="cb9-5">c1 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.0</span>)</span>
-<span id="cb9-6">c2 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.0</span>)</span>
-<span id="cb9-7">c3 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span>)</span>
-<span id="cb9-8">c4 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span>)</span>
-<span id="cb9-9">c5 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.9</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.33</span>)</span>
-<span id="cb9-10">c6 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.9</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.33</span>)</span>
-<span id="cb9-11">c7 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.0</span>)</span>
-<span id="cb9-12">c8 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.0</span>)</span>
-<span id="cb9-13">c9 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.9</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.33</span>)</span>
-<span id="cb9-14">c10 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.9</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.33</span>)</span>
-<span id="cb9-15">c11 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span>)</span>
-<span id="cb9-16">c12 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.5</span>)</span>
-<span id="cb9-17">c13 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.0</span>)</span>
-<span id="cb9-18">c14 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">1.0</span>)</span>
-<span id="cb9-19"></span>
-<span id="cb9-20"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># Add bonds</span></span>
-<span id="cb9-21">b1 <span class="op" style="color: #5E5E5E;
+<span id="cb8-28">b1 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_bond(c1, c2, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb9-22">b2 <span class="op" style="color: #5E5E5E;
+<span id="cb8-29">b2 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_bond(c1, c3, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"A"</span>)</span>
-<span id="cb9-23">b3 <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-30">b3 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_bond(c2, c4, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"A"</span>)</span>
-<span id="cb9-24">b4 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c3, c5, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"E1"</span>)</span>
-<span id="cb9-25">b5 <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-31">b4 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_bond(c4, c6, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-32">b5 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"E2"</span>)</span>
-<span id="cb9-26">b6 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c3, c7, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c3, c5, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb9-27">b7 <span class="op" style="color: #5E5E5E;
+<span id="cb8-33">b6 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c4, c8, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>)</span>
-<span id="cb9-28">b8 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c5, c9, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c5, c6, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb9-29">b9 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c6, c10, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>)</span>
-<span id="cb9-30">b10 <span class="op" style="color: #5E5E5E;
+<span id="cb8-34"></span>
+<span id="cb8-35">b7 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_bond(c7, c8, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-36">b8 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"C"</span>)</span>
-<span id="cb9-31">b11 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c9, c11, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"E1"</span>)</span>
-<span id="cb9-32">b12 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c10, c12, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"E2"</span>)</span>
-<span id="cb9-33">b13 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c7, c11, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c7, c9, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb9-34">b14 <span class="op" style="color: #5E5E5E;
+<span id="cb8-37">b9 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c8, c12, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c8, c10, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb9-35">b15 <span class="op" style="color: #5E5E5E;
+<span id="cb8-38"></span>
+<span id="cb8-39">b10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c11, c12, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-40">b11 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_bond(c11, c13, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"B"</span>)</span>
-<span id="cb9-36">b16 <span class="op" style="color: #5E5E5E;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-41">b12 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_bond(c12, c14, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-42"></span>
+<span id="cb8-43">b13 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"B"</span>)</span>
-<span id="cb9-37">b17 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c13, c14, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c15, c16, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb9-38"></span>
-<span id="cb9-39">mol.draw(scale<span class="op" style="color: #5E5E5E;
+<span id="cb8-44">b14 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+font-style: inherit;">=</span> mol.add_bond(c15, c17, order<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">1.5</span>) </span></code></pre></div></div>
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-45">b15 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c16, c18, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb8-46"></span>
+<span id="cb8-47">coupler1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_coupler(b1, b7)</span>
+<span id="cb8-48">coupler2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_coupler(b5, b10)</span>
+<span id="cb8-49">coupler3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_coupler(b4, b13)</span>
+<span id="cb8-50"></span>
+<span id="cb8-51">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="b56d6fdb" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="91cef7bc" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-10-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-9-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="465"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<p>The resonances are functionally similar:</p>
+<hr>
+</section>
+</section>
+<section id="molecular-matrix-form" class="level2">
+<h2 class="anchored" data-anchor-id="molecular-matrix-form">Molecular Matrix Form</h2>
+<p>Up to this point, the method for decoding a molecule’s computational behavior has relied on systematically enumerating all of its individual resonance structures one by one.</p>
+<p>However, there is a much more direct, powerful, and scalable approach: <strong>computing the global transition matrix algebraically.</strong></p>
+<p>The key strategy is to treat the entire molecule as a directed mathematical graph and decompose it into elementary topological motifs.</p>
+<p>Just as classical electronics relies on wires, transistors, and resistors, the molecular graph calculus is built from a compact alphabet of primitive transition operators :</p>
+<p>(note: in the following primitives schematics, inputs are on the left and outputs are on the right)</p>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">all_resonances <span class="op" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">mol1 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.resonance()</span>
-<span id="cb10-2"></span>
-<span id="cb10-3"><span class="cf" style="color: #003B4F;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
 background-color: null;
-font-weight: bold;
-font-style: inherit;">for</span> i, res_mol <span class="kw" style="color: #003B4F;
+font-style: inherit;">"Identity"</span>)</span>
+<span id="cb9-2">c1_1 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-weight: bold;
-font-style: inherit;">in</span> <span class="bu" style="color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">enumerate</span>(all_resonances):</span>
-<span id="cb10-4">    res_mol.draw(scale<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">1.5</span>) </span></code></pre></div></div>
+font-style: inherit;">0.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-3">c1_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-4">b1_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol1.add_bond(c1_1, c1_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-5">mol1.draw() </span>
+<span id="cb9-6"></span>
+<span id="cb9-7">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Identity"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, identity.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb9-8"></span>
+<span id="cb9-9"></span>
+<span id="cb9-10">mol2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Negate"</span>)</span>
+<span id="cb9-11">c2_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-12">c2_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb9-13">c2_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-14">b2_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_1, c2_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-15">b2_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol2.add_bond(c2_2, c2_3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-16">mol2.draw() </span>
+<span id="cb9-17"></span>
+<span id="cb9-18">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Negate"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, negate.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb9-19"></span>
+<span id="cb9-20"></span>
+<span id="cb9-21">mol3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Swap"</span>)</span>
+<span id="cb9-22">c3_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-23">c3_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-24">c3_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-25">c3_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-26">b3_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_1, c3_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-27">b3_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol3.add_bond(c3_3, c3_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-28">mol3.draw() </span>
+<span id="cb9-29"></span>
+<span id="cb9-30">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Swap"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, swap.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb9-31"></span>
+<span id="cb9-32"></span>
+<span id="cb9-33">mol4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Fork"</span>)</span>
+<span id="cb9-34">c4_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol4.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-35">c4_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol4.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>)</span>
+<span id="cb9-36">c4_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol4.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-37">c4_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol4.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-38">b4_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol4.add_bond(c4_1, c4_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-39">b4_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol4.add_bond(c4_2, c4_3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-40">b4_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol4.add_bond(c4_2, c4_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-41">mol4.draw() </span>
+<span id="cb9-42"></span>
+<span id="cb9-43">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Fork"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, fork.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb9-44"></span>
+<span id="cb9-45"></span>
+<span id="cb9-46">mol5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Merge"</span>)</span>
+<span id="cb9-47">c5_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol5.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-48">c5_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol5.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-49">c5_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol5.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>)</span>
+<span id="cb9-50">c5_4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol5.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-51">b5_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol5.add_bond(c5_1, c5_3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-52">b5_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol5.add_bond(c5_2, c5_3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-53">b5_3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol5.add_bond(c5_3, c5_4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb9-54">mol5.draw() </span>
+<span id="cb9-55"></span>
+<span id="cb9-56">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Merge"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, merge.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb9-57"></span>
+<span id="cb9-58"></span>
+<span id="cb9-59">mol6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open"</span>)</span>
+<span id="cb9-60">c6_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol6.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.35</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-61">c6_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol6.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.35</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-62">b6_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol6.add_bond(c6_1, c6_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, ctrl1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>], ctrl2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>])</span>
+<span id="cb9-63">mol6.draw(margin<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb9-64"></span>
+<span id="cb9-65">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Open"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb9-66"></span>
+<span id="cb9-67"></span>
+<span id="cb9-68">mol7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Close"</span>)</span>
+<span id="cb9-69">c7_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol7.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.35</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-70">c7_2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol7.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.35</span>, visible<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span>
+<span id="cb9-71">b7_1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol7.add_bond(c7_1, c7_2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, ctrl1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>], ctrl2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>])</span>
+<span id="cb9-72">mol7.draw(margin<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb9-73"></span>
+<span id="cb9-74">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Close"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, close.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="3677c58c" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
+<div id="ac0d32b3" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-11-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-10-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-11-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
-</figure>
-</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Identity%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-11-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-10-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
 </figure>
 </div>
 </div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Negate%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-11-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="313"></p>
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-10-output-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
 </figure>
 </div>
 </div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Swap%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
 </div>
 </div>
-<p>Pyracylene is not a theoretical fantasy: it is a real, well-documented molecule synthesized in organic chemistry laboratories (and famously observed as dynamic defects in graphene sheets under electron-beam irradiation).</p>
-<p>It must be noted, however, that pyracylene has often been characterized by physical chemists as <strong>“borderline aromatic”</strong> (owing to the delicate balance between its aromatic benzene-like cores and its antiaromatic cyclooctatetraene-like peripheries).</p>
-<p>Which brings us directly to the next objection…</p>
-<hr>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-10-output-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Fork%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%200%20&amp;%200.5%20&amp;%200.5%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-10-output-9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Merge%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-10-output-11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="115"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Open%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200.5%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/index_files/figure-html/cell-10-output-13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="115"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Close%20=%20%20%5Cbegin%7Barray%7D%7Br%7Cc%7C%7D%20%5Ctext%7B%7D%20&amp;%20~%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+</div>
+<p>Notice the geometric symmetries embedded within these primitives:</p>
 <ul>
-<li><strong>“Several of these proposed topologies are non-aromatic, meaning their resonance structures are by no means equiprobable.”</strong></li>
+<li><strong>Self-Dual Motifs:</strong> <strong>Identity</strong>, <strong>Negate</strong>, and <strong>Swap</strong> are their own topological duals. Reversing their operational direction leaves their matrix representations strictly invariant.</li>
+<li><strong>Dual Pairs:</strong> <strong>Fork</strong> and <strong>Merge</strong> form a complementary pair: they represent the exact same trivalent junction, simply with inputs and outputs exchanged. The same directional duality connects <strong>Open</strong> and <strong>Close</strong>.</li>
 </ul>
-<p>This is a profound physical objection grounded in <strong>Hückel’s Rule of Aromaticity</strong>.</p>
-<p>In physical chemistry, a planar, cyclic conjugated ring is exceptionally stable (aromatic) if it possesses <img src="https://latex.codecogs.com/png.latex?(4n%20+%202)"> delocalized <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons (such as the 6 <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons in benzene).</p>
-<p>Conversely, when a ring contains <img src="https://latex.codecogs.com/png.latex?4n"> <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons (like cyclooctatetraene with 8 electrons), it enters an antiaromatic, electronically frustrated regime. To escape this high-energy penalty, the molecule undergoes a conformational distortion: it buckles out of the plane, warping into a non-planar geometry — much like a potato chip or a saddle.</p>
-<p>Once planarity is broken:<br>
-* The overlap between adjacent <img src="https://latex.codecogs.com/png.latex?p_z"> atomic orbitals collapses.<br>
-* The continuous <img src="https://latex.codecogs.com/png.latex?%5Cpi">-cloud fragments into localized, unequal bond lengths.<br>
-* The resonance states split into widely different energy levels, destroying the uniform probabilistic branching required for clean logic transitions.</p>
-<p>Constraining computational designs strictly to Hückel-compliant <img src="https://latex.codecogs.com/png.latex?(4n%20+%202)"> rings would tend to cripple our architectures. Efficient logic circuits inevitably demand topologies that violate standard aromatic electron counts.</p>
-<p>How do we overcome this energetic divergence? <strong>By enforcing planarity through mechanical tension.</strong></p>
-<p>If non-aromatic rings buckle because of electronic strain, we can physically prevent that distortion by anchoring the molecule within an external structural scaffold and adjusting its perimeter tension — much like stretching and tuning a drumhead.</p>
-<p>When clamped flat by external mechanical boundaries:<br>
-1. Out-of-plane buckling modes are geometrically suppressed.<br>
-2. Orbital overlap is uniformly restored across all carbon vertices.<br>
-3. The competing resonance configurations are forced into equipotential energy levels.</p>
-<p>Several realistic nanotechnology platforms could serve as this planarizing frame:</p>
+<p>Mathematically, this backward operation is achieved by transposing the matrix, followed by a row-normalization step to enforce that all accessible states sum strictly to 1, or 0 for forbidden transitions.</p>
+<p>Using standard mathematical notation, transposition is denoted by the superscript <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BT%7D">, while row-normalization is enclosed within curly braces <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7B%5C%7B%20%5Cdots%20%5C%7D%7D">:</p>
+<p>For example: <img src="https://latex.codecogs.com/png.latex?%5Ctext%7BFork%7D%20=%20%5C%7B%5Ctext%7BMerge%7D%5E%5Cmathbf%7BT%7D%5C%7D"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BMerge%7D%20=%20%5C%7B%5Ctext%7BFork%7D%5E%5Cmathbf%7BT%7D%5C%7D"></p>
+<p>Using standard linear algebra—the <strong>Kronecker tensor product (<img src="https://latex.codecogs.com/png.latex?%5Cotimes">)</strong> for parallel components, and the <strong>matrix dot product (<img src="https://latex.codecogs.com/png.latex?%5Ccdot">)</strong> for sequential cascade — we can analytically synthesize complex circuits.</p>
+<p>For example, the triangular <strong>XNOR junction</strong> can be calculated directly by assembling primitive blocks:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-chemistry3/serial-xnor.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BXnor%7D%20=%20%5CBig%5C%7B%20(%5Ctext%7BFork%7D%20%5Cotimes%20%5Ctext%7BFork%7D)%20%5Ccdot%20(%5Ctext%7BIdentity%7D%20%5Cotimes%20%5Ctext%7BClose%7D%20%5Cotimes%20%5Ctext%7BIdentity%7D)%20%5Ccdot%20%5Ctext%7BMerge%7D%20%5CBig%5C%7D"></p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">m <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ((fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> close <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> identity) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (merge))</span>
+<span id="cb10-2"></span>
+<span id="cb10-3">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Xnor"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, m.normalize().to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span></code></pre></div></div>
+</details>
+<div id="16463eae" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Xnor%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+</div>
+<p>Carrying out this matrix multiplication yields the exact <img src="https://latex.codecogs.com/png.latex?4%20%5Ctimes%202"> stochastic truth table we previously derived by hand!</p>
+<p>This algebraic calculus generalizes seamlessly to larger, closed-form systems.</p>
 <ul>
-<li><strong>Perforated Graphene Frameworks:</strong> A pristine monolayer graphene sheet on a support can be nanolithographically patterned with nanopores. Molecular logic units can then be suspended across these nanometer-scale voids, anchored at the edges using natural heteroatomic “clips” — specifically divalent <strong>oxygen bridges (<img src="https://latex.codecogs.com/png.latex?C-O-C">, ether linkages)</strong> or trivalent <strong>nitrogen junctions (<img src="https://latex.codecogs.com/png.latex?C-N-C_2">, tertiary amine nodes)</strong> standard in organic synthesis.<br>
-</li>
-<li><strong>Protein and Enzyme Scaffolds:</strong> In biological systems, enzymes frequently force substrate molecules into chemically unnatural, high-energy planar transition states through rigid hydrophobic binding pockets. Supramolecular protein cages could act as macroscopic templates, mechanically clamping carbon logic circuits into the required planar topology.<br>
-</li>
-<li><strong>Atomically Flat Substrates (On-Surface Template Synthesis):</strong> A proven technique in modern molecular electronics consists of depositing molecular precursors onto ultra-flat crystalline surfaces—such as gold <img src="https://latex.codecogs.com/png.latex?Au(111)"> or thin insulating layers of sodium chloride (<img src="https://latex.codecogs.com/png.latex?NaCl">) on copper. Strong interfacial van der Waals forces act as an electrostatic press, physically flattening the carbon backbone against the substrate and completely quenching out-of-plane buckling modes.</li>
-<li><strong>Covalent Organic Frameworks (COFs):</strong> Rather than manually carving cavities into existing materials, one can synthesize self-assembling 2D crystalline polymer sheets known as COFs. These frameworks naturally form rigid, highly ordered porous networks. Molecular logic units can be engineered as modular tiles that integrate seamlessly into the lattice pores, leveraging the surrounding network as a built-in, thermally stable rigid chassis.</li>
-<li><strong>Nanotube Suspension Tensors:</strong> Suspending the molecular network between parallel single-walled carbon nanotubes (SWCNTs) allows for active, dynamic mechanical tuning. By applying controlled electrostatic fields or piezo-actuation across the nanotube anchors, the external tension on the circuit can be adjusted in real time—the nanomechanical equivalent of tuning pegs on a guitar.</li>
+<li><strong>Couplers</strong> can likewise be expressed in matrix form:</li>
 </ul>
-<p>Admittedly, experimental optimal scaffolding techniques remains an open frontier. What matters at this stage is that viable physical pathways exist: <strong>there are no thermodynamics violation; we simply need to engineer the boundary constraints.</strong></p>
-<hr>
-<ul>
-<li><strong>“Larger molecular networks would suffer from rapid environmental decoherence in any realistic, noisy medium.”</strong></li>
-</ul>
-<p>There is indeed a fundamental spatial threshold — a <strong>coherence length</strong> — beyond which fragile quantum entanglement decays into classical noise.</p>
-<p>Crucially, this coherence length is not a fixed, rigid constant: it is heavily dictated by thermal thermodynamics.</p>
-<p>While cooling the system down to cryogenic temperatures (<img src="https://latex.codecogs.com/png.latex?4%5C%20%5Ctext%7BK%7D"> or millikelvin regimes) would trivially expand the coherence horizon across tens of micrometers — instantly covering millions of interconnected gates — our core design philosophy refuses the crutch of bulky, energy-expensive dilution refrigerators. The ultimate objective remains robust, room-temperature operation.</p>
-<p>In such environments, noise originates primarily from two physical culprits:<br>
-1. <strong>Lattice Vibrations (Phonons):</strong> Thermal agitations cause the carbon-carbon bonds to flex, stretch, and twist at picosecond timescales (<img src="https://latex.codecogs.com/png.latex?10%5E%7B-12%7D%5C%20%5Ctext%7Bs%7D">), disrupting the delicate phase relationships of the delocalized <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron wavefunctions.<br>
-2. <strong>Magnetic Spin Fluctuations:</strong> Uncontrolled nuclear spins (such as trace <img src="https://latex.codecogs.com/png.latex?%5E%7B13%7D%5Ctext%7BC%7D"> isotopes or surrounding solvent protons) generate fluctuating local magnetic fields that dephase electron spins.</p>
-<p>In pristine conjugated materials (such as graphene or polyenes) at room temperature, the electron mean free path and ballistic quantum coherence radius typically span from <strong>tens to hundreds of nanometers</strong> (roughly 50 to 500 carbon rings). Across a macroscopic chip, this boundary would inevitably be crossed.</p>
-<p>But here lies the remarkable resilience of molecular architectures: <strong>decoherence does not kill the machine.</strong></p>
-<p>As long as the molecular network remains electrically insulated from parasitic ground leaks, it does not catastrophically shut down when quantum coherence is lost. Instead, it undergoes <strong>graceful degradation</strong>, seamlessly transitioning from coherent quantum computing into <strong>massively parallel probabilistic computing</strong>.</p>
-<p>While a probabilistic p-bit network lacks the exponential speedup of pure quantum computation, it remains a formidable <strong>thermodynamic supercomputer</strong> — capable of solving problems at the sub-picosecond physical timescale of electron motion, while operating near the fundamental thermodynamic limits of minimal energy dissipation.</p>
-<p>Note however that in any realistic large-scale molecular circuit, computation inherently operates across two spatial tiers:<br>
-* <strong>Local Scale (Quantum Islands):</strong> Within individual logic gates, rings, and tightly coupled blocks (spanning a few nanometers), operation is <strong>100% coherent and quantum</strong>.<br>
-* <strong>Global Scale:</strong> Between distant sub-units separated by long interconnects, the signal propagates as <strong>incoherent, probabilistic bitstreams</strong>.</p>
-<p>So now the ultimate architectural challenge is straightforward: <strong>how do we expand the quantum islands until they engulf the entire circuit?</strong></p>
-<p>Several physical mechanisms can push the coherence horizon across the entire network:</p>
-<ol type="1">
-<li><strong>Topological Protection &amp; Chiral Edge Modes (Quantum Hall Analogs):</strong> By engineering the graph topology to mimic the Haldane model or quantum spin Hall phases, conduction electrons are confined to robust, unidirectional edge states. In these topological conduits, back-scattering against thermal phonons is physically forbidden, dramatically stretching the coherence length across macroscopic boundaries.<br>
-</li>
-<li><strong>Passive Stabilizer Couplers (Noiseless Subsystems):</strong> Our inter-branch couplers act as hardware-level, passive quantum error-correcting codes. By enforcing mutual parity between dual-rail lines through electrostatic and quantum exchange energy, the coupler creates an energetic penalty against phase-flip and bit-flip errors. Noise that attempts to perturb a single branch is energetically suppressed, confining quantum information inside an intrinsically protected <strong>noiseless subsystem (decoupling subspace)</strong> without requiring active error-detection cycles.<br>
-</li>
-<li><strong>Isotopic Purification:</strong> Synthesizing the carbon framework from <img src="https://latex.codecogs.com/png.latex?99.99%5C%25"> isotopically pure <strong>Carbon-12</strong> completely eradicates the nuclear spin bath. The <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons travel through a magnetically silent vacuum, extending room-temperature spin coherence by orders of magnitude.<br>
-</li>
-<li><strong>Phononic Bandgap Engineering:</strong> Designing the surrounding scaffolding (such as periodic perforated graphene or COFs) as an acoustic metamaterial creates a phononic bandgap. By acoustically isolating the molecular circuit, the specific vibrational frequencies responsible for thermal dephasing are physically barred from penetrating the computational core.<br>
-</li>
-<li><strong>Ultrafast Femtosecond Dynamics:</strong> Molecular <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron resonance and charge redistribution occur on the <strong>femtosecond scale (<img src="https://latex.codecogs.com/png.latex?10%5E%7B-15%7D%5C%20%5Ctext%7Bs%7D">)</strong>, completing logical transitions orders of magnitude faster than the picosecond onset of thermal lattice vibrations. The computation finishes before the environment even notices it has begun.</li>
-</ol>
-<hr>
-<ul>
-<li><strong>“How are the physical inputs and outputs concretely interfaced with the rest of the circuit?”</strong></li>
-</ul>
-<p>This is the classic “interconnect problem.” A computational model is useless if it remains trapped in an isolated mathematical vacuum. We must be able to write an input state into a carbon bond and read the output state from another bond.</p>
-<p>Fortunately, we do not need to invent new physics to interface with carbon bonds. Modern nanotechnology and physical chemistry already offer an exhaustive toolkit, which can be grouped into five distinct physical categories:</p>
-<section id="mechanical-methods-strain-geometry" class="level4">
-<h4 class="anchored" data-anchor-id="mechanical-methods-strain-geometry">1. Mechanical Methods (Strain &amp; Geometry)</h4>
-<p><em>The bond state is dictated by physically tuning atomic distances (<img src="https://latex.codecogs.com/png.latex?1.54%5C%20%5Ctext%7B%C3%85%7D"> for single bonds vs <img src="https://latex.codecogs.com/png.latex?1.34%5C%20%5Ctext%7B%C3%85%7D"> for double bonds).</em><br>
-* <strong>Writing (Inputs):</strong> Nanoscale piezoelectric actuators or Atomic Force Microscope (AFM) tips can gently stretch or compress boundary bonds, mechanically clamping them into an elongated single bond (<img src="https://latex.codecogs.com/png.latex?0">) or a contracted double bond (<img src="https://latex.codecogs.com/png.latex?1">).<br>
-* <strong>Reading (Outputs):</strong> Non-contact AFM (NC-AFM with a CO-functionalized tip) can directly “feel” and image the electronic bond order of terminal bonds with sub-angstrom resolution.</p>
-</section>
-<section id="chemical-electrochemical-methods-bond-valency" class="level4">
-<h4 class="anchored" data-anchor-id="chemical-electrochemical-methods-bond-valency">2. Chemical &amp; Electrochemical Methods (Bond Valency)</h4>
-<p><em>The bond state is controlled by reversibly adding or removing atoms and electrons.</em><br>
-* <strong>Writing (Inputs):</strong> Reversible protonation (attaching a single hydrogen ion <img src="https://latex.codecogs.com/png.latex?H%5E+">) saturates an input carbon atom into a four-way <img src="https://latex.codecogs.com/png.latex?%5Csigma">-node, permanently locking the adjacent conjugated pathway into a single bond (<img src="https://latex.codecogs.com/png.latex?0">). Removing the proton frees the <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron, restoring the double-bond state (<img src="https://latex.codecogs.com/png.latex?1">).<br>
-* <strong>Reading (Outputs):</strong> Double bonds are chemically far more reactive than single bonds (e.g., in cycloaddition reactions). The output state can trigger or inhibit a localized chemical cascade.</p>
-</section>
-<section id="electrostatic-inductive-methods-contact-free-fields" class="level4">
-<h4 class="anchored" data-anchor-id="electrostatic-inductive-methods-contact-free-fields">3. Electrostatic &amp; Inductive Methods (Contact-Free Fields)</h4>
-<p><em>Information is transferred across the vacuum using local electric fields (Stark effect) and our Couplers.</em><br>
-* <strong>Writing (Inputs):</strong> A metallic nano-gate positioned a single nanometer away applies a local voltage bias. The electrostatic field polarizes the <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron cloud, pushing double-bond density into the target bond without any physical contact.<br>
-* <strong>Reading (Outputs):</strong> A Single-Electron Transistor (SET) or capacitive sensor placed beside the terminal bond detects the minute electrostatic charge shift caused by single vs double bond transitions.</p>
-</section>
-<section id="optical-photonic-methods-speed-of-light" class="level4">
-<h4 class="anchored" data-anchor-id="optical-photonic-methods-speed-of-light">4. Optical &amp; Photonic Methods (Speed of Light)</h4>
-<p><em>Photons drive transitions and read results non-destructively.</em><br>
-* <strong>Writing (Inputs):</strong> Molecular photoswitches (such as azobenzene or diarylethene units) bonded to the input lines can be flipped between two conformations using specific wavelengths of light (UV vs visible laser pulses), injecting a <img src="https://latex.codecogs.com/png.latex?0"> or <img src="https://latex.codecogs.com/png.latex?1"> in femtoseconds.<br>
-* <strong>Reading (Outputs):</strong> Fluorescence spectroscopy. When the output circuit resolves to a continuous conjugated path (<img src="https://latex.codecogs.com/png.latex?1">), it fluoresces brightly under laser excitation; if the path is broken into single bonds (<img src="https://latex.codecogs.com/png.latex?0">), fluorescence is quenched. The output bit is read out with an ordinary photodetector.</p>
-</section>
-<section id="magnetic-spintronic-methods-the-13textc-nuclear-bridge" class="level4">
-<h4 class="anchored" data-anchor-id="magnetic-spintronic-methods-the-13textc-nuclear-bridge">5. Magnetic &amp; Spintronic Methods (The <img src="https://latex.codecogs.com/png.latex?%5E%7B13%7D%5Ctext%7BC%7D"> Nuclear Bridge)</h4>
-<p><em>Leveraging magnetic resonance and nuclear spins for ultra-stable read/write operations.</em><br>
-* <strong>Writing (Inputs):</strong> Radiofrequency (RF) pulses flip a designated terminal <img src="https://latex.codecogs.com/png.latex?%5E%7B13%7D%5Ctext%7BC%7D"> nuclear spin, which then imprints its logical state onto the surrounding <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons via hyperfine contact.<br>
-* <strong>Reading (Outputs):</strong> Nitrogen-Vacancy (NV) diamond magnetometers can optically detect the nanoscale magnetic signature of the output bond state non-invasively at room temperature.</p>
-</section>
-<section id="summary-matching-the-interface-to-the-architecture" class="level3">
-<h3 class="anchored" data-anchor-id="summary-matching-the-interface-to-the-architecture">Summary: Matching the Interface to the Architecture</h3>
-<p>We do not have to rely on a single interface. The physical mechanism can be chosen to fit the exact purpose of the machine:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Application Target</th>
-<th style="text-align: left;">Optimal Input Method</th>
-<th style="text-align: left;">Optimal Output Method</th>
-<th style="text-align: left;">Key Advantage</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>Laboratory Prototyping</strong></td>
-<td style="text-align: left;">Piezoelectric / AFM tips</td>
-<td style="text-align: left;">Non-Contact AFM (NC-AFM)</td>
-<td style="text-align: left;">Direct, atomic-scale physical visualization</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>High-Speed Solid-State Chip</strong></td>
-<td style="text-align: left;">Electrostatic Nano-gates</td>
-<td style="text-align: left;">Optical Fluorescence / NV-Center</td>
-<td style="text-align: left;">Ultrafast, non-contact femtosecond operation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Autonomous Biological / Wet Computing</strong></td>
-<td style="text-align: left;">Chemical Protonation (<img src="https://latex.codecogs.com/png.latex?H%5E+"> / pH)</td>
-<td style="text-align: left;">Localized Enzyme / Redox Reactions</td>
-<td style="text-align: left;">Fully autonomous, liquid-compatible, zero power</td>
-</tr>
-</tbody>
-</table>
-<p>The interconnect hurdle is therefore not a conceptual dead-end. The molecular circuit can seamlessly plug into classical electronics, photonic waveguides, or biochemical environments depending on how we choose to bridge the scales.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Coupler"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, coupler_q.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span></code></pre></div></div>
+</details>
+<div id="243f8c10" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Coupler%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+</div>
+<p>Rather than acting as spatial routing wires, a Coupler acts as a <strong>diagonal projector / filter matrix</strong>—algebraically annihilating incompatible product states across coupled lines and preserving only the symmetric, synchronized subspace.</p>
 <hr>
 </section>
+<section id="finally-success" class="level2">
+<h2 class="anchored" data-anchor-id="finally-success">Finally Success?</h2>
+<p><strong>Yes! This time, the foundation holds.</strong></p>
+<p>Every essential building block has now been identified: from fundamental carbon junctions and resonance states to dual-rail interconnects, universal NOR logic, and parasitic-filtering couplers. The baseline theory is established, mathematically coherent, and fully functional!</p>
+<p><em>“But wait…”</em> the skeptic might object. <em>“This is still just theory on paper, isn’t it? Some concepts seem radically counterintuitive. Where is the tangible physical prototype?”</em></p>
+<p>First comes the blueprint, then comes the machine.</p>
+<p>Historically, every monumental breakthrough in computing began as quiet derivations on a notepad. Alan Turing did not begin with silicon microchips, and quantum computing existed purely on chalkboards decades before the first qubit was frozen in a lab.</p>
+<p>There are still vital, pioneering concepts waiting to be developed — and that is precisely what the upcoming posts will unpack.</p>
+<hr>
 </section>
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="https://nicdeclic.com/images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
 <ul>
-<li><p><strong>Could an epileptic seizure be a molecular circuit bug?</strong><br>
-In the brain, synapses are packed with aromatic carbon rings. What if they use π-electron resonance for ultra-fast signaling? If a tiny molecular coupler stretches just a little too far, it breaks. In our circuits, that single broken coupler unleashes parasitic resonances that invade the entire network. Could an epileptic seizure simply be this exact bug happening at a biological scale — a runaway chain reaction of molecular noise that locks millions of synapses into a synchronized freeze?</p></li>
-<li><p><strong>Beyond <img src="https://latex.codecogs.com/png.latex?%5Cpi">-Logic:</strong><br>
-Back in 2006, M. H. van der Veen demonstrated that electrons shifting within conjugated molecules could perform logical operations (“<img src="https://latex.codecogs.com/png.latex?%5Cpi">-Logic”). However, that paradigm relied on active laser pulses to mechanically drive each gate through external photo-switching. My approach takes the fundamental next step: <strong>the internal computation requires no active pumping or external triggers.</strong> Once boundary conditions are set, the conjugated network computes natively, passively, and reversibly through spontaneous resonance relaxation. External interfaces — whether electrostatic, optical, or mechanical — are strictly reserved for reading and writing at the boundaries, leaving the internal logic to resolve itself purely through the self-consistent physics of the carbon backbone.</p></li>
-<li><p><strong>Penrose, Paramecia, and Sub-Cellular Computing:</strong><br>
-A single-celled paramecium has no neurons, no synapses, and no brain. Yet, it swims, avoids obstacles, hunts for food, mates, and learns from its environment. As Sir Roger Penrose and Stuart Hameroff famously wondered: if a neuron is just a binary on/off switch, how does a brainless, single cell compute complex behaviors? The answer may lie within: a single neuron is not a simple bit—it is already a complete molecular supercomputer. Information processing does not start at the neural network level; it is fundamentally driven by the quantum resonance of conjugated <img src="https://latex.codecogs.com/png.latex?%5Cpi">-systems inside the cell’s cytoskeleton.</p></li>
-<li><p><strong>The Slime Mold Paradox (Mazes Without a Brain):</strong><br>
-The slime mold (<em>Physarum polycephalum</em>) is a single giant cell without a nervous system. Yet, it famously solves mazes, re-creates the optimal topology of Tokyo’s railway network, and remembers past experiences. Standard biology describes this as passive chemical diffusion. But what if the cell’s internal protein lattice is actively executing logic? A molecule can compute by global wave relaxation through boundary conditions. The slime mold might be doing the exact same thing on a macroscopic scale: solving optimization problems not by stepping through lines of code, but through the natural physics of conjugated resonance.</p></li>
-<li><p><strong>Plant Memory and the Carbon Web:</strong><br>
-Plants lack a nervous system, yet the sensitive plant (<em>Mimosa pudica</em>) can learn to ignore harmless falls and retain that memory for weeks. Trees synchronize resource distribution across vast fungal networks and anticipate daily solar cycles long before dawn. Rather than relying on fragile electrical action potentials, plants may process and store environmental information directly within their rich architecture of aromatic compounds and carbon lattices. Life spent nearly four billion years computing with carbon bonds before it ever evolved a brain. Neurons might be high-speed cables connecting nature’s ancient, organic computers.</p></li>
+<li>For the Mathematically Inclined: A Bridge to Monoidal Categories &amp; ZX-Calculus</li>
 </ul>
+<p>The decomposition into Identity, Swap, Fork, and Merge is not an accident: it directly mirrors the <strong>Symmetric Monoidal Categories (SMC)</strong> found in modern graphical frameworks like Bob Coecke’s <strong>ZX-Calculus</strong>.</p>
+<ul>
+<li><strong>Sequential composition (<img src="https://latex.codecogs.com/png.latex?%5Ccdot">)</strong> routes resonance across time (matrix dot product).</li>
+<li><strong>Parallel composition (<img src="https://latex.codecogs.com/png.latex?%5Cotimes">)</strong> spaces lines across space (Kronecker product).</li>
+<li><strong>Duality (<img src="https://latex.codecogs.com/png.latex?%5C%7B%5Ccdot%5C%7D%5E%5Cmathbf%7BT%7D">)</strong> provides the “cups and caps” for bidirectional, reversible flow.</li>
+</ul>
+<p>The radical difference is <strong>ontological</strong>: while the ZX-calculus is an abstract software tool for quantum compilers, our algebra is <strong>physically embodied in real matter</strong>.</p>
+<p>Here, the nodes are real <img src="https://latex.codecogs.com/png.latex?sp%5E2"> carbon atoms, the wires are genuine <img src="https://latex.codecogs.com/png.latex?%5Cpi">-bonds, and computation is executed natively as electrons settle into their ground state.</p>
 <hr>
 <p>👉 <strong>Next chapter :</strong><br>
-<strong><a href="../../posts/protobits/index.html">“The Emergence of Protobits”</a></strong></p>
+<strong><a href="../../posts/toward-physical/index.html">“Toward a Physical Implementation”</a></strong></p>
 
 
 </section>
@@ -2221,7 +3476,7 @@ Plants lack a nervous system, yet the sensitive plant (<em>Mimosa pudica</em>) c
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="6be0018a" class="cell" data-execution_count="1">
+<div id="df3f782b" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -2562,7 +3817,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb2-32">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="ec88cb92" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="2">
+<div id="b4aeb74b" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2592,7 +3847,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="b2fe119d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="28d6f1e5" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20%5C%5C%20%5Chline%200%20&amp;%201%20%5C%5C%200%20&amp;%200%20%5C%5C%201%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -2616,7 +3871,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <ul>
 <li><strong>A fair coin:</strong></li>
 </ul>
-<div id="2e5210c5" class="cell" data-execution_count="4">
+<div id="fa97d889" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">display_inline(<span class="st" style="color: #20794D;
@@ -2638,7 +3893,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <ul>
 <li><strong>A biased coin:</strong></li>
 </ul>
-<div id="2ec276d7" class="cell" data-execution_count="5">
+<div id="f4446c60" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">biased <span class="op" style="color: #5E5E5E;
@@ -2692,7 +3947,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="abd9f9f7" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="63966a9b" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20DoubleHoneycomb%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%200.5%20&amp;%200.5%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -3025,7 +4280,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb7-36">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="85a46afe" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="c84ebd76" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3236,7 +4491,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb8-26">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="882dec58" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="3175c1a9" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3279,7 +4534,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="127f83c5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="ae878ec8" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7Cc%7Cc%7Cc%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20&amp;%20%5Cmathbf%7BD1%7D%20&amp;%20%5Cmathbf%7BD2%7D%20&amp;%20%5Cmathbf%7BE1%7D%20&amp;%20%5Cmathbf%7BE2%7D%20&amp;%20%5Cmathbf%7BF1%7D%20&amp;%20%5Cmathbf%7BF2%7D%20%5C%5C%20%5Chline%200%20&amp;%201%20&amp;%200%20&amp;%201%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%201%20%5C%5C%201%20&amp;%201%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -3501,7 +4756,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb10-29">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="1618765a" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
+<div id="9fe5aff6" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3701,7 +4956,7 @@ font-style: inherit;"># Route branch down into bottom gate (in1)</span></span>
 background-color: null;
 font-style: inherit;">"-|"</span>).at(input_A.end).to(bottom_gate.in1))</span></code></pre></div></div>
 </details>
-<div id="a8d1c9e9" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
+<div id="e2fb16b9" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
@@ -4055,7 +5310,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb12-47">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="ff8921bf" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div id="1bf90d0a" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
@@ -4322,7 +5577,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb13-32">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="661a9b63" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="13">
+<div id="25ff1a3c" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">

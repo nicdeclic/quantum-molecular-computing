@@ -555,7 +555,7 @@ terminate = TransitionMatrix([
     [0]
 ])
 
-coupler = TransitionMatrix([
+coupler_q = TransitionMatrix([
     [1, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -564,14 +564,14 @@ coupler = TransitionMatrix([
 
 contravariant = terminate.reverse()
 
-jumper = TransitionMatrix([
+close = TransitionMatrix([
     [1],
     [0],
     [0],
     [1]
 ])
 
-entangle = jumper.reverse()
+open = close.reverse()
 
 river = TransitionMatrix([
     [1/2, 0, 0, 1/2],
@@ -653,7 +653,7 @@ triple_xor_gate = (xor_q ^ identity) @ xor_q
 #xnor_q = xor_q @ not_q
 
 # This is the hard way to define NXOR. We do it here only to prove that the molecule theory works
-xnor_q = ((fork ^ fork) @ (identity ^ jumper ^ identity) @ merge).normalize()
+xnor_q = ((fork ^ fork) @ (identity ^ close ^ identity) @ merge).normalize()
 
 # Reversed logic gates
 
