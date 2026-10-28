@@ -8,6 +8,7 @@
 
 <meta name="author" content="NicDeclic">
 <meta name="dcterms.date" content="2026-10-30">
+<meta name="description" content="Now that the structural alphabet of our molecular processor is complete, it is time to unleash its true computational potential. Yet, the moment we begin pushing these carbon networks, an astonishing realization strikes: we are no longer playing by the established rules of “textbook” quantum computing.">
 
 <title>The Emergence of Protobits – Quantum Molecular Computing</title>
 <style>
@@ -112,6 +113,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -158,7 +188,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">The Emergence of Protobits</h1>
-                                <div class="quarto-categories">
+                  <div>
+        <div class="description">
+          Now that the structural alphabet of our molecular processor is complete, it is time to unleash its true computational potential. Yet, the moment we begin pushing these carbon networks, an astonishing realization strikes: we are no longer playing by the established rules of “textbook” quantum computing.
+        </div>
+      </div>
+                          <div class="quarto-categories">
                 <div class="quarto-category">Introduction</div>
                 <div class="quarto-category">Protobits</div>
               </div>
@@ -207,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 </div>
 <hr>
-<div id="f017810f" class="cell" data-execution_count="1">
+<div id="adb419ff" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -228,33 +263,261 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p><img src="../../images/construction.png" class="img-fluid"></p>
+<hr>
+<p>Now that the structural alphabet of our molecular processor is complete, it is time to unleash its true computational potential.</p>
+<p>Yet, the moment we begin pushing these carbon networks, an astonishing realization strikes: <strong>we are no longer playing by the established rules of “textbook” quantum computing.</strong></p>
+<p>Mainstream quantum architectures (such as transmon qubits, trapped ions, or photonic circuits) operate within a rigid, sequential paradigm:<br>
+* You initialize a discrete register of isolated qubits,<br>
+* You apply a unidirectional, clock-driven cascade of discrete unitary logic gates (<span class="math inline">\(U_1, U_2, \dots, U_n\)</span>),<br>
+* And you collapse the state through projective measurement at the very end.</p>
+<p>Our conjugated carbon networks dismantle these constraints. Because computation is embodied in a continuous, delocalized electron cloud (<span class="math inline">\(\pi\)</span>-resonance) anchored in a physical molecular graph, phenomena emerge that have no equivalent in classical or standard quantum models.</p>
+<p>Chief among these anomalies is the intrinsic ability to <strong>compute backwards.</strong></p>
+<hr>
 <hr>
 <section id="reverse-computing" class="level2">
 <h2 class="anchored" data-anchor-id="reverse-computing">Reverse Computing</h2>
+<p>One of the most extraordinary properties of conjugated molecular networks is that they possess <strong>no intrinsic, hardwired notion of “inputs” or “outputs.”</strong></p>
+<p>A chemical bond is simply a physical degree of freedom. It is strictly the observer who chooses to designate certain peripheral bonds as “inputs” (where boundary constraints are imposed) and others as “outputs” (where the resulting state is read).</p>
+<p>Consequently, <strong>there is zero difference in computational time between evaluating a function forward or inverting it backward.</strong></p>
+<p>For a computer scientist accustomed to classical, sequential algorithmic complexity—where multiplying two numbers takes microseconds while factoring them can take millennia—this realization is deeply counterintuitive, almost disorienting.</p>
+<section id="physical-compute-time-bounded-by-molecular-diameter" class="level3">
+<h3 class="anchored" data-anchor-id="physical-compute-time-bounded-by-molecular-diameter">Physical Compute Time: Bounded by Molecular Diameter</h3>
+<p>In an algorithmic circuit, execution time scales with the depth of the gate cascade (<span class="math inline">\(O(\text{depth})\)</span>).</p>
+<p>In a molecular network, however, computation is not an execution loop; it is a <strong>physical wave relaxation process</strong>. The entire <span class="math inline">\(\pi\)</span>-electron cloud redistributes collectively across the carbon framework.</p>
+<p>Therefore, the computational time (<span class="math inline">\(t_{\text{compute}}\)</span>) is physically bounded strictly by the <strong>effective spatial diameter (<span class="math inline">\(D\)</span>) of the molecular graph</strong> divided by the Fermi velocity of the <span class="math inline">\(\pi\)</span>-electrons (<span class="math inline">\(v_F \approx 10^6\ \text{m/s}\)</span>):</p>
+<p><span class="math display">\[t_{\text{compute}} \approx \frac{D}{v_F}\]</span></p>
+<p>Across a molecular processor spanning tens of nanometers, this relaxation settles on the scale of <strong>femtoseconds (<span class="math inline">\(10^{-15}\ \text{s}\)</span>)</strong>—whether computing forward or backward. The arrow of computational complexity dissolves into geometric boundary relaxation.</p>
+<hr>
+</section>
+<section id="inverting-the-letter-envelope" class="level3">
+<h3 class="anchored" data-anchor-id="inverting-the-letter-envelope">Inverting the “Letter Envelope”</h3>
+<p>Let us ground this principle in our familiar “Letter Envelope” molecule.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Letter Envelope"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.8</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol.add_bond(c1, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c2, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c2, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c3, c4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"C"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c3, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c4, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="f9d3ffa9" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Earlier, we treated bonds <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> as inputs and bond <span class="math inline">\(C\)</span> as the XNOR output. Now, let us deliberately flip the roles:<br>
+1. We clamp the former output bond <strong><span class="math inline">\(C\)</span> to state “1”</strong> (imposing this as our boundary condition).<br>
+2. We step back and observe the resulting states at the former input bonds <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>b6.role<span class="op">=</span><span class="st">"input"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b6.state_type<span class="op">=</span><span class="st">"fixed"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>b6.order<span class="op">=</span><span class="st">"double"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol.resonance()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="818df281" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>What emerges at the terminals <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is an exact <strong>coherent superposition</strong> of all valid input combinations that satisfy the condition <span class="math inline">\(C = 1\)</span>:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bs1<span class="op">=</span><span class="st">"00"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>bs2<span class="op">=</span><span class="st">"11"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>r1 <span class="op">=</span> TransitionMatrix.from_bitstring(bs1)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> TransitionMatrix.from_bitstring(bs2)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>r3 <span class="op">=</span> r1 <span class="op">+</span> r2</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>r4 <span class="op">=</span> r3.normalize()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="ch">\{</span><span class="vs">"</span>, quote_latex(bs1), <span class="st">"+"</span>, quote_latex(bs2), <span class="vs">r"</span><span class="ch">\}</span><span class="vs">"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="er">\</span><span class="vs">Rightarrow"</span>, <span class="st">"A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="ch">\{</span><span class="vs">"</span>, r1.to_katex(), <span class="st">"+"</span>, r2.to_katex(), <span class="vs">r"</span><span class="ch">\}</span><span class="vs">"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="er">\</span><span class="vs">Rightarrow"</span>, <span class="st">"A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="ch">\{</span><span class="vs">"</span>, r3.to_katex(), <span class="vs">r"</span><span class="ch">\}</span><span class="vs">"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="er">\</span><span class="vs">Rightarrow"</span>, <span class="st">"A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B"</span>, <span class="st">"="</span>, r4.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="92904892" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ A \otimes B = \{ \text{``00''} + \text{``11''} \} \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ \Rightarrow A \otimes B = \{  \begin{array}{|cccc|}  \hline 1 &amp; 0 &amp; 0 &amp; 0 \\  \hline \end{array}  +  \begin{array}{|cccc|}  \hline 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \} \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ \Rightarrow A \otimes B = \{  \begin{array}{|cccc|}  \hline 1 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \} \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ \Rightarrow A \otimes B =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 0.5 &amp; 0 &amp; 0 &amp; 0.5 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<p>The molecule does not perform trial-and-error backtracking. The carbon network natively filters out all inconsistent configurations (“01” and “10”), letting only the valid solution manifold resonate.</p>
+<hr>
+</section>
+<section id="measurement-as-a-topological-filter" class="level3">
+<h3 class="anchored" data-anchor-id="measurement-as-a-topological-filter">Measurement as a Topological Filter</h3>
+<p>This requires us to fundamentally redefine what a “measurement” means in molecular computing:</p>
+<p>In standard textbook quantum computing, measurement is modeled as a destructive, projective von Neumann collapse. You roll a quantum die, hope you sample the right outcome, and repeat the experiment thousands of times (shots) to reconstruct a probability distribution.</p>
+<p>In our molecular architecture, <strong>measurement is not a lottery; it is a resonant boundary filter.</strong></p>
+<p>Much like acoustic standing waves in an organ pipe:<br>
+* Clamping the output terminal is equivalent to closing or opening the pipe’s acoustic boundaries.<br>
+* The wave equation inside the carbon cavity cannot sustain frequencies or configurations that violate these physical boundary conditions.<br>
+* The wrong answers are not “sampled and discarded probabilistically”; <strong>they are physically prohibited from existing as stationary modes within the cavity.</strong></p>
+<p>The correct input states emerge directly as the only allowed harmonic modes of the molecule.</p>
+<hr>
+</section>
+<section id="the-verdict-carbon-bonds-are-not-qubits" class="level3">
+<h3 class="anchored" data-anchor-id="the-verdict-carbon-bonds-are-not-qubits">The Verdict: Carbon Bonds Are Not Qubits</h3>
+<p>This marks the definitive departure from the conventional quantum paradigm:</p>
 <ul>
-<li><p>The choice of what bond is an input or an output is completely left to the observer. Molecules do not inherently have inputs and outputs.</p></li>
-<li><p>Transpose operation.</p></li>
-<li><p>The resonance states must be bijective.</p></li>
+<li>A standard quantum circuit requires a growing overhead of <strong>ancillary qubits</strong> and complex uncomputation cycles to reverse a non-bijective gate without violating unitarity.<br>
+</li>
+<li>A standard quantum circuit suffers from probabilistic measurement misses, requiring iterative amplitude amplification (such as Grover’s algorithm).</li>
 </ul>
+<p>Our carbon-carbon bonds require zero ancillary overhead and eliminate the probabilistic lottery through boundary-condition filtering.</p>
+<p>The conclusion is inescapable: <strong>conjugated carbon bonds are not qubits.</strong></p>
 <hr>
 </section>
-<section id="protobits" class="level2">
-<h2 class="anchored" data-anchor-id="protobits">Protobits</h2>
-<p>A “poor man’s quantum computer” refers to a probabilistic computer built using p-bits (probabilistic bits) instead of traditional bits or quantum qubits.</p>
-<p>But conjugated carbon molecules are inherently quantum.</p>
+</section>
+<section id="protobits-the-fundamental-substrate-of-information" class="level2">
+<h2 class="anchored" data-anchor-id="protobits-the-fundamental-substrate-of-information">Protobits: The Fundamental Substrate of Information</h2>
+<p>Up to this point, we have formulated the states of our carbon bonds using the language of <strong>p-bits</strong> (probabilistic bits). While mathematically useful, this probabilistic framing captures only a fraction of their true physical capability.</p>
+<p>In modern spintronics, classical p-bits are used to construct what researchers call a <em>“poor man’s quantum computer”</em>—stochastic hardware capable of sampling complex probability distributions and performing simulated annealing, but fundamentally lacking genuine <strong>quantum superposition</strong> and <strong>entanglement</strong>.</p>
+<p>Conjugated carbon bonds, however, are inherently quantum-mechanical entities. Their delocalized <span class="math inline">\(\pi\)</span>-electron clouds routinely support true quantum superposition (resonance) and macroscopic entanglement across the molecular framework.</p>
+<section id="qubits-as-a-sub-phenomenon" class="level3">
+<h3 class="anchored" data-anchor-id="qubits-as-a-sub-phenomenon">Qubits as a Sub-Phenomenon</h3>
+<p>Because our molecular architecture achieves universal logic, it is entirely possible to construct arithmetic hardware—multipliers and adders—purely out of conjugated carbon gates.</p>
+<p>Using this capability, one could build a full processing unit from carbon molecules, executing binary arithmetic to multiply <strong>complex floating-point matrices</strong> just like a classical supercomputer simulating quantum mechanics.</p>
+<p>However, there is a fundamental architectural distinction in how the computation is handled:</p>
+<p>On a classical supercomputer, simulating <span class="math inline">\(N\)</span> qubits forces the software to construct and multiply monolithic, global matrices that scale <strong>exponentially</strong> (<span class="math inline">\(2^N \times 2^N\)</span>) via massive tensor products, rapidly exhausting memory.</p>
+<p>In our molecular architecture, we avoid this exponential memory explosion entirely. Because the logic is physically mapped across the carbon network, the hardware only ever computes with <strong>small, constant-sized matrices circuits corresponding strictly to the local logic gates</strong> involved. The physical wiring of the molecular circuit naturally routes the states superpositions without requiring an exponentially bloated global matrix.</p>
+<p>Measuring the terminal registers at the end of these complex matrix-multiplication circuits yields the exact statistical distributions of textbook quantum mechanics.</p>
+<p>To be sure, assembling millions of molecular gates just to crunch floating-point complex numbers is an absurdly inefficient way to implement a qubit. Yet, it serves as a rigorous <strong>theoretical existence proof</strong>:</p>
+<p>Because conjugated carbon bonds can build the machinery to simulate complex quantum state vectors, <strong>carbon-carbon bonds natively encompass all computational capabilities of qubits.</strong></p>
+<p>In fact, as we will demonstrate in an upcoming post, the minimal physical threshold required to natively synthesize a single, fully coherent quantum qubit is <strong>exactly 3 conjugated carbon-carbon bonds.</strong></p>
+</section>
+<section id="the-hierarchy-of-information-a-true-superset" class="level3">
+<h3 class="anchored" data-anchor-id="the-hierarchy-of-information-a-true-superset">The Hierarchy of Information: A True Superset</h3>
+<p>This leads us to a profound theoretical separation:<br>
+* A standard qubit <strong>cannot</strong> emulate a bidirectional conjugated carbon bond without an unbounded overhead of ancillary registers and loss of spatial invariance.<br>
+* A network of conjugated carbon bonds <strong>can</strong> natively emulate a qubit.</p>
+<p>In computational complexity theory, when system <span class="math inline">\(A\)</span> can simulate system <span class="math inline">\(B\)</span>, but system <span class="math inline">\(B\)</span> cannot simulate system <span class="math inline">\(A\)</span> under bounded resources, it establishes that <strong><span class="math inline">\(A\)</span> is a strict superset of <span class="math inline">\(B\)</span>.</strong></p>
+<p><span class="math display">\[\text{Conjugated carbon bonds (Protobits) } \supset \text{ Qubits } \supset \text{ p-bits } \supset \text{ Classical Bits}\]</span></p>
+<p>Step back and look at the grand architectural portrait of information that emerges:<br>
+1. <strong>At the fundamental layer:</strong> Conjugated carbon bonds operate as native quantum primitives.<br>
+2. <strong>Coherent aggregation:</strong> Grouping 3 coupled carbon bonds synthesizes a textbook <strong>Qubit</strong> (in the <span class="math inline">\(\mathbb{C}^2\)</span> state space).<br>
+3. <strong>Decoherence:</strong> When a carbon bond loses its quantum phase coherence to environmental thermal noise, it gracefully degrades into a <strong>p-bit</strong> (probabilistic bit).<br>
+4. <strong>Measurement / Clamping:</strong> When a p-bit or a qubit is projected through a macroscopic boundary measurement, it collapses into a deterministic <strong>Classical Bit</strong> (<span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>).</p>
+<p>Do you see the relationship? (coherence → decoherence → measurement)</p>
+<p>Conjugated carbon bonds are the generative root at the base of the entire hierarchy. They are the physical engine from which all other forms of computation naturally emerge.</p>
+<p>For this reason, we introduce this new primitive to the scientific lexicon as the <strong>“Protobit”</strong>—from the Greek <em>proto-</em> (first, primitive, original) and <em>bit</em> (binary unit).</p>
+<p>The Protobit is the physical ancestor of digital and quantum information alike.</p>
 <hr>
 </section>
-<section id="decomposition-of-a-molecule-in-matrix-form" class="level2">
-<h2 class="anchored" data-anchor-id="decomposition-of-a-molecule-in-matrix-form">Decomposition of a Molecule in Matrix Form</h2>
+</section>
+<section id="why-not-dirac-notation" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-dirac-notation">Why Not Dirac Notation?</h2>
+<p>Readers familiar with quantum literature might find it surprising that <strong>Dirac’s bra-ket notation (<span class="math inline">\(\langle \psi | \text{ and } | \psi \rangle\)</span>) is intentionally absent throughout this work.</strong></p>
+<p>This is a deliberate architectural and pedagogical choice, driven by several practical reasons:</p>
+<ul>
+<li><strong>Protobits Are Not Qubits:</strong> Dirac notation was tailored for isolated state vectors in Hilbert space (<span class="math inline">\(\mathbb{C}^2\)</span>). While one could technically bend and stretch the bra-ket formalism to fit protobits, standard matrix and set algebra already handles the molecular transition networks flawlessly. In fact, standard linear algebra is more compact, visually transparent, and universally understood across scientific disciplines.<br>
+</li>
+<li><strong>The “Right-to-Left” Cognitive Tax:</strong> Standard quantum mechanics writes operators acting on kets from right to left (<span class="math inline">\(U |\psi\rangle\)</span>), while physical circuits and computer algorithms are read strictly from <strong>left to right</strong> (Input <span class="math inline">\(\rightarrow\)</span> Gate <span class="math inline">\(\rightarrow\)</span> Output). This inverted convention adds a needless layer of mental gymnastics when translating a visual graph into a formal equation. While there is no universal law governing writing direction, we should at least align our algebraic syntax with the visual flow of our physical circuit diagrams.<br>
+</li>
+<li><strong>Finite Molecular Graphs vs.&nbsp;Infinite Dimensions:</strong> Dirac’s bra-ket formalism was historically engineered to bridge discrete states with infinite-dimensional, continuous Hilbert spaces (such as position wavefunctions <span class="math inline">\(\psi(x)\)</span>). In our framework, we operate strictly over finite, discrete networks of carbon bonds spanning well-defined <span class="math inline">\(2^M \times 2^N\)</span> configuration spaces. We have no practical need for Schrödinger’s infinite-dimensional apparatus when compact, finite-dimensional matrix algebra models the discrete topology with far greater precision.<br>
+</li>
+<li><strong>The Multi-Product Dilemma:</strong> In our Conjugated Carbon Computing (CCC) framework, three distinct matrix operations are used on an equal footing: standard matrix dot product (<span class="math inline">\(\cdot\)</span>), Kronecker tensor product (<span class="math inline">\(\otimes\)</span>), and element-wise Hadamard product (<span class="math inline">\(\odot\)</span>). Why privilege one specific multiplication style hidden inside the rigid syntax of bra-kets when explicit matrix operators provide total algebraic clarity?</li>
+</ul>
+<p><strong>Introducing a new notation for quantum computing should not be about dogmatically replacing existing paradigms, but about adopting the most intuitive language for the physics at hand.</strong></p>
+<p>Failing to state the convention could lead to a $125-million disaster—like NASA’s Mars Climate Orbiter, which famously crashed because one team calculated in imperial units while another assumed metric.</p>
+<p>At the same time, there`s no desire to trigger an academic holy war or succumb to the Highlander syndrome of <em>“There Can Only Be One.”</em><br>
+Scientific integrity simply demands that we explicitly declare our frame:</p>
+<blockquote class="blockquote">
+<p><strong>The CCC Convention (Conjugated Carbon Computing Convention):</strong><br>
+Outside of the specific section dedicated to qubits, this entire work strictly employs <strong>Left-to-Right propagation</strong> and <strong>Top-to-Bottom index ordering</strong>.</p>
+</blockquote>
+<p>Software libraries can then trivially convert equations into whatever notation a reader prefers.</p>
 <hr>
 </section>
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="../../images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
 <ul>
-<li>The lyrics and vocal samples of the song “Set Theory” by Carbon Based Lifeforms “There are no answers. Only choices” were inspired by the 2002 sci-fi film Solaris.</li>
+<li>Set Theory &amp; The Observer’s Choice<br>
+While refining and transcribing this theory, I often listen to the music of the Swedish ambient duo <strong>Carbon Based Lifeforms</strong> (could there be a more fitting soundtrack?).<br>
+Among their masterpieces, the vocal sample in <em>“Set Theory”</em> — drawn from the sci-fi film <em>Solaris</em> (2002) — resonates deeply with this work: <em>“There are no answers. Only choices.”</em><br>
+In conjugated carbon computing, there is no absolute, pre-ordained direction to information flow: <strong>it is the observer who chooses which boundary bonds serve as inputs and which serve as outputs.</strong> The calculation is an act of perspective.<br>
+Furthermore, quantum sets constitute a foundational pillar of this entire theoretical framework.<br>
+A heartfelt thank you to the band for their visionary inspiration!</li>
 </ul>
+<p><strong><a href="https://www.youtube.com/watch?v=23iuPKuPd30">“Carbon Based Lifeforms - Set Theory”</a></strong></p>
+<ul>
+<li>From It to Protobit</li>
+</ul>
+<p>In 1989, the legendary physicist John Archibald Wheeler coined the famous doctrine <strong>“It from Bit”</strong>—suggesting that all physical reality (<em>it</em>) emerges from discrete binary questions (<em>bits</em>).</p>
+<p>Decades later, the quantum computing community expanded this intuition to <strong>“It from Qubit”</strong>, postulating that spacetime and matter are knitted from the fabric of quantum entanglement.</p>
+<p>Now, I propose taking this lineage one step further: <strong>“It from Protobit.”</strong></p>
+<p>Crucially, the Protobit is not an ordinary physical component you can pick apart with tweezers. It is an <strong>emergent, fundamental entity of information</strong>—akin to the holographic degrees of freedom etched upon the event horizon of a black hole.</p>
+<p>Under the Holographic Principle, all the dimensional physics inside a (hyper)volume is entirely projected from the information encoded onto its two-dimensional boundary.</p>
+<p>In our model, the 2D network of conjugated carbon bonds acts precisely as such a holographic surface. The Protobit is the elemental quantum of information living on this geometric boundary. When we look at a carbon-carbon bond, we are not merely looking at shared electrons; we are peering through a subtle crack in the fabric of spacetime, catching a glimpse of the fundamental informational pixel that projects quantum reality inward.</p>
+<p>Nature did not wait for humans to build computers. Through the resonant geometry of carbon, the universe reveals that its underlying architecture has always been holographic—and its fundamental currency is the <strong>Protobit</strong>.</p>
 <hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/quantum-set-theory/index.html">“Quantum Set Theory”</a></strong></p>
 
 
 </section>

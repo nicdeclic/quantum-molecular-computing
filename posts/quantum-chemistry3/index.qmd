@@ -529,4 +529,4 @@ Here, the nodes are real $sp^2$ carbon atoms, the wires are genuine $\pi$-bonds,
 ---
 
 👉 **Next chapter :**  
-**["Toward a Physical Implementation"](/posts/toward-physical/index.html)**
+**["Towards a Physical Implementation"](/posts/toward-physical/index.html)**

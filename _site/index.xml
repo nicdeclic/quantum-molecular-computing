@@ -29,7 +29,7 @@
 </blockquote>
 </div>
 <hr>
-<div id="f017810f" class="cell" data-execution_count="1">
+<div id="adb419ff" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -128,33 +128,547 @@ background-color: null;
 font-style: inherit;">2</span></span></code></pre></div></div>
 </details>
 </div>
-<p><img src="https://nicdeclic.com/images/construction.png" class="img-fluid"></p>
+<hr>
+<p>Now that the structural alphabet of our molecular processor is complete, it is time to unleash its true computational potential.</p>
+<p>Yet, the moment we begin pushing these carbon networks, an astonishing realization strikes: <strong>we are no longer playing by the established rules of “textbook” quantum computing.</strong></p>
+<p>Mainstream quantum architectures (such as transmon qubits, trapped ions, or photonic circuits) operate within a rigid, sequential paradigm:<br>
+* You initialize a discrete register of isolated qubits,<br>
+* You apply a unidirectional, clock-driven cascade of discrete unitary logic gates (<img src="https://latex.codecogs.com/png.latex?U_1,%20U_2,%20%5Cdots,%20U_n">),<br>
+* And you collapse the state through projective measurement at the very end.</p>
+<p>Our conjugated carbon networks dismantle these constraints. Because computation is embodied in a continuous, delocalized electron cloud (<img src="https://latex.codecogs.com/png.latex?%5Cpi">-resonance) anchored in a physical molecular graph, phenomena emerge that have no equivalent in classical or standard quantum models.</p>
+<p>Chief among these anomalies is the intrinsic ability to <strong>compute backwards.</strong></p>
+<hr>
 <hr>
 <section id="reverse-computing" class="level2">
 <h2 class="anchored" data-anchor-id="reverse-computing">Reverse Computing</h2>
+<p>One of the most extraordinary properties of conjugated molecular networks is that they possess <strong>no intrinsic, hardwired notion of “inputs” or “outputs.”</strong></p>
+<p>A chemical bond is simply a physical degree of freedom. It is strictly the observer who chooses to designate certain peripheral bonds as “inputs” (where boundary constraints are imposed) and others as “outputs” (where the resulting state is read).</p>
+<p>Consequently, <strong>there is zero difference in computational time between evaluating a function forward or inverting it backward.</strong></p>
+<p>For a computer scientist accustomed to classical, sequential algorithmic complexity—where multiplying two numbers takes microseconds while factoring them can take millennia—this realization is deeply counterintuitive, almost disorienting.</p>
+<section id="physical-compute-time-bounded-by-molecular-diameter" class="level3">
+<h3 class="anchored" data-anchor-id="physical-compute-time-bounded-by-molecular-diameter">Physical Compute Time: Bounded by Molecular Diameter</h3>
+<p>In an algorithmic circuit, execution time scales with the depth of the gate cascade (<img src="https://latex.codecogs.com/png.latex?O(%5Ctext%7Bdepth%7D)">).</p>
+<p>In a molecular network, however, computation is not an execution loop; it is a <strong>physical wave relaxation process</strong>. The entire <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron cloud redistributes collectively across the carbon framework.</p>
+<p>Therefore, the computational time (<img src="https://latex.codecogs.com/png.latex?t_%7B%5Ctext%7Bcompute%7D%7D">) is physically bounded strictly by the <strong>effective spatial diameter (<img src="https://latex.codecogs.com/png.latex?D">) of the molecular graph</strong> divided by the Fermi velocity of the <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons (<img src="https://latex.codecogs.com/png.latex?v_F%20%5Capprox%2010%5E6%5C%20%5Ctext%7Bm/s%7D">):</p>
+<p><img src="https://latex.codecogs.com/png.latex?t_%7B%5Ctext%7Bcompute%7D%7D%20%5Capprox%20%5Cfrac%7BD%7D%7Bv_F%7D"></p>
+<p>Across a molecular processor spanning tens of nanometers, this relaxation settles on the scale of <strong>femtoseconds (<img src="https://latex.codecogs.com/png.latex?10%5E%7B-15%7D%5C%20%5Ctext%7Bs%7D">)</strong>—whether computing forward or backward. The arrow of computational complexity dissolves into geometric boundary relaxation.</p>
+<hr>
+</section>
+<section id="inverting-the-letter-envelope" class="level3">
+<h3 class="anchored" data-anchor-id="inverting-the-letter-envelope">Inverting the “Letter Envelope”</h3>
+<p>Let us ground this principle in our familiar “Letter Envelope” molecule.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a conjugated carbon molecule</span></span>
+<span id="cb2-2">mol <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Letter Envelope"</span>)</span>
+<span id="cb2-3"></span>
+<span id="cb2-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add atoms</span></span>
+<span id="cb2-5">c1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-6">c2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-7">c3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-8">c4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb2-9">c5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-10">c6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb2-11"></span>
+<span id="cb2-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add bonds</span></span>
+<span id="cb2-13">b1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>)</span>
+<span id="cb2-14">b2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-15">b3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2, c6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-16">b4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-17">b5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2, c4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-18">b6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c3, c4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C"</span>)</span>
+<span id="cb2-19">b7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c3, c5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-20">b8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c4, c6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-21">b9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c5, c6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>)</span>
+<span id="cb2-22"></span>
+<span id="cb2-23">mol.draw() </span></code></pre></div></div>
+</details>
+<div id="f9d3ffa9" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/protobits/index_files/figure-html/cell-3-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Earlier, we treated bonds <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B"> as inputs and bond <img src="https://latex.codecogs.com/png.latex?C"> as the XNOR output. Now, let us deliberately flip the roles:<br>
+1. We clamp the former output bond <strong><img src="https://latex.codecogs.com/png.latex?C"> to state “1”</strong> (imposing this as our boundary condition).<br>
+2. We step back and observe the resulting states at the former input bonds <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B">.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">b6.role<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"input"</span></span>
+<span id="cb3-2">b6.state_type<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fixed"</span></span>
+<span id="cb3-3">b6.order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"double"</span></span>
+<span id="cb3-4"></span>
+<span id="cb3-5">all_resonances <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.resonance()</span>
+<span id="cb3-6"></span>
+<span id="cb3-7"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, res_mol <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(all_resonances):</span>
+<span id="cb3-8">    res_mol.draw() </span></code></pre></div></div>
+</details>
+<div id="818df281" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/protobits/index_files/figure-html/cell-4-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/protobits/index_files/figure-html/cell-4-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="196"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>What emerges at the terminals <img src="https://latex.codecogs.com/png.latex?A"> and <img src="https://latex.codecogs.com/png.latex?B"> is an exact <strong>coherent superposition</strong> of all valid input combinations that satisfy the condition <img src="https://latex.codecogs.com/png.latex?C%20=%201">:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">bs1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"00"</span></span>
+<span id="cb4-2">bs2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"11"</span></span>
+<span id="cb4-3"></span>
+<span id="cb4-4">r1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> TransitionMatrix.from_bitstring(bs1)</span>
+<span id="cb4-5">r2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> TransitionMatrix.from_bitstring(bs2)</span>
+<span id="cb4-6"></span>
+<span id="cb4-7">r3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> r1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> r2</span>
+<span id="cb4-8"></span>
+<span id="cb4-9">r4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> r3.normalize()</span>
+<span id="cb4-10"></span>
+<span id="cb4-11">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, quote_latex(bs1), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"+"</span>, quote_latex(bs2), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-12"></span>
+<span id="cb4-13">display_inline(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Rightarrow"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, r1.to_katex(), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"+"</span>, r2.to_katex(), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-14"></span>
+<span id="cb4-15">display_inline(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Rightarrow"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, r3.to_katex(), <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb4-16"></span>
+<span id="cb4-17">display_inline(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Rightarrow"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, r4.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span></code></pre></div></div>
+</details>
+<div id="92904892" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20A%20%5Cotimes%20B%20=%20%5C%7B%20%5Ctext%7B%60%6000''%7D%20+%20%5Ctext%7B%60%6011''%7D%20%5C%7D%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%5CRightarrow%20A%20%5Cotimes%20B%20=%20%5C%7B%20%20%5Cbegin%7Barray%7D%7B%7Ccccc%7C%7D%20%20%5Chline%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20+%20%20%5Cbegin%7Barray%7D%7B%7Ccccc%7C%7D%20%20%5Chline%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20%5C%7D%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%5CRightarrow%20A%20%5Cotimes%20B%20=%20%5C%7B%20%20%5Cbegin%7Barray%7D%7B%7Ccccc%7C%7D%20%20%5Chline%201%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20%5C%7D%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%5CRightarrow%20A%20%5Cotimes%20B%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200.5%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+</div>
+<p>The molecule does not perform trial-and-error backtracking. The carbon network natively filters out all inconsistent configurations (“01” and “10”), letting only the valid solution manifold resonate.</p>
+<hr>
+</section>
+<section id="measurement-as-a-topological-filter" class="level3">
+<h3 class="anchored" data-anchor-id="measurement-as-a-topological-filter">Measurement as a Topological Filter</h3>
+<p>This requires us to fundamentally redefine what a “measurement” means in molecular computing:</p>
+<p>In standard textbook quantum computing, measurement is modeled as a destructive, projective von Neumann collapse. You roll a quantum die, hope you sample the right outcome, and repeat the experiment thousands of times (shots) to reconstruct a probability distribution.</p>
+<p>In our molecular architecture, <strong>measurement is not a lottery; it is a resonant boundary filter.</strong></p>
+<p>Much like acoustic standing waves in an organ pipe:<br>
+* Clamping the output terminal is equivalent to closing or opening the pipe’s acoustic boundaries.<br>
+* The wave equation inside the carbon cavity cannot sustain frequencies or configurations that violate these physical boundary conditions.<br>
+* The wrong answers are not “sampled and discarded probabilistically”; <strong>they are physically prohibited from existing as stationary modes within the cavity.</strong></p>
+<p>The correct input states emerge directly as the only allowed harmonic modes of the molecule.</p>
+<hr>
+</section>
+<section id="the-verdict-carbon-bonds-are-not-qubits" class="level3">
+<h3 class="anchored" data-anchor-id="the-verdict-carbon-bonds-are-not-qubits">The Verdict: Carbon Bonds Are Not Qubits</h3>
+<p>This marks the definitive departure from the conventional quantum paradigm:</p>
 <ul>
-<li><p>The choice of what bond is an input or an output is completely left to the observer. Molecules do not inherently have inputs and outputs.</p></li>
-<li><p>Transpose operation.</p></li>
-<li><p>The resonance states must be bijective.</p></li>
+<li>A standard quantum circuit requires a growing overhead of <strong>ancillary qubits</strong> and complex uncomputation cycles to reverse a non-bijective gate without violating unitarity.<br>
+</li>
+<li>A standard quantum circuit suffers from probabilistic measurement misses, requiring iterative amplitude amplification (such as Grover’s algorithm).</li>
 </ul>
+<p>Our carbon-carbon bonds require zero ancillary overhead and eliminate the probabilistic lottery through boundary-condition filtering.</p>
+<p>The conclusion is inescapable: <strong>conjugated carbon bonds are not qubits.</strong></p>
 <hr>
 </section>
-<section id="protobits" class="level2">
-<h2 class="anchored" data-anchor-id="protobits">Protobits</h2>
-<p>A “poor man’s quantum computer” refers to a probabilistic computer built using p-bits (probabilistic bits) instead of traditional bits or quantum qubits.</p>
-<p>But conjugated carbon molecules are inherently quantum.</p>
+</section>
+<section id="protobits-the-fundamental-substrate-of-information" class="level2">
+<h2 class="anchored" data-anchor-id="protobits-the-fundamental-substrate-of-information">Protobits: The Fundamental Substrate of Information</h2>
+<p>Up to this point, we have formulated the states of our carbon bonds using the language of <strong>p-bits</strong> (probabilistic bits). While mathematically useful, this probabilistic framing captures only a fraction of their true physical capability.</p>
+<p>In modern spintronics, classical p-bits are used to construct what researchers call a <em>“poor man’s quantum computer”</em>—stochastic hardware capable of sampling complex probability distributions and performing simulated annealing, but fundamentally lacking genuine <strong>quantum superposition</strong> and <strong>entanglement</strong>.</p>
+<p>Conjugated carbon bonds, however, are inherently quantum-mechanical entities. Their delocalized <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron clouds routinely support true quantum superposition (resonance) and macroscopic entanglement across the molecular framework.</p>
+<section id="qubits-as-a-sub-phenomenon" class="level3">
+<h3 class="anchored" data-anchor-id="qubits-as-a-sub-phenomenon">Qubits as a Sub-Phenomenon</h3>
+<p>Because our molecular architecture achieves universal logic, it is entirely possible to construct arithmetic hardware—multipliers and adders—purely out of conjugated carbon gates.</p>
+<p>Using this capability, one could build a full processing unit from carbon molecules, executing binary arithmetic to multiply <strong>complex floating-point matrices</strong> just like a classical supercomputer simulating quantum mechanics.</p>
+<p>However, there is a fundamental architectural distinction in how the computation is handled:</p>
+<p>On a classical supercomputer, simulating <img src="https://latex.codecogs.com/png.latex?N"> qubits forces the software to construct and multiply monolithic, global matrices that scale <strong>exponentially</strong> (<img src="https://latex.codecogs.com/png.latex?2%5EN%20%5Ctimes%202%5EN">) via massive tensor products, rapidly exhausting memory.</p>
+<p>In our molecular architecture, we avoid this exponential memory explosion entirely. Because the logic is physically mapped across the carbon network, the hardware only ever computes with <strong>small, constant-sized matrices circuits corresponding strictly to the local logic gates</strong> involved. The physical wiring of the molecular circuit naturally routes the states superpositions without requiring an exponentially bloated global matrix.</p>
+<p>Measuring the terminal registers at the end of these complex matrix-multiplication circuits yields the exact statistical distributions of textbook quantum mechanics.</p>
+<p>To be sure, assembling millions of molecular gates just to crunch floating-point complex numbers is an absurdly inefficient way to implement a qubit. Yet, it serves as a rigorous <strong>theoretical existence proof</strong>:</p>
+<p>Because conjugated carbon bonds can build the machinery to simulate complex quantum state vectors, <strong>carbon-carbon bonds natively encompass all computational capabilities of qubits.</strong></p>
+<p>In fact, as we will demonstrate in an upcoming post, the minimal physical threshold required to natively synthesize a single, fully coherent quantum qubit is <strong>exactly 3 conjugated carbon-carbon bonds.</strong></p>
+</section>
+<section id="the-hierarchy-of-information-a-true-superset" class="level3">
+<h3 class="anchored" data-anchor-id="the-hierarchy-of-information-a-true-superset">The Hierarchy of Information: A True Superset</h3>
+<p>This leads us to a profound theoretical separation:<br>
+* A standard qubit <strong>cannot</strong> emulate a bidirectional conjugated carbon bond without an unbounded overhead of ancillary registers and loss of spatial invariance.<br>
+* A network of conjugated carbon bonds <strong>can</strong> natively emulate a qubit.</p>
+<p>In computational complexity theory, when system <img src="https://latex.codecogs.com/png.latex?A"> can simulate system <img src="https://latex.codecogs.com/png.latex?B">, but system <img src="https://latex.codecogs.com/png.latex?B"> cannot simulate system <img src="https://latex.codecogs.com/png.latex?A"> under bounded resources, it establishes that <strong><img src="https://latex.codecogs.com/png.latex?A"> is a strict superset of <img src="https://latex.codecogs.com/png.latex?B">.</strong></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BConjugated%20carbon%20bonds%20(Protobits)%20%7D%20%5Csupset%20%5Ctext%7B%20Qubits%20%7D%20%5Csupset%20%5Ctext%7B%20p-bits%20%7D%20%5Csupset%20%5Ctext%7B%20Classical%20Bits%7D"></p>
+<p>Step back and look at the grand architectural portrait of information that emerges:<br>
+1. <strong>At the fundamental layer:</strong> Conjugated carbon bonds operate as native quantum primitives.<br>
+2. <strong>Coherent aggregation:</strong> Grouping 3 coupled carbon bonds synthesizes a textbook <strong>Qubit</strong> (in the <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BC%7D%5E2"> state space).<br>
+3. <strong>Decoherence:</strong> When a carbon bond loses its quantum phase coherence to environmental thermal noise, it gracefully degrades into a <strong>p-bit</strong> (probabilistic bit).<br>
+4. <strong>Measurement / Clamping:</strong> When a p-bit or a qubit is projected through a macroscopic boundary measurement, it collapses into a deterministic <strong>Classical Bit</strong> (<img src="https://latex.codecogs.com/png.latex?0"> or <img src="https://latex.codecogs.com/png.latex?1">).</p>
+<p>Do you see the relationship? (coherence → decoherence → measurement)</p>
+<p>Conjugated carbon bonds are the generative root at the base of the entire hierarchy. They are the physical engine from which all other forms of computation naturally emerge.</p>
+<p>For this reason, we introduce this new primitive to the scientific lexicon as the <strong>“Protobit”</strong>—from the Greek <em>proto-</em> (first, primitive, original) and <em>bit</em> (binary unit).</p>
+<p>The Protobit is the physical ancestor of digital and quantum information alike.</p>
 <hr>
 </section>
-<section id="decomposition-of-a-molecule-in-matrix-form" class="level2">
-<h2 class="anchored" data-anchor-id="decomposition-of-a-molecule-in-matrix-form">Decomposition of a Molecule in Matrix Form</h2>
+</section>
+<section id="why-not-dirac-notation" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-dirac-notation">Why Not Dirac Notation?</h2>
+<p>Readers familiar with quantum literature might find it surprising that <strong>Dirac’s bra-ket notation (<img src="https://latex.codecogs.com/png.latex?%5Clangle%20%5Cpsi%20%7C%20%5Ctext%7B%20and%20%7D%20%7C%20%5Cpsi%20%5Crangle">) is intentionally absent throughout this work.</strong></p>
+<p>This is a deliberate architectural and pedagogical choice, driven by several practical reasons:</p>
+<ul>
+<li><strong>Protobits Are Not Qubits:</strong> Dirac notation was tailored for isolated state vectors in Hilbert space (<img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BC%7D%5E2">). While one could technically bend and stretch the bra-ket formalism to fit protobits, standard matrix and set algebra already handles the molecular transition networks flawlessly. In fact, standard linear algebra is more compact, visually transparent, and universally understood across scientific disciplines.<br>
+</li>
+<li><strong>The “Right-to-Left” Cognitive Tax:</strong> Standard quantum mechanics writes operators acting on kets from right to left (<img src="https://latex.codecogs.com/png.latex?U%20%7C%5Cpsi%5Crangle">), while physical circuits and computer algorithms are read strictly from <strong>left to right</strong> (Input <img src="https://latex.codecogs.com/png.latex?%5Crightarrow"> Gate <img src="https://latex.codecogs.com/png.latex?%5Crightarrow"> Output). This inverted convention adds a needless layer of mental gymnastics when translating a visual graph into a formal equation. While there is no universal law governing writing direction, we should at least align our algebraic syntax with the visual flow of our physical circuit diagrams.<br>
+</li>
+<li><strong>Finite Molecular Graphs vs.&nbsp;Infinite Dimensions:</strong> Dirac’s bra-ket formalism was historically engineered to bridge discrete states with infinite-dimensional, continuous Hilbert spaces (such as position wavefunctions <img src="https://latex.codecogs.com/png.latex?%5Cpsi(x)">). In our framework, we operate strictly over finite, discrete networks of carbon bonds spanning well-defined <img src="https://latex.codecogs.com/png.latex?2%5EM%20%5Ctimes%202%5EN"> configuration spaces. We have no practical need for Schrödinger’s infinite-dimensional apparatus when compact, finite-dimensional matrix algebra models the discrete topology with far greater precision.<br>
+</li>
+<li><strong>The Multi-Product Dilemma:</strong> In our Conjugated Carbon Computing (CCC) framework, three distinct matrix operations are used on an equal footing: standard matrix dot product (<img src="https://latex.codecogs.com/png.latex?%5Ccdot">), Kronecker tensor product (<img src="https://latex.codecogs.com/png.latex?%5Cotimes">), and element-wise Hadamard product (<img src="https://latex.codecogs.com/png.latex?%5Codot">). Why privilege one specific multiplication style hidden inside the rigid syntax of bra-kets when explicit matrix operators provide total algebraic clarity?</li>
+</ul>
+<p><strong>Introducing a new notation for quantum computing should not be about dogmatically replacing existing paradigms, but about adopting the most intuitive language for the physics at hand.</strong></p>
+<p>Failing to state the convention could lead to a $125-million disaster—like NASA’s Mars Climate Orbiter, which famously crashed because one team calculated in imperial units while another assumed metric.</p>
+<p>At the same time, there`s no desire to trigger an academic holy war or succumb to the Highlander syndrome of <em>“There Can Only Be One.”</em><br>
+Scientific integrity simply demands that we explicitly declare our frame:</p>
+<blockquote class="blockquote">
+<p><strong>The CCC Convention (Conjugated Carbon Computing Convention):</strong><br>
+Outside of the specific section dedicated to qubits, this entire work strictly employs <strong>Left-to-Right propagation</strong> and <strong>Top-to-Bottom index ordering</strong>.</p>
+</blockquote>
+<p>Software libraries can then trivially convert equations into whatever notation a reader prefers.</p>
 <hr>
 </section>
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="https://nicdeclic.com/images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
 <ul>
-<li>The lyrics and vocal samples of the song “Set Theory” by Carbon Based Lifeforms “There are no answers. Only choices” were inspired by the 2002 sci-fi film Solaris.</li>
+<li>Set Theory &amp; The Observer’s Choice<br>
+While refining and transcribing this theory, I often listen to the music of the Swedish ambient duo <strong>Carbon Based Lifeforms</strong> (could there be a more fitting soundtrack?).<br>
+Among their masterpieces, the vocal sample in <em>“Set Theory”</em> — drawn from the sci-fi film <em>Solaris</em> (2002) — resonates deeply with this work: <em>“There are no answers. Only choices.”</em><br>
+In conjugated carbon computing, there is no absolute, pre-ordained direction to information flow: <strong>it is the observer who chooses which boundary bonds serve as inputs and which serve as outputs.</strong> The calculation is an act of perspective.<br>
+Furthermore, quantum sets constitute a foundational pillar of this entire theoretical framework.<br>
+A heartfelt thank you to the band for their visionary inspiration!</li>
 </ul>
+<p><strong><a href="https://www.youtube.com/watch?v=23iuPKuPd30">“Carbon Based Lifeforms - Set Theory”</a></strong></p>
+<ul>
+<li>From It to Protobit</li>
+</ul>
+<p>In 1989, the legendary physicist John Archibald Wheeler coined the famous doctrine <strong>“It from Bit”</strong>—suggesting that all physical reality (<em>it</em>) emerges from discrete binary questions (<em>bits</em>).</p>
+<p>Decades later, the quantum computing community expanded this intuition to <strong>“It from Qubit”</strong>, postulating that spacetime and matter are knitted from the fabric of quantum entanglement.</p>
+<p>Now, I propose taking this lineage one step further: <strong>“It from Protobit.”</strong></p>
+<p>Crucially, the Protobit is not an ordinary physical component you can pick apart with tweezers. It is an <strong>emergent, fundamental entity of information</strong>—akin to the holographic degrees of freedom etched upon the event horizon of a black hole.</p>
+<p>Under the Holographic Principle, all the dimensional physics inside a (hyper)volume is entirely projected from the information encoded onto its two-dimensional boundary.</p>
+<p>In our model, the 2D network of conjugated carbon bonds acts precisely as such a holographic surface. The Protobit is the elemental quantum of information living on this geometric boundary. When we look at a carbon-carbon bond, we are not merely looking at shared electrons; we are peering through a subtle crack in the fabric of spacetime, catching a glimpse of the fundamental informational pixel that projects quantum reality inward.</p>
+<p>Nature did not wait for humans to build computers. Through the resonant geometry of carbon, the universe reveals that its underlying architecture has always been holographic—and its fundamental currency is the <strong>Protobit</strong>.</p>
 <hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/quantum-set-theory/index.html">“Quantum Set Theory”</a></strong></p>
 
 
 </section>
@@ -167,7 +681,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
   <media:content url="https://nicdeclic.com/posts/protobits/protobit.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title>Toward a Physical Implementation</title>
+  <title>Towards a Physical Implementation</title>
   <dc:creator>NicDeclic </dc:creator>
   <link>https://nicdeclic.com/posts/toward-physical/</link>
   <description><![CDATA[ 
@@ -185,7 +699,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="b271dd3f" class="cell" data-execution_count="1">
+<div id="1296ecd8" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -471,7 +985,7 @@ font-style: inherit;">"B"</span>)</span>
 <span id="cb2-22"></span>
 <span id="cb2-23">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="344876c5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="b0a0dc3c" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -821,7 +1335,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.5</span>) </span></code></pre></div></div>
 </details>
-<div id="b2f433f8" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="537f0362" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -854,7 +1368,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.5</span>) </span></code></pre></div></div>
 </details>
-<div id="6f3aec2f" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
+<div id="f587fb44" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1076,7 +1590,7 @@ Plants lack a nervous system, yet the sensitive plant (<em>Mimosa pudica</em>) c
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="b2638e62" class="cell" data-execution_count="1">
+<div id="c09e67d9" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -1384,7 +1898,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>) </span></code></pre></div></div>
 </details>
-<div id="961d70ab" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
+<div id="fc45e690" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1458,7 +1972,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>) </span></code></pre></div></div>
 </details>
-<div id="e16d618c" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
+<div id="e8f357ea" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1677,7 +2191,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb4-29">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="82acf930" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="2">
+<div id="31744426" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1715,7 +2229,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="c94b23f4" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
+<div id="6800a7ac" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20%5C%5C%20%5Chline%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%201%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%200%20%5C%5C%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -2103,7 +2617,7 @@ font-style: inherit;">=</span> mol.add_coupler(b5, b13)</span>
 <span id="cb6-46"></span>
 <span id="cb6-47">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="9e3d0abf" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="394636de" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2289,7 +2803,7 @@ font-style: inherit;">=</span> mol.add_coupler(b8, b2)</span>
 <span id="cb7-27"></span>
 <span id="cb7-28">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="1e89e82d" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="23f22322" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2673,7 +3187,7 @@ font-style: inherit;">=</span> mol.add_coupler(b4, b13)</span>
 <span id="cb8-50"></span>
 <span id="cb8-51">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="91cef7bc" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div id="44e639aa" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3257,7 +3771,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="ac0d32b3" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="2">
+<div id="fc7d4208" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3386,7 +3900,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="16463eae" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div id="fba4c7cd" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Xnor%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -3410,7 +3924,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="243f8c10" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="2">
+<div id="1525910b" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Coupler%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -3445,7 +3959,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <p>Here, the nodes are real <img src="https://latex.codecogs.com/png.latex?sp%5E2"> carbon atoms, the wires are genuine <img src="https://latex.codecogs.com/png.latex?%5Cpi">-bonds, and computation is executed natively as electrons settle into their ground state.</p>
 <hr>
 <p>👉 <strong>Next chapter :</strong><br>
-<strong><a href="../../posts/toward-physical/index.html">“Toward a Physical Implementation”</a></strong></p>
+<strong><a href="../../posts/toward-physical/index.html">“Towards a Physical Implementation”</a></strong></p>
 
 
 </section>

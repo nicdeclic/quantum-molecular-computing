@@ -1,5 +1,5 @@
 ---
-title: "Toward a Physical Implementation"
+title: "Towards a Physical Implementation"
 description: "Research is a journey of relentless patience; one must embrace the discipline of advancing one careful step at a time. Once the theoretical landscape is mapped, designing the physical architecture will become infinitely clearer."
 author: "NicDeclic"
 date: "2026-10-23"
