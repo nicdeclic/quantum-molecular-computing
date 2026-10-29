@@ -285,7 +285,58 @@ mol.draw()
 
 * **$\pi$-Stacking Coupler (Face-to-Face):** Instead of lying in the same 2D plane, conjugated rings are stacked directly on top of each other (via aromatic $\pi$-$\pi$ stacking). This vertical configuration is exceptionally powerful for routing signals out of the plane and designing **three-dimensional (3D) molecular circuits**.  
 
-![](https://www.chem.ucla.edu/~harding/IGOC/A/aromatic_aromatic_interaction01.png){width=300px fig-align="center"}
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+# Create a conjugated carbon molecule
+mol = CarbonMolecule("Pi-Stacking Coupler")
+
+# Add atoms
+c1 = mol.add_atom(x=-0.25, y=1.0)
+c2 = mol.add_atom(x=0.25, y=1.0)
+c3 = mol.add_atom(x=-1.0, y=0.75, visible=False)
+c4 = mol.add_atom(x=-0.6, y=0.75)
+c5 = mol.add_atom(x=0.6, y=0.75)
+c6 = mol.add_atom(x=1.0, y=0.75, visible=False)
+c7 = mol.add_atom(x=-0.25, y=0.5)
+c8 = mol.add_atom(x=0.25, y=0.5)
+
+c9 = mol.add_atom(x=-0.25, y=0.0)
+c10 = mol.add_atom(x=0.25, y=0.0)
+c11 = mol.add_atom(x=-1.0, y=-0.25, visible=False)
+c12 = mol.add_atom(x=-0.6, y=-0.25)
+c13 = mol.add_atom(x=0.6, y=-0.25)
+c14 = mol.add_atom(x=1.0, y=-0.25, visible=False)
+c15 = mol.add_atom(x=-0.25, y=-0.5)
+c16 = mol.add_atom(x=0.25, y=-0.5)
+
+# Add bonds
+b1 = mol.add_bond(c1, c2, order="single")
+b2 = mol.add_bond(c3, c4, order="single")
+b3 = mol.add_bond(c4, c1, order="single")
+b4 = mol.add_bond(c2, c5, order="single")
+b5 = mol.add_bond(c5, c6, order="single")
+b6 = mol.add_bond(c4, c7, order="single")
+b7 = mol.add_bond(c7, c8, order="single")
+b8 = mol.add_bond(c8, c5, order="single")
+
+b9 = mol.add_bond(c9, c10, order="single")
+b10 = mol.add_bond(c11, c12, order="single")
+b11 = mol.add_bond(c12, c9, order="single")
+b12 = mol.add_bond(c10, c13, order="single")
+b13 = mol.add_bond(c13, c14, order="single")
+b14 = mol.add_bond(c12, c15, order="single")
+b15 = mol.add_bond(c15, c16, order="single")
+b16 = mol.add_bond(c16, c13, order="single")
+
+coupler1 = mol.add_coupler(b1, b9, ctrl1=[-0.1, 0.85], ctrl2=[-0.1, -0.25])
+coupler2 = mol.add_coupler(b7, b15, ctrl1=[0.1, 0.75], ctrl2=[0.1, -0.35])
+
+mol.draw()
+
+```
 
 Beyond filtering parasites, couplers solve another major engineering hurdle: **clean fan-out.** They allow a single logic gate to cleanly broadcast its output to multiple gates without any physical wiring tangles or parasitic feedback.  
 
@@ -464,8 +515,6 @@ For example, the triangular **XNOR junction** can be calculated directly by asse
 
 ![](serial-xnor.png){fig-align="center"}
 
-$$\text{Xnor} = \Big\{ (\text{Fork} \otimes \text{Fork}) \cdot (\text{Identity} \otimes \text{Close} \otimes \text{Identity}) \cdot \text{Merge} \Big\}$$  
-
 ```{python}
 #| code-fold: true
 #| fig-align: center
@@ -473,7 +522,11 @@ $$\text{Xnor} = \Big\{ (\text{Fork} \otimes \text{Fork}) \cdot (\text{Identity} 
 
 m = ((fork ^ fork) @ (identity ^ close ^ identity) @ (merge))
 
-display_inline("Xnor", "=", m.normalize().to_katex(show_labels=True))
+display_inline("Xnor", "=", r"\Big\{", "A", r"\cdot", "B", r"\cdot", "C", r"\Big\}")
+
+display_inline(r"\Rightarrow", "Xnor", "=", r"\Big\{", "(", "Fork",  r"\otimes",  "Fork", ")", r"\cdot", "(", "Identity",  r"\otimes", "Close", r"\otimes", "Identity", ")", r"\cdot", "(", "Merge", ")", r"\Big\}")
+
+display_inline(r"\Rightarrow", "Xnor", "=", m.normalize().to_katex(show_labels=True))
 
 ```
 
@@ -525,6 +578,27 @@ The decomposition into Identity, Swap, Fork, and Merge is not an accident: it di
 The radical difference is **ontological**: while the ZX-calculus is an abstract software tool for quantum compilers, our algebra is **physically embodied in real matter**. 
 
 Here, the nodes are real $sp^2$ carbon atoms, the wires are genuine $\pi$-bonds, and computation is executed natively as electrons settle into their ground state.
+  
+  
+* The Taelon Mosaic and Quantum Linguistics  
+
+In Season 1, Episode 13 of the classic sci-fi series *Earth: Final Conflict* (*"The Secret of Strandhill"*), an ancient Taelon artifact is unearthed: a decorative stone mosaic that is revealed to be **a readable language**.  
+
+At first glance, reading a continuous, 2D geometric mosaic like a text sounds like pure Hollywood techno-babble. Yet, it bears a striking resemblance to our molecular calculus: **representing complex physical functions as an interconnected alphabet of topological matrix tiles** (`Identity`, `Fork`, `Merge`, `Coupler`).  
+
+Human spoken and written languages are strictly one-dimensional and chronological: words follow one after another in a linear sequence ($A \to B \to C$). This classical syntax makes it nearly impossible for our languages to naturally articulate quantum properties like simultaneous superposition, non-local entanglement, and bidirectional causality without awkward mathematical jargon.  
+
+What if a language wasn't a 1D string of letters, but a **two-dimensional resonant graph**?  
+
+In such a "molecular language":  
+* The geometric arrangement of tiles directly dictates which resonance states are allowed or forbidden.  
+* Reading the language is not a sequential decoding process, but filtering the molecule through its boundary connections.  
+* A single statement can hold multiple valid meanings simultaneously (superposition) until constrained by adjacent tiles.  
+
+How far could such physical linguistics be pushed in the real world? Could the molecular graph notation be the first prototype of a language capable of natively "speaking" quantum mechanics?  
+
+In any case, huge kudos to the writers—George Carson and Gene Roddenberry—for intuitively envisioning a geometric language long before the rest of us started drawing logic into carbon rings!  
+**['"Earth: Final Conflict S01 EP13 "The Secret of Strandhill"'](https://www.youtube.com/watch?v=Ep_VRrbjXyc)**  
 
 ---
 

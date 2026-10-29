@@ -83,7 +83,7 @@ with schemdraw.Drawing() as d:
 ```
 
 Chemical bonds can naturally be harnessed to encode discrete binary states. For instance, a single bond between two carbon atoms can be defined as representing a state **"0"**, whereas a double bond can represent a state **"1"**.  
-We will not be using triple bonds here for reasons that will soon become clear. 
+We will not be using triple bonds here for reasons that will soon become clear.  
 
 ---
 
@@ -122,7 +122,7 @@ This delocalization is far from a mere theoretical curiosity; it carries profoun
 
 The computational potential of a carbon atom bonded to three adjacent atoms ($sp^2$ planar center) is particularly intriguing. Such an atom acts naturally as a **branching node** within a molecular graph, where each chemical bond functions as a logical interconnect.
 
-To satisfy carbon's fundamental tetravalence (four total bonds), **exactly one** of these three bonds can be a double bond at any given moment, while the remaining two must be single bonds. Consequently, the local bond configuration at this trivalent node can manifest in three mutually exclusive states:
+To satisfy carbon's fundamental tetravalence (four total bonds), **exactly one** of these three bonds can be a double bond at any given moment, while the remaining two must be single bonds (this also explains why triple bonds would never allow branching). Consequently, the local bond configuration at this trivalent node can manifest in three mutually exclusive states:
 
 ```{python}
 #| code-fold: true
@@ -163,7 +163,7 @@ b3.order = "double"
 mol.draw()
 
 ```
-
+ 
 This set of configurations corresponds directly to the resonance structures of the molecular node.
 
 We can express this physical valence constraint through the following Boolean relation:

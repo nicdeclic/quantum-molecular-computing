@@ -243,7 +243,7 @@ window.Quarto = {
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="df3f782b" class="cell" data-execution_count="1">
+<div id="7e56617e" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -304,7 +304,7 @@ window.Quarto = {
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="b4aeb74b" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div id="f4955602" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -334,7 +334,7 @@ window.Quarto = {
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="28d6f1e5" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div id="d3d50ee6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{array}{|c|c|} \hline \mathbf{A} &amp; \mathbf{B} \\ \hline 0 &amp; 1 \\ 0 &amp; 0 \\ 1 &amp; 0 \\ \hline \end{array}\]</span></p>
@@ -358,7 +358,7 @@ window.Quarto = {
 <ul>
 <li><strong>A fair coin:</strong></li>
 </ul>
-<div id="fa97d889" class="cell" data-execution_count="4">
+<div id="9a76c08f" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Fair"</span>, <span class="st">"="</span>, random.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -372,7 +372,7 @@ window.Quarto = {
 <ul>
 <li><strong>A biased coin:</strong></li>
 </ul>
-<div id="f4446c60" class="cell" data-execution_count="5">
+<div id="5298773c" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>biased <span class="op">=</span> TransitionMatrix([</span>
@@ -402,7 +402,7 @@ window.Quarto = {
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"DoubleHoneycomb"</span>, <span class="st">"="</span>, doubleHoneycomb.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="63966a9b" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="94a9e0cc" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[ DoubleHoneycomb =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``0''} &amp; 0.5 &amp; 0.5 \\ \text{``1''} &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
@@ -459,7 +459,7 @@ window.Quarto = {
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="c84ebd76" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="1901fa73" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -500,7 +500,7 @@ window.Quarto = {
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="3175c1a9" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div id="0c2fa6a4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -543,7 +543,7 @@ window.Quarto = {
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="ae878ec8" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div id="f60a58ef" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{array}{|c|c|c|c|c|c|c|c|c|} \hline \mathbf{A} &amp; \mathbf{B} &amp; \mathbf{C} &amp; \mathbf{D1} &amp; \mathbf{D2} &amp; \mathbf{E1} &amp; \mathbf{E2} &amp; \mathbf{F1} &amp; \mathbf{F2} \\ \hline 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\ 1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \hline \end{array}\]</span></p>
@@ -597,7 +597,7 @@ window.Quarto = {
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="9fe5aff6" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="2">
+<div id="e1598b00" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -632,6 +632,7 @@ window.Quarto = {
 </div>
 </div>
 <p>The engineering solution is as elegant as it is direct: <strong>instead of routing a single line, we route both branches in parallel.</strong></p>
+<p>Suppose we want to connect the input ‘A’ to two XNOR gates:</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
@@ -670,7 +671,7 @@ window.Quarto = {
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route branch down into bottom gate (in1)</span></span>
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(input_A.end).to(bottom_gate.in1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="e2fb16b9" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div id="feb6785a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
@@ -682,6 +683,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<p>This will be the resulting molecule:</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
@@ -732,7 +734,7 @@ window.Quarto = {
 <span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
 <span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="1bf90d0a" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
+<div id="d87af32f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
@@ -756,7 +758,7 @@ window.Quarto = {
 <p>The foundation appears to be firmly laid. All that remains is to build upward.</p>
 <p>Yet, as the very first bricks are set into place, the entire structure shakes violently and collapses to the ground.</p>
 <p>What on earth just happened?</p>
-<p>In any realistic digital circuit, signals do not merely propagate along a single, open pipeline. Functional processors are inherently dense, intertwined networks featuring branching, reconverging paths, and feedback loops.</p>
+<p>Observe any realistic digital circuit. Signals do not merely propagate along a single, open pipeline. Functional processors are inherently dense, intertwined networks featuring branching, reconverging paths, and feedback loops.</p>
 <p>Every time we fuse two carbon networks together, we do not simply create an abstract connection: <strong>we synthesize a single, larger macro-molecule</strong></p>
 <p>To construct a circuit of even modest complexity, one must inevitably: <strong>open and interconnect two separate bonds within the very same molecule.</strong></p>
 <p>And that is where the physics turns against us.</p>
@@ -797,7 +799,7 @@ window.Quarto = {
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="25ff1a3c" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="2">
+<div id="25015fbc" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">

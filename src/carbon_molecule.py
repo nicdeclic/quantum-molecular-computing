@@ -53,6 +53,8 @@ class Coupler:
     """Represents an interaction or coupling between two bonds."""
     bond1: Bond
     bond2: Bond
+    ctrl1: Optional[Tuple[float, float]] = None  # point 1 override
+    ctrl2: Optional[Tuple[float, float]] = None  # point 2 override
     label: str = ""
 
 
@@ -133,11 +135,14 @@ class CarbonMolecule:
     # ==========================================
     # COUPLER MANAGEMENT
     # ==========================================
-    def add_coupler(self, bond1: Bond, bond2: Bond, label: str = "") -> Coupler:
+    def add_coupler(self, bond1: Bond, bond2: Bond, 
+                    ctrl1: Optional[Tuple[float, float]] = None,
+                    ctrl2: Optional[Tuple[float, float]] = None,
+                    label: str = "") -> Coupler:
         """Creates an interaction link between two bonds."""
         if bond1 not in self.bonds or bond2 not in self.bonds:
             raise ValueError("Both bonds must exist in this molecule.")
-        coupler = Coupler(bond1=bond1, bond2=bond2, label=label)
+        coupler = Coupler(bond1=bond1, bond2=bond2, ctrl1=ctrl1, ctrl2=ctrl2, label=label)
         self.couplers.append(coupler)
         return coupler
 
@@ -321,6 +326,11 @@ class CarbonMolecule:
                 p1, p2 = p1_direct, p2_direct
             else:
                 p1, p2 = p1_inv, p2_inv
+
+            # Override points if specified
+            if c.ctrl1 and c.ctrl2:
+                p1=c.ctrl1
+                p2=c.ctrl2
 
             # Draw the dashed blue line from P1 to P2
             ax.plot([p1[0], p2[0]], [p1[1], p2[1]],

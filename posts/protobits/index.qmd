@@ -2,7 +2,7 @@
 title: "The Emergence of Protobits"
 description: 'Now that the structural alphabet of our molecular processor is complete, it is time to unleash its true computational potential. Yet, the moment we begin pushing these carbon networks, an astonishing realization strikes: we are no longer playing by the established rules of "textbook" quantum computing.'
 author: "NicDeclic"
-date: "2026-10-30"
+date: "2026-10-29"
 categories: [Introduction, Protobits]
 image: "protobit.jpg"
 ---
@@ -155,11 +155,11 @@ r3 = r1 + r2
 
 r4 = r3.normalize()
 
-display_inline("A", r"\otimes", "B", "=", r"\{", quote_latex(bs1), "+", quote_latex(bs2), r"\}")
+display_inline("A", r"\otimes", "B", "=", r"\Big\{", quote_latex(bs1), "+", quote_latex(bs2), r"\Big\}")
 
-display_inline(r"\Rightarrow", "A", r"\otimes", "B", "=", r"\{", r1.to_katex(), "+", r2.to_katex(), r"\}")
+display_inline(r"\Rightarrow", "A", r"\otimes", "B", "=", r"\Big\{", r1.to_katex(), "+", r2.to_katex(), r"\Big\}")
 
-display_inline(r"\Rightarrow", "A", r"\otimes", "B", "=", r"\{", r3.to_katex(), r"\}")
+display_inline(r"\Rightarrow", "A", r"\otimes", "B", "=", r"\Big\{", r3.to_katex(), r"\Big\}")
 
 display_inline(r"\Rightarrow", "A", r"\otimes", "B", "=", r4.to_katex(show_labels=True))
 
@@ -243,7 +243,7 @@ Step back and look at the grand architectural portrait of information that emerg
 3. **Decoherence:** When a carbon bond loses its quantum phase coherence to environmental thermal noise, it gracefully degrades into a **p-bit** (probabilistic bit).  
 4. **Measurement / Clamping:** When a p-bit or a qubit is projected through a macroscopic boundary measurement, it collapses into a deterministic **Classical Bit** ($0$ or $1$).  
 
-Do you see the relationship? (coherence → decoherence → measurement)
+Do you see the relationship?  
 
 Conjugated carbon bonds are the generative root at the base of the entire hierarchy. They are the physical engine from which all other forms of computation naturally emerge.  
 
@@ -272,7 +272,7 @@ At the same time, there`s no desire to trigger an academic holy war or succumb t
 Scientific integrity simply demands that we explicitly declare our frame:  
 
 > **The CCC Convention (Conjugated Carbon Computing Convention):**   
-> Outside of the specific section dedicated to qubits, this entire work strictly employs **Left-to-Right propagation** and **Top-to-Bottom index ordering**.  
+> Outside of the specific sections dedicated to qubits, this entire work strictly employs **Left-to-Right propagation** and **Top-to-Bottom index ordering**.  
 
 Software libraries can then trivially convert equations into whatever notation a reader prefers.  
 
@@ -304,7 +304,7 @@ Under the Holographic Principle, all the dimensional physics inside a (hyper)vol
 
 In our model, the 2D network of conjugated carbon bonds acts precisely as such a holographic surface. The Protobit is the elemental quantum of information living on this geometric boundary. When we look at a carbon-carbon bond, we are not merely looking at shared electrons; we are peering through a subtle crack in the fabric of spacetime, catching a glimpse of the fundamental informational pixel that projects quantum reality inward.  
 
-Nature did not wait for humans to build computers. Through the resonant geometry of carbon, the universe reveals that its underlying architecture has always been holographic—and its fundamental currency might be the **Protobit**.  
+Nature did not wait for humans to build computers. Through the resonant geometry of carbon, the universe reveals that its underlying architecture has always been holographic—and its fundamental currency might well be the **Protobit**.  
 
 ---
 

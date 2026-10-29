@@ -78,18 +78,18 @@ with schemdraw.Drawing() as d:
         .at(input_line.end)
     )
 
-    # 4. Add an output lead line extending to the right, labeled 'Y'
+    # 4. Add an output lead line extending to the right
     d.add(
         elm.Line()
         .right(1.5)
         .at(not_gate.out)
-        .label('$Y$', loc='right')
+        .label('$B$', loc='right')
     )
 
 
 ```
 
-| Input ($A$) | Output ($Y$) |
+| Input ($A$) | Output ($B$) |
 |:---:|:---:|
 | 0 | 1 |
 | 1 | 0 |
@@ -155,11 +155,11 @@ with schemdraw.Drawing() as d:
     d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
     d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
 
-    # 4. Add the output lead line on the right, labeled 'Y'
-    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+    # 4. Add the output lead line on the right
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('C', loc='right'))
 ```
 
-| Input $A$ | Input $B$ | Output $Y$ |
+| Input $A$ | Input $B$ | Output $C$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
@@ -198,11 +198,11 @@ with schemdraw.Drawing() as d:
     d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
     d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
 
-    # 4. Add the output lead line on the right, labeled 'Y'
-    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+    # 4. Add the output lead line on the right, labeled 'C'
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('C', loc='right'))
 ```
 
-| Input $A$ | Input $B$ | Output $Y$ |
+| Input $A$ | Input $B$ | Output $C$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
@@ -241,11 +241,11 @@ with schemdraw.Drawing() as d:
     d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
     d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
 
-    # 4. Add the output lead line on the right, labeled 'Y'
-    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+    # 4. Add the output lead line on the right
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('C', loc='right'))
 ```
 
-| Input $A$ | Input $B$ | Output $Y$ |
+| Input $A$ | Input $B$ | Output $C$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 1 |
 | 0 | 1 | 1 |
@@ -284,11 +284,11 @@ with schemdraw.Drawing() as d:
     d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
     d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
 
-    # 4. Add the output lead line on the right, labeled 'Y'
-    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+    # 4. Add the output lead line on the right
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('C', loc='right'))
 ```
 
-| Input $A$ | Input $B$ | Output $Y$ |
+| Input $A$ | Input $B$ | Output $C$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 1 |
 | 0 | 1 | 0 |
@@ -327,11 +327,11 @@ with schemdraw.Drawing() as d:
     d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
     d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
 
-    # 4. Add the output lead line on the right, labeled 'Y'
-    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+    # 4. Add the output lead line on the right
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('C', loc='right'))
 ```
 
-| Input $A$ | Input $B$ | Output $Y$ |
+| Input $A$ | Input $B$ | Output $C$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
@@ -370,11 +370,11 @@ with schemdraw.Drawing() as d:
     d.add(elm.Line().left(1.5).at(and_gate.in1).label('A', loc='left'))
     d.add(elm.Line().left(1.5).at(and_gate.in2).label('B', loc='left'))
 
-    # 4. Add the output lead line on the right, labeled 'Y'
-    d.add(elm.Line().right(1.5).at(and_gate.out).label('Y', loc='right'))
+    # 4. Add the output lead line on the right
+    d.add(elm.Line().right(1.5).at(and_gate.out).label('C', loc='right'))
 ```
 
-| Input $A$ | Input $B$ | Output $Y$ |
+| Input $A$ | Input $B$ | Output $C$ |
 |:---:|:---:|:---:|
 | 0 | 0 | 1 |
 | 0 | 1 | 0 |

@@ -296,6 +296,8 @@ The interconnect hurdle is therefore not a conceptual dead-end. The molecular ci
 * **Beyond $\pi$-Logic:**  
 Back in 2006, M. H. van der Veen demonstrated that electrons shifting within conjugated molecules could perform logical operations ("$\pi$-Logic"). However, that paradigm relied on active laser pulses to mechanically drive each gate through external photo-switching. My approach takes the fundamental next step: **the internal computation requires no active pumping or external triggers.** Once boundary conditions are set, the conjugated network computes natively, passively, and reversibly through spontaneous resonance relaxation. External interfaces — whether electrostatic, optical, or mechanical — are strictly reserved for reading and writing at the boundaries, leaving the internal logic to resolve itself purely through the self-consistent physics of the carbon backbone.
 
+**["Kekulé Cells for Molecular Computation"](https://arxiv.org/pdf/0704.2282)**  
+
 * **Penrose, Paramecia, and Sub-Cellular Computing:**  
   A single-celled paramecium has no neurons, no synapses, and no brain. Yet, it swims, avoids obstacles, hunts for food, mates, and learns from its environment. As Sir Roger Penrose and Stuart Hameroff famously wondered: if a neuron is just a binary on/off switch, how does a brainless, single cell compute complex behaviors? The answer may lie within: a single neuron is not a simple bit—it is already a complete molecular supercomputer. Information processing does not start at the neural network level; it is fundamentally driven by the quantum resonance of conjugated $\pi$-systems inside the cell's cytoskeleton.
 
