@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-19T14:47:50.951378</dc:date>
+    <dc:date>2026-10-29T10:03:26.314253</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -41,33 +41,33 @@ C 124.068 23.825677 124.523182 24.924585 125.333299 25.734701
 C 126.143415 26.544818 127.242323 27 128.388 27 
 L 128.388 27 
 z
-" clip-path="url(#p3868590af0)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
+" clip-path="url(#pefca7771da)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 17.688 22.68 
 L 44.688 22.68 
 L 71.688 22.68 
-" clip-path="url(#p3868590af0)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#pefca7771da)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="line2d_2">
     <path d="M 71.688 22.68 
 L 100.668 22.68 
 M 132.708 22.68 
 L 161.688 22.68 
-" clip-path="url(#p3868590af0)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#pefca7771da)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="line2d_3">
     <path d="M 100.668 4.68 
 L 124.068 22.68 
 L 100.668 40.68 
 L 100.668 4.68 
-" clip-path="url(#p3868590af0)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#pefca7771da)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="line2d_4">
     <path d="M 132.708 22.68 
 L 159.708 22.68 
 L 186.708 22.68 
-" clip-path="url(#p3868590af0)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#pefca7771da)" style="fill: none; stroke: #000000; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="text_1">
     <!-- A -->
@@ -94,29 +94,49 @@ z
     </g>
    </g>
    <g id="text_2">
-    <!-- $Y$ -->
+    <!-- $B$ -->
     <g transform="translate(190.308 26.543125) scale(0.14 -0.14)">
      <defs>
-      <path id="DejaVuSans-Oblique-59" d="M 403 4666 
+      <path id="DejaVuSans-Oblique-42" d="M 1081 4666 
+L 2694 4666 
+Q 3350 4666 3675 4422 
+Q 4000 4178 4000 3688 
+Q 4000 3238 3720 2911 
+Q 3441 2584 2988 2516 
+Q 3375 2428 3569 2181 
+Q 3763 1934 3763 1522 
+Q 3763 819 3242 409 
+Q 2722 0 1819 0 
+L 172 0 
 L 1081 4666 
-L 1953 2747 
-L 3616 4666 
-L 4325 4666 
-L 2209 2222 
-L 1778 0 
-L 1147 0 
-L 1575 2222 
-L 403 4666 
+z
+M 1234 2228 
+L 903 519 
+L 1919 519 
+Q 2491 519 2800 781 
+Q 3109 1044 3109 1522 
+Q 3109 1891 2904 2059 
+Q 2700 2228 2247 2228 
+L 1234 2228 
+z
+M 1606 4147 
+L 1331 2741 
+L 2272 2741 
+Q 2775 2741 3058 2959 
+Q 3341 3178 3341 3566 
+Q 3341 3869 3150 4008 
+Q 2959 4147 2541 4147 
+L 1606 4147 
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#DejaVuSans-Oblique-59" transform="translate(0 0.09375)"/>
+     <use xlink:href="#DejaVuSans-Oblique-42" transform="translate(0 0.09375)"/>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p3868590af0">
+  <clipPath id="pefca7771da">
    <rect x="0" y="0" width="204.396" height="45.36"/>
   </clipPath>
  </defs>
