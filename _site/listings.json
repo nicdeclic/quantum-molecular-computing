@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/qubit-emulation/index.html",
+      "/posts/quantum-boolean/index.html",
       "/posts/protobits/index.html",
       "/posts/toward-physical/index.html",
       "/posts/quantum-chemistry3/index.html",

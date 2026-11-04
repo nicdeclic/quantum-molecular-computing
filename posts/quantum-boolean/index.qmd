@@ -1,0 +1,88 @@
+---
+title: "Boolean Gates Extensions"
+description: 'We have now established that within the framework of Conjugated Carbon Computing (CCC), our computational substrate operates on **protobits** rather than classical binary bits. This shift unlocks a rich landscape of entirely non-classical behaviors. Let us explore some of these exotic properties'
+author: "NicDeclic"
+date: "2026-11-04"
+categories: [Logic]
+image: "gate.jpg"
+---
+
+![](gate.jpg)  
+
+::: {.text-end}
+> *“Strength lies not in what resists… but in what persists.”*  
+> — **Professor Alvin**
+:::
+
+---
+
+```{python}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Click to see library imports"
+
+import sys
+if 'google.colab' in sys.modules:
+    # 1. Download qmc.py from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py
+    
+    # 2. Download requirements.txt from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt
+
+    # 3. Install dependencies
+    !pip install -q -r requirements.txt
+
+sys.path.insert(0, "../../src") # Select root directory
+from qmc import * # QMC library
+
+%reload_ext autoreload
+%autoreload 2
+
+```
+
+---
+
+We previously revisited fundamental logic gates in ["A Refresher on Boolean Logic"](/posts/boolean-logic/index.html). However, we have now established that within the framework of **Conjugated Carbon Computing (CCC)**, our computational substrate operates on **protobits** rather than classical binary bits.  
+
+At their baseline, these boolean gates rely on the exact same transition matrices introduced earlier. Yet, because they are embodied in real quantum-molecular networks, they natively handle continuous probability distributions as well as genuine quantum phenomena such as coherent **superposition** and **entanglement**.  
+
+This shift unlocks a rich landscape of entirely non-classical behaviors. Let us explore some of these exotic properties:  
+
+---
+
+![](/images/construction.png){}
+
+---
+
+- Deux entrées covariantes
+    - Utilisation du splitter
+
+## Full I/O Inversion (Reverse Computing)
+    - Inverted AND Gate
+    - Inverted OR Gate
+    - Inverted XOR Gate
+
+- Portes logiques bout-à-bout
+    - 2 entrées et 2 sorties ET-ET
+    - 1 entrée et 1 sortie ET-ET
+
+- Inversion d'une entrée en sortie
+    - ET inversé
+    - OU inversé
+    - XOR inversé 
+
+- Random Noise as a Logic Resource
+    - Random-AND
+    - Random-OR
+    - Random-XOR
+
+---
+
+- Circuits plus complexes
+
+- Il suffit d'ajouter le mot "quantique" après une composante pour inventer quelque chose de nouveau.
+
+- Comparateur quantique
+- Addition HA, FA quantique
+- Multiplexeur quantique
+- Sélecteur quantique

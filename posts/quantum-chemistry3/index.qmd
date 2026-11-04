@@ -545,7 +545,7 @@ display_inline("Coupler", "=", coupler_q.to_katex(show_labels=True))
 
 ```
 
-Rather than acting as spatial routing wires, a Coupler acts as a **diagonal projector / filter matrix**—algebraically annihilating incompatible product states across coupled lines and preserving only the symmetric, synchronized subspace.  
+Rather than acting as spatial routing wires, a Coupler acts as a **diagonal projector / filter matrix**—algebraically annihilating incompatible product states across coupled lines.  
 
 ---
 

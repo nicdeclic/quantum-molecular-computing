@@ -1,0 +1,12 @@
+{
+  "hash": "ca7a65f833c15381df48c465b5d40e9f",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Boolean Gates Extensions\"\ndescription: ''\nauthor: \"NicDeclic\"\ndate: \"2026-11-04\"\ncategories: [Logic]\nimage: \"gate-up.png\"\n---\n\n![](gate-up.png)  \n\n::: {.text-end}\n> *“Strength lies not in what resists… but in what persists.”*  \n> — **Professor Alvin**\n:::\n\n---\n\n::: {#87ca386e .cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see library imports\"}\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../../src\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\n```\n:::\n\n\n---\n\n---\njupyter:\n  kernelspec:\n    display_name: Python 3 (ipykernel)\n    language: python\n    name: python3\n    path: C:\\Users\\Nick2\\AppData\\Local\\Python\\pythoncore-3.14-64\\share\\jupyter\\kernels\\python3\n  language_info:\n    codemirror_mode:\n      name: ipython\n      version: 3\n    file_extension: .py\n    mimetype: text/x-python\n    name: python\n    nbconvert_exporter: python\n    pygments_lexer: ipython3\n    version: 3.14.3\n---\n",
+    "supporting": [
+      "index_files\\figure-ipynb"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

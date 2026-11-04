@@ -1,6 +1,6 @@
 ---
 title: "Quantum Chemistry Part 2"
-description: "Let us now step back and examine molecules in their complete, **closed-form** topologies—where every single carbon atom of the network is explicitly accounted for, with no dangling bonds or hidden external leads."
+description: "Let us now step back and examine molecules in their complete, closed-form topologies—where every single carbon atom of the network is explicitly accounted for, with no dangling bonds or hidden external leads."
 author: "NicDeclic"
 date: "2026-10-14"
 categories: [Introduction, Chemistry]

@@ -250,65 +250,66 @@ class TransitionMatrix:
             raise ValueError(f"Invalid dimension: matrix must be 1 X 8.")
         
         # Replace all double indices with single-step indices
-        gamma = np.sqrt(np.abs(matrix[0,0] - matrix[0,2]) + 
-                        np.abs(matrix[0,1] - matrix[0,3]) + 
-                        np.abs(matrix[0,4] - matrix[0,6]) + 
-                        np.abs(matrix[0,5] - matrix[0,7]))
-        
+        d0 = np.abs(matrix[0,0] - matrix[0,1])
+        d1 = np.abs(matrix[0,2] - matrix[0,3])
+        d2 = np.abs(matrix[0,4] - matrix[0,5])
+        d3 = np.abs(matrix[0,6] - matrix[0,7])
+        gamma = np.sqrt(d0*d0 + d1*d1 + d2*d2 + d3*d3)
+
         if gamma <= 0:
             raise ValueError(f"Invalid transition matrix describing a zero probability qubit.")
         
-        # (Please keep in mind that the qubit matrices are defined for use in left-to-right notations.
-        #  They will appear like transposed matrices compared to Dirac notation)
-        qubit = np.array([
-            [complex(np.sqrt(matrix[0,0]) - np.sqrt(matrix[0,2]), 
-                    np.sqrt(matrix[0,1]) - np.sqrt(matrix[0,3])) / gamma,
-            complex(np.sqrt(matrix[0,4]) - np.sqrt(matrix[0,6]), 
-                    np.sqrt(matrix[0,5]) - np.sqrt(matrix[0,7])) / gamma]
-        ])
+        # (Please keep in mind that the qubit matrices are defined as 1X2 for use in left-to-right notation.
+        qubit = np.array([[complex(d0, d1) / gamma, complex(d2, d3) / gamma]])
         
         return qubit
-    
-    def from_qubit(self, qubit):
-        """Convert the qubit ket into a 1X8 transition matrix"""
+
+    @classmethod
+    def from_qubit(cls, qubit):
+        """Convert the qubit into a 1X8 transition matrix"""
         if qubit.shape[0] != 1 or qubit.shape[1] != 2:
             raise ValueError(f"Invalid dimension: matrix must be 1 X 2.")
         
         x=qubit[0,0].real
         if x>=0:
-            b0=x*x
-            b2=0.
+            b0 = x
+            b1 = 0.
         else:
-            b0=0.
-            b2=x*x
+            b0 = 0.
+            b1 = -x
 
         x=qubit[0,0].imag
         if x>=0:
-            b1=x*x
-            b3=0.
+            b2 = x
+            b3 = 0.
         else:
-            b1=0.
-            b3=x*x
+            b2 = 0.
+            b3 = -x
 
         x=qubit[0,1].real
         if x>=0:
-            b4=x*x
-            b6=0.
+            b4 = x
+            b5 = 0.
         else:
-            b4=0.
-            b6=x*x
+            b4 = 0.
+            b5 = -x
 
         x=qubit[0,1].imag
         if x>=0:
-            b5=x*x
-            b7=0.
+            b6 = x
+            b7 = 0.
         else:
-            b5=0.
-            b7=x*x
+            b6 = 0.
+            b7 = -x
 
-        self.matrix = sparse.csr_matrix([b0,b1,b2,b3,b4,b5,b6,b7], dtype=float)      
+        sum = b0 + b1 + b2 + b3 + b4 + b5 + b6 + b7
 
-        return self
+        if sum <= 0:
+            raise ValueError(f"Invalid matrix describing a zero probability qubit.")
+        
+        matrix = sparse.csr_matrix([b0,b1,b2,b3,b4,b5,b6,b7]/sum, dtype=float)      
+
+        return cls(matrix)
 
     @classmethod
     def from_resonances(cls, resonances: list):
@@ -524,6 +525,8 @@ end = TransitionMatrix([
     [1]
 ])
 
+start = end.reverse()
+
 identity = TransitionMatrix([
     [1, 0],
     [0, 1]
@@ -668,6 +671,8 @@ nor_rev_q = nor_q.reverse()
 xor_rev_q = xor_q.reverse()
 xnor_rev_q = xnor_q.reverse()
 
+
+###
 # Quaternions
 
 i_multiply = (split ^ identity ^ split) @ (identity ^ triple_xor_gate ^ negate)
@@ -676,4 +681,42 @@ k_multiply = (identity ^ identity ^ split) @ (negate ^ xor_q ^ negate)
 neg_multiply = (identity ^ negate ^ identity)
 i_ident_multiply = (identity ^ identity ^ split) @ (identity ^ xor_q ^ negate)
 
+
+###
 # Qubits
+
+qubit_zero = TransitionMatrix.from_bitstring("000")  # [1 0]
+qubit_zero_i = TransitionMatrix.from_bitstring("001")  # [i 0]
+qubit_zero_neg = TransitionMatrix.from_bitstring("010")  # [-1 0]
+qubit_zero_neg_i = TransitionMatrix.from_bitstring("011")  # [-i 0]
+
+qubit_one = TransitionMatrix.from_bitstring("100")  # [0 1]
+qubit_one_i = TransitionMatrix.from_bitstring("101")  # [0 i]
+qubit_one_neg = TransitionMatrix.from_bitstring("110")  # [0 -1]
+qubit_one_neg_i = TransitionMatrix.from_bitstring("111")  # [0 -i]
+
+rotate_x_pi = (negate ^ identity ^ negate) @ (identity ^ identity ^ split) @ (identity ^ xor_q ^ identity) 
+rotate_y_pi = (identity**3) @ (split ^ identity ^ identity) @ (negate ^ xor_q ^ identity)
+rotate_z_pi = (identity ^ identity ^ negate) @ (split ^ identity ^ split) @ (identity ^ xor_q ^ identity ^ identity) @ (identity ^ xor_q ^ identity)
+
+identity_3 = identity**3
+rotate_x_pi_div_2 = (identity_3 + rotate_x_pi).normalize()
+ 
+x_gate = (negate ^ identity ^ identity)
+y_gate = (split ^ identity ^ split) @ (negate ^ triple_xor_gate ^ negate)
+z_gate = (split ^ identity ^ identity) @ (identity ^ xor_q ^ identity)
+s_gate = (split ^ identity ^ split) @ (split ^ identity**4) @ \
+    (custom_swap(6, 1, 2) @ custom_swap(6, 2, 4) @ custom_swap(6, 3, 1) @ custom_swap(6, 4, 3)) @ \
+    (identity ^ identity ^ and_q ^ xor_q) @ (identity ^ xor_q ^ identity)
+ 
+#phase_pi_div_4 = t_gate
+phase_pi_div_2 = s_gate
+phase_pi = z_gate
+phase_3pi_div_2 = phase_pi_div_2 @ phase_pi
+
+hadamard = (identity**3) @ (random ^ identity**3) @ (split ^ identity**3) @ (identity ^ and_q ^ identity**2) @ (identity ^ swap ^ identity) @ (identity ^ identity ^ xor_q)
+
+cnot = (split ^ identity**5) @ permutation(7,[0,3,1,2,4,5,6]) @ (identity**3 ^ xor_q ^ identity**2)
+
+#ccnot = (split ^ identity**2 ^ split ^ identity**2 ^ identity**3) @ permutation(9,[])
+

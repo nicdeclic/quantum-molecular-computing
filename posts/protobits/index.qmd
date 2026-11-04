@@ -2,12 +2,12 @@
 title: "The Emergence of Protobits"
 description: 'Now that the structural alphabet of our molecular processor is complete, it is time to unleash its true computational potential. Yet, the moment we begin pushing these carbon networks, an astonishing realization strikes: we are no longer playing by the established rules of "textbook" quantum computing.'
 author: "NicDeclic"
-date: "2026-10-29"
+date: "2026-11-03"
 categories: [Introduction, Protobits]
-image: "protobit.jpg"
+image: "protobits.jpg"
 ---
 
-![](protobit.jpg)  
+![](protobits.jpg)  
 
 ::: {.text-end}
 > *“To create is not to add. It is to strip away the noise, the fear, the walls.”*  
@@ -271,16 +271,16 @@ Failing to state the convention could lead to a $125-million disaster—like NAS
 At the same time, there`s no desire to trigger an academic holy war or succumb to the Highlander syndrome of *"There Can Only Be One."*  
 Scientific integrity simply demands that we explicitly declare our frame:  
 
-> **The CCC Convention (Conjugated Carbon Computing Convention):**   
-> Outside of the specific sections dedicated to qubits, this entire work strictly employs **Left-to-Right propagation** and **Top-to-Bottom index ordering**.  
+> This entire work strictly employs **Left-to-Right propagation** and **Top-to-Bottom index ordering**.  
 
-Software libraries can then trivially convert equations into whatever notation a reader prefers.  
+It is then possible to convert equations either by hand or using software librairies into whatever notation a reader prefers.  
 
 ---
 
 ## ![](/images/warning.png){width=50px} Speculations & Wild Thoughts
 
 * Set Theory & The Observer's Choice  
+
 While refining and transcribing this theory, I often listen to the music of the Swedish ambient duo **Carbon Based Lifeforms** (could there be a more fitting soundtrack?).  
 Among their masterpieces, the vocal sample in *"Set Theory"* — drawn from the sci-fi film *Solaris* (2002) — resonates deeply with this work: *"There are no answers. Only choices."*  
 In conjugated carbon computing, there is no absolute, pre-ordained direction to information flow: **it is the observer who chooses which boundary bonds serve as inputs and which serve as outputs.** The calculation is an act of perspective.  
