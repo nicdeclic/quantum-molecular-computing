@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="NicDeclic">
+<meta name="dcterms.date" content="2026-11-06">
+<meta name="description" content="On the surface, qubits and protobits appear fundamentally incompatible. Yet, we have already proven that the molecular gates achieve universal computation. Any mathematical operation—including complex arithmetic and phase rotations—can be synthesized algebraically. All that is required is the right geometric mapping.">
+
+<title>Qubit Emulation – Quantum Molecular Computing</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/logo.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-97cbdf4c33b0c1d59c3c8504f205f74a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo-white.png" alt="" class="navbar-logo light-content">
+    <img src="../../images/logo-white.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Quantum Molecular Computing</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About The Author</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/nicdeclic/quantum-molecular-computing"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Qubit Emulation</h1>
+                  <div>
+        <div class="description">
+          On the surface, qubits and protobits appear fundamentally incompatible. Yet, we have already proven that the molecular gates achieve universal computation. Any mathematical operation—including complex arithmetic and phase rotations—can be synthesized algebraically. All that is required is the right geometric mapping.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Qubits</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>NicDeclic </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 6, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.ipynb" download="index.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p><img src="qubit.jpg" class="img-fluid"></p>
+<div class="text-end">
+<blockquote class="blockquote">
+<p><em>“Sometimes, unlearning is the highest form of wisdom.”</em><br>
+— <strong>Professor Alvin</strong></p>
+</blockquote>
+</div>
+<hr>
+<p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<div id="a61b037a" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to see library imports</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'google.colab'</span> <span class="kw">in</span> sys.modules:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Download qmc.py from GitHub</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>q https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>nicdeclic<span class="op">/</span>quantum<span class="op">-</span>molecular<span class="op">-</span>computing<span class="op">/</span>main<span class="op">/</span>qmc.py</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Download requirements.txt from GitHub</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>wget <span class="op">-</span>q https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>nicdeclic<span class="op">/</span>quantum<span class="op">-</span>molecular<span class="op">-</span>computing<span class="op">/</span>main<span class="op">/</span>requirements.txt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Install dependencies</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">!</span>pip install <span class="op">-</span>q <span class="op">-</span>r requirements.txt</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"../../src"</span>) <span class="co"># Select root directory</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> qmc <span class="im">import</span> <span class="op">*</span> <span class="co"># QMC library</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>reload_ext autoreload</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<hr>
+<p><img src="../../images/construction.png" class="img-fluid"></p>
+<hr>
+<section id="representing-a-qubit-with-protobits" class="level2">
+<h2 class="anchored" data-anchor-id="representing-a-qubit-with-protobits">Representing a Qubit with Protobits</h2>
+<p>On the surface, qubits and protobits appear fundamentally incompatible:</p>
+<ul>
+<li><strong>Qubits</strong> are described by state vectors with negative and complex probability amplitudes (<span class="math inline">\(\mathbb{C}^2\)</span>). This complex phase allows wavefunctions to interfere constructively or destructively (adding or subtracting amplitudes).<br>
+</li>
+<li><strong>Protobits</strong>, operating within stochastic transition matrices, are defined purely over real, non-negative probabilities (<span class="math inline">\(p \in [0, 1]\)</span>), with no native complex phase.</li>
+</ul>
+<p>Yet, we have already proven that the molecular gates achieve universal computation. Any mathematical operation—including complex arithmetic and phase rotations—can be synthesized algebraically. All that is required is the right geometric mapping.</p>
+<section id="deconstructing-the-bloch-sphere" class="level3">
+<h3 class="anchored" data-anchor-id="deconstructing-the-bloch-sphere">Deconstructing the Bloch Sphere</h3>
+<p>Geometrically, a single qubit lives on the continuous surface of a three-dimensional unit sphere: the <strong>Bloch Sphere</strong>.</p>
+<p>To reconstruct the full expressive richness of a spherical state space using only positive-probability protobits, linear algebra dictates that we need a minimum of <strong>three independent dimensions</strong>.</p>
+<p>To completely define the state of a qubit without invoking imaginary numbers in the underlying hardware, we decompose the state across <strong>three distinct functional protobits</strong>:</p>
+<ol type="1">
+<li><strong>The Presence Protobit (<span class="math inline">\(A_2\)</span>):</strong><br>
+Encodes the vertical projection (along the <span class="math inline">\(Z\)</span>-axis), determining whether the measurement collapses toward <span class="math inline">\(|0\rangle\)</span> or <span class="math inline">\(|1\rangle\)</span>.<br>
+</li>
+<li><strong>The Imaginary Phase Protobit (<span class="math inline">\(A_1\)</span>):</strong><br>
+Governs circular phase along the <span class="math inline">\(Y\)</span>-axis, encoding the imaginary depth of the quantum state (<span class="math inline">\(+1\)</span> or <span class="math inline">\(+i\)</span>).<br>
+</li>
+<li><strong>The Sign Phase Protobit (<span class="math inline">\(A_0\)</span>):</strong><br>
+Governs real interference along the <span class="math inline">\(X\)</span>-axis, determining whether wave amplitudes add constructively (<span class="math inline">\(+1\)</span>) or destructively (<span class="math inline">\(-1\)</span>).</li>
+</ol>
+<hr>
+</section>
+<section id="the-8-extremal-basis-states" class="level3">
+<h3 class="anchored" data-anchor-id="the-8-extremal-basis-states">The 8 Extremal Basis States</h3>
+<p>When these three protobits are combined through the Kronecker product, they span an 8-dimensional configuration space (<span class="math inline">\(2^3 = 8\)</span>).</p>
+<p>These 8 discrete basis states map directly to the <strong>8 vertices of a state cube</strong>, perfectly capturing the cardinal projections along with their fundamental discrete phase orientations (<span class="math inline">\(\pm 1, \pm i\)</span>):</p>
+<p><span class="math display">\[\text{``000''} \longrightarrow \begin{bmatrix} 1 &amp; 0 \end{bmatrix} \longrightarrow |0\rangle\]</span></p>
+<p><span class="math display">\[\text{``001''} \longrightarrow \begin{bmatrix} -1 &amp; 0 \end{bmatrix} \longrightarrow -|0\rangle\]</span></p>
+<p><span class="math display">\[\text{``010''} \longrightarrow \begin{bmatrix} i &amp; 0 \end{bmatrix} \longrightarrow i|0\rangle\]</span></p>
+<p><span class="math display">\[\text{``011''} \longrightarrow \begin{bmatrix} -i &amp; 0 \end{bmatrix} \longrightarrow -i|0\rangle\]</span></p>
+<p><span class="math display">\[\text{``100''} \longrightarrow \begin{bmatrix} 0 &amp; 1 \end{bmatrix} \longrightarrow |1\rangle\]</span></p>
+<p><span class="math display">\[\text{``101''} \longrightarrow \begin{bmatrix} 0 &amp; -1 \end{bmatrix} \longrightarrow -|1\rangle\]</span></p>
+<p><span class="math display">\[\text{``110''} \longrightarrow \begin{bmatrix} 0 &amp; i \end{bmatrix} \longrightarrow i|1\rangle\]</span></p>
+<p><span class="math display">\[\text{``111''} \longrightarrow \begin{bmatrix} 0 &amp; -i \end{bmatrix} \longrightarrow -i|1\rangle\]</span></p>
+<p>By taking convex linear combinations (superpositions) across these 8 positive protobit states, we can reconstruct <strong>any arbitrary point</strong> <span class="math inline">\((\theta, \phi)\)</span> on the Bloch sphere.</p>
+<p>The mystery of complex quantum phases dissolves into real, positive geometry. Three simple carbon bonds are all that nature needs to house a complete quantum qubit.</p>
+<hr>
+</section>
+</section>
+<section id="quantum-logic-gates-as-cube-rotations" class="level2">
+<h2 class="anchored" data-anchor-id="quantum-logic-gates-as-cube-rotations">Quantum Logic Gates as Cube Rotations</h2>
+<p>Implementing the continuous rotation of a quantum logic gate might appear daunting at first glance. In our discrete framework, however, the problem simplifies drastically: <strong>all we need to specify is where the 8 vertices of our state cube map to.</strong></p>
+<p>Think of tracking an airplane flying across a pitch-black night sky:</p>
+<p>Inside the cockpit, the pilot relies on continuous gyroscopes and attitude instruments. But an observer standing on the ground below cannot see the fuselage of the plane at all. All they can see are the plane’s exterior navigation lights:<br>
+* A <strong>red light</strong> on the left wingtip,<br>
+* A <strong>green light</strong> on the right wingtip,<br>
+* A <strong>white beacon</strong> on the tail / belly.</p>
+<p>Even though the observer only tracks three discrete points of light, they can unambiguously deduce the airplane’s full three-dimensional spatial orientation.</p>
+<p>If the observer initially sees the red light on the left, the green light on the right, and the white beacon underneath—and a moment later observes the red light on the right, the green light on the left, and the white beacon on top—they know with absolute mathematical certainty that the aircraft has executed a <strong><span class="math inline">\(180^\circ\)</span> roll</strong>.</p>
+<p>We treat quantum logic gates in precisely the same way:</p>
+<p>We do not need to model an intractable, continuous spherical rotation across the entire continuum of the Bloch sphere. We simply track the permutation of our <strong>8 discrete basis vertices</strong>.</p>
+<p>By tracking how these extremal “navigation lights” permute across our protobit coordinates, the global unitary transformation naturally takes care of itself.</p>
+<hr>
+</section>
+<section id="elementary-single-qubit-gates" class="level2">
+<h2 class="anchored" data-anchor-id="elementary-single-qubit-gates">Elementary Single-Qubit Gates</h2>
+<p>The standard Pauli gates—<strong><span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, and <span class="math inline">\(Z\)</span></strong>, along with the phase gate <strong><span class="math inline">\(S\)</span></strong>—are classified as “simple” in our framework for two structural reasons:<br>
+1. They operate strictly on a <strong>single logical qubit</strong> (one 3-protobit channel in, one 3-protobit channel out).<br>
+2. Every vertex of our 8-state cube maps cleanly and deterministically onto <strong>another exact vertex of the cube</strong>. There is no splitting of amplitudes or fractional dispersion across vertices.</p>
+<p>Consequently, in this discrete representation, implementing a quantum gate reduces fundamentally to implementing a <strong>truth table permutation</strong>.</p>
+<p><strong>Keep in mind that while these circuits are structurally composed of boolean logic components, they operate as quantum transition operators capable of manipulating protobit states.</strong> We established their mathematical foundation earlier in <a href="../../posts/boolean-logic/index.html">“A Refresher on Boolean Logic”</a> using transition matrix formalism.</p>
+<hr>
+<section id="the-x-gate-pauli-x-bit-flip" class="level3">
+<h3 class="anchored" data-anchor-id="the-x-gate-pauli-x-bit-flip">The X Gate (Pauli-X / Bit-Flip)</h3>
+<p>The <span class="math inline">\(X\)</span> operator swaps the basis states <span class="math inline">\(|0\rangle \leftrightarrow |1\rangle\)</span>. It corresponds to a <span class="math inline">\(\pi\)</span> (<span class="math inline">\(180^\circ\)</span>) rotation around the <span class="math inline">\(X\)</span>-axis of the Bloch sphere:</p>
+<p><span class="math display">\[X = |1\rangle\langle 0| + |0\rangle\langle 1| = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}\]</span></p>
+<ul>
+<li><p><strong>Truth Table</strong><br>
+<span class="math display">\[
+\begin{array}{|c|c|}
+\hline
+\mathbf{Input\ (Protobits\ \rightarrow\ Qubit)} &amp; \mathbf{Output\ (Protobits\ \rightarrow\ Qubit)} \\
+\hline
+\text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp; \text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\
+\hline
+\text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} &amp; \text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} \\
+\hline
+\text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} &amp; \text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} \\
+\hline
+\text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} &amp; \text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} \\
+\hline
+\text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} &amp; \text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
+\hline
+\text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} &amp; \text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} \\
+\hline
+\text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} &amp; \text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} \\
+\hline
+\text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} &amp; \text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} \\
+\hline
+\end{array}
+\]</span></p></li>
+<li><p><strong>Logic Schematic</strong></p></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize canvas for the Pauli-X logic circuit</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Line A2 (MSB: Presence bit) -&gt; Passes through a NOT gate</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input wire</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    in_a2 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.2</span>).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># NOT Gate (inverter)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    not_gate <span class="op">=</span> d.add(logic.Not().right().at(in_a2.end))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output wire</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.2</span>).at(not_gate.out).label(<span class="st">"$A_2'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Line A1 (Imaginary Phase bit) -&gt; Straight wire (Identity)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    y_a1 <span class="op">=</span> in_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">1.5</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">3.8</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        .at((in_a2.start[<span class="dv">0</span>], y_a1))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Line A0 (LSB: Sign Phase bit) -&gt; Straight wire (Identity)</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    y_a0 <span class="op">=</span> in_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">3.0</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">3.8</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        .at((in_a2.start[<span class="dv">0</span>], y_a0))</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="6c322f2e" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Molecular Equivalent</strong></li>
+</ul>
+<hr>
+</section>
+<section id="the-y-gate-pauli-y-bit-and-phase-flip" class="level3">
+<h3 class="anchored" data-anchor-id="the-y-gate-pauli-y-bit-and-phase-flip">The Y Gate (Pauli-Y / Bit-and-Phase-Flip)</h3>
+<p>The <span class="math inline">\(Y\)</span> operator flips the bit and simultaneously introduces an imaginary phase shift. It corresponds to a <span class="math inline">\(\pi\)</span> (<span class="math inline">\(180^\circ\)</span>) rotation around the <span class="math inline">\(Y\)</span>-axis of the Bloch sphere:</p>
+<p><span class="math display">\[Y = -i |1\rangle\langle 0| + i |0\rangle\langle 1| = \begin{bmatrix} 0 &amp; -i \\ i &amp; 0 \end{bmatrix}\]</span></p>
+<ul>
+<li><p><strong>Truth Table</strong><br>
+<span class="math display">\[
+\begin{array}{|c|c|}
+\hline
+\mathbf{Input\ (Protobits\ \rightarrow\ Qubit)} &amp; \mathbf{Output\ (Protobits\ \rightarrow\ Qubit)} \\
+\hline
+\text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp; \text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} \\
+\hline
+\text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} &amp; \text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} \\
+\hline
+\text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} &amp; \text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} \\
+\hline
+\text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} &amp; \text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\
+\hline
+\text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} &amp; \text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} \\
+\hline
+\text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} &amp; \text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} \\
+\hline
+\text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} &amp; \text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
+\hline
+\text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} &amp; \text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} \\
+\hline
+\end{array}
+\]</span></p></li>
+<li><p><strong>Logic Schematic</strong></p></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Inputs (Lignes de gauche)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    in_a2 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.5</span>).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    in_a1 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.0</span>).at((in_a2.start[<span class="dv">0</span>], in_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">1.8</span>)).label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    in_a0 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">0.5</span>).at((in_a2.start[<span class="dv">0</span>], in_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">3.4</span>)).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Branchement pour XOR sur A0</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Points de piquage sur A2 et A1</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at(in_a2.end))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at(in_a1.end))</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Portes NOT sur A2 et A1</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    not_a2 <span class="op">=</span> d.add(logic.Not().right().at(in_a2.end))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    not_a1 <span class="op">=</span> d.add(logic.Not().right().at(in_a1.end))</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sorties A2' et A1'</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">2.2</span>).at(not_a2.out).label(<span class="st">"$A_2'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">2.2</span>).at(not_a1.out).label(<span class="st">"$A_1'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Porte XOR à 3 entrées pour A0'</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Position de la porte XOR en bas</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        logic.Xor(inputs<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        .right()</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        .at((in_a0.end[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">1.8</span>, in_a0.end[<span class="dv">1</span>]))</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connexion A2 vers XOR.in1 (haut)</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a2.end).to(xor_gate.in1))</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connexion A1 vers XOR.in2 (milieu)</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a1.end).to(xor_gate.in2))</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connexion A0 vers XOR.in3 (bas)</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a0.end).to(xor_gate.in3))</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sortie A0'</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_gate.out).label(<span class="st">"$A_0'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="cc03ee3e" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Molecular Equivalent</strong></li>
+</ul>
+<hr>
+</section>
+<section id="the-z-gate-pauli-z-phase-flip" class="level3">
+<h3 class="anchored" data-anchor-id="the-z-gate-pauli-z-phase-flip">The Z Gate (Pauli-Z / Phase-Flip)</h3>
+<p>The <span class="math inline">\(Z\)</span> operator leaves <span class="math inline">\(|0\rangle\)</span> unchanged and flips the phase of <span class="math inline">\(|1\rangle\)</span> by multiplying it by <span class="math inline">\(-1\)</span>. It corresponds to a <span class="math inline">\(\pi\)</span> (<span class="math inline">\(180^\circ\)</span>) rotation around the <span class="math inline">\(Z\)</span>-axis of the Bloch sphere:</p>
+<p><span class="math display">\[Z = |0\rangle\langle 0| - |1\rangle\langle 1| = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}\]</span></p>
+<ul>
+<li><strong>Truth Table</strong> <span class="math display">\[
+\begin{array}{|c|c|}
+\hline
+\mathbf{Input\ (Protobits\ \rightarrow\ Qubit)} &amp; \mathbf{Output\ (Protobits\ \rightarrow\ Qubit)} \\
+\hline
+\text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp; \text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
+\hline
+\text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} &amp; \text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} \\
+\hline
+\text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} &amp; \text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} \\
+\hline
+\text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} &amp; \text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} \\
+\hline
+\text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} &amp; \text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} \\
+\hline
+\text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} &amp; \text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\
+\hline
+\text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} &amp; \text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} \\
+\hline
+\text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} &amp; \text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} \\
+\hline
+\end{array}
+\]</span></li>
+<li><strong>Logic Schematic</strong></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize canvas for the Pauli-Z logic circuit</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Line A2 (MSB) -&gt; Straight wire with a branch tap going down to the XOR</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    line_a2 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">4.5</span>).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>).label(<span class="st">"$A_2'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Line A1 (Middle) -&gt; Pure straight wire (Identity)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    y_a1 <span class="op">=</span> line_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">1.5</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">4.5</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        .at((line_a2.start[<span class="dv">0</span>], y_a1))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Line A0 (LSB) -&gt; Passes through a XOR gate controlled by A2</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    y_a0 <span class="op">=</span> line_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">3.0</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place the XOR gate on line A0</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().right().at((line_a2.start[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">2.0</span>, y_a0)))</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lead wire from Input A0 to XOR bottom input (in2)</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((line_a2.start[<span class="dv">0</span>] , y_a0)).to(xor_gate.in2).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output wire from XOR to A0'</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at(xor_gate.out).to((line_a2.end[<span class="dv">0</span>], y_a0)).label(<span class="st">"$A_0'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Control wire from Line A2 down into XOR top input (in1)</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    tap_x <span class="op">=</span> line_a2.start[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">1.2</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((tap_x, line_a2.start[<span class="dv">1</span>]))) <span class="co"># Branch junction on A2</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().down(<span class="fl">2.5</span>).at((tap_x, line_a2.start[<span class="dv">1</span>])))</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).to(xor_gate.in1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="82a210aa" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-5-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Molecular Equivalent</strong></li>
+</ul>
+<hr>
+</section>
+<section id="the-s-gate-phase-gate-pi2-rotation" class="level3">
+<h3 class="anchored" data-anchor-id="the-s-gate-phase-gate-pi2-rotation">The S Gate (Phase Gate / <span class="math inline">\(\pi/2\)</span> Rotation)</h3>
+<p>The <span class="math inline">\(S\)</span> gate leaves <span class="math inline">\(|0\rangle\)</span> unchanged and introduces a <span class="math inline">\(\pi/2\)</span> (<span class="math inline">\(90^\circ\)</span>) phase rotation on <span class="math inline">\(|1\rangle\)</span>, multiplying it by <span class="math inline">\(i\)</span>. It corresponds to a quarter-turn rotation around the <span class="math inline">\(Z\)</span>-axis of the Bloch sphere:</p>
+<p><span class="math display">\[S = |0\rangle\langle 0| + i |1\rangle\langle 1| = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; i \end{bmatrix}\]</span></p>
+<ul>
+<li><p><strong>Truth Table</strong><br>
+<span class="math display">\[
+\begin{array}{|c|c|}
+\hline
+\mathbf{Input\ (Protobits\ \rightarrow\ Qubit)} &amp; \mathbf{Output\ (Protobits\ \rightarrow\ Qubit)} \\
+\hline
+\text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} &amp; \text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} \\
+\hline
+\text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} &amp; \text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} \\
+\hline
+\text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} &amp; \text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} \\
+\hline
+\text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} &amp; \text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} \\
+\hline
+\text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} &amp; \text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} \\
+\hline
+\text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} &amp; \text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} \\
+\hline
+\text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} &amp; \text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} \\
+\hline
+\text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} &amp; \text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} \\
+\hline
+\end{array}
+\]</span></p></li>
+<li><p><strong>Logic Schematic</strong></p></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Coordonnées verticales des 3 lignes</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    y2, y1, y0 <span class="op">=</span> <span class="fl">4.0</span>, <span class="fl">2.0</span>, <span class="fl">0.0</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    x_in <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Portes logiques</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Porte AND pour (A2 AND A1)</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right().at((<span class="fl">3.0</span>, <span class="fl">1.0</span>)))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Porte XOR pour A1' = A1 XOR A2</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    xor_a1 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">6.0</span>, y1)))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Porte XOR pour A0' = A0 XOR (A2 AND A1)</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    xor_a0 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">6.0</span>, y0)))</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Câblage Ligne A2 (MSB) -&gt; Identité pure vers A2'</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">8.0</span>).at((x_in, y2)).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>).label(<span class="st">"$A_2'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Points de dérivation sur la ligne A2</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.5</span>, y2)))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.5</span>, y2)).to(and_gate.in1))</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">4.5</span>, y2)))</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">4.5</span>, y2)).to(xor_a1.in1))</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Câblage Ligne A1</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.8</span>).at((x_in, y1)).label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.8</span>, y1)))</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dérivation vers la porte AND</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.8</span>, y1)).to(and_gate.in2))</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fil principal vers la porte XOR de A1</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at((<span class="fl">1.8</span>, y1)).to(xor_a1.in2))</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sortie A1'</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_a1.out).label(<span class="st">"$A_1'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Câblage Ligne A0 (LSB)</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Entrée A0 vers l'entrée du bas de xor_a0</span></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at((x_in, y0)).to(xor_a0.in2).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sortie du AND vers l'entrée du haut de xor_a0</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(and_gate.out).to(xor_a0.in1))</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sortie A0'</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_a0.out).label(<span class="st">"$A_0'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="9be9ec39" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-6-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Molecular Equivalent</strong></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="portes-logiques-superposées" class="level2">
+<h2 class="anchored" data-anchor-id="portes-logiques-superposées">Portes logiques superposées</h2>
+<p>Hadamard</p>
+<p>T</p>
+<hr>
+</section>
+<section id="portes-logiques-avec-plus-dune-entrée" class="level2">
+<h2 class="anchored" data-anchor-id="portes-logiques-avec-plus-dune-entrée">Portes logiques avec plus d’une entrée</h2>
+<p>Swap</p>
+<p>Cnot</p>
+<section id="portes-logiques-contrôlées" class="level3">
+<h3 class="anchored" data-anchor-id="portes-logiques-contrôlées">Portes logiques contrôlées</h3>
+<p>Cz</p>
+<p>Toffoli (Ccnot)</p>
+</section>
+<section id="portes-classiques-avec-une-porte-toffoli" class="level3">
+<h3 class="anchored" data-anchor-id="portes-classiques-avec-une-porte-toffoli">Portes classiques avec une porte Toffoli</h3>
+<hr>
+</section>
+</section>
+<section id="rotations-de-base" class="level2">
+<h2 class="anchored" data-anchor-id="rotations-de-base">Rotations de base</h2>
+<p><span class="math inline">\(R_x(\pi)\)</span></p>
+<p><span class="math inline">\(R_y(\pi)\)</span></p>
+<p><span class="math inline">\(R_z(\pi)\)</span></p>
+</section>
+<section id="phase" class="level2">
+<h2 class="anchored" data-anchor-id="phase">Phase</h2>
+<p><span class="math inline">\(Ph(\pi)\)</span></p>
+<p><span class="math inline">\(Ph(\frac{\pi}{2})\)</span></p>
+<hr>
+</section>
+<section id="fraction-de-rotation" class="level2">
+<h2 class="anchored" data-anchor-id="fraction-de-rotation">Fraction de rotation</h2>
+<hr>
+</section>
+<section id="portes-logiques-racines-carrés" class="level2">
+<h2 class="anchored" data-anchor-id="portes-logiques-racines-carrés">Portes logiques racines carrés</h2>
+<hr>
+</section>
+<section id="circuits-de-mesure" class="level2">
+<h2 class="anchored" data-anchor-id="circuits-de-mesure">Circuits de mesure</h2>
+<section id="échantillonage" class="level3">
+<h3 class="anchored" data-anchor-id="échantillonage">Échantillonage</h3>
+</section>
+<section id="recuit-simulé" class="level3">
+<h3 class="anchored" data-anchor-id="recuit-simulé">Recuit Simulé</h3>
+<hr>
+</section>
+</section>
+<section id="exemples-classiques" class="level2">
+<h2 class="anchored" data-anchor-id="exemples-classiques">Exemples classiques</h2>
+<p>Retour de phase quantique.</p>
+<p>Transformations de fourrier quantique.</p>
+<hr>
+</section>
+<section id="speculations-wild-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="../../images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
+<ul>
+<li>Quarks of Light: Modeling the Photon as a Truncated Tetrahedral Protobit Triplet</li>
+</ul>
+<p>If a standard qubit can be mapped onto a 3-protobit manifold, could fundamental bosons like the photon be composite topologies of three protobits themselves?<br>
+Just as protons revealed their internal quark triplet, the polarization and helicity degrees of light (the Poincaré sphere) might simply be the macroscopic projection of an internal, truncated tetrahedral resonance cavity. A photon not as a point particle, but as an autonomous, self-closing loop of three coupled protobits traversing spacetime.</p>
+<ul>
+<li>Spacetime as a Clifford Algebra of Protobits</li>
+</ul>
+<p>Decomposing a single qubit into three protobits (<span class="math inline">\(A_2, A_1, A_0\)</span>) reveals a profound mathematical bridge: <strong>it takes exactly <span class="math inline">\((m + n)\)</span> binary protobits to span the full <span class="math inline">\(2^{m+n}\)</span> multivector space of a Geometric Clifford Algebra <span class="math inline">\(\mathcal{C}\ell(m, n)\)</span>.</strong> For our single qubit, <span class="math inline">\(\mathcal{C}\ell(3, 0)\)</span> requires <span class="math inline">\(3 + 0 = 3\)</span> protobits, whose 8 cube vertices correspond precisely to the 8 geometric elements of 3D space: 1 scalar, 3 vectors, 3 bivector planes, and 1 pseudoscalar (<span class="math inline">\(i\)</span>).</p>
+<p>This invites a wild cosmological conjecture: <strong>what if the dimensionality of the universe simply reflects the number of entangled protobits?</strong><br>
+Under this lens, 4D Minkowski spacetime (<span class="math inline">\(\mathcal{C}\ell(1, 3)\)</span>) requires exactly 4 protobits (<span class="math inline">\(2^4 = 16\)</span> states, the Dirac algebra of the relativistic electron), while grand unified particle theories (<span class="math inline">\(\mathcal{C}\ell(6)\)</span> or <span class="math inline">\(\mathcal{C}\ell(8)\)</span>) demand just 6 to 8 entangled bonds.</p>
+<p>In this paradigm, continuous complex numbers are merely an emergent macroscopic illusion. Reality does not compute with abstract qubits in ethereal Hilbert spaces—it is a discrete geometric network, weaving the grammar of <span class="math inline">\(\mathcal{C}\ell(m, n)\)</span> through the physical resonance of Protobits.</p>
+<hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/quantum-set-theory/index.html">“Quantum Set Theory”</a></strong></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nicdeclic\.com\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<input type="hidden" id="giscus-base-theme" value="light">
+<input type="hidden" id="giscus-alt-theme" value="dark">
+<script>
+  function loadGiscus() {
+    // Function to get the theme based on body class
+    const getTheme = () => {
+      let baseTheme = document.getElementById('giscus-base-theme').value;
+      let altTheme = document.getElementById('giscus-alt-theme').value;
+      return document.body.classList.contains('quarto-dark') ? altTheme : baseTheme;
+    };
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.dataset.repo = "nicdeclic/quantum-molecular-computing";
+    script.dataset.repoId = "R_kgDOUVPuaw";
+    script.dataset.category = "General";
+    script.dataset.categoryId = "DIC_kwDOUVPua84DFUxc";
+    script.dataset.mapping = "title";
+    script.dataset.reactionsEnabled = "1";
+    script.dataset.emitMetadata = "0";
+    script.dataset.inputPosition = "top";
+    script.dataset.theme = getTheme();
+    script.dataset.lang = "en";
+    script.crossOrigin = "anonymous";
+    // Append the script to the desired div instead of at the end of the body
+    document.getElementById("quarto-content").appendChild(script);
+  }
+  loadGiscus();
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
