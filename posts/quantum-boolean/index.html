@@ -113,6 +113,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -161,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <h1 class="title">Boolean Gates Extensions</h1>
                   <div>
         <div class="description">
-          We have now established that within the framework of Conjugated Carbon Computing (CCC), our computational substrate operates on <strong>protobits</strong> rather than classical binary bits. This shift unlocks a rich landscape of entirely non-classical behaviors. Let us explore some of these exotic properties
+          We have now established that within the framework of Conjugated Carbon Computing (CCC), our computational substrate operates on protobits rather than classical binary bits. This shift unlocks a rich landscape of entirely non-classical behaviors. Let us explore some of these exotic properties
         </div>
       </div>
                           <div class="quarto-categories">
@@ -212,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 </div>
 <hr>
-<div id="6f3a408c" class="cell" data-execution_count="1">
+<div id="4420f2d2" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -238,49 +267,610 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>At their baseline, these boolean gates rely on the exact same transition matrices introduced earlier. Yet, because they are embodied in real quantum-molecular networks, they natively handle continuous probability distributions as well as genuine quantum phenomena such as coherent <strong>superposition</strong> and <strong>entanglement</strong>.</p>
 <p>This shift unlocks a rich landscape of entirely non-classical behaviors. Let us explore some of these exotic properties:</p>
 <hr>
-<p><img src="../../images/construction.png" class="img-fluid"></p>
-<hr>
-<ul>
-<li>Deux entrées covariantes
-<ul>
-<li>Utilisation du splitter</li>
-</ul></li>
-</ul>
 <section id="full-io-inversion-reverse-computing" class="level2">
 <h2 class="anchored" data-anchor-id="full-io-inversion-reverse-computing">Full I/O Inversion (Reverse Computing)</h2>
-<pre><code>- Inverted AND Gate
-- Inverted OR Gate
-- Inverted XOR Gate</code></pre>
+<p>Because our molecular transition matrices are bidirectional, it is now possible to completely flip the roles of inputs and outputs.</p>
+<section id="inverted-and-gate" class="level3">
+<h3 class="anchored" data-anchor-id="inverted-and-gate">Inverted AND Gate</h3>
+<p>In this reverse configuration, we drive the circuit from the single terminal <span class="math inline">\(C\)</span> on the left, and observe the resulting quantum superposition across terminals <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> on the right:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place the 2-input AND gate oriented to the LEFT</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().left())</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Input line on the left (connected to the single terminal, formerly Output C)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(and_gate.out).label(<span class="st">"C"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Output lines on the right (formerly Inputs A and B)</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(and_gate.in1).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(and_gate.in2).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"C"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="vs">r"And</span><span class="dv">^</span><span class="vs">{-1}"</span>, <span class="st">"="</span>, <span class="st">"(A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B)"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"And</span><span class="dv">^</span><span class="vs">{-1}"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="ch">\{</span><span class="vs">And</span><span class="dv">^</span><span class="vs">{T}</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, and_rev_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="7b12cb5d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-3-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ C \cdot And^{-1} = (A \otimes B) \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ And^{-1} = \{And^{T}\} =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline \text{``0''} &amp; 0.33 &amp; 0.33 &amp; 0.33 &amp; 0 \\ \text{``1''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
 <ul>
-<li>Portes logiques bout-à-bout
+<li>When <span class="math inline">\(C = 0\)</span>, outputs <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> can be “00”, “01” or “10” with equal probability.<br>
+</li>
+<li>When <span class="math inline">\(C = 1\)</span>, outputs <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> can only be “11”.</li>
+</ul>
+</section>
+<section id="inverted-or-gate" class="level3">
+<h3 class="anchored" data-anchor-id="inverted-or-gate">Inverted OR Gate</h3>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place the 2-input OR gate oriented to the LEFT</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    or_gate <span class="op">=</span> d.add(logic.Or().left())</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Input line on the left (connected to the single terminal, formerly Output C)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(or_gate.out).label(<span class="st">"C"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Output lines on the right (formerly Inputs A and B)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(or_gate.in1).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(or_gate.in2).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"C"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="vs">r"Or</span><span class="dv">^</span><span class="vs">{-1}"</span>, <span class="st">"="</span>, <span class="st">"(A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B)"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"Or</span><span class="dv">^</span><span class="vs">{-1}"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="ch">\{</span><span class="vs">Or</span><span class="dv">^</span><span class="vs">{T}</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, or_rev_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="c83b0232" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ C \cdot Or^{-1} = (A \otimes B) \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ Or^{-1} = \{Or^{T}\} =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline \text{``0''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ \text{``1''} &amp; 0 &amp; 0.33 &amp; 0.33 &amp; 0.33 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="inverted-xor-gate" class="level3">
+<h3 class="anchored" data-anchor-id="inverted-xor-gate">Inverted XOR Gate</h3>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place the 2-input XOR gate oriented to the LEFT</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().left())</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Input line on the left (connected to the single terminal, formerly Output C)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(xor_gate.out).label(<span class="st">"C"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Output lines on the right (formerly Inputs A and B)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_gate.in1).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_gate.in2).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"C"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="vs">r"Xor</span><span class="dv">^</span><span class="vs">{-1}"</span>, <span class="st">"="</span>, <span class="st">"(A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"B)"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"Xor</span><span class="dv">^</span><span class="vs">{-1}"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="ch">\{</span><span class="vs">Xor</span><span class="dv">^</span><span class="vs">{T}</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, xor_rev_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="b3e9cd1b" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-5-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ C \cdot Xor^{-1} = (A \otimes B) \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ Xor^{-1} = \{Xor^{T}\} =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline \text{``0''} &amp; 0.5 &amp; 0 &amp; 0 &amp; 0.5 \\ \text{``1''} &amp; 0 &amp; 0.5 &amp; 0.5 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="back-to-back-cascades-the-non-commutative-trap" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-back-cascades-the-non-commutative-trap">Back-to-Back Cascades: The Non-Commutative Trap</h2>
+<p>When chaining a logic gate directly into its physical mirror image (its Bayesian inverse), intuition might tempt us to assume that the two transformations always cancel out to form an <strong>Identity operator</strong>:</p>
+<p><span class="math display">\[M \cdot M^{-1} \stackrel{?}{=} I\]</span></p>
+<p>In molecular computing, <strong>this naive assumption frequently fails.</strong></p>
+<section id="case-1-the-2-input-2-output-cascade-textand-cdot-textand-1-neq-i" class="level3">
+<h3 class="anchored" data-anchor-id="case-1-the-2-input-2-output-cascade-textand-cdot-textand-1-neq-i">Case 1: The 2-Input / 2-Output Cascade (<span class="math inline">\(\text{And} \cdot \text{And}^{-1} \neq I\)</span>)</h3>
+<p>Here, two input channels (<span class="math inline">\(A, B\)</span>) are merged through an <span class="math inline">\(\text{And}\)</span> gate (<span class="math inline">\(4 \times 2\)</span>), and the resulting single intermediate wire is immediately expanded back through an inverted <span class="math inline">\(\text{And}^{-1}\)</span> gate (<span class="math inline">\(2 \times 4\)</span>):</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Forward AND Gate (pointing right)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    gate_fwd <span class="op">=</span> d.add(logic.And().right().label(<span class="st">"And"</span>, loc<span class="op">=</span><span class="st">"top"</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(gate_fwd.in1).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(gate_fwd.in2).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Reverse AND Gate (pointing left, positioned to the right)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    gate_rev <span class="op">=</span> d.add(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        logic.And().left().at((gate_fwd.out[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">3.0</span>, gate_fwd.out[<span class="dv">1</span>]))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        .label(<span class="vs">r"</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">ext{And}</span><span class="dv">^</span><span class="vs">{-1}</span><span class="dv">$</span><span class="vs">"</span>, loc<span class="op">=</span><span class="st">"top"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connecting intermediate wire between the two single pins</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at(gate_fwd.out).to(gate_rev.out))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output lines emerging on the far right</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(gate_rev.in1).label(<span class="st">"B'"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(gate_rev.in2).label(<span class="st">"A'"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="d12bc505" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-6-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>In this configuration, <strong><span class="math inline">\(\text{And} \cdot \text{And}^{-1}\)</span> does NOT equal the identity (<span class="math inline">\(I_4\)</span>).</strong></p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"{And}"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="vs">r"{And}</span><span class="dv">^</span><span class="vs">{-1}"</span>, <span class="st">"="</span>, (and_q <span class="op">@</span> and_rev_q).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="3f1a5efe" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ {And} \cdot {And}^{-1} =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline \text{``00''} &amp; 0.33 &amp; 0.33 &amp; 0.33 &amp; 0 \\ \text{``01''} &amp; 0.33 &amp; 0.33 &amp; 0.33 &amp; 0 \\ \text{``10''} &amp; 0.33 &amp; 0.33 &amp; 0.33 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="case-2-the-1-input-1-output-cascade-textand-1-cdot-textand-i" class="level3">
+<h3 class="anchored" data-anchor-id="case-2-the-1-input-1-output-cascade-textand-1-cdot-textand-i">Case 2: The 1-Input / 1-Output Cascade (<span class="math inline">\(\text{And}^{-1} \cdot \text{And} = I\)</span>)</h3>
+<p>Now, let us reverse the sequence: we begin with a single input channel <span class="math inline">\(C\)</span>, branch it open through an inverted <span class="math inline">\(\text{And}^{-1}\)</span> gate (<span class="math inline">\(2 \times 4\)</span>), and immediately recombine the dual branches through a forward <span class="math inline">\(\text{And}\)</span> gate (<span class="math inline">\(4 \times 2\)</span>):</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Reverse AND Gate (expanding 1 wire into 2)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    gate_rev <span class="op">=</span> d.add(logic.And().left().label(<span class="vs">r"</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">ext{And}</span><span class="dv">^</span><span class="vs">{-1}</span><span class="dv">$</span><span class="vs">"</span>, loc<span class="op">=</span><span class="st">"top"</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.5</span>).at(gate_rev.out).label(<span class="st">"C"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Forward AND Gate (recombining 2 wires into 1)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    gate_fwd <span class="op">=</span> d.add(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        logic.And().right().at((gate_rev.in1[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">3.0</span>, (gate_rev.in1[<span class="dv">1</span>] <span class="op">+</span> gate_rev.in2[<span class="dv">1</span>]) <span class="op">/</span> <span class="fl">2.0</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"And"</span>, loc<span class="op">=</span><span class="st">"top"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connecting the two parallel intermediate lines</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at(gate_rev.in1).to(gate_fwd.in2))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at(gate_rev.in2).to(gate_fwd.in1))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Final single output wire on the far right</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(gate_fwd.out).label(<span class="st">"C'"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="bd7926c6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>In this configuration, <strong><span class="math inline">\(\text{AND}^{-1} \cdot \text{AND}\)</span> strictly equals the <span class="math inline">\(2 \times 2\)</span> Identity matrix (<span class="math inline">\(I_2\)</span>)!</strong></p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"{And}</span><span class="dv">^</span><span class="vs">{-1}"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="vs">r"{And}"</span>, <span class="st">"="</span>, (and_rev_q <span class="op">@</span> and_q).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="beb8fd86" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ {And}^{-1} \cdot {And} =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``0''} &amp; 1 &amp; 0 \\ \text{``1''} &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<p>Transition matrices can contract or expand the state space dimension, the order of composition strictly dictates whether information is conserved or permanently degraded into probabilistic mixing.</p>
+<hr>
+</section>
+</section>
+<section id="random-noise-as-a-computational-resource" class="level2">
+<h2 class="anchored" data-anchor-id="random-noise-as-a-computational-resource">Random Noise as a Computational Resource</h2>
+<p>In classical digital electronics, randomness is considered an enemy—unwanted thermal noise that must be filtered out. In <strong>Conjugated Carbon Computing (CCC)</strong>, however, stochastic states can be deliberately injected as an active computational resource.</p>
+<p>A particularly powerful primitive is the <strong>balanced random state (fair coin)</strong>:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"{Random}"</span>, <span class="st">"="</span>, (random).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="9b5c2b82" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ {Random} =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline ~ &amp; 0.5 &amp; 0.5 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<section id="the-random-and-gate" class="level3">
+<h3 class="anchored" data-anchor-id="the-random-and-gate">1. The Random-And Gate</h3>
+<p>Feeding a balanced random state into one port of an <span class="math inline">\(\text{And}\)</span> gate suppresses and biases the transmission of signal <span class="math inline">\(A\)</span>:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    gate <span class="op">=</span> d.add(logic.And().right())</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.8</span>).at(gate.in1).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">0.5</span>).at(gate.in2).label(<span class="vs">r"</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">ext{Random}</span><span class="dv">$</span><span class="vs">"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(gate.out).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>random_and <span class="op">=</span> ((identity <span class="op">^</span> random) <span class="op">@</span> and_q).normalize()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="ch">\t</span><span class="vs">ext{Random-And}"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"("</span>, <span class="st">"Identity"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Random"</span>, <span class="st">")"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"And"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, random_and.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="4273a7b0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-11-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ \text{Random-And} = \Big\{ ( Identity \otimes Random ) \cdot And \Big\} =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``0''} &amp; 1 &amp; 0 \\ \text{``1''} &amp; 0.5 &amp; 0.5 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
 <ul>
-<li>2 entrées et 2 sorties ET-ET</li>
-<li>1 entrée et 1 sortie ET-ET</li>
-</ul></li>
-<li>Inversion d’une entrée en sortie
+<li>When <span class="math inline">\(A = 0\)</span>, output <span class="math inline">\(B\)</span> is deterministically clamped to “0” (<span class="math inline">\([1 \quad 0]\)</span>).<br>
+</li>
+<li>When <span class="math inline">\(A = 1\)</span>, output <span class="math inline">\(B\)</span> directly inherits the random distribution <span class="math inline">\([1/2 \quad 1/2]\)</span>.</li>
+</ul>
+<p>When one input of a two-input logic gate is held at this balanced stochastic state, the gate ceases to behave like a deterministic switch. Instead, it transforms into a <strong>tunable probabilistic filter</strong>, modulating the remaining signal <span class="math inline">\(A\)</span> into output <span class="math inline">\(B\)</span>.</p>
+</section>
+<section id="the-random-or-gate" class="level3">
+<h3 class="anchored" data-anchor-id="the-random-or-gate">2. The Random-Or Gate</h3>
+<p>Feeding a balanced random state into an <span class="math inline">\(\text{Or}\)</span> gate creates a similar dual behavior:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    gate <span class="op">=</span> d.add(logic.Or().right())</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.8</span>).at(gate.in1).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">0.5</span>).at(gate.in2).label(<span class="vs">r"</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">ext{Random}</span><span class="dv">$</span><span class="vs">"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(gate.out).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>random_or <span class="op">=</span> ((identity <span class="op">^</span> random) <span class="op">@</span> or_q).normalize()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="ch">\t</span><span class="vs">ext{Random-Or}"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"("</span>, <span class="st">"Identity"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Random"</span>, <span class="st">")"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Or"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>,<span class="st">"="</span>, random_or.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="92e92509" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-12-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ \text{Random-Or} = \Big\{ ( Identity \otimes Random ) \cdot Or \Big\} =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``0''} &amp; 0.5 &amp; 0.5 \\ \text{``1''} &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
 <ul>
-<li>ET inversé</li>
-<li>OU inversé</li>
-<li>XOR inversé</li>
-</ul></li>
-<li>Random Noise as a Logic Resource
+<li>When <span class="math inline">\(A = 0\)</span>, output <span class="math inline">\(B\)</span> directly inherits the random distribution <span class="math inline">\([1/2 \quad 1/2]\)</span>.<br>
+</li>
+<li>When <span class="math inline">\(A = 1\)</span>, output <span class="math inline">\(B\)</span> is deterministically clamped to “1” (<span class="math inline">\([0 \quad 1]\)</span>).</li>
+</ul>
+</section>
+<section id="the-random-xor-gate-the-quantum-jammer-depolarizer" class="level3">
+<h3 class="anchored" data-anchor-id="the-random-xor-gate-the-quantum-jammer-depolarizer">3. The Random-Xor Gate: The Quantum Jammer / Depolarizer</h3>
+<p>Feeding a balanced random state into a <span class="math inline">\(\text{Xor}\)</span> gate produces a striking physical effect:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    gate <span class="op">=</span> d.add(logic.Xor().right())</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">1.8</span>).at(gate.in1).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">0.5</span>).at(gate.in2).label(<span class="vs">r"</span><span class="dv">$</span><span class="ch">\t</span><span class="vs">ext{Random}</span><span class="dv">$</span><span class="vs">"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(gate.out).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>random_xor <span class="op">=</span> ((identity <span class="op">^</span> random) <span class="op">@</span> xor_q).normalize()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="ch">\t</span><span class="vs">ext{Random-Xor}"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"("</span>, <span class="st">"Identity"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Random"</span>, <span class="st">")"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Xor"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>,<span class="st">"="</span>, random_xor.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))     </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="96e4f597" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-13-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ \text{Random-Xor} = \Big\{ ( Identity \otimes Random ) \cdot Xor \Big\} =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``0''} &amp; 0.5 &amp; 0.5 \\ \text{``1''} &amp; 0.5 &amp; 0.5 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<p>Regardless of whether input <span class="math inline">\(A\)</span> is <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>, the <span class="math inline">\(\text{Xor}\)</span> transformation completely scrambles the state.</p>
+<p>The Random-Xor gate acts as a <strong>perfect hardware depolarizer (entropy injector)</strong>—completely erasing the input signal and replacing it with maximal entropy.</p>
+<hr>
+</section>
+</section>
+<section id="partial-io-inversion-pin-flipping" class="level2">
+<h2 class="anchored" data-anchor-id="partial-io-inversion-pin-flipping">Partial I/O Inversion (Pin Flipping)</h2>
+<p>In addition to full forward or backward execution, our molecular architecture permits a far more surgical operation: <strong>inverting a single individual input or output pin.</strong></p>
+<p>Because a chemical bond is fundamentally an undirected degree of freedom, we can mathematically “fold” a terminal wire backward using our primitive topological operators (such as the Identity, Open, Close, and Bayesian transposition).</p>
+<p>This allows us to reconfigure a multi-pin logic component on the fly without resynthesizing the underlying molecular skeleton.</p>
+<section id="inverting-an-input-into-an-output" class="level3">
+<h3 class="anchored" data-anchor-id="inverting-an-input-into-an-output">1. Inverting an Input into an Output</h3>
+<p>Consider a standard 2-input AND gate. What happens if we keep input <span class="math inline">\(A\)</span> on the left, but rewire the bottom input pin <span class="math inline">\(B\)</span> so that it folds back and emerges as an <strong>output</strong> on the right alongside <span class="math inline">\(C\)</span>?</p>
+<p>The component morphs from a 2-in / 1-out gate into a <strong>1-in / 2-out functional beam-splitter</strong>:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place the standard AND gate</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right())</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Input A on the left</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">2.0</span>).at(and_gate.in1).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Output C on the right</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">2.0</span>).at(and_gate.out).label(<span class="st">"C"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Input B rewired/folded backward into an output pin on the right (B)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">0.8</span>).at(and_gate.in2))</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().down(<span class="fl">1.5</span>))</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">4.2</span>))</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">0.5</span>).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>and1_2 <span class="op">=</span> ((identity <span class="op">^</span> <span class="bu">open</span>) <span class="op">@</span> (and_q <span class="op">^</span> identity)).normalize()</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="ch">\t</span><span class="vs">ext{And-1-2}"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"("</span>, <span class="st">"Identity"</span>,  <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Open"</span>, <span class="st">")"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"("</span>, <span class="st">"And"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>,  <span class="st">"Identity"</span>, <span class="st">")"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, and1_2.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="9e10cc21" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ \text{And-1-2} = \Big\{ ( Identity \otimes Open ) \cdot ( And \otimes Identity ) \Big\} =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline \text{``0''} &amp; 0.5 &amp; 0.5 &amp; 0 &amp; 0 \\ \text{``1''} &amp; 0.5 &amp; 0 &amp; 0 &amp; 0.5 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<p>In this mode, holding input <span class="math inline">\(A\)</span> at state <code>"1"</code> forces output <span class="math inline">\(B\)</span> to match output <span class="math inline">\(C\)</span> identically, effectively implementing a conditional identity channel.</p>
+</section>
+<section id="inverting-the-output-into-an-input-of-an-inverted-gate" class="level3">
+<h3 class="anchored" data-anchor-id="inverting-the-output-into-an-input-of-an-inverted-gate">2. Inverting the Output into an Input of an Inverted Gate</h3>
+<p>Conversely, consider an inverted gate where an output wire on the right is folded backward to receive signals as an <strong>input</strong> on the left:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place an inverted AND gate (pointing left)</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    and_rev <span class="op">=</span> d.add(logic.And().left())</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Input C on the far left</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">2.0</span>).at(and_rev.out).label(<span class="st">"C"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Output A on the far right</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">2.0</span>).at(and_rev.in2).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Output B folded backward into an input pin on the left (B)</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">0.8</span>).at(and_rev.in1))</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().down(<span class="fl">1.5</span>))</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">4.2</span>))</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().left(<span class="fl">0.5</span>).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>and_rev_2_1 <span class="op">=</span> ((and_rev_q <span class="op">^</span> identity) <span class="op">@</span> (identity <span class="op">^</span> close)).normalize()</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="ch">\t</span><span class="vs">ext{And-Rev-1-2}"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"("</span>, <span class="vs">r"{And}</span><span class="dv">^</span><span class="vs">{-1}"</span>,  <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Identity"</span>, <span class="st">")"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"("</span>, <span class="st">"Identity"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>,  <span class="st">"Close"</span>, <span class="st">")"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, and_rev_2_1.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="a60df391" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ \text{And-Rev-1-2} = \Big\{ ( {And}^{-1} \otimes Identity ) \cdot ( Identity \otimes Close ) \Big\} =  \begin{array}{r|cc|} \text{} &amp; \text{``0''} &amp; \text{``1''} \\  \hline \text{``00''} &amp; 0.5 &amp; 0.5 \\ \text{``01''} &amp; 1 &amp; 0 \\ \text{``10''} &amp; 0 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-power-of-topological-rewiring" class="level3">
+<h3 class="anchored" data-anchor-id="the-power-of-topological-rewiring">The Power of Topological Rewiring</h3>
+<p>This partial inversion demonstrates a core principle of Conjugated Carbon Computing: <strong>functional directionality is entirely dynamic.</strong></p>
 <ul>
-<li>Random-AND</li>
-<li>Random-OR</li>
-<li>Random-XOR</li>
-</ul></li>
+<li>A single physical 3-terminal carbon structure is not permanently etched as a “gate”: it can operate either as a <strong><span class="math inline">\(2 \rightarrow 1\)</span> logical combiner</strong> (forward) or as a <strong><span class="math inline">\(1 \rightarrow 2\)</span> conditional splitter</strong> (partially inverted).<br>
+</li>
+<li>We do not replace physical hardware to change the nature of the operation; we simply reassign which boundary bonds we clamp as inputs and which ones we leave free to oscillate as outputs.</li>
 </ul>
 <hr>
-<ul>
-<li><p>Circuits plus complexes</p></li>
-<li><p>Il suffit d’ajouter le mot “quantique” après une composante pour inventer quelque chose de nouveau.</p></li>
-<li><p>Comparateur quantique</p></li>
-<li><p>Addition HA, FA quantique</p></li>
-<li><p>Multiplexeur quantique</p></li>
-<li><p>Sélecteur quantique</p></li>
-</ul>
+</section>
+</section>
+<section id="correlated-inputs-the-kronecker-product-trap" class="level2">
+<h2 class="anchored" data-anchor-id="correlated-inputs-the-kronecker-product-trap">Correlated Inputs &amp; The Kronecker Product Trap</h2>
+<p>A common mathematical trap when modeling composite inputs is naively using the Kronecker tensor product (<span class="math inline">\(A \otimes B\)</span>) when the signals are <strong>physically correlated</strong>.</p>
+<p>Consider a classic test case: a 2-input AND gate where both input pins are tied directly to the <strong>very same input wire <span class="math inline">\(A\)</span></strong> :</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place the 2-input AND gate</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right())</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Output wire B</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.0</span>).at(and_gate.out).label(<span class="st">"B"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Input wire A branching into both in1 and in2</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    in_mid_y <span class="op">=</span> (and_gate.in1[<span class="dv">1</span>] <span class="op">+</span> and_gate.in2[<span class="dv">1</span>]) <span class="op">/</span> <span class="fl">2.0</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    input_A <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.0</span>).at((and_gate.in1[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">1.5</span>, in_mid_y)).label(<span class="st">"A"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route to top input (in1)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(input_A.end).to(and_gate.in1))</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route to bottom input (in2)</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(input_A.end).to(and_gate.in2))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="7876722d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-16-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<section id="where-the-math-breaks-down" class="level3">
+<h3 class="anchored" data-anchor-id="where-the-math-breaks-down">Where the Math Breaks Down</h3>
+<p>If input <span class="math inline">\(A\)</span> is a deterministic boolean value (<code>"0"</code> or <code>"1"</code>), no issue arises:<br>
+* If <span class="math inline">\(A = 0\)</span>, both pins see <span class="math inline">\(0\)</span>, and the output <span class="math inline">\(B\)</span> is <span class="math inline">\(0\)</span>.<br>
+* If <span class="math inline">\(A = 1\)</span>, both pins see <span class="math inline">\(1\)</span>, and the output <span class="math inline">\(B\)</span> is <span class="math inline">\(1\)</span>.<br>
+The circuit behaves strictly as an Identity buffer (<span class="math inline">\(B = A\)</span>).</p>
+<p><strong>However, watch what happens when input <span class="math inline">\(A\)</span> carries a probabilistic state (such as our “fair coin” Random bit: <span class="math inline">\([0.5 \quad 0.5]\)</span>):</strong></p>
+<p>If one naively computes the joint input using the tensor product:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>random_squared <span class="op">=</span> random <span class="op">^</span> random</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"("</span>, <span class="st">"A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"A"</span>, <span class="st">")"</span>, <span class="st">"="</span>, <span class="st">"("</span>, <span class="st">"Random"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Random"</span>, <span class="st">")"</span>, <span class="st">"="</span>, random_squared.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="57bd86b9" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ ( A \otimes A ) = ( Random \otimes Random ) =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 0.25 &amp; 0.25 &amp; 0.25 &amp; 0.25 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<p>This multiplication fails catastrophically!</p>
+<p>The Kronecker product assumes <strong>statistical independence</strong>: it assigns a <span class="math inline">\(25\%\)</span> probability to the state <code>"01"</code> and a <span class="math inline">\(25\%\)</span> probability to <code>"10"</code>. But this is a physical impossibility: because both pins are physically wired to the identical bond <span class="math inline">\(A\)</span>, they can <strong>never</strong> disagree!</p>
+<p>The states <code>"01"</code> and <code>"10"</code> make no physical sense on a shared wire.</p>
+</section>
+<section id="the-solution-the-split-operator-coherent-fan-out" class="level3">
+<h3 class="anchored" data-anchor-id="the-solution-the-split-operator-coherent-fan-out">The Solution: The Split Operator (Coherent Fan-Out)</h3>
+<p>To duplicate a state while preserving <span class="math inline">\(100\%\)</span> correlation, we must not compute an independent tensor product. Instead, we must route the single wire through a <strong>Split transition matrix</strong>:</p>
+<p>The Split operator explicitly maps:<br>
+* <code>"0"</code> <span class="math inline">\(\longrightarrow\)</span> <code>"00"</code><br>
+* <code>"1"</code> <span class="math inline">\(\longrightarrow\)</span> <code>"11"</code></p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Split"</span>, <span class="st">"="</span>, split.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="5b701a8a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="17">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ Split =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline \text{``0''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ \text{``1''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<p>When input <span class="math inline">\(A\)</span> passes through the Split matrix, it produces the true correlated joint state:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Split"</span>, <span class="st">"="</span>, (random <span class="op">@</span> split).to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="5c97b2e2" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="18">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ A \cdot Split =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 0.5 &amp; 0 &amp; 0 &amp; 0.5 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
+<p>Now, cascading this properly into the AND gate restores mathematical and physical truth:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"("</span>, <span class="st">"A"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Split"</span>, <span class="st">")"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"And"</span>, <span class="st">"="</span>, <span class="st">"B"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>display_inline((random <span class="op">@</span> split).to_katex(), <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, and_q.to_katex(), <span class="st">"="</span>, ((random <span class="op">@</span> split) <span class="op">@</span> and_q).to_katex(), <span class="st">"="</span>, <span class="st">"A"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="7046a8d1" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="19">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ ( A \cdot Split ) \cdot And = B \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[  \begin{array}{|cccc|}  \hline 0.5 &amp; 0 &amp; 0 &amp; 0.5 \\  \hline \end{array}  \cdot  \begin{array}{|cc|}  \hline 1 &amp; 0 \\ 1 &amp; 0 \\ 1 &amp; 0 \\ 0 &amp; 1 \\  \hline \end{array}  =  \begin{array}{|cc|}  \hline 0.5 &amp; 0.5 \\  \hline \end{array}  = A \]</span></p>
+</div>
+</div>
+</div>
+<p>The identity <span class="math inline">\(B = A\)</span> is preserved, the impossible states are purged, and the correlation is maintained with mathematical perfection.</p>
+<hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/qubit-emulation/index.html">“Qubit Emulation”</a></strong></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
