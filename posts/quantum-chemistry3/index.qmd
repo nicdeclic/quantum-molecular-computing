@@ -493,12 +493,36 @@ mol7.draw(margin=0.5)
 
 display_inline("Close", "=", close.to_katex(show_labels=True))
 
+
+mol8 = CarbonMolecule("Split")
+c8_1 = mol8.add_atom(x=0.0, y=0.35, visible=False)
+c8_2 = mol8.add_atom(x=0.0, y=-0.35, visible=False)
+c8_3 = mol8.add_atom(x=-0.6, y=0.0, visible=False)
+c8_4 = mol8.add_atom(x=-0.4, y=0.0, visible=False)
+b8_1 = mol8.add_bond(c8_1, c8_2, order="single", ctrl1=[-0.5, 0.5], ctrl2=[-0.5, -0.5])
+b8_2 = mol8.add_bond(c8_3, c8_4, order="single")
+mol8.draw(margin=0.5)
+
+display_inline("Split", "=", split.to_katex(show_labels=True))
+
+
+mol9 = CarbonMolecule("Join")
+c9_1 = mol9.add_atom(x=0.0, y=0.35, visible=False)
+c9_2 = mol9.add_atom(x=0.0, y=-0.35, visible=False)
+c9_3 = mol9.add_atom(x=0.6, y=0.0, visible=False)
+c9_4 = mol9.add_atom(x=0.4, y=0.0, visible=False)
+b9_1 = mol9.add_bond(c9_1, c9_2, order="single", ctrl1=[0.5, 0.5], ctrl2=[0.5, -0.5])
+b9_2 = mol9.add_bond(c9_3, c9_4, order="single")
+mol9.draw(margin=0.5)
+
+display_inline("Join", "=", join.to_katex(show_labels=True))
+
 ```
 
 Notice the geometric symmetries embedded within these primitives:
 
 * **Self-Dual Motifs:** **Identity**, **Negate**, and **Swap** are their own topological duals. Reversing their operational direction leaves their matrix representations strictly invariant.
-* **Dual Pairs:** **Fork** and **Merge** form a complementary pair: they represent the exact same trivalent junction, simply with inputs and outputs exchanged. The same directional duality connects **Open** and **Close**.
+* **Dual Pairs:** **Fork** and **Merge** form a complementary pair: they represent the exact same trivalent junction, simply with inputs and outputs exchanged. The same directional duality connects **Open**/**Close** and **Split**/**Join**.
 
 Mathematically, this backward operation is achieved by transposing the matrix, followed by a row-normalization step to enforce that all accessible states sum strictly to 1, or 0 for forbidden transitions.  
 
@@ -508,31 +532,6 @@ For example:
 $$\text{Fork} = \{\text{Merge}^\mathbf{T}\}$$  
 
 $$\text{Merge} = \{\text{Fork}^\mathbf{T}\}$$  
-
-Using standard linear algebra—the **Kronecker tensor product ($\otimes$)** for parallel components, and the **matrix dot product ($\cdot$)** for sequential cascade — we can analytically synthesize complex circuits.  
-
-For example, the triangular **XNOR junction** can be calculated directly by assembling primitive blocks:  
-
-![](serial-xnor.png){fig-align="center"}
-
-```{python}
-#| code-fold: true
-#| fig-align: center
-#| layout-ncol: 1
-
-m = ((fork ^ fork) @ (identity ^ close ^ identity) @ (merge))
-
-display_inline("Xnor", "=", r"\Big\{", "A", r"\cdot", "B", r"\cdot", "C", r"\Big\}")
-
-display_inline(r"\Rightarrow", "Xnor", "=", r"\Big\{", "(", "Fork",  r"\otimes",  "Fork", ")", r"\cdot", "(", "Identity",  r"\otimes", "Close", r"\otimes", "Identity", ")", r"\cdot", "(", "Merge", ")", r"\Big\}")
-
-display_inline(r"\Rightarrow", "Xnor", "=", m.normalize().to_katex(show_labels=True))
-
-```
-
-Carrying out this matrix multiplication yields the exact $4 \times 2$ stochastic truth table we previously derived by hand!  
-
-This algebraic calculus generalizes seamlessly to larger, closed-form systems.  
 
 * **Couplers** can likewise be expressed in matrix form:  
 
@@ -546,6 +545,142 @@ display_inline("Coupler", "=", coupler_q.to_katex(show_labels=True))
 ```
 
 Rather than acting as spatial routing wires, a Coupler acts as a **diagonal projector / filter matrix**—algebraically annihilating incompatible product states across coupled lines.  
+
+### Junction decomposition
+
+Using standard linear algebra—the **Kronecker tensor product ($\otimes$)** for parallel components, and the **matrix dot product ($\cdot$)** for sequential cascade — we can analytically synthesize complex circuits.  
+
+For example, the triangular **XNOR junction** can be calculated directly by assembling primitive blocks:  
+
+![](serial-xnor.png){fig-align="center"}
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+m = ((fork ^ fork) @ (identity ^ close ^ identity) @ (merge)).normalize()
+
+display_inline("Xnor", "=", r"\Big\{", r"M_1", r"\cdot", r"M_2", r"\cdot", r"M_3", r"\Big\}")
+
+display_inline(r"\Rightarrow", "Xnor", "=", r"\Big\{", "(", "Fork",  r"\otimes",  "Fork", ")", r"\cdot", "(", "Identity",  r"\otimes", "Close", r"\otimes", "Identity", ")", r"\cdot", "(", "Merge", ")", r"\Big\}")
+
+display_inline(r"\Rightarrow", "Xnor", "=", m.normalize().to_katex(show_labels=True))
+
+```
+
+Carrying out this matrix multiplication yields the exact $4 \times 2$ stochastic truth table we previously derived by hand!  
+
+### Closed-form decomposition
+
+This algebraic calculus generalizes seamlessly to larger, closed-form systems. 
+
+There is a crucial topological distinction to be made, however: when evaluating boundary terminals, we must employ **Split** and **Join** primitives instead of **Open**/**Close** primitives. Because a closed molecule forms a self-contained graph, failing to explicitly distinguish external ports from closed internal loops would cause the matrix contraction to collapse trivially into a scalar $1 \times 1$ matrix.  
+
+To illustrate this method, let us algebraically decompose the "Letter Envelope" molecule configured as a **NOR gate**, with bonds $A$ and $B$ designated as inputs and bond $C$ as the output:  
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+# Create a conjugated carbon molecule
+mol = CarbonMolecule("Letter Envelope")
+
+# Add atoms
+c1 = mol.add_atom(x=-0.8, y=0.5, label="1")
+c2 = mol.add_atom(x=0.8, y=0.5, label="2")
+c3 = mol.add_atom(x=-0.3, y=0, label="3")
+c4 = mol.add_atom(x=0.3, y=0, label="4")
+c5 = mol.add_atom(x=-0.8, y=-0.5, label="5")
+c6 = mol.add_atom(x=0.8, y=-0.5, label="6")
+
+# Add bonds
+b1 = mol.add_bond(c1, c2, order="single", label="A")
+b2 = mol.add_bond(c1, c5, order="single", label="F")
+b3 = mol.add_bond(c2, c6, order="single", label="C")
+b4 = mol.add_bond(c1, c3, order="single", label="D")
+b5 = mol.add_bond(c2, c4, order="single", label="E")
+b6 = mol.add_bond(c3, c4, order="single", label="G")
+b7 = mol.add_bond(c3, c5, order="single", label="H")
+b8 = mol.add_bond(c4, c6, order="single", label="I")
+b9 = mol.add_bond(c5, c6, order="single", label="B")
+
+mol.draw(scale=2) 
+
+```
+
+All carbon atoms have been explicitly numbered and bonds annotated with alphabetical labels. This dual indexing is essential for tracking pathways as we slice the molecule into consecutive spatial slices.  
+
+![](serial-nor.png){fig-align="center" height="500px"}
+
+In the algebraic derivation below, we adopt the standard compact notation **$A^{\otimes n}$** to denote the repeated **Kronecker tensor power** of an operator $A$ acting across $n$ parallel channels:  
+
+$$A^{\otimes n} = \underbrace{A \otimes A \otimes \dots \otimes A}_{n \text{ times}}$$  
+
+For instance, $\text{Split}^{\otimes 2} = \text{Split} \otimes \text{Split}$ represents two independent splitters operating simultaneously in parallel.  
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+m = ((split**2) @ (fork**4) @ (identity ^ fork**2 ^ close ^ identity**3) @ (identity**2 ^ close**2 ^ identity**2) @ (identity ^ close ^ identity) @ (join)).normalize()
+
+display_inline("Nor", "=", r"\Big\{", r"M_1", r"\cdot", r"M_2", r"\cdot", r"M_3", r"\cdot", r"M_4", r"\cdot", r"M_5", r"\cdot", r"M_6", r"\Big\}")
+
+display_inline(
+    r"\begin{aligned}",
+    r"\Rightarrow \text{Nor} &= \Big\{ (\text{Split}^{\otimes 2}) \cdot (\text{Fork}^{\otimes 4})",
+    r"\cdot (\text{Identity} \otimes \text{Fork}^{\otimes 2} \otimes \text{Close} \otimes \text{Identity}^{\otimes 3}) \cdot \\",
+    r"&\quad (\text{Identity}^{\otimes 2} \otimes \text{Close}^{\otimes 2} \otimes \text{Identity}^{\otimes 2})",
+    r"\cdot (\text{Identity} \otimes \text{Close} \otimes \text{Identity}) \cdot (\text{Join}) \Big\}",
+    r"\end{aligned}"
+)
+
+display_inline(r"\Rightarrow", "Nor", "=", m.normalize().to_katex(show_labels=True))
+
+```
+
+And the calculus converges onto the exact, canonical **NOR truth table**!  
+
+It is deeply revealing to witness the sheer hidden complexity operating beneath the surface of a simple molecular NOR gate: an intricate symphony of forks, parallel branches, and coherent cancellations resolving seamlessly into clean, deterministic universal logic.  
+
+### Tidying the Swap Mess
+
+Up to this point, we have deliberately avoided using the elementary **Swap** primitive within our algebraic decompositions.  
+
+The reason is purely practical: routing wires exclusively through 2-channel swaps becomes hopelessly cumbersome the moment a circuit interconnects more than three lines. It feels like manually synthesizing an entire **bitonic sorting network** each time we merely want to cross a couple of signals.  
+
+In linear algebra, a cascade of adjacent 2-wire swaps is simply a low-level decomposition of a single, global **permutation matrix**.  
+
+Rather than chaining dozens of tedious swap blocks, it is vastly more efficient to construct the required permutation operator directly from the desired wire mappings.  
+
+To streamline our calculus, we introduce a high-level helper function: `permutation(n, mapping)`.  
+
+This operator directly compiles an arbitrary wire routing layout into an exact, sparse $2^n \times 2^n$ transition matrix in a single step.  
+
+Using this primitive, any complex routing stage between circuit blocks collapses into a clean, single-layer matrix operator.  
+
+Here is how to create and apply a permutation of 3 lines where:  
+* Line 0 moves to Position 2  
+* Line 1 moves to Position 0  
+* Line 2 moves to Position 1  
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+# 1. Create the permutation matrix for n=3 lines
+P = permutation(3, [2, 0, 1])
+
+# 2. Display the resulting 8x8 matrix
+display_inline(r"\text{P}_{[2, 0, 1]}", "=", P.to_katex(show_labels=True))
+
+```
+
+The wiring clutter vanishes, allowing us to focus on the essential physics of gate transformations and resonant topological closures.  
 
 ---
 
@@ -590,7 +725,7 @@ Human spoken and written languages are strictly one-dimensional and chronologica
 
 What if a language wasn't a 1D string of letters, but a **two-dimensional resonant graph**?  
 
-In such a "molecular language":  
+In such a "quantum molecular language":  
 * The geometric arrangement of tiles directly dictates which resonance states are allowed or forbidden.  
 * Reading the language is not a sequential decoding process, but filtering the molecule through its boundary connections.  
 * A single statement can hold multiple valid meanings simultaneously (superposition) until constrained by adjacent tiles.  
@@ -599,6 +734,17 @@ How far could such physical linguistics be pushed in the real world? Could the m
 
 In any case, huge kudos to the writers—George Carson and Gene Roddenberry—for intuitively envisioning a geometric language long before the rest of us started drawing logic into carbon rings!  
 **['"Earth: Final Conflict S01 EP13 "The Secret of Strandhill"'](https://www.youtube.com/watch?v=Ep_VRrbjXyc)**  
+
+
+* Did Dinosaurs Run on "Unoptimized Hardware"?  
+
+Designing a compact monolithic molecule (instead of chaining bulky modular gates) is an exponentially hard problem: it takes a tailor-made quantum processor to solve the molecular geometry for a larger processor, which in turn designs the next generation. This recursive bootstrapping mirrors biological evolution: proteins and enzymes are nothing less than self-assembling, monolithic quantum molecular processors sculpted over 3.5 billion years.  
+
+This invites a playful yet profound evolutionary question: **could the colossal size of Mesozoic dinosaurs reflect an earlier, less optimized era of molecular hardware?**  
+
+Through modern *Ancestral Sequence Reconstruction* (ASR), computational biologists can simulate ancient proteins. What we discover is telling: while ancient enzymes were not vastly longer, they were structurally "looser", promiscuous, and slower to navigate their energy landscapes compared to the razor-sharp, catalytically perfected enzymes of modern birds and mammals. Furthermore, avian descendants underwent dramatic genomic streamlining, purging genetic bloat to support extreme metabolic clock speeds.  
+
+Just as early vacuum-tube computers filled entire rooms before silicon engineering miniaturized computation into our pockets, nature may have spent the last 100 million years refactoring its conjugated biological circuits—smoothing resonance bottlenecks, pruning parasitic states, and achieving the ultra-dense molecular miniaturization that powers today's living world.  
 
 ---
 

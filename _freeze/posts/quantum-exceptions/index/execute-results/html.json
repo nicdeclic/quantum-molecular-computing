@@ -1,0 +1,12 @@
+{
+  "hash": "7a9f9175caf82da5663932a727a60d40",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Quantum Exceptions\"\ndescription: 'Under construction'\nauthor: \"NicDeclic\"\ndate: \"2026-11-06\"\ncategories: [Exceptions]\nimage: \"plasma.jpg\"\n---\n\n![](plasma.jpg)  \n\n::: {.text-end}\n> *“Sometimes, constraints are the stars that guide.”*  \n> — **Professor Alvin**\n:::\n\n---\n\n::: {#105e160d .cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see library imports\"}\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../../src\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\n```\n:::\n\n\n---\n\n![](/images/construction.png){}\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

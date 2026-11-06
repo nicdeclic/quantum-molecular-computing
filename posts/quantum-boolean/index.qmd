@@ -381,7 +381,7 @@ display_inline(r"\text{And-1-2}", "=", r"\Big\{", "(", "Identity",  r"\otimes", 
 In this mode, holding input $A$ at state `"1"` forces output $B$ to match output $C$ identically, effectively implementing a conditional identity channel.  
 
 
-### 2. Inverting the Output into an Input of an Inverted Gate
+### 2. Inverting the Output of an Inverted Gate into an Input
 
 Conversely, consider an inverted gate where an output wire on the right is folded backward to receive signals as an **input** on the left:  
 

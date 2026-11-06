@@ -1,0 +1,57 @@
+---
+title: "Quantum Set Theory"
+description: 'Under construction'
+author: "NicDeclic"
+date: "2026-11-08"
+categories: [Set Theory]
+image: "quantum-venn-diagram.png"
+---
+
+![](quantum-venn-diagram.png)  
+
+::: {.text-end}
+> *“Why revere a summit when the roots can bear it all?”*  
+> — **Professor Alvin**
+:::
+
+---
+
+```{python}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Click to see library imports"
+
+import sys
+if 'google.colab' in sys.modules:
+    # 1. Download qmc.py from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py
+    
+    # 2. Download requirements.txt from GitHub
+    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt
+
+    # 3. Install dependencies
+    !pip install -q -r requirements.txt
+
+sys.path.insert(0, "../../src") # Select root directory
+from qmc import * # QMC library
+
+%reload_ext autoreload
+%autoreload 2
+
+```
+
+---
+
+![](/images/construction.png){}
+
+---
+
+- Ensembles quantiques similaires aux Oracles
+
+- Opérations
+    - Union
+    - Différence?
+
+- Ensembles ordonnés
+
+---

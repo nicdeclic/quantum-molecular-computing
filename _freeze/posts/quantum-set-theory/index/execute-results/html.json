@@ -1,0 +1,12 @@
+{
+  "hash": "a6c1e5a60ebf8805787e0d4c0a4c2fe5",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Quantum Set Theory\"\ndescription: 'Under construction'\nauthor: \"NicDeclic\"\ndate: \"2026-11-08\"\ncategories: [Set Theory]\nimage: \"quantum-venn-diagram.png\"\n---\n\n![](quantum-venn-diagram.png)  \n\n::: {.text-end}\n> *“Why revere a summit when the roots can bear it all?”*  \n> — **Professor Alvin**\n:::\n\n---\n\n::: {#cf9cadec .cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see library imports\"}\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../../src\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\n```\n:::\n\n\n---\n\n![](/images/construction.png){}\n\n---\n\n- Ensembles quantiques similaires aux Oracles\n\n- Opérations\n    - Union\n    - Différence?\n\n- Ensembles ordonnés\n\n---\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
