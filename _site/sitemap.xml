@@ -6,11 +6,15 @@
   </url>
   <url>
     <loc>https://nicdeclic.com/posts/quick-intro/index.html</loc>
-    <lastmod>2026-10-19T17:39:16.055Z</lastmod>
+    <lastmod>2026-11-09T14:55:54.850Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nicdeclic.com/posts/quantum-set-theory/index.html</loc>
+    <lastmod>2026-11-06T20:13:05.361Z</lastmod>
   </url>
   <url>
     <loc>https://nicdeclic.com/posts/quantum-chemistry3/index.html</loc>
-    <lastmod>2026-11-06T20:06:31.489Z</lastmod>
+    <lastmod>2026-11-09T15:49:35.813Z</lastmod>
   </url>
   <url>
     <loc>https://nicdeclic.com/posts/quantum-chemistry/index.html</loc>
@@ -18,7 +22,7 @@
   </url>
   <url>
     <loc>https://nicdeclic.com/posts/protobits/index.html</loc>
-    <lastmod>2026-11-06T15:27:22.105Z</lastmod>
+    <lastmod>2026-11-09T17:22:55.055Z</lastmod>
   </url>
   <url>
     <loc>https://nicdeclic.com/posts/boolean-logic/index.html</loc>
@@ -45,19 +49,15 @@
     <lastmod>2026-11-04T16:45:09.784Z</lastmod>
   </url>
   <url>
+    <loc>https://nicdeclic.com/posts/quantum-exceptions/index.html</loc>
+    <lastmod>2026-11-06T20:18:20.299Z</lastmod>
+  </url>
+  <url>
     <loc>https://nicdeclic.com/posts/qubit-emulation/index.html</loc>
     <lastmod>2026-11-04T16:36:05.955Z</lastmod>
   </url>
   <url>
     <loc>https://nicdeclic.com/posts/toward-physical/index.html</loc>
     <lastmod>2026-10-29T20:06:12.243Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nicdeclic.com/posts/quantum-set-theory/index.html</loc>
-    <lastmod>2026-11-06T20:13:05.361Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nicdeclic.com/posts/quantum-exceptions/index.html</loc>
-    <lastmod>2026-11-06T20:13:05.361Z</lastmod>
   </url>
 </urlset>

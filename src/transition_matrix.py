@@ -432,7 +432,7 @@ def custom_swap(n, bit_i, bit_j):
     
     return TransitionMatrix(sp_matrix)
 
-def permutation(n, mapping):
+def permute(mapping):
     """
     Returns a 2^n x 2^n TransitionMatrix that rearranges bits according to the mapping.
     
@@ -442,16 +442,15 @@ def permutation(n, mapping):
              Bit 1 -> Pos 0
              Bit 2 -> Pos 1
     """
+
+    n = len(mapping)
     
     # 1. Validation
     if not isinstance(n, int) or n < 1:
-        raise ValueError("n must be a positive integer.")
+        raise ValueError("n must be a non-zero positive integer.")
     
     if not isinstance(mapping, (list, tuple, np.ndarray)):
         raise TypeError("mapping must be a list or array-like.")
-        
-    if len(mapping) != n:
-        raise ValueError(f"Mapping length ({len(mapping)}) must match n ({n}).")
         
     # Check if mapping is a valid permutation (contains all indices from 0 to n-1)
     if sorted(mapping) != list(range(n)):
@@ -716,7 +715,7 @@ phase_3pi_div_2 = phase_pi_div_2 @ phase_pi
 
 hadamard = (identity**3) @ (random ^ identity**3) @ (split ^ identity**3) @ (identity ^ and_q ^ identity**2) @ (identity ^ swap ^ identity) @ (identity ^ identity ^ xor_q)
 
-cnot = (split ^ identity**5) @ permutation(7,[0,3,1,2,4,5,6]) @ (identity**3 ^ xor_q ^ identity**2)
+cnot = (split ^ identity**5) @ permute([0,3,1,2,4,5,6]) @ (identity**3 ^ xor_q ^ identity**2)
 
 #ccnot = (split ^ identity**2 ^ split ^ identity**2 ^ identity**3) @ permutation(9,[])
 

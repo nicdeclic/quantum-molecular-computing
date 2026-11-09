@@ -2,7 +2,7 @@
 title: "Quantum Exceptions"
 description: 'Under construction'
 author: "NicDeclic"
-date: "2026-11-06"
+date: "2026-11-07"
 categories: [Exceptions]
 image: "plasma.jpg"
 ---

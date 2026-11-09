@@ -277,7 +277,7 @@ Two fundamental questions remain:
 
 * **How do we build specific structures to achieve a desired computational outcome?**  
 and  
-* **What is the true computational power of quantum molecular systems?**
+* **What is the true computational potential of quantum molecular systems?**
 
 ---
 
