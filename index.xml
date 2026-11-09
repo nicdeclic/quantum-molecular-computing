@@ -168,7 +168,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 </blockquote>
 </div>
 <hr>
-<div id="105e160d" class="cell" data-execution_count="1">
+<div id="cf6247da" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -275,7 +275,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
  ]]></description>
   <category>Exceptions</category>
   <guid>https://nicdeclic.com/posts/quantum-exceptions/</guid>
-  <pubDate>Fri, 06 Nov 2026 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 07 Nov 2026 05:00:00 GMT</pubDate>
   <media:content url="https://nicdeclic.com/posts/quantum-exceptions/plasma.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -623,7 +623,7 @@ background-color: null;
 font-style: inherit;">"right"</span>)</span>
 <span id="cb2-39">    )</span></code></pre></div></div>
 </details>
-<div id="6c322f2e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="6c322f2e" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -838,7 +838,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="cc03ee3e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="cc03ee3e" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1020,7 +1020,7 @@ font-style: inherit;">1</span>])))</span>
 background-color: null;
 font-style: inherit;">"|-"</span>).to(xor_gate.in1))</span></code></pre></div></div>
 </details>
-<div id="82a210aa" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="82a210aa" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1258,7 +1258,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="9be9ec39" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="9be9ec39" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3405,7 +3405,7 @@ font-style: inherit;">"A"</span>)</span></code></pre></div></div>
 </blockquote>
 </div>
 <hr>
-<div id="68707767" class="cell" data-execution_count="1">
+<div id="04c6e5e7" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -3695,7 +3695,7 @@ font-style: inherit;">"B"</span>)</span>
 <span id="cb2-22"></span>
 <span id="cb2-23">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="e41f49c3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="fd067e29" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3742,7 +3742,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-8">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="36854ba0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="a66f5f07" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3935,7 +3935,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="e02fe4a9" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="a5c387ed" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20A%20%5Cotimes%20B%20=%20%5CBig%5C%7B%20%5Ctext%7B%60%6000''%7D%20+%20%5Ctext%7B%60%6011''%7D%20%5CBig%5C%7D%20"></p>
@@ -4050,11 +4050,11 @@ Scientific integrity simply demands that we explicitly declare our frame:</p>
 <ul>
 <li>Set Theory &amp; The Observer’s Choice</li>
 </ul>
-<p>While refining and transcribing this theory, I often listen to the music of the Swedish ambient duo <strong>Carbon Based Lifeforms</strong> (could there be a more fitting soundtrack?).<br>
-Among their masterpieces, the vocal sample in <em>“Set Theory”</em> — drawn from the sci-fi film <em>Solaris</em> (2002) — resonates deeply with this work: <em>“There are no answers. Only choices.”</em><br>
-In conjugated carbon computing, there is no absolute, pre-ordained direction to information flow: <strong>it is the observer who chooses which boundary bonds serve as inputs and which serve as outputs.</strong> The calculation is an act of perspective.<br>
-Furthermore, quantum sets constitute a foundational pillar of this entire theoretical framework.<br>
-A heartfelt thank you to the band for their visionary inspiration!</p>
+<p>While refining and transcribing this theory, I often listen to the music of the Swedish ambient duo <strong>Carbon Based Lifeforms</strong> (could there be a more fitting soundtrack?).</p>
+<p>Among their masterpieces, the vocal sample in <em>“Set Theory”</em> — drawn from the sci-fi film <em>Solaris</em> (2002) — resonates deeply with this work: <em>“There are no answers. Only choices.”</em></p>
+<p>In conjugated carbon computing, there is no absolute, pre-ordained direction to information flow: <strong>it is the observer who chooses which boundary bonds serve as inputs and which serve as outputs.</strong> The calculation is an act of perspective.</p>
+<p>Furthermore, quantum sets constitute a foundational pillar of this entire theoretical framework.</p>
+<p>A heartfelt thank you to the band for their visionary inspiration!</p>
 <p><strong><a href="https://www.youtube.com/watch?v=23iuPKuPd30">“Carbon Based Lifeforms - Set Theory”</a></strong></p>
 <ul>
 <li>From It to Protobit</li>
@@ -4066,6 +4066,21 @@ A heartfelt thank you to the band for their visionary inspiration!</p>
 <p>Under the Holographic Principle, all the dimensional physics inside a (hyper)volume is entirely projected from the information encoded onto its two-dimensional boundary.</p>
 <p>In our model, the 2D network of conjugated carbon bonds acts precisely as such a holographic surface. The Protobit is the elemental quantum of information living on this geometric boundary. When we look at a carbon-carbon bond, we are not merely looking at shared electrons; we are peering through a subtle crack in the fabric of spacetime, catching a glimpse of the fundamental informational pixel that projects quantum reality inward.</p>
 <p>Nature did not wait for humans to build computers. Through the resonant geometry of carbon, the universe reveals that its underlying architecture has always been holographic—and its fundamental currency might well be the <strong>Protobit</strong>.</p>
+<ul>
+<li>The 1+1=2 Paradox &amp; Nonlinear Quantum Mechanics</li>
+</ul>
+<p>To a computer scientist, our matrix truth tables represent an open-and-shut case: you impose a boundary constraint on a carbon network, the <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron resonance relaxes into the lowest energy manifold, and the output yields a deterministic, discrete logical state. It feels as elementary and self-evident as stating that <img src="https://latex.codecogs.com/png.latex?1%20+%201%20=%202">.</p>
+<p>Yet, present this exact phenomenon to orthodox theoretical physics, and you hit an immediate brick wall:<br>
+<em>“Fundamental quantum mechanics is strictly linear. Therefore, deterministic discrete logic emerging from unitary evolution is impossible.”</em></p>
+<p>This apparent deadlock boils down to an ontological misunderstanding and a clash of scientific dialects:</p>
+<ol type="1">
+<li><strong>The Fundamentalist Dogma:</strong> Theorists rightly reject fundamental nonlinearities in Schrödinger’s equation for isolated, single particles—doing so would violate no-cloning theorems and relativistic causality.<br>
+</li>
+<li><strong>The Condensed Matter Reality:</strong> In real physical matter, nature routinely bypasses this restriction through <strong>many-body collective emergence</strong>. From superconducting Josephson junctions and Ginzburg-Landau condensates to laser physics, the macroscopic world is thoroughly governed by <strong>effective nonlinear equations</strong>.</li>
+</ol>
+<p>We are not claiming to break fundamental quantum mechanics in the cosmic vacuum. Rather, we are demonstrating that <strong>the strict local valency constraints of <img src="https://latex.codecogs.com/png.latex?sp%5E2"> carbon, paired with electron-phonon coupling, act as a gauge constraint that induces an effective, emergent nonlinearity.</strong></p>
+<p>The carbon network does not need to solve intractable, continuous differential wave equations across time; the geometry of the molecule <em>is</em> the boundary condition. The matrix truth table is not an approximation—it is the exact, stationary ground-state solution of a collective physical attractor.</p>
+<p>Perhaps the ultimate challenge of this research is not mathematical, but linguistic: teaching quantum physics to recognize that its own laws, when embodied in carbon, naturally compute.</p>
 <hr>
 <p>👉 <strong>Next chapter :</strong><br>
 <strong><a href="../../posts/quantum-set-theory/index.html">“Quantum Set Theory”</a></strong></p>
@@ -4385,7 +4400,7 @@ font-style: inherit;">"B"</span>)</span>
 <span id="cb2-22"></span>
 <span id="cb2-23">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="8bc6eeef" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
+<div id="8bc6eeef" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4735,7 +4750,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.5</span>) </span></code></pre></div></div>
 </details>
-<div id="a4ade8b3" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div id="a4ade8b3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4768,7 +4783,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.5</span>) </span></code></pre></div></div>
 </details>
-<div id="7dd8d810" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="2">
+<div id="7dd8d810" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4993,7 +5008,7 @@ Plants lack a nervous system, yet the sensitive plant (<em>Mimosa pudica</em>) c
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="834a9227" class="cell" data-execution_count="1">
+<div id="9a49692c" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -5301,7 +5316,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>) </span></code></pre></div></div>
 </details>
-<div id="9c649656" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
+<div id="788a36b3" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5375,7 +5390,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>) </span></code></pre></div></div>
 </details>
-<div id="5692e169" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
+<div id="c8fcdc66" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5594,7 +5609,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb4-29">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="aff42e57" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
+<div id="6a318b0f" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5632,7 +5647,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="68877259" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="79f073e6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20%5C%5C%20%5Chline%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%201%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%200%20%5C%5C%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -6020,7 +6035,7 @@ font-style: inherit;">=</span> mol.add_coupler(b5, b13)</span>
 <span id="cb6-46"></span>
 <span id="cb6-47">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="536a9603" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="37819641" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6206,7 +6221,7 @@ font-style: inherit;">=</span> mol.add_coupler(b8, b2)</span>
 <span id="cb7-27"></span>
 <span id="cb7-28">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="d391c04f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="67e55c66" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6586,7 +6601,7 @@ font-style: inherit;">0.35</span>])</span>
 <span id="cb8-44"></span>
 <span id="cb8-45">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="6160f8db" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="83de3e0c" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6962,7 +6977,7 @@ font-style: inherit;">=</span> mol.add_coupler(b4, b13)</span>
 <span id="cb9-50"></span>
 <span id="cb9-51">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="203e7f30" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="4552d79f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7770,7 +7785,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="f5110d31" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
+<div id="b9dc14a8" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7904,7 +7919,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="6390ee29" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="11">
+<div id="6c1ba3fd" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Coupler%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -8083,7 +8098,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="f394e042" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div id="06de017b" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Xnor%20=%20%5CBig%5C%7B%20M_1%20%5Ccdot%20M_2%20%5Ccdot%20M_3%20%5CBig%5C%7D%20"></p>
@@ -8321,7 +8336,7 @@ font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>) </span></code></pre></div></div>
 </details>
-<div id="c22bf536" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="2dc220b4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8748,7 +8763,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="94117883" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
+<div id="55ab6b9f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Nor%20=%20%5CBig%5C%7B%20M_1%20%5Ccdot%20M_2%20%5Ccdot%20M_3%20%5Ccdot%20M_4%20%5Ccdot%20M_5%20%5Ccdot%20M_6%20%5CBig%5C%7D%20"></p>
@@ -8774,7 +8789,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <p>The reason is purely practical: routing wires exclusively through 2-channel swaps becomes hopelessly cumbersome the moment a circuit interconnects more than three lines. It feels like manually synthesizing an entire <strong>bitonic sorting network</strong> each time we merely want to cross a couple of signals.</p>
 <p>In linear algebra, a cascade of adjacent 2-wire swaps is simply a low-level decomposition of a single, global <strong>permutation matrix</strong>.</p>
 <p>Rather than chaining dozens of tedious swap blocks, it is vastly more efficient to construct the required permutation operator directly from the desired wire mappings.</p>
-<p>To streamline our calculus, we introduce a high-level helper function: <code>permutation(n, mapping)</code>.</p>
+<p>To streamline our calculus, we introduce a high-level function: <img src="https://latex.codecogs.com/png.latex?%60%7BPermute%7D_%7B%5Bmapping%5D%7D%60">. Where [mapping] is a list of length n and mapping[i] is the destination index for bit i.</p>
 <p>This operator directly compiles an arbitrary wire routing layout into an exact, sparse <img src="https://latex.codecogs.com/png.latex?2%5En%20%5Ctimes%202%5En"> transition matrix in a single step.</p>
 <p>Using this primitive, any complex routing stage between circuit blocks collapses into a clean, single-layer matrix operator.</p>
 <p>Here is how to create and apply a permutation of 3 lines where:<br>
@@ -8788,9 +8803,7 @@ background-color: null;
 font-style: inherit;"># 1. Create the permutation matrix for n=3 lines</span></span>
 <span id="cb15-2">P <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> permutation(<span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">3</span>, [<span class="dv" style="color: #AD0000;
+font-style: inherit;">=</span> permute([<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -8807,7 +8820,7 @@ font-style: inherit;">r"</span><span class="ch" style="color: #20794D;
 background-color: null;
 font-style: inherit;">\t</span><span class="vs" style="color: #20794D;
 background-color: null;
-font-style: inherit;">ext{P}_{</span><span class="pp" style="color: #AD0000;
+font-style: inherit;">ext{Permute}_{</span><span class="pp" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">[2, 0, 1]</span><span class="vs" style="color: #20794D;
 background-color: null;
@@ -8819,10 +8832,10 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="730f7a9c" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div id="704f36e3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><img src="https://latex.codecogs.com/png.latex?%20%5Ctext%7BP%7D_%7B%5B2,%200,%201%5D%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%20%5Ctext%7BPermute%7D_%7B%5B2,%200,%201%5D%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
 </div>
 </div>
 </div>
@@ -8843,16 +8856,18 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="https://nicdeclic.com/images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
 <ul>
-<li>For the Mathematically Inclined: A Bridge to Monoidal Categories &amp; ZX-Calculus</li>
+<li>A Grounded Bridge to ZX-Calculus</li>
 </ul>
-<p>The decomposition into Identity, Swap, Fork, and Merge is not an accident: it directly mirrors the <strong>Symmetric Monoidal Categories (SMC)</strong> found in modern graphical frameworks like Bob Coecke’s <strong>ZX-Calculus</strong>.</p>
-<ul>
-<li><strong>Sequential composition (<img src="https://latex.codecogs.com/png.latex?%5Ccdot">)</strong> routes resonance across time (matrix dot product).</li>
-<li><strong>Parallel composition (<img src="https://latex.codecogs.com/png.latex?%5Cotimes">)</strong> spaces lines across space (Kronecker product).</li>
-<li><strong>Duality (<img src="https://latex.codecogs.com/png.latex?%5C%7B%5Ccdot%5C%7D%5E%5Cmathbf%7BT%7D">)</strong> provides the “cups and caps” for bidirectional, reversible flow.</li>
-</ul>
-<p>The radical difference is <strong>ontological</strong>: while the ZX-calculus is an abstract software tool for quantum compilers, our algebra is <strong>physically embodied in real matter</strong>.</p>
-<p>Here, the nodes are real <img src="https://latex.codecogs.com/png.latex?sp%5E2"> carbon atoms, the wires are genuine <img src="https://latex.codecogs.com/png.latex?%5Cpi">-bonds, and computation is executed natively as electrons settle into their ground state.</p>
+<p>In standard ZX-calculus, the formalism relies on abstract mathematical “spiders” that can possess an arbitrary, infinite number of legs.</p>
+<p>Our molecular model, by contrast, establishes a <strong>physically bounded, hardware-level tensor network</strong>. The entire expressive power of universal quantum computation is strictly generated by <strong>only three elemental primitives with fixed tensor ranks</strong>, dictated by the fundamental chemistry of carbon:<br>
+1. <strong>The 2-index bivalent link:</strong> The inverting bond channel.<br>
+2. <strong>The 3-index trivalent node (<img src="https://latex.codecogs.com/png.latex?sp%5E2"> carbon):</strong> The physical branching tensor.<br>
+3. <strong>The 4-index projective coupler:</strong> The non-local inductive filter that suppresses parasitic modes.</p>
+<p>In conventional ZX-calculus, running a circuit in reverse or simplifying an inverted diagram requires an <strong>external compiler</strong> executing complex graph-rewriting heuristics on an auxiliary computer.</p>
+<p>In our molecular architecture, <strong>function inversion is a native, emergent physical property.</strong></p>
+<p>Because our three structural primitives are inherently time-reversal symmetric, the carbon network possesses no built-in temporal arrow.</p>
+<p>If you clamp boundary conditions onto the output terminals, the physical tensor network <strong>contracts backwards spontaneously.</strong> The global <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electron resonance relaxes into the correct input configuration without requiring a single step of algorithmic uncomputation, backtracking, or ancillary qubit overhead.</p>
+<p>We are not merely simulating diagrammatic quantum logic on a screen: <strong>the carbon molecule is a self-solving, physical tensor network.</strong></p>
 <ul>
 <li>The Taelon Mosaic and Quantum Linguistics</li>
 </ul>
@@ -11745,7 +11760,7 @@ font-style: inherit;">"double"</span></span>
 <span id="cb3-27"></span>
 <span id="cb3-28">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="616eb078" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="616eb078" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -12149,7 +12164,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb6-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="817c067b" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="2">
+<div id="817c067b" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -12172,7 +12187,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="92b96beb" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="92b96beb" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20%5C%5C%20%5Chline%200%20&amp;%201%20%5C%5C%201%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -12377,7 +12392,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb9-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="ec46d289" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="4">
+<div id="ec46d289" class="cell quarto-layout-panel" data-layout-ncol="4" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -12414,7 +12429,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="e683e4b0" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div id="e683e4b0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20%5C%5C%20%5Chline%200%20&amp;%200%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%200%20%5C%5C%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%201%20&amp;%201%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -12631,7 +12646,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb12-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="b0960598" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="3">
+<div id="b0960598" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -12677,7 +12692,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="99a4d94a" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+<div id="99a4d94a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20&amp;%20%5Cmathbf%7BD%7D%20%5C%5C%20%5Chline%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%200%20&amp;%201%20&amp;%200%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%201%20&amp;%200%20%5C%5C%201%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%201%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -14488,7 +14503,7 @@ font-style: inherit;">@</span> and_q)</span></code></pre></div></div>
 </blockquote>
 </div>
 <hr>
-<div id="c2733e6c" class="cell" data-execution_count="1">
+<div id="4ef51a3a" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -15239,7 +15254,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb2-95">mol3.draw()</span></code></pre></div></div>
 </details>
-<div id="12543594" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div id="99f01c1b" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -15296,7 +15311,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="92080707" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="f1a95dc6" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -15395,7 +15410,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <li><strong>How do we build specific structures to achieve a desired computational outcome?</strong><br>
 and<br>
 </li>
-<li><strong>What is the true computational power of quantum molecular systems?</strong></li>
+<li><strong>What is the true computational potential of quantum molecular systems?</strong></li>
 </ul>
 <hr>
 <p>👉 <strong>You are now ready to dive into the theory :</strong><br>
