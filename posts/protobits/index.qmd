@@ -272,9 +272,10 @@ This is a deliberate architectural and pedagogical choice, driven by several pra
 Failing to state the convention could lead to a $125-million disaster—like NASA’s Mars Climate Orbiter, which famously crashed because one team calculated in imperial units while another assumed metric.  
 
 At the same time, there`s no desire to trigger an academic holy war or succumb to the Highlander syndrome of *"There Can Only Be One."*  
+
 Scientific integrity simply demands that we explicitly declare our frame:  
 
-> This entire work strictly employs **Left-to-Right propagation** and **Top-to-Bottom index ordering**.  
+> This entire work, unless stated otherwise, employs **Left-to-Right propagation** and **Top-to-Bottom index ordering**.  
 
 It is then possible to convert equations either by hand or using software librairies into whatever notation a reader prefers.  
 
@@ -334,4 +335,4 @@ Perhaps the ultimate challenge of this research is not mathematical, but linguis
 ---
 
 👉 **Next chapter :**  
-**["Quantum Set Theory"](/posts/quantum-set-theory/index.html)**
+**["Boolean Gates Extensions"](/posts/quantum-boolean/index.html)**

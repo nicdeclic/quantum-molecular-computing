@@ -242,7 +242,7 @@ window.Quarto = {
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="a61b037a" class="cell" data-execution_count="1">
+<div id="e61595b5" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -264,8 +264,20 @@ window.Quarto = {
 </details>
 </div>
 <hr>
-<p><img src="../../images/construction.png" class="img-fluid"></p>
-<hr>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>📝 A Quick Note on Mathematical Notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Because this specific post directly investigates the mapping between standard quantum computing and the CCC molecular model, you will occasionally encounter standard <strong>Dirac bra-ket notation</strong> (<span class="math inline">\(|0\rangle, |1\rangle, |\psi\rangle\)</span>) alongside complex unitary matrices.</p>
+<p>This is done to provide a clear, unambiguous bridge for readers familiar with conventional quantum mechanics, making the mathematical translation into the protobit framework as transparent as possible.</p>
+</div>
+</div>
 <section id="representing-a-qubit-with-protobits" class="level2">
 <h2 class="anchored" data-anchor-id="representing-a-qubit-with-protobits">Representing a Qubit with Protobits</h2>
 <p>On the surface, qubits and protobits appear fundamentally incompatible:</p>
@@ -274,7 +286,8 @@ window.Quarto = {
 </li>
 <li><strong>Protobits</strong>, operating within stochastic transition matrices, are defined purely over real, non-negative probabilities (<span class="math inline">\(p \in [0, 1]\)</span>), with no native complex phase.</li>
 </ul>
-<p>Yet, we have already proven that the molecular gates achieve universal computation. Any mathematical operation—including complex arithmetic and phase rotations—can be synthesized algebraically. All that is required is the right geometric mapping.</p>
+<p>Yet, we have already proven that the molecular gates achieve universal computation. Any mathematical operation—including complex arithmetic and phase rotations—can be synthesized algebraically.</p>
+<p>All that is required now is the optimal geometric mapping.</p>
 <section id="deconstructing-the-bloch-sphere" class="level3">
 <h3 class="anchored" data-anchor-id="deconstructing-the-bloch-sphere">Deconstructing the Bloch Sphere</h3>
 <p>Geometrically, a single qubit lives on the continuous surface of a three-dimensional unit sphere: the <strong>Bloch Sphere</strong>.</p>
@@ -296,24 +309,47 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <h3 class="anchored" data-anchor-id="the-8-extremal-basis-states">The 8 Extremal Basis States</h3>
 <p>When these three protobits are combined through the Kronecker product, they span an 8-dimensional configuration space (<span class="math inline">\(2^3 = 8\)</span>).</p>
 <p>These 8 discrete basis states map directly to the <strong>8 vertices of a state cube</strong>, perfectly capturing the cardinal projections along with their fundamental discrete phase orientations (<span class="math inline">\(\pm 1, \pm i\)</span>):</p>
-<p><span class="math display">\[\text{``000''} \longrightarrow \begin{bmatrix} 1 &amp; 0 \end{bmatrix} \longrightarrow |0\rangle\]</span></p>
-<p><span class="math display">\[\text{``001''} \longrightarrow \begin{bmatrix} -1 &amp; 0 \end{bmatrix} \longrightarrow -|0\rangle\]</span></p>
-<p><span class="math display">\[\text{``010''} \longrightarrow \begin{bmatrix} i &amp; 0 \end{bmatrix} \longrightarrow i|0\rangle\]</span></p>
-<p><span class="math display">\[\text{``011''} \longrightarrow \begin{bmatrix} -i &amp; 0 \end{bmatrix} \longrightarrow -i|0\rangle\]</span></p>
-<p><span class="math display">\[\text{``100''} \longrightarrow \begin{bmatrix} 0 &amp; 1 \end{bmatrix} \longrightarrow |1\rangle\]</span></p>
-<p><span class="math display">\[\text{``101''} \longrightarrow \begin{bmatrix} 0 &amp; -1 \end{bmatrix} \longrightarrow -|1\rangle\]</span></p>
-<p><span class="math display">\[\text{``110''} \longrightarrow \begin{bmatrix} 0 &amp; i \end{bmatrix} \longrightarrow i|1\rangle\]</span></p>
-<p><span class="math display">\[\text{``111''} \longrightarrow \begin{bmatrix} 0 &amp; -i \end{bmatrix} \longrightarrow -i|1\rangle\]</span></p>
+<p><span class="math display">\[\text{``000''} \longrightarrow \begin{bmatrix} 1 \\ 0 \end{bmatrix} \longrightarrow |0\rangle\]</span></p>
+<p><span class="math display">\[\text{``001''} \longrightarrow \begin{bmatrix} -1 \\ 0 \end{bmatrix} \longrightarrow -|0\rangle\]</span></p>
+<p><span class="math display">\[\text{``010''} \longrightarrow \begin{bmatrix} i \\ 0 \end{bmatrix} \longrightarrow i|0\rangle\]</span></p>
+<p><span class="math display">\[\text{``011''} \longrightarrow \begin{bmatrix} -i \\ 0 \end{bmatrix} \longrightarrow -i|0\rangle\]</span></p>
+<p><span class="math display">\[\text{``100''} \longrightarrow \begin{bmatrix} 0 \\ 1 \end{bmatrix} \longrightarrow |1\rangle\]</span></p>
+<p><span class="math display">\[\text{``101''} \longrightarrow \begin{bmatrix} 0 \\ -1 \end{bmatrix} \longrightarrow -|1\rangle\]</span></p>
+<p><span class="math display">\[\text{``110''} \longrightarrow \begin{bmatrix} 0 \\ i \end{bmatrix} \longrightarrow i|1\rangle\]</span></p>
+<p><span class="math display">\[\text{``111''} \longrightarrow \begin{bmatrix} 0 \\ -i \end{bmatrix} \longrightarrow -i|1\rangle\]</span></p>
 <p>By taking convex linear combinations (superpositions) across these 8 positive protobit states, we can reconstruct <strong>any arbitrary point</strong> <span class="math inline">\((\theta, \phi)\)</span> on the Bloch sphere.</p>
 <p>The mystery of complex quantum phases dissolves into real, positive geometry. Three simple carbon bonds are all that nature needs to house a complete quantum qubit.</p>
 <hr>
 </section>
 </section>
+<section id="mapping-a-continuous-qubit-into-a-3-protobit-state-vector" class="level2">
+<h2 class="anchored" data-anchor-id="mapping-a-continuous-qubit-into-a-3-protobit-state-vector">Mapping a Continuous Qubit into a 3-Protobit State Vector</h2>
+<p>How do we take an arbitrary, continuous quantum qubit state <span class="math inline">\(|\psi\rangle\)</span> defined over complex numbers and convert it into our discrete, strictly non-negative <span class="math inline">\(1 \times 8\)</span> protobit transition matrix?</p>
+<p>A general qubit state is written in Dirac notation as:</p>
+<p><span class="math display">\[|\psi\rangle = c_0 |0\rangle + c_1 |1\rangle = \begin{bmatrix} c_0 \\ c_1 \end{bmatrix}\]</span></p>
+<p>where <span class="math inline">\(c_0, c_1 \in \mathbb{C}\)</span> are complex probability amplitudes.</p>
+<p>We can expand each complex coefficient into its real and imaginary parts:</p>
+<p><span class="math display">\[c_0 = \text{Re}(c_0) + i \, \text{Im}(c_0)\]</span> <span class="math display">\[c_1 = \text{Re}(c_1) + i \, \text{Im}(c_1)\]</span></p>
+<p>This gives us <strong>4 real numbers</strong>: <span class="math inline">\(\text{Re}(c_0), \, \text{Im}(c_0), \, \text{Re}(c_1), \, \text{Im}(c_1)\)</span>.</p>
+<p>However, these real numbers can be negative, whereas our protobit transition matrices require strictly <strong>non-negative probabilities</strong> (<span class="math inline">\(p \ge 0\)</span>).</p>
+<p>To eliminate negative numbers without losing any phase information, we decompose every real value <span class="math inline">\(x\)</span> into its <strong>positive component</strong> (<span class="math inline">\(x^+\)</span>) and <strong>negative component</strong> (<span class="math inline">\(x^-\)</span>):</p>
+<p><span class="math display">\[x = x^+ - x^- \quad \text{where} \quad x^+ = \max(x, 0), \quad x^- = \max(-x, 0)\]</span></p>
+<p>Notice that <span class="math inline">\(x^+\)</span> and <span class="math inline">\(x^-\)</span> are <strong>both non-negative (<span class="math inline">\(\ge 0\)</span>)</strong>, and at least one of them is always zero!</p>
+<p>Applying this split to our 4 real parameters yields exactly <strong>8 non-negative values</strong> (<span class="math inline">\(p_0\)</span> through <span class="math inline">\(p_7\)</span>):</p>
+<p><span class="math display">\[p_0 = \max({Re}(c_0), 0)\]</span> <span class="math display">\[p_1 = \max({-Re}(c_0), 0)\]</span> <span class="math display">\[p_2 = \max({Im}(c_0), 0)\]</span> <span class="math display">\[p_3 = \max({-Im}(c_0), 0)\]</span> <span class="math display">\[p_4 = \max({Re}(c_1), 0)\]</span> <span class="math display">\[p_5 = \max({-Re}(c_1), 0)\]</span> <span class="math display">\[p_6 = \max({Im}(c_1), 0)\]</span> <span class="math display">\[p_7 = \max({-Im}(c_1), 0)\]</span></p>
+<p>To satisfy the conservation of probability, where all row elements must sum to <span class="math inline">\(1.0\)</span>, we compute the <span class="math inline">\(L_1\)</span>-norm scalar:</p>
+<p><span class="math display">\[S = \sum_{k=0}^{7} p_k\]</span></p>
+<p>Finally, we normalize each component:</p>
+<p><span class="math display">\[\mathbf{P} = \frac{1}{S} \begin{bmatrix} p_0 &amp; p_1 &amp; p_2 &amp; p_3 &amp; p_4 &amp; p_5 &amp; p_6 &amp; p_7 \end{bmatrix}\]</span></p>
+<p>The resulting <span class="math inline">\(1 \times 8\)</span> row vector <span class="math inline">\(\mathbf{P}\)</span> is a valid, normalized, non-negative probability distribution over our 3 protobits.</p>
+<p>Not a single bit of information, amplitude, or complex phase from the original qubit is lost. It has simply been unpacked into an 8-channel stochastic representation!</p>
+<hr>
+</section>
 <section id="quantum-logic-gates-as-cube-rotations" class="level2">
 <h2 class="anchored" data-anchor-id="quantum-logic-gates-as-cube-rotations">Quantum Logic Gates as Cube Rotations</h2>
 <p>Implementing the continuous rotation of a quantum logic gate might appear daunting at first glance. In our discrete framework, however, the problem simplifies drastically: <strong>all we need to specify is where the 8 vertices of our state cube map to.</strong></p>
 <p>Think of tracking an airplane flying across a pitch-black night sky:</p>
-<p>Inside the cockpit, the pilot relies on continuous gyroscopes and attitude instruments. But an observer standing on the ground below cannot see the fuselage of the plane at all. All they can see are the plane’s exterior navigation lights:<br>
+<p>Inside the cockpit, the pilot relies on continuous gyroscopes and altitude instruments. But an observer standing on the ground below cannot see the fuselage of the plane at all. All they can see are the plane’s exterior navigation lights:<br>
 * A <strong>red light</strong> on the left wingtip,<br>
 * A <strong>green light</strong> on the right wingtip,<br>
 * A <strong>white beacon</strong> on the tail / belly.</p>
@@ -330,7 +366,7 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 1. They operate strictly on a <strong>single logical qubit</strong> (one 3-protobit channel in, one 3-protobit channel out).<br>
 2. Every vertex of our 8-state cube maps cleanly and deterministically onto <strong>another exact vertex of the cube</strong>. There is no splitting of amplitudes or fractional dispersion across vertices.</p>
 <p>Consequently, in this discrete representation, implementing a quantum gate reduces fundamentally to implementing a <strong>truth table permutation</strong>.</p>
-<p><strong>Keep in mind that while these circuits are structurally composed of boolean logic components, they operate as quantum transition operators capable of manipulating protobit states.</strong> We established their mathematical foundation earlier in <a href="../../posts/boolean-logic/index.html">“A Refresher on Boolean Logic”</a> using transition matrix formalism.</p>
+<p><strong>Keep in mind that while these circuits are structurally composed of boolean logic components, they operate as quantum transition operators capable of manipulating protobit states.</strong> We established their mathematical foundation earlier in <a href="../../posts/boolean-logic/index.html">“A Refresher on Boolean Logic”</a> and <a href="../../posts/quantum-boolean/index.html">“Boolean Gates Extensions”</a> using transition matrix formalism.</p>
 <hr>
 <section id="the-x-gate-pauli-x-bit-flip" class="level3">
 <h3 class="anchored" data-anchor-id="the-x-gate-pauli-x-bit-flip">The X Gate (Pauli-X / Bit-Flip)</h3>
@@ -379,7 +415,7 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    not_gate <span class="op">=</span> d.add(logic.Not().right().at(in_a2.end))</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output wire</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.2</span>).at(not_gate.out).label(<span class="st">"$A_2'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.2</span>).at(not_gate.out).label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Line A1 (Imaginary Phase bit) -&gt; Straight wire (Identity)</span></span>
@@ -390,7 +426,7 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">3.8</span>)</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        .at((in_a2.start[<span class="dv">0</span>], y_a1))</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_1$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
@@ -402,10 +438,10 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">3.8</span>)</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        .at((in_a2.start[<span class="dv">0</span>], y_a0))</span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="6c322f2e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="0f109843" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -419,6 +455,75 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <ul>
 <li><strong>Molecular Equivalent</strong></li>
 </ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon circuit</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"X gate"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.0</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.0</span>, y<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>c7 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">0.2</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>c8 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">0.2</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>c9 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">0.8</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>c10 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">0.8</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>c11 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">1.4</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>c12 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">1.4</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>c13 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">2.0</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>c14 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">2.0</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c2, c4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A2$"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c3, c5, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B2$"</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c4, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c7, c8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c7, c9, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A1$"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c8, c10, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B1$"</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>b10 <span class="op">=</span> mol.add_bond(c9, c10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>b11 <span class="op">=</span> mol.add_bond(c11, c12, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>b12 <span class="op">=</span> mol.add_bond(c11, c13, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A0$"</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>b13 <span class="op">=</span> mol.add_bond(c12, c14, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B0$"</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>b14 <span class="op">=</span> mol.add_bond(c13, c14, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="cf8555bf" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-4-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="234"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Molecular Protobits Matrix</strong></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"X_{proto}"</span>, <span class="st">"="</span>, x_proto.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="5c5a54d4" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ X_{proto} =  \begin{array}{r|cccccccc|} \text{} &amp; \text{``000''} &amp; \text{``001''} &amp; \text{``010''} &amp; \text{``011''} &amp; \text{``100''} &amp; \text{``101''} &amp; \text{``110''} &amp; \text{``111''} \\  \hline \text{``000''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ \text{``001''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ \text{``010''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ \text{``011''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ \text{``100''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``101''} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``110''} &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``111''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="the-y-gate-pauli-y-bit-and-phase-flip" class="level3">
@@ -454,59 +559,59 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 </ul>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Inputs (Lignes de gauche)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    in_a2 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.5</span>).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    in_a1 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.0</span>).at((in_a2.start[<span class="dv">0</span>], in_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">1.8</span>)).label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    in_a0 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">0.5</span>).at((in_a2.start[<span class="dv">0</span>], in_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">3.4</span>)).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Branchement pour XOR sur A0</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Points de piquage sur A2 et A1</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at(in_a2.end))</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at(in_a1.end))</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Portes NOT sur A2 et A1</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    not_a2 <span class="op">=</span> d.add(logic.Not().right().at(in_a2.end))</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    not_a1 <span class="op">=</span> d.add(logic.Not().right().at(in_a1.end))</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sorties A2' et A1'</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">2.2</span>).at(not_a2.out).label(<span class="st">"$A_2'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">2.2</span>).at(not_a1.out).label(<span class="st">"$A_1'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Porte XOR à 3 entrées pour A0'</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Position de la porte XOR en bas</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        logic.Xor(inputs<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        .right()</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        .at((in_a0.end[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">1.8</span>, in_a0.end[<span class="dv">1</span>]))</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connexion A2 vers XOR.in1 (haut)</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a2.end).to(xor_gate.in1))</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connexion A1 vers XOR.in2 (milieu)</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a1.end).to(xor_gate.in2))</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connexion A0 vers XOR.in3 (bas)</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a0.end).to(xor_gate.in3))</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sortie A0'</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_gate.out).label(<span class="st">"$A_0'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Inputs</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    in_a2 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.5</span>).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    in_a1 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">1.0</span>).at((in_a2.start[<span class="dv">0</span>], in_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">1.8</span>)).label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    in_a0 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">0.5</span>).at((in_a2.start[<span class="dv">0</span>], in_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">3.4</span>)).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Connection for XOR on A0</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tapping points on A2 and A1</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at(in_a2.end))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at(in_a1.end))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># NOT gates on A2 and A1</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    not_a2 <span class="op">=</span> d.add(logic.Not().right().at(in_a2.end))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    not_a1 <span class="op">=</span> d.add(logic.Not().right().at(in_a1.end))</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A2' and A1' outputs</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">2.2</span>).at(not_a2.out).label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">2.2</span>).at(not_a1.out).label(<span class="st">"$B_1$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. 3-input XOR gate for A0'</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate position at the bottom</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        logic.Xor(inputs<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        .right()</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        .at((in_a0.end[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">1.8</span>, in_a0.end[<span class="dv">1</span>]<span class="op">+</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)))</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connection from A2 to XOR.in1 (top)</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a2.end).to(xor_gate.in1))</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connection from A1 to XOR.in2 (middle)</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a1.end).to(xor_gate.in2))</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Connection from A0 to XOR.in3 (bottom)</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at(in_a0.end).to(xor_gate.in3))</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A0' Output</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_gate.out).label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cc03ee3e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="9087b6a4" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-4-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="index_files/figure-html/cell-6-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -515,6 +620,154 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <ul>
 <li><strong>Molecular Equivalent</strong></li>
 </ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon circuit</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Y gate"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="fl">2.0</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="fl">2.0</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.75</span>, y<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.75</span>, y<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>c7 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.75</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>c8 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.75</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>c9 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.75</span>, y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>c10 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.75</span>, y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>c11 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>c12 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>c13 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.75</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>c14 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.75</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>c15 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.3</span>, y<span class="op">=-</span><span class="fl">1.5</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>c16 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.3</span>, y<span class="op">=-</span><span class="fl">1.5</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B2$"</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A2$"</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c2, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c3, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c4, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A0$"</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c3, c7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c4, c8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c5, c7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>b10 <span class="op">=</span> mol.add_bond(c6, c8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>b11 <span class="op">=</span> mol.add_bond(c7, c9, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>b12 <span class="op">=</span> mol.add_bond(c8, c10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>b13 <span class="op">=</span> mol.add_bond(c9, c11, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>b14 <span class="op">=</span> mol.add_bond(c10, c12, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>b15 <span class="op">=</span> mol.add_bond(c11, c12, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B0$"</span>)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>b16 <span class="op">=</span> mol.add_bond(c11, c13, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>b17 <span class="op">=</span> mol.add_bond(c12, c14, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>b18 <span class="op">=</span> mol.add_bond(c9, c13, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>b19 <span class="op">=</span> mol.add_bond(c10, c14, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>b19 <span class="op">=</span> mol.add_bond(c13, c15, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A1$"</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>b19 <span class="op">=</span> mol.add_bond(c14, c16, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>b19 <span class="op">=</span> mol.add_bond(c15, c16, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B1$"</span>)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="89204b04" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Here are the 8 resonance states that prove this molecule is indeed equivalent to the truth table:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol.resonance()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="37609cb6" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="186"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Molecular Protobits Matrix</strong></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"Y_{proto}"</span>, <span class="st">"="</span>, y_proto.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="54aa4ae5" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ Y_{proto} =  \begin{array}{r|cccccccc|} \text{} &amp; \text{``000''} &amp; \text{``001''} &amp; \text{``010''} &amp; \text{``011''} &amp; \text{``100''} &amp; \text{``101''} &amp; \text{``110''} &amp; \text{``111''} \\  \hline \text{``000''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ \text{``001''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ \text{``010''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ \text{``011''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ \text{``100''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``101''} &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``110''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``111''} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="the-z-gate-pauli-z-phase-flip" class="level3">
@@ -549,47 +802,47 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 </ul>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize canvas for the Pauli-Z logic circuit</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Line A2 (MSB) -&gt; Straight wire with a branch tap going down to the XOR</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    line_a2 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">4.5</span>).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>).label(<span class="st">"$A_2'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Line A1 (Middle) -&gt; Pure straight wire (Identity)</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    y_a1 <span class="op">=</span> line_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">1.5</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">4.5</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        .at((line_a2.start[<span class="dv">0</span>], y_a1))</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Line A0 (LSB) -&gt; Passes through a XOR gate controlled by A2</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    y_a0 <span class="op">=</span> line_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">3.0</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place the XOR gate on line A0</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().right().at((line_a2.start[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">2.0</span>, y_a0)))</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lead wire from Input A0 to XOR bottom input (in2)</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((line_a2.start[<span class="dv">0</span>] , y_a0)).to(xor_gate.in2).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output wire from XOR to A0'</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at(xor_gate.out).to((line_a2.end[<span class="dv">0</span>], y_a0)).label(<span class="st">"$A_0'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Control wire from Line A2 down into XOR top input (in1)</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    tap_x <span class="op">=</span> line_a2.start[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">1.2</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((tap_x, line_a2.start[<span class="dv">1</span>]))) <span class="co"># Branch junction on A2</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().down(<span class="fl">2.5</span>).at((tap_x, line_a2.start[<span class="dv">1</span>])))</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).to(xor_gate.in1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize canvas for the Pauli-Z logic circuit</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Line A2 (MSB) -&gt; Straight wire with a branch tap going down to the XOR</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    line_a2 <span class="op">=</span> d.add(elm.Line().right(<span class="fl">4.5</span>).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>).label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Line A1 (Middle) -&gt; Pure straight wire (Identity)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    y_a1 <span class="op">=</span> line_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">1.5</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">4.5</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        .at((line_a2.start[<span class="dv">0</span>], y_a1))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_1$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Line A0 (LSB) -&gt; Passes through a XOR gate controlled by A2</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    y_a0 <span class="op">=</span> line_a2.start[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">3.0</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place the XOR gate on line A0</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().right().at((line_a2.start[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">2.0</span>, y_a0 <span class="op">+</span> <span class="fl">0.25</span>)))</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lead wire from Input A0 to XOR bottom input (in2)</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-"</span>).at((line_a2.start[<span class="dv">0</span>] , y_a0)).to(xor_gate.in2).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output wire from XOR to A0'</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at(xor_gate.out).to((line_a2.end[<span class="dv">0</span>], y_a0 <span class="op">+</span> <span class="fl">0.25</span>)).label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Control wire from Line A2 down into XOR top input (in1)</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    tap_x <span class="op">=</span> line_a2.start[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">1.2</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((tap_x, line_a2.start[<span class="dv">1</span>]))) <span class="co"># Branch junction on A2</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().down(<span class="fl">2.5</span>).at((tap_x, line_a2.start[<span class="dv">1</span>])))</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).to(xor_gate.in1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="82a210aa" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="a63aa65e" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-5-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="index_files/figure-html/cell-10-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -598,6 +851,69 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <ul>
 <li><strong>Molecular Equivalent</strong></li>
 </ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon circuit</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Z gate"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">2.0</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">2.0</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>c7 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>c8 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>c9 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>c10 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>c11 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>c12 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A2$"</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c2, c4, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B2$"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c3, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c4, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B0$"</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c3, c7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c4, c8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c7, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>b10 <span class="op">=</span> mol.add_bond(c8, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>b11 <span class="op">=</span> mol.add_bond(c7, c8, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A0$"</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>b12 <span class="op">=</span> mol.add_bond(c9, c10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>b13 <span class="op">=</span> mol.add_bond(c10, c12, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B1$"</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>b14 <span class="op">=</span> mol.add_bond(c12, c11, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>b15 <span class="op">=</span> mol.add_bond(c11, c9, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A1$"</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="6d5c0d99" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-11-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="234"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Molecular Protobits Matrix</strong></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"Z_{proto}"</span>, <span class="st">"="</span>, z_proto.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="4a11b04a" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ Z_{proto} =  \begin{array}{r|cccccccc|} \text{} &amp; \text{``000''} &amp; \text{``001''} &amp; \text{``010''} &amp; \text{``011''} &amp; \text{``100''} &amp; \text{``101''} &amp; \text{``110''} &amp; \text{``111''} \\  \hline \text{``000''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``001''} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``010''} &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``011''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``100''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ \text{``101''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ \text{``110''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ \text{``111''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="the-s-gate-phase-gate-pi2-rotation" class="level3">
@@ -633,70 +949,70 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 </ul>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Coordonnées verticales des 3 lignes</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    y2, y1, y0 <span class="op">=</span> <span class="fl">4.0</span>, <span class="fl">2.0</span>, <span class="fl">0.0</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    x_in <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Portes logiques</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Porte AND pour (A2 AND A1)</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right().at((<span class="fl">3.0</span>, <span class="fl">1.0</span>)))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Porte XOR pour A1' = A1 XOR A2</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    xor_a1 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">6.0</span>, y1)))</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Porte XOR pour A0' = A0 XOR (A2 AND A1)</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    xor_a0 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">6.0</span>, y0)))</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Câblage Ligne A2 (MSB) -&gt; Identité pure vers A2'</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">8.0</span>).at((x_in, y2)).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>).label(<span class="st">"$A_2'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Points de dérivation sur la ligne A2</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.5</span>, y2)))</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.5</span>, y2)).to(and_gate.in1))</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">4.5</span>, y2)))</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">4.5</span>, y2)).to(xor_a1.in1))</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Câblage Ligne A1</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.8</span>).at((x_in, y1)).label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.8</span>, y1)))</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Dérivation vers la porte AND</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.8</span>, y1)).to(and_gate.in2))</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fil principal vers la porte XOR de A1</span></span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at((<span class="fl">1.8</span>, y1)).to(xor_a1.in2))</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sortie A1'</span></span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_a1.out).label(<span class="st">"$A_1'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Câblage Ligne A0 (LSB)</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Entrée A0 vers l'entrée du bas de xor_a0</span></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at((x_in, y0)).to(xor_a0.in2).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sortie du AND vers l'entrée du haut de xor_a0</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(and_gate.out).to(xor_a0.in1))</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sortie A0'</span></span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_a0.out).label(<span class="st">"$A_0'$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vertical coordinates of the 3 lines</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    y2, y1, y0 <span class="op">=</span> <span class="fl">4.0</span>, <span class="fl">2.0</span>, <span class="fl">0.0</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    x_in <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Logic gates</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AND gate for (A2 AND A1)</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right().at((<span class="fl">3.0</span>, <span class="fl">1.0</span>)))</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate for A1' = A1 XOR A2</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    xor_a1 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">6.0</span>, y1)))</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate for A0' = A0 XOR (A2 AND A1)</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    xor_a0 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">6.0</span>, y0 <span class="op">+</span> <span class="fl">0.25</span>)))</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Line A2 (MSB) wiring -&gt; Pure identity to A2'</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">8.0</span>).at((x_in, y2)).label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>).label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Branch-off points on line A2</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.5</span>, y2)))</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.5</span>, y2)).to(and_gate.in1))</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">4.5</span>, y2)))</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">4.5</span>, y2)).to(xor_a1.in1))</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Line A1 Wiring</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.8</span>).at((x_in, y1)).label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.8</span>, y1)))</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Branching to the AND gate</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.8</span>, y1)).to(and_gate.in2))</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Main lead to the XOR gate of A1</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at((<span class="fl">1.8</span>, y1)).to(xor_a1.in2))</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A1' Output</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_a1.out).label(<span class="st">"$B_1$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Line A0 (LSB) Wiring</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input A0 to the bottom input of xor_a0</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().at((x_in, y0)).to(xor_a0.in2).label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>))</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output from the AND gate to the top input of xor_a0</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(and_gate.out).to(xor_a0.in1))</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A0' Output</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Line().right(<span class="fl">1.5</span>).at(xor_a0.out).label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="9be9ec39" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="fd337e6f" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/cell-6-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="index_files/figure-html/cell-13-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </div>
@@ -705,7 +1021,168 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <ul>
 <li><strong>Molecular Equivalent</strong></li>
 </ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon circuit</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"S gate"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.0</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.5</span>, y<span class="op">=</span><span class="fl">0.75</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>c7 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.7</span>, y<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>c8 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.95</span>, y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>c9 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.35</span>, y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>c10 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.6</span>, y<span class="op">=</span><span class="fl">0.35</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>c11 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>c12 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.5</span>, y<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>c13 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.3</span>, y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>c14 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.1</span>, y<span class="op">=</span><span class="fl">0.0</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>c15 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.6</span>, y<span class="op">=-</span><span class="fl">0.35</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>c16 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.7</span>, y<span class="op">=-</span><span class="fl">0.25</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>c17 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>c18 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>c19 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.5</span>, y<span class="op">=-</span><span class="fl">0.75</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>c20 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>c21 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>c22 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.0</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol.add_bond(c1, c6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A2$"</span>)</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c2, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B2$"</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c3, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c4, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c4, c14, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c5, c11, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c5, c12, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c6, c7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>b10 <span class="op">=</span> mol.add_bond(c7, c13, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>b11 <span class="op">=</span> mol.add_bond(c7, c16, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>b12 <span class="op">=</span> mol.add_bond(c8, c9, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B1$"</span>)</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>b13 <span class="op">=</span> mol.add_bond(c8, c13, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>b14 <span class="op">=</span> mol.add_bond(c9, c14, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>b15 <span class="op">=</span> mol.add_bond(c10, c11, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>b16 <span class="op">=</span> mol.add_bond(c10, c15, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$B0$"</span>)</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>b17 <span class="op">=</span> mol.add_bond(c11, c12, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>b18 <span class="op">=</span> mol.add_bond(c12, c18, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A0$"</span>)</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>b19 <span class="op">=</span> mol.add_bond(c13, c16, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>b20 <span class="op">=</span> mol.add_bond(c14, c21, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>b21 <span class="op">=</span> mol.add_bond(c15, c17, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>b22 <span class="op">=</span> mol.add_bond(c16, c19, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>b23 <span class="op">=</span> mol.add_bond(c17, c18, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>b24 <span class="op">=</span> mol.add_bond(c17, c22, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>b25 <span class="op">=</span> mol.add_bond(c18, c22, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>b26 <span class="op">=</span> mol.add_bond(c19, c20, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"$A1$"</span>)</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>b27 <span class="op">=</span> mol.add_bond(c20, c21, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>b28 <span class="op">=</span> mol.add_bond(c21, c22, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>mol.draw(scale<span class="op">=</span><span class="dv">1</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="075b12ab" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-14-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>And here are the 8 resonance states that prove this molecule is indeed equivalent to the truth table:</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol.resonance()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="b215a7fc" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-15-output-8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="349"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Molecular Protobits Matrix</strong></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"S_{proto}"</span>, <span class="st">"="</span>, s_proto.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="6ad66892" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ S_{proto} =  \begin{array}{r|cccccccc|} \text{} &amp; \text{``000''} &amp; \text{``001''} &amp; \text{``010''} &amp; \text{``011''} &amp; \text{``100''} &amp; \text{``101''} &amp; \text{``110''} &amp; \text{``111''} \\  \hline \text{``000''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``001''} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``010''} &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``011''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``100''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ \text{``101''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ \text{``110''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ \text{``111''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+</div>
 <hr>
+<p><img src="../../images/construction.png" class="img-fluid"></p>
 </section>
 </section>
 <section id="portes-logiques-superposées" class="level2">
@@ -767,20 +1244,159 @@ Governs real interference along the <span class="math inline">\(X\)</span>-axis,
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="../../images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
 <ul>
-<li>Quarks of Light: Modeling the Photon as a Truncated Tetrahedral Protobit Triplet</li>
+<li>Quarks of Light: Modeling the Photon as a Protobit Triplet</li>
 </ul>
-<p>If a standard qubit can be mapped onto a 3-protobit manifold, could fundamental bosons like the photon be composite topologies of three protobits themselves?<br>
-Just as protons revealed their internal quark triplet, the polarization and helicity degrees of light (the Poincaré sphere) might simply be the macroscopic projection of an internal, truncated tetrahedral resonance cavity. A photon not as a point particle, but as an autonomous, self-closing loop of three coupled protobits traversing spacetime.</p>
+<p>If a standard quantum qubit can be faithfully mapped onto a 3-protobit manifold, could the fundamental gauge bosons of the universe—starting with the photon—themselves be composite topologies of three protobits?</p>
+<p>Just as particle physics once viewed hadrons as elementary until they revealed their internal quark triplets, the polarization states, helicity, and phase of light (traditionally mapped onto the Poincaré sphere) might simply be the macroscopic shadow projected by an internal, geometric resonance cavity.</p>
+<p>What if a photon is not an infinitely small, point-like excitation of a continuous field, but an autonomous, self-closing topological loop of three coupled protobits traversing spacetime?</p>
+<p>A prime candidate for this internal resonance cavity is the <strong>truncated tetrahedron</strong> topology, owing to its exact, self-reinforcing manifold of <strong>8 stable resonance modes</strong>.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Truncated Tetrahedron"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.0</span>, y<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.0</span>, y<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.2</span>, y<span class="op">=-</span><span class="fl">0.25</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.2</span>, y<span class="op">=-</span><span class="fl">0.25</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>c7 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.55</span>, y<span class="op">=-</span><span class="fl">0.6</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>c8 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.55</span>, y<span class="op">=-</span><span class="fl">0.6</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>c9 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">1.2</span>, y<span class="op">=-</span><span class="fl">0.7</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>c10 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.2</span>, y<span class="op">=-</span><span class="fl">0.7</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>c11 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.65</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>c12 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.65</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol.add_bond(c2, c3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c3, c1, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c4, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c6, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c5, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c9, c7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c7, c11, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c11, c9, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>b10 <span class="op">=</span> mol.add_bond(c8, c10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>b11 <span class="op">=</span> mol.add_bond(c10, c12, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>b12 <span class="op">=</span> mol.add_bond(c12, c8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>b13 <span class="op">=</span> mol.add_bond(c1, c9, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A0"</span>)</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>b14 <span class="op">=</span> mol.add_bond(c2, c10, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A1"</span>)</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>b15 <span class="op">=</span> mol.add_bond(c11, c12, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A2"</span>)</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>b16 <span class="op">=</span> mol.add_bond(c3, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>b17 <span class="op">=</span> mol.add_bond(c6, c8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>b18 <span class="op">=</span> mol.add_bond(c5, c7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol.resonance()</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="9d8ae99f" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="273"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="273"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="273"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="273"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="273"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="273"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="273"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-17-output-8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="273"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>You have almost certainly seen this exact geometric shape before: <strong>it is the official logo of this website.</strong></p>
+<p>The true <em>CCC</em> signature—our molecular, geometric way of encoding a spark of light!</p>
 <ul>
-<li>Spacetime as a Clifford Algebra of Protobits</li>
+<li>The Universe as a Clifford Algebra of Protobits</li>
 </ul>
-<p>Decomposing a single qubit into three protobits (<span class="math inline">\(A_2, A_1, A_0\)</span>) reveals a profound mathematical bridge: <strong>it takes exactly <span class="math inline">\((m + n)\)</span> binary protobits to span the full <span class="math inline">\(2^{m+n}\)</span> multivector space of a Geometric Clifford Algebra <span class="math inline">\(\mathcal{C}\ell(m, n)\)</span>.</strong> For our single qubit, <span class="math inline">\(\mathcal{C}\ell(3, 0)\)</span> requires <span class="math inline">\(3 + 0 = 3\)</span> protobits, whose 8 cube vertices correspond precisely to the 8 geometric elements of 3D space: 1 scalar, 3 vectors, 3 bivector planes, and 1 pseudoscalar (<span class="math inline">\(i\)</span>).</p>
-<p>This invites a wild cosmological conjecture: <strong>what if the dimensionality of the universe simply reflects the number of entangled protobits?</strong><br>
-Under this lens, 4D Minkowski spacetime (<span class="math inline">\(\mathcal{C}\ell(1, 3)\)</span>) requires exactly 4 protobits (<span class="math inline">\(2^4 = 16\)</span> states, the Dirac algebra of the relativistic electron), while grand unified particle theories (<span class="math inline">\(\mathcal{C}\ell(6)\)</span> or <span class="math inline">\(\mathcal{C}\ell(8)\)</span>) demand just 6 to 8 entangled bonds.</p>
-<p>In this paradigm, continuous complex numbers are merely an emergent macroscopic illusion. Reality does not compute with abstract qubits in ethereal Hilbert spaces—it is a discrete geometric network, weaving the grammar of <span class="math inline">\(\mathcal{C}\ell(m, n)\)</span> through the physical resonance of Protobits.</p>
+<p>Decomposing a qubit reveals a profound mathematical bridge: <strong>it takes <span class="math inline">\((m + n)\)</span> protobits to span the <span class="math inline">\(2^{m+n}\)</span> multivector space of a Geometric Clifford Algebra <span class="math inline">\(\mathcal{C}\ell(m, n)\)</span>.</strong></p>
+<p>The hierarchy of information unfolds naturally:<br>
+* <strong><span class="math inline">\(\mathcal{C}\ell(0, 0)\)</span> (1 protobit, 2 states):</strong> The boundary case—a classical or probabilistic boolean bit (<span class="math inline">\([1 \quad 0]\)</span> or <span class="math inline">\([0 \quad 1]\)</span>).<br>
+* <strong><span class="math inline">\(\mathcal{C}\ell(0, 2) \cong \mathbb{H}\)</span> lifted into <span class="math inline">\(\mathcal{C}\ell(3, 0)\)</span> (3 protobits, 8 states):</strong> While a standard qubit lives in the 4-dimensional quaternionic algebra <span class="math inline">\(\mathcal{C}\ell(0, 2)\)</span>, encoding its signs and phases into non-negative probabilities requires 3 protobits. Its 8 basis states map directly to the <strong>graded elements of 3D space</strong>: 1 scalar, 3 vectors (<span class="math inline">\(X, Y, Z\)</span>), 3 bivector planes, and 1 pseudoscalar (<span class="math inline">\(i\)</span>).</p>
+<p>This invites a wild cosmological conjecture: <strong>what if physical dimensionality simply reflects the number of entangled protobits?</strong><br>
+Under this lens, 4D Minkowski spacetime (<span class="math inline">\(\mathcal{C}\ell(1, 3)\)</span>) requires 4 protobits (<span class="math inline">\(2^4 = 16\)</span> states, the Dirac algebra), while Grand Unified models (<span class="math inline">\(\mathcal{C}\ell(6)\)</span> or <span class="math inline">\(\mathcal{C}\ell(8)\)</span>) demand just 6 to 8 entangled bonds.</p>
+<p>Continuous complex numbers and ethereal wavefunctions are merely emergent illusions. Reality does not compute with abstract qubits in unphysical Hilbert spaces—<strong>it weaves the grammar of <span class="math inline">\(\mathcal{C}\ell(m, n)\)</span> through the physical resonance of Protobits.</strong></p>
+<ul>
+<li>Parallels with the I Ching</li>
+</ul>
+<p>Historians of science often recall that Gottfried Wilhelm Leibniz saw the ancient Chinese <strong>I Ching</strong> (<em>Book of Changes</em>) as the earliest historical precursor to binary algebra.</p>
+<p>Yet, when viewed through the lens of <strong>Conjugated Carbon Computing (CCC)</strong>, the structural parallels become even more striking, almost eerie:</p>
+<ul>
+<li><strong>Stochastic Sampling:</strong> Both systems rely on stochastic processes (throwing yarrow stalks or tossing coins) to collapse possibilities into an observed state—mirroring quantum measurement and statistical p-bit relaxation.<br>
+</li>
+<li><strong>Trigrams as Protobit Triplets:</strong> The fundamental building blocks of the I Ching are <strong>Trigrams</strong> (groups of 3 broken or unbroken lines, yielding <span class="math inline">\(2^3 = 8\)</span> states). This is the exact dimensional cardinality required by our protobit triplets (<span class="math inline">\(A_2, A_1, A_0\)</span>) to span the 8 basis states of a complete quantum qubit. The 64 Hexagrams (<span class="math inline">\(2^6\)</span>) naturally map to a 2-qubit interacting register!<br>
+</li>
+<li><strong>Turtle Shells &amp; Carbon Geometry:</strong> Historically, ancient divination was performed by heating tortoise plastrons until they cracked into distinct patterns. Visually and geometrically, the natural hexagonal tiling of a turtle shell bears an uncanny resemblance to the fused aromatic rings and polygonal lattices of our molecular carbon logic gates.<br>
+</li>
+<li><strong>The King Wen Sequence:</strong> When mapped as a discrete state transition matrix, the traditional King Wen permutation order exhibits the algebraic properties of a <strong>unitary, reversible 2-input / 2-output Universal quantum gate</strong>.</li>
+</ul>
+<p>I will certainly not claim that ancient diviners possessed an explicit formulation of quantum mechanics; there is zero historical evidence for such an assertion.</p>
+<p>However, it is deeply fascinating to realize that our modern concepts of superposition, dual-rail binary states, and molecular resonance would have felt astonishingly familiar to their worldview.</p>
+<p>Perhaps when humans search for the fundamental patterns of change in nature, all roads eventually lead back to the same underlying geometric syntax.</p>
 <hr>
 <p>👉 <strong>Next chapter :</strong><br>
-<strong><a href="../../posts/quantum-set-theory/index.html">“Quantum Set Theory”</a></strong></p>
+<strong><a href="../../posts/quantum-exceptions/index.html">“Quantum Exceptions”</a></strong></p>
 
 
 </section>

@@ -43,3 +43,8 @@ from qmc import * # QMC library
 ---
 
 ![](/images/construction.png){}
+
+---
+
+👉 **Next chapter :**  
+**["Quantum Set Theory"](/posts/quantum-set-theory/index.html)**

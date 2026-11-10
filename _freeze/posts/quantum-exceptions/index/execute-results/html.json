@@ -1,10 +1,10 @@
 {
-  "hash": "a762e9f52ae75aa4882d130efacc2ae1",
+  "hash": "9cd05d271d58dd4f4b21a0c42bcb500d",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"Quantum Exceptions\"\ndescription: 'Under construction'\nauthor: \"NicDeclic\"\ndate: \"2026-11-07\"\ncategories: [Exceptions]\nimage: \"plasma.jpg\"\n---\n\n![](plasma.jpg)  \n\n::: {.text-end}\n> *“Sometimes, constraints are the stars that guide.”*  \n> — **Professor Alvin**\n:::\n\n---\n\n::: {#cf6247da .cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see library imports\"}\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../../src\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\n```\n:::\n\n\n---\n\n![](/images/construction.png){}\n\n",
+    "markdown": "---\ntitle: \"Quantum Exceptions\"\ndescription: 'Under construction'\nauthor: \"NicDeclic\"\ndate: \"2026-11-07\"\ncategories: [Exceptions]\nimage: \"plasma.jpg\"\n---\n\n![](plasma.jpg)  \n\n::: {.text-end}\n> *“Sometimes, constraints are the stars that guide.”*  \n> — **Professor Alvin**\n:::\n\n---\n\n::: {#45ed3d97 .cell execution_count=1}\n``` {.python .cell-code code-fold=\"true\" code-summary=\"Click to see library imports\"}\nimport sys\nif 'google.colab' in sys.modules:\n    # 1. Download qmc.py from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/qmc.py\n    \n    # 2. Download requirements.txt from GitHub\n    !wget -q https://raw.githubusercontent.com/nicdeclic/quantum-molecular-computing/main/requirements.txt\n\n    # 3. Install dependencies\n    !pip install -q -r requirements.txt\n\nsys.path.insert(0, \"../../src\") # Select root directory\nfrom qmc import * # QMC library\n\n%reload_ext autoreload\n%autoreload 2\n```\n:::\n\n\n---\n\n![](/images/construction.png){}\n\n---\n\n👉 **Next chapter :**  \n**[\"Quantum Set Theory\"](/posts/quantum-set-theory/index.html)**\n\n",
     "supporting": [
-      "index_files\\figure-html"
+      "index_files"
     ],
     "filters": [],
     "includes": {}

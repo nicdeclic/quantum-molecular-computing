@@ -186,7 +186,7 @@ By keeping the distance short enough and using enough parallel bond pairs, the s
 
 Several physical geometries can be engineered:  
 
-* **Parallel Coupler:** The simplest design to build. The two branches of the dual-rail interconnect are simply routed parallel and brought into close physical proximity.  
+* **Series Coupler:** The direct approach. The two branches of the dual-rail interconnect are simply brought into close physical proximity.  
 
 ```{python}
 #| code-fold: true
@@ -245,7 +245,7 @@ mol.draw()
 
 The blue dashed line is here to show that there is a coupling between bonds.
 
-* **Series Coupler:** The molecular equivalent of the schematic of an electrical transformer. Two closed conjugated loops are placed side-by-side, transferring logic states purely through mutual resonance induction.  
+* **Parallel Coupler:** The molecular equivalent of the schematic of an electrical transformer. Two closed conjugated loops are placed side-by-side, transferring logic states purely through mutual resonance induction.  
 
 ```{python}
 #| code-fold: true

@@ -649,7 +649,7 @@ xor_q = TransitionMatrix([
     [1, 0]
 ])
 
-triple_xor_gate = (xor_q ^ identity) @ xor_q
+triple_xor_q = (xor_q ^ identity) @ xor_q
 
 # This is the easy way to define XNOR
 #xnor_q = xor_q @ not_q
@@ -674,7 +674,7 @@ xnor_rev_q = xnor_q.reverse()
 ###
 # Quaternions
 
-i_multiply = (split ^ identity ^ split) @ (identity ^ triple_xor_gate ^ negate)
+i_multiply = (split ^ identity ^ split) @ (identity ^ triple_xor_q ^ negate)
 j_multiply = (split ^ identity ^ identity) @ (negate ^ xor_q ^ identity)
 k_multiply = (identity ^ identity ^ split) @ (negate ^ xor_q ^ negate)
 neg_multiply = (identity ^ negate ^ identity)
@@ -701,21 +701,20 @@ rotate_z_pi = (identity ^ identity ^ negate) @ (split ^ identity ^ split) @ (ide
 identity_3 = identity**3
 rotate_x_pi_div_2 = (identity_3 + rotate_x_pi).normalize()
  
-x_gate = (negate ^ identity ^ identity)
-y_gate = (split ^ identity ^ split) @ (negate ^ triple_xor_gate ^ negate)
-z_gate = (split ^ identity ^ identity) @ (identity ^ xor_q ^ identity)
-s_gate = (split ^ identity ^ split) @ (split ^ identity**4) @ \
-    (custom_swap(6, 1, 2) @ custom_swap(6, 2, 4) @ custom_swap(6, 3, 1) @ custom_swap(6, 4, 3)) @ \
-    (identity ^ identity ^ and_q ^ xor_q) @ (identity ^ xor_q ^ identity)
+x_proto = (negate ^ identity ^ identity)
+y_proto = (split ^ split ^ identity) @ (identity ^ swap ^ identity ^ identity) @ (negate ^ negate ^ triple_xor_q)
+z_proto = (split ^ identity ^ identity) @ (identity ^ swap ^ identity) @ (identity ^ identity ^ xor_q)
+s_proto = (split ^ split ^ identity) @ (identity ^ swap ^ identity ^ identity) @ \
+    (split ^ identity ^ and_q ^ identity) @ (identity ^ xor_q ^ xor_q)
  
-#phase_pi_div_4 = t_gate
-phase_pi_div_2 = s_gate
-phase_pi = z_gate
+#phase_pi_div_4 = t_proto
+phase_pi_div_2 = s_proto
+phase_pi = z_proto
 phase_3pi_div_2 = phase_pi_div_2 @ phase_pi
 
-hadamard = (identity**3) @ (random ^ identity**3) @ (split ^ identity**3) @ (identity ^ and_q ^ identity**2) @ (identity ^ swap ^ identity) @ (identity ^ identity ^ xor_q)
+hadamard_proto = (identity**3) @ (random ^ identity**3) @ (split ^ identity**3) @ (identity ^ and_q ^ identity**2) @ (identity ^ swap ^ identity) @ (identity ^ identity ^ xor_q)
 
-cnot = (split ^ identity**5) @ permute([0,3,1,2,4,5,6]) @ (identity**3 ^ xor_q ^ identity**2)
+cnot_proto = (split ^ identity**5) @ permute([0,3,1,2,4,5,6]) @ (identity**3 ^ xor_q ^ identity**2)
 
-#ccnot = (split ^ identity**2 ^ split ^ identity**2 ^ identity**3) @ permutation(9,[])
-
+#ccnot_proto = (split ^ identity**2 ^ split ^ identity**2 ^ identity**3) @ permutation(9,[])
+#toffoli_proto = ccnot_proto
