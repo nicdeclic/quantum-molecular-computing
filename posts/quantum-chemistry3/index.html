@@ -243,7 +243,7 @@ window.Quarto = {
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="9a49692c" class="cell" data-execution_count="1">
+<div id="d836ac28" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -303,7 +303,7 @@ window.Quarto = {
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    res_mol.draw(margin<span class="op">=</span><span class="fl">0.8</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="788a36b3" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
+<div id="851a91e2" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -363,7 +363,7 @@ window.Quarto = {
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    res_mol.draw(margin<span class="op">=</span><span class="fl">0.8</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="c8fcdc66" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
+<div id="a1ab77fb" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -430,7 +430,7 @@ window.Quarto = {
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="6a318b0f" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
+<div id="91a6deaa" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -468,7 +468,7 @@ window.Quarto = {
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="79f073e6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="9d6aaecc" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[\begin{array}{|c|c|c|} \hline \mathbf{A} &amp; \mathbf{B} &amp; \mathbf{C} \\ \hline 1 &amp; 0 &amp; 0 \\ 1 &amp; 1 &amp; 1 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ \hline \end{array}\]</span></p>
@@ -498,7 +498,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <h3 class="anchored" data-anchor-id="typology-of-couplers">Typology of Couplers</h3>
 <p>Several physical geometries can be engineered:</p>
 <ul>
-<li><strong>Parallel Coupler:</strong> The simplest design to build. The two branches of the dual-rail interconnect are simply routed parallel and brought into close physical proximity.</li>
+<li><strong>Series Coupler:</strong> The direct approach. The two branches of the dual-rail interconnect are simply brought into close physical proximity.</li>
 </ul>
 <details class="code-fold">
 <summary>Code</summary>
@@ -550,7 +550,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="37819641" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="2255b7db" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -563,7 +563,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 </div>
 <p>The blue dashed line is here to show that there is a coupling between bonds.</p>
 <ul>
-<li><strong>Series Coupler:</strong> The molecular equivalent of the schematic of an electrical transformer. Two closed conjugated loops are placed side-by-side, transferring logic states purely through mutual resonance induction.</li>
+<li><strong>Parallel Coupler:</strong> The molecular equivalent of the schematic of an electrical transformer. Two closed conjugated loops are placed side-by-side, transferring logic states purely through mutual resonance induction.</li>
 </ul>
 <details class="code-fold">
 <summary>Code</summary>
@@ -596,7 +596,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="67e55c66" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="67a8e404" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -658,7 +658,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>mol.draw()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="83de3e0c" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="b7be5bdf" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -724,7 +724,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="4552d79f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="e63871a3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -846,7 +846,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Join"</span>, <span class="st">"="</span>, join.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="b9dc14a8" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
+<div id="6bda9a51" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -972,7 +972,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Coupler"</span>, <span class="st">"="</span>, coupler_q.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="6c1ba3fd" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="11">
+<div id="b7a42bac" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><span class="math display">\[ Coupler =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline \text{``00''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ \text{``01''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``10''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``11''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
@@ -999,7 +999,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="er">\</span><span class="vs">Rightarrow"</span>, <span class="st">"Xnor"</span>, <span class="st">"="</span>, m.normalize().to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="06de017b" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div id="9e01fc63" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[ Xnor = \Big\{ M_1 \cdot M_2 \cdot M_3 \Big\} \]</span></p>
@@ -1049,7 +1049,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>mol.draw(scale<span class="op">=</span><span class="dv">2</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="2dc220b4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="2425fca2" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1086,7 +1086,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="er">\</span><span class="vs">Rightarrow"</span>, <span class="st">"Nor"</span>, <span class="st">"="</span>, m.normalize().to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="55ab6b9f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
+<div id="7aa649e1" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[ Nor = \Big\{ M_1 \cdot M_2 \cdot M_3 \cdot M_4 \cdot M_5 \cdot M_6 \Big\} \]</span></p>
@@ -1127,7 +1127,7 @@ Unfortunately, at present, no general algorithm exists to automate this process.
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Display the resulting 8x8 matrix</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="ch">\t</span><span class="vs">ext{Permute}_{</span><span class="pp">[2, 0, 1]</span><span class="vs">}"</span>, <span class="st">"="</span>, P.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="704f36e3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div id="6e323fe6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[ \text{Permute}_{[2, 0, 1]} =  \begin{array}{r|cccccccc|} \text{} &amp; \text{``000''} &amp; \text{``001''} &amp; \text{``010''} &amp; \text{``011''} &amp; \text{``100''} &amp; \text{``101''} &amp; \text{``110''} &amp; \text{``111''} \\  \hline \text{``000''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``001''} &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``010''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ \text{``011''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\ \text{``100''} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``101''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``110''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ \text{``111''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\  \hline \end{array}  \]</span></p>
