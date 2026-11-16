@@ -250,10 +250,10 @@ class TransitionMatrix:
             raise ValueError(f"Invalid dimension: matrix must be 1 X 8.")
         
         # Replace all double indices with single-step indices
-        d0 = np.abs(matrix[0,0] - matrix[0,1])
-        d1 = np.abs(matrix[0,2] - matrix[0,3])
-        d2 = np.abs(matrix[0,4] - matrix[0,5])
-        d3 = np.abs(matrix[0,6] - matrix[0,7])
+        d0 = (matrix[0,0] - matrix[0,1])
+        d1 = (matrix[0,2] - matrix[0,3])
+        d2 = (matrix[0,4] - matrix[0,5])
+        d3 = (matrix[0,6] - matrix[0,7])
         gamma = np.sqrt(d0*d0 + d1*d1 + d2*d2 + d3*d3)
 
         if gamma <= 0:
@@ -263,6 +263,7 @@ class TransitionMatrix:
         qubit = np.array([[complex(d0, d1) / gamma, complex(d2, d3) / gamma]])
         
         return qubit
+
 
     @classmethod
     def from_qubit(cls, qubit):
@@ -310,7 +311,105 @@ class TransitionMatrix:
         matrix = sparse.csr_matrix([b0,b1,b2,b3,b4,b5,b6,b7]/sum, dtype=float)      
 
         return cls(matrix)
+    
 
+    @classmethod
+    def from_quantum_gate(cls, U):
+        """
+        Converts an arbitrary 1, 2, or 3-qubit unitary gate U into its 
+        corresponding protobit TransitionMatrix.
+        
+        Dimensions:
+        - 1 qubit:  U is 2x2   -> Matrix is 8x8     (3 protobits)
+        - 2 qubits: U is 4x4   -> Matrix is 64x64   (6 protobits)
+        - 3 qubits: U is 8x8   -> Matrix is 512x512 (9 protobits)
+        """       
+        U = np.array(U, dtype=complex)
+        dim = U.shape[0]
+
+        if U.shape[0] != U.shape[1] or dim not in (2, 4, 8):
+            raise ValueError(f"U must be a square matrix of size 2x2, 4x4, or 8x8. Received {U.shape}.")
+
+        num_qubits = int(np.log2(dim))
+        num_protobits = 3 * num_qubits
+        matrix_size = 2**num_protobits  # 8, 64, or 512
+
+        # Precompute the 8 pure 1-qubit states corresponding to basis triplets
+        single_qubits = []
+        for i in range(8):
+            e = np.zeros((1, 8), dtype=float)
+            e[0, i] = 1.0
+            single_qubits.append(cls(sparse.csr_matrix(e)).to_qubit())
+
+        # Construct transition matrix row by row
+        M_protobit = np.zeros((matrix_size, matrix_size), dtype=float)
+
+        for r in range(matrix_size):
+            # 1. Unpack row index 'r' into N independent 3-bit chunk indices
+            # For 2 qubits: r = k1 * 8 + k0
+            # For 3 qubits: r = k2 * 64 + k1 * 8 + k0
+            chunk_indices = []
+            temp = r
+            for _ in range(num_qubits):
+                chunk_indices.append(temp % 8)
+                temp //= 8
+            chunk_indices.reverse()  # Order from Qubit 0 (MSB) to Qubit N-1
+
+            # 2. Build multi-qubit joint state vector via Kronecker product
+            psi_in = single_qubits[chunk_indices[0]]
+            for q in range(1, num_qubits):
+                psi_in = np.kron(psi_in, single_qubits[chunk_indices[q]])
+
+            # 3. Apply the unitary quantum gate U
+            # Row vector notation: psi_out = psi_in @ U.T
+            psi_out = psi_in @ U.T
+
+            # 4. Project multi-qubit output onto the protobit probability space
+            # We compute marginal density matrices for each qubit subsystem
+            # and project via from_qubit:
+            P_out_qubits = []
+            
+            if num_qubits == 1:
+                P_row = cls.from_qubit(psi_out).toarray().flatten()
+            else:
+                # For multi-qubit states, project each qubit subsystem
+                # and recombine along the protobit basis
+                for q in range(num_qubits):
+                    # Compute reduced single-qubit state for subsystem q
+                    # Reshape state to isolate qubit q amplitudes
+                    shape = [2] * num_qubits
+                    tensor = psi_out.reshape(shape)
+                    
+                    # Trace out other qubits to get marginal probabilities on qubit q
+                    axes_to_sum = tuple(i for i in range(num_qubits) if i != q)
+                    rho_q = np.tensordot(tensor, np.conj(tensor), axes=(axes_to_sum, axes_to_sum))
+                    
+                    # Extract effective single-qubit ket
+                    c0_sq = np.real(rho_q[0, 0])
+                    c1_sq = np.real(rho_q[1, 1])
+                    cross = rho_q[0, 1]
+                    
+                    c0 = np.sqrt(max(c0_sq, 0.0))
+                    c1 = cross / c0 if c0 > 1e-9 else np.sqrt(max(c1_sq, 0.0)) + 0j
+                    
+                    sub_psi = np.array([[c0, c1]], dtype=complex)
+                    sub_psi = sub_psi / np.linalg.norm(sub_psi)
+                    P_out_qubits.append(cls.from_qubit(sub_psi).toarray().flatten())
+
+                # Tensor product of all protobit output channels
+                P_row = P_out_qubits[0]
+                for q in range(1, num_qubits):
+                    P_row = np.kron(P_row, P_out_qubits[q])
+
+            # Insert normalized row
+            row_sum = np.sum(P_row)
+            if row_sum > 0:
+                M_protobit[r, :] = P_row / row_sum
+
+        # Clean numerical noise and return sparse TransitionMatrix
+        M_protobit = np.where(np.abs(M_protobit) < 1e-12, 0.0, M_protobit)
+        return cls(sparse.csr_matrix(M_protobit))
+    
     @classmethod
     def from_resonances(cls, resonances: list):
         """
@@ -712,7 +811,11 @@ phase_pi_div_2 = s_proto
 phase_pi = z_proto
 phase_3pi_div_2 = phase_pi_div_2 @ phase_pi
 
-hadamard_proto = (identity**3) @ (random ^ identity**3) @ (split ^ identity**3) @ (identity ^ and_q ^ identity**2) @ (identity ^ swap ^ identity) @ (identity ^ identity ^ xor_q)
+hadamard_proto = (identity**3) @ (random ^ identity**3) @ (split ^ identity**3) @ (identity ^ and_q ^ identity**2) @ \
+    (identity ^ swap ^ identity) @ (identity ^ identity ^ xor_q)
+t_proto = (identity**3) @ (split ^ random ^ identity ^ identity) @ (identity ^ and_q ^ identity ^ identity) @ \
+    (identity ^ split ^ split ^ identity) @ (identity ^ identity ^ xor_q ^ identity ^ identity) @ \
+    (identity ^ swap ^ identity ^ identity) @ (identity ^ identity ^ and_q ^ identity) @ (identity ^ identity ^ xor_q)
 
 cnot_proto = (split ^ identity**5) @ permute([0,3,1,2,4,5,6]) @ (identity**3 ^ xor_q ^ identity**2)
 

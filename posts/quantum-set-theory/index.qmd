@@ -2,7 +2,7 @@
 title: "Quantum Set Theory"
 description: 'Under construction'
 author: "NicDeclic"
-date: "2026-11-08"
+date: "2026-11-14"
 categories: [Set Theory]
 image: "quantum-venn-diagram.png"
 ---

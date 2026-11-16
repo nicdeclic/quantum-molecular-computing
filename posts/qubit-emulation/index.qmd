@@ -4,10 +4,10 @@ description: "On the surface, qubits and protobits appear fundamentally incompat
 author: "NicDeclic"
 date: "2026-11-06"
 categories: [Qubits]
-image: "qubit.jpg"
+image: "/images/qubit.jpg"
 ---
 
-![](qubit.jpg)  
+![](/images/qubit.jpg)  
 
 ::: {.text-end}
 > *"Sometimes, unlearning is the highest form of wisdom."*  
@@ -819,72 +819,6 @@ display_inline(r"S_{proto}", "=", s_proto.to_katex(show_labels=True))
 
 ---
 
-![](/images/construction.png){}
-
-## Portes logiques superposées
-
-Hadamard
-
-T
-
----
-
-## Portes logiques avec plus d'une entrée
-
-Swap
-
-Cnot
-
-### Portes logiques contrôlées
-
-Cz
-
-Toffoli (Ccnot)
-
-### Portes classiques avec une porte Toffoli
-
----
-
-## Rotations de base
-
-$R_x(\pi)$
-
-$R_y(\pi)$
-
-$R_z(\pi)$
-
-## Phase
-
-$Ph(\pi)$
-
-$Ph(\frac{\pi}{2})$
-
----
-
-## Fraction de rotation
-
----
-
-## Portes logiques racines carrés
-
----
-
-## Circuits de mesure
-
-### Échantillonage
-
-### Recuit Simulé
-
----
-
-## Exemples classiques
-
-Retour de phase quantique.
-
-Transformations de fourrier quantique.
-
----
-
 ## ![](/images/warning.png){width=50px} Speculations & Wild Thoughts
 
 * Quarks of Light: Modeling the Photon as a Protobit Triplet  
@@ -988,4 +922,4 @@ Perhaps when humans search for the fundamental patterns of change in nature, all
 ---
 
 👉 **Next chapter :**  
-**["Quantum Exceptions"](/posts/quantum-exceptions/index.html)**
+**["Qubit Emulation Part 2"](/posts/qubit-emulation2/index.html)**
