@@ -10,7 +10,7 @@
 <atom:link href="https://nicdeclic.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>Open Research Notes &amp; Dynamic Notebooks</description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Sun, 08 Nov 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sat, 14 Nov 2026 05:00:00 GMT</lastBuildDate>
 <item>
   <title>Quantum Set Theory</title>
   <dc:creator>NicDeclic </dc:creator>
@@ -29,7 +29,7 @@
 </blockquote>
 </div>
 <hr>
-<div id="cf9cadec" class="cell" data-execution_count="1">
+<div id="865ee903" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -147,7 +147,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
  ]]></description>
   <category>Set Theory</category>
   <guid>https://nicdeclic.com/posts/quantum-set-theory/</guid>
-  <pubDate>Sun, 08 Nov 2026 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 14 Nov 2026 05:00:00 GMT</pubDate>
   <media:content url="https://nicdeclic.com/posts/quantum-set-theory/quantum-venn-diagram.png" medium="image" type="image/png" height="151" width="144"/>
 </item>
 <item>
@@ -168,7 +168,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 </blockquote>
 </div>
 <hr>
-<div id="45ed3d97" class="cell" data-execution_count="1">
+<div id="852bbb02" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -278,8 +278,1388 @@ font-style: inherit;">2</span></span></code></pre></div></div>
  ]]></description>
   <category>Exceptions</category>
   <guid>https://nicdeclic.com/posts/quantum-exceptions/</guid>
-  <pubDate>Sat, 07 Nov 2026 05:00:00 GMT</pubDate>
+  <pubDate>Thu, 12 Nov 2026 05:00:00 GMT</pubDate>
   <media:content url="https://nicdeclic.com/posts/quantum-exceptions/plasma.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Qubit Emulation Part 2</title>
+  <dc:creator>NicDeclic </dc:creator>
+  <link>https://nicdeclic.com/posts/qubit-emulation2/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p><img src="https://nicdeclic.com/images/qubit.jpg" class="img-fluid"></p>
+<hr>
+<p><img src="https://nicdeclic.com/images/construction.png" class="img-fluid"></p>
+<hr>
+<p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
+<div id="ab8eb372" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to see library imports</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> sys</span>
+<span id="cb1-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'google.colab'</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> sys.modules:</span>
+<span id="cb1-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Download qmc.py from GitHub</span></span>
+<span id="cb1-4">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>wget <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>raw.githubusercontent.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>nicdeclic<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>quantum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>molecular<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>computing<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>qmc.py</span>
+<span id="cb1-5">    </span>
+<span id="cb1-6">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Download requirements.txt from GitHub</span></span>
+<span id="cb1-7">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>wget <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q https:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//</span>raw.githubusercontent.com<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>nicdeclic<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>quantum<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>molecular<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>computing<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>main<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>requirements.txt</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Install dependencies</span></span>
+<span id="cb1-10">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span>pip install <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>q <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>r requirements.txt</span>
+<span id="cb1-11"></span>
+<span id="cb1-12">sys.path.insert(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"../../src"</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Select root directory</span></span>
+<span id="cb1-13"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> qmc <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># QMC library</span></span>
+<span id="cb1-14"></span>
+<span id="cb1-15"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>reload_ext autoreload</span>
+<span id="cb1-16"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%</span>autoreload <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span></code></pre></div></div>
+</details>
+</div>
+<hr>
+<section id="superposed-quantum-gates" class="level2">
+<h2 class="anchored" data-anchor-id="superposed-quantum-gates">Superposed Quantum Gates</h2>
+<p>The Pauli gates (<img src="https://latex.codecogs.com/png.latex?X,%20Y,%20Z">) and the phase gate (<img src="https://latex.codecogs.com/png.latex?S">) were straightforward because every vertex of our 8-state cube mapped cleanly and deterministically onto another single vertex.</p>
+<p>Gates like the <strong>Hadamard gate (<img src="https://latex.codecogs.com/png.latex?H">)</strong> and the <strong><img src="https://latex.codecogs.com/png.latex?T"> gate (<img src="https://latex.codecogs.com/png.latex?%5Cpi/8"> rotation)</strong>, however, are fundamentally more complex. Geometrically, they rotate the state to points that lie <em>between</em> the vertices—on the faces or edges of the Bloch sphere. They cannot be implemented by a simple one-to-one permutation of discrete vertices.</p>
+<hr>
+<section id="the-hadamard-gate" class="level3">
+<h3 class="anchored" data-anchor-id="the-hadamard-gate">The Hadamard Gate</h3>
+<p>The Hadamard gate is the quintessential quantum superposition operator. In the standard Dirac computational basis, it maps basis states into equal linear combinations:</p>
+<p><img src="https://latex.codecogs.com/png.latex?H%20=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%201%20&amp;%201%20%5C%5C%201%20&amp;%20-1%20%5Cend%7Bbmatrix%7D"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0AH%20%7C0%5Crangle%20&amp;=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cleft(%7C0%5Crangle%20+%20%7C1%5Crangle%5Cright)%20=%20%7C+%5Crangle%20%5C%5C%0AH%20%7C1%5Crangle%20&amp;=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cleft(%7C0%5Crangle%20-%20%7C1%5Crangle%5Cright)%20=%20%7C-%5Crangle%0A%5Cend%7Baligned%7D"></p>
+<p>Notice a remarkable mathematical symmetry: the Hadamard matrix can be decomposed exactly as the normalized sum of the <strong><img src="https://latex.codecogs.com/png.latex?X"></strong> and <strong><img src="https://latex.codecogs.com/png.latex?Z"></strong> Pauli operators:</p>
+<p><img src="https://latex.codecogs.com/png.latex?H%20=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20(X%20+%20Z)"></p>
+<p>This identity provides our architectural blueprint!</p>
+<p>We can synthesize the Hadamard transformation by:<br>
+1. Routing our input protobit triplet <img src="https://latex.codecogs.com/png.latex?(A_2,%20A_1,%20A_0)"> into <strong>both the <img src="https://latex.codecogs.com/png.latex?X"> circuit and the <img src="https://latex.codecogs.com/png.latex?Z"> circuit in parallel</strong>.<br>
+2. Superposing the output channel selection using a <strong>fair-coin random source</strong> to balance the branches with equal probability weights.</p>
+<p>By leveraging physical resonance and stochastic mixing, the discrete geometry of protobits natively recreates the continuous superposition of the Hadamard transform.</p>
+<ul>
+<li><p><strong>Truth Table</strong><br>
+<img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7C%7D%0A%5Chline%0A%5Cmathbf%7BInput%5C%20(Protobits%5C%20%5Crightarrow%5C%20Qubit)%7D%20&amp;%20%5Cmathbf%7BOutput%5C%20(Normalized%5C%20Protobits%5C%20%5Crightarrow%5C%20Qubit)%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60000''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%201%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60000''%7D%20+%20%5Ctext%7B%60%60100''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%201%20%5C%5C%201%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60001''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20-1%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60001''%7D%20+%20%5Ctext%7B%60%60101''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%20-1%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60010''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20i%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60010''%7D%20+%20%5Ctext%7B%60%60110''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%20i%20%5C%5C%20i%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60011''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20-i%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60011''%7D%20+%20%5Ctext%7B%60%60111''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%20-i%20%5C%5C%20-i%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60100''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%201%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60000''%7D%20+%20%5Ctext%7B%60%60101''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%201%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60101''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60001''%7D%20+%20%5Ctext%7B%60%60100''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%20-1%20%5C%5C%201%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60110''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%20i%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60010''%7D%20+%20%5Ctext%7B%60%60111''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%20i%20%5C%5C%20-i%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60111''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%20-i%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60011''%7D%20+%20%5Ctext%7B%60%60110''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%20-i%20%5C%5C%20i%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Cend%7Barray%7D%0A"></p></li>
+<li><p><strong>Logic Schematic</strong></p></li>
+</ul>
+<p><strong>Don’t forget that the boolean logic gates depicted below operate as native quantum transition operators capable of manipulating coherent protobit states.</strong></p>
+<p>Additionally, the <code>Random</code> signal is entirely internal to the gate’s molecular framework—acting as a local stochastic fluctuation rather than an external control line—so there is no need to route it from outside the cell.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Initialize schematic drawing for the Hadamard circuit</span></span>
+<span id="cb2-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> schemdraw.Drawing() <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> d:</span>
+<span id="cb2-3">    d.config(fontsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, unit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>)</span>
+<span id="cb2-4"></span>
+<span id="cb2-5">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Vertical coordinates for the rails</span></span>
+<span id="cb2-6">    y_rand <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.5</span></span>
+<span id="cb2-7">    y_a2   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.0</span></span>
+<span id="cb2-8">    y_a1   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span></span>
+<span id="cb2-9">    y_a0   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span></span>
+<span id="cb2-10">    x_in   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span></span>
+<span id="cb2-11"></span>
+<span id="cb2-12">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-13">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Logic Gates Setup</span></span>
+<span id="cb2-14">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-15">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># AND gate: inputs from Random and A2</span></span>
+<span id="cb2-16">    and_gate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.And().right().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.25</span>)))</span>
+<span id="cb2-17"></span>
+<span id="cb2-18">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># XOR gate: inputs from AND output and A0 -&gt; drives B0</span></span>
+<span id="cb2-19">    xor_gate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.Xor().right().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.0</span>, y_a0 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>)))</span>
+<span id="cb2-20"></span>
+<span id="cb2-21">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-22">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Random Source Line -&gt; Drives B2 and AND gate</span></span>
+<span id="cb2-23">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-24">    d.add(</span>
+<span id="cb2-25">        elm.Line()</span>
+<span id="cb2-26">        .right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6.0</span>)</span>
+<span id="cb2-27">        .at((x_in <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, y_rand))</span>
+<span id="cb2-28">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Random"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>)</span>
+<span id="cb2-29">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$B_2$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"right"</span>)</span>
+<span id="cb2-30">    )</span>
+<span id="cb2-31">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Branch down to AND gate input 1</span></span>
+<span id="cb2-32">    d.add(elm.Dot().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, y_rand)))</span>
+<span id="cb2-33">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|-"</span>).at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>, y_rand)).to(and_gate.in1))</span>
+<span id="cb2-34"></span>
+<span id="cb2-35">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-36">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Input A2 Line -&gt; Drives AND gate input 2</span></span>
+<span id="cb2-37">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-38">    d.add(</span>
+<span id="cb2-39">        elm.Line()</span>
+<span id="cb2-40">        .at((x_in, y_a2))</span>
+<span id="cb2-41">        .to(and_gate.in2)</span>
+<span id="cb2-42">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$A_2$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>)</span>
+<span id="cb2-43">    )</span>
+<span id="cb2-44"></span>
+<span id="cb2-45">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-46">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Input A1 Line -&gt; Direct straight wire to B1 (Identity)</span></span>
+<span id="cb2-47">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-48">    d.add(</span>
+<span id="cb2-49">        elm.Line()</span>
+<span id="cb2-50">        .right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8.0</span>)</span>
+<span id="cb2-51">        .at((x_in, y_a1))</span>
+<span id="cb2-52">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$A_1$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>)</span>
+<span id="cb2-53">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$B_1$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"right"</span>)</span>
+<span id="cb2-54">    )</span>
+<span id="cb2-55"></span>
+<span id="cb2-56">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-57">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Input A0 Line -&gt; XOR with AND output -&gt; Drives B0</span></span>
+<span id="cb2-58">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb2-59">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Straight input wire to XOR bottom input</span></span>
+<span id="cb2-60">    d.add(</span>
+<span id="cb2-61">        elm.Line()</span>
+<span id="cb2-62">        .at((x_in, y_a0))</span>
+<span id="cb2-63">        .to(xor_gate.in2)</span>
+<span id="cb2-64">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$A_0$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>)</span>
+<span id="cb2-65">    )</span>
+<span id="cb2-66"></span>
+<span id="cb2-67">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Route AND gate output down into XOR top input</span></span>
+<span id="cb2-68">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-|"</span>).at(and_gate.out).to(xor_gate.in1))</span>
+<span id="cb2-69"></span>
+<span id="cb2-70">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Output line B0</span></span>
+<span id="cb2-71">    d.add(</span>
+<span id="cb2-72">        elm.Line()</span>
+<span id="cb2-73">        .right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>)</span>
+<span id="cb2-74">        .at(xor_gate.out)</span>
+<span id="cb2-75">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$B_0$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"right"</span>)</span>
+<span id="cb2-76">    )</span></code></pre></div></div>
+</details>
+<div id="87a8b7b0" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/qubit-emulation2/index_files/figure-html/cell-3-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>Molecular Equivalent</strong></p></li>
+<li><p><strong>Molecular Protobits Matrix</strong></p></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">display_inline(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"Hadamard_{proto}"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, hadamard_proto.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span></code></pre></div></div>
+</details>
+<div id="7b00aa88" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Hadamard_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-t-gate-pi8-gate-sqrts" class="level3">
+<h3 class="anchored" data-anchor-id="the-t-gate-pi8-gate-sqrts">The T Gate (<img src="https://latex.codecogs.com/png.latex?%5Cpi/8"> Gate / <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7BS%7D">)</h3>
+<p>The <strong><img src="https://latex.codecogs.com/png.latex?T"> gate</strong> is a fundamental non-Clifford phase rotation. In standard quantum computing, the <img src="https://latex.codecogs.com/png.latex?T"> gate is famous because adding it to the Clifford group (<img src="https://latex.codecogs.com/png.latex?%5C%7BH,%20S,%20%5Ctext%7BCNOT%7D%5C%7D">) makes a quantum computer <strong>universally complete</strong> for any arbitrary quantum algorithm.</p>
+<p>In the computational basis, it applies a <img src="https://latex.codecogs.com/png.latex?%5Cpi/4"> (<img src="https://latex.codecogs.com/png.latex?45%5E%5Ccirc">) phase shift to <img src="https://latex.codecogs.com/png.latex?%7C1%5Crangle"> while leaving <img src="https://latex.codecogs.com/png.latex?%7C0%5Crangle"> untouched:</p>
+<p><img src="https://latex.codecogs.com/png.latex?T%20=%20%5Cbegin%7Bbmatrix%7D%201%20&amp;%200%20%5C%5C%200%20&amp;%20e%5E%7Bi%5Cpi/4%7D%20%5Cend%7Bbmatrix%7D%20=%20%5Cbegin%7Bbmatrix%7D%201%20&amp;%200%20%5C%5C%200%20&amp;%20%5Cfrac%7B1%20+%20i%7D%7B%5Csqrt%7B2%7D%7D%20%5Cend%7Bbmatrix%7D"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0AT%20%7C0%5Crangle%20&amp;=%20%7C0%5Crangle%20%5C%5C%0AT%20%7C1%5Crangle%20&amp;=%20e%5E%7Bi%5Cpi/4%7D%20%7C1%5Crangle%20=%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20(%7C1%5Crangle%20+%20i%7C1%5Crangle)%0A%5Cend%7Baligned%7D"></p>
+<p>For the <img src="https://latex.codecogs.com/png.latex?T"> gate, the operational principle is identical to that of the Hadamard gate, with an elegant asymmetry:</p>
+<ul>
+<li><strong>The <img src="https://latex.codecogs.com/png.latex?%7C0%5Crangle"> manifold (<img src="https://latex.codecogs.com/png.latex?A_2%20=%200">):</strong> Exactly half of the cube vertices map <strong>deterministically onto another vertex</strong> without any phase splitting.<br>
+</li>
+<li><strong>The <img src="https://latex.codecogs.com/png.latex?%7C1%5Crangle"> manifold (<img src="https://latex.codecogs.com/png.latex?A_2%20=%201">):</strong> The remaining half of the vertices map into an <strong>equal superposition</strong> between real and imaginary phase axes (<img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20(1%20+%20i)">).</li>
+</ul>
+<p>Just as we did for the Hadamard circuit, we can employ our balanced <code>Random</code> protobit source to govern the superposed states—except here, the stochastic splitting is applied <strong>conditionally</strong>.</p>
+<ul>
+<li><p><strong>Truth Table</strong><br>
+<img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7C%7D%0A%5Chline%0A%5Cmathbf%7BInput%5C%20(A_2%20A_1%20A_0%5C%20%5Crightarrow%5C%20Qubit)%7D%20&amp;%20%5Cmathbf%7BOutput%5C%20(Normalized%5C%20Protobits%5C%20%5Crightarrow%5C%20Qubit)%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60000''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%201%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%201%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60001''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20-1%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20-1%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60010''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20i%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20i%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60011''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20-i%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%20-i%20%5C%5C%200%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60100''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%201%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60100''%7D%20+%20%5Ctext%7B%60%60110''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%201%20+%20i%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60101''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%20-1%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60101''%7D%20+%20%5Ctext%7B%60%60111''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%20-1%20-%20i%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60110''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%20i%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60101''%7D%20+%20%5Ctext%7B%60%60110''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%20-1%20+%20i%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Ctext%7B%60%60111''%7D%20%5Clongrightarrow%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%20-i%20%5Cend%7Bbmatrix%7D%20&amp;%20%5Cleft%5C%7B%20%5Ctext%7B%60%60100''%7D%20+%20%5Ctext%7B%60%60111''%7D%20%5Cright%5C%7D%20%5Clongrightarrow%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D%20%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%201%20-%20i%20%5Cend%7Bbmatrix%7D%20%5C%5C%0A%5Chline%0A%5Cend%7Barray%7D%0A"></p></li>
+<li><p><strong>Logic Schematic</strong></p></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Initialize schematic drawing for the quantum T gate</span></span>
+<span id="cb4-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> schemdraw.Drawing() <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> d:</span>
+<span id="cb4-3">    d.config(fontsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, unit<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.5</span>)</span>
+<span id="cb4-4"></span>
+<span id="cb4-5">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Vertical coordinates for the input/output rails</span></span>
+<span id="cb4-6">    y_rand <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.0</span></span>
+<span id="cb4-7">    y_a2   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.5</span></span>
+<span id="cb4-8">    y_a1   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span></span>
+<span id="cb4-9">    y_a0   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span></span>
+<span id="cb4-10">    x_in   <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span></span>
+<span id="cb4-11"></span>
+<span id="cb4-12">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-13">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Place Logic Gates</span></span>
+<span id="cb4-14">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-15">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># First stage: AND gate for conditional imaginary phase toggle</span></span>
+<span id="cb4-16">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Inputs: A2 and Random</span></span>
+<span id="cb4-17">    and_phase <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.And().right().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.8</span>)))</span>
+<span id="cb4-18"></span>
+<span id="cb4-19">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># XOR gate for B1 = A1 XOR (A2 AND Random)</span></span>
+<span id="cb4-20">    xor_b1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.Xor().right().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6.0</span>, y_a1<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>)))</span>
+<span id="cb4-21"></span>
+<span id="cb4-22">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Second stage: AND gate for sign flip when rotating from +i to -1</span></span>
+<span id="cb4-23">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Inputs: (A2 AND Random) output and A1</span></span>
+<span id="cb4-24">    and_sign <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.And().right().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.5</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6</span>)))</span>
+<span id="cb4-25"></span>
+<span id="cb4-26">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># XOR gate for B0 = A0 XOR (Sign toggle)</span></span>
+<span id="cb4-27">    xor_b0 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d.add(logic.Xor().right().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8.5</span>, y_a0 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)))</span>
+<span id="cb4-28"></span>
+<span id="cb4-29">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-30">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Wire Random Input Line</span></span>
+<span id="cb4-31">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-32">    d.add(</span>
+<span id="cb4-33">        elm.Line()</span>
+<span id="cb4-34">        .right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>)</span>
+<span id="cb4-35">        .at((x_in <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, y_rand))</span>
+<span id="cb4-36">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Random"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>)</span>
+<span id="cb4-37">    )</span>
+<span id="cb4-38">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Drop down into top input of and_phase</span></span>
+<span id="cb4-39">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|-"</span>).to(and_phase.in1))</span>
+<span id="cb4-40"></span>
+<span id="cb4-41">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-42">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Wire A2 Line (Presence / Control line)</span></span>
+<span id="cb4-43">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-44">    d.add(</span>
+<span id="cb4-45">        elm.Line()</span>
+<span id="cb4-46">        .right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10.5</span>)</span>
+<span id="cb4-47">        .at((x_in, y_a2))</span>
+<span id="cb4-48">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$A_2$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>)</span>
+<span id="cb4-49">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$B_2$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"right"</span>)</span>
+<span id="cb4-50">    )</span>
+<span id="cb4-51">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Tap A2 down into bottom input of and_phase</span></span>
+<span id="cb4-52">    d.add(elm.Dot().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>, y_a2)))</span>
+<span id="cb4-53">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|-"</span>).at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>, y_a2)).to(and_phase.in2))</span>
+<span id="cb4-54"></span>
+<span id="cb4-55">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-56">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Wire A1 Line (Imaginary Phase bit)</span></span>
+<span id="cb4-57">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-58">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># From input to xor_b1 bottom input</span></span>
+<span id="cb4-59">    d.add(</span>
+<span id="cb4-60">        elm.Line()</span>
+<span id="cb4-61">        .right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span>)</span>
+<span id="cb4-62">        .at((x_in, y_a1))</span>
+<span id="cb4-63">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$A_1$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>)</span>
+<span id="cb4-64">    )</span>
+<span id="cb4-65">    d.add(elm.Dot().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span>, y_a1)))</span>
+<span id="cb4-66">    </span>
+<span id="cb4-67">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Tap A1 down into bottom input of and_sign</span></span>
+<span id="cb4-68">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|-"</span>).at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span>, y_a1)).to(and_sign.in2))</span>
+<span id="cb4-69"></span>
+<span id="cb4-70">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Main A1 path to xor_b1</span></span>
+<span id="cb4-71">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-|"</span>).at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0</span>, y_a1)).to(xor_b1.in2))</span>
+<span id="cb4-72"></span>
+<span id="cb4-73">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Route and_phase output to xor_b1 top input and tap to and_sign top input</span></span>
+<span id="cb4-74">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-|"</span>).at(and_phase.out).to(xor_b1.in1))</span>
+<span id="cb4-75">    d.add(elm.Dot().at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.0</span>, and_phase.out[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])))</span>
+<span id="cb4-76">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|-"</span>).at((<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.0</span>, and_phase.out[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>])).to(and_sign.in1))</span>
+<span id="cb4-77"></span>
+<span id="cb4-78">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Output line B1</span></span>
+<span id="cb4-79">    d.add(</span>
+<span id="cb4-80">        elm.Line()</span>
+<span id="cb4-81">        .right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3.5</span>)</span>
+<span id="cb4-82">        .at(xor_b1.out)</span>
+<span id="cb4-83">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$B_1$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"right"</span>)</span>
+<span id="cb4-84">    )</span>
+<span id="cb4-85"></span>
+<span id="cb4-86">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-87">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Wire A0 Line (Sign Phase bit)</span></span>
+<span id="cb4-88">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ==========================================</span></span>
+<span id="cb4-89">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Direct line from A0 input into bottom pin of xor_b0</span></span>
+<span id="cb4-90">    d.add(</span>
+<span id="cb4-91">        elm.Line()</span>
+<span id="cb4-92">        .at((x_in, y_a0 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.25</span>))</span>
+<span id="cb4-93">        .to(xor_b0.in2)</span>
+<span id="cb4-94">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$A_0$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>)</span>
+<span id="cb4-95">    )</span>
+<span id="cb4-96"></span>
+<span id="cb4-97">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Route and_sign output into top pin of xor_b0</span></span>
+<span id="cb4-98">    d.add(elm.Wire(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-|"</span>).at(and_sign.out).to(xor_b0.in1))</span>
+<span id="cb4-99"></span>
+<span id="cb4-100">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Output line B0</span></span>
+<span id="cb4-101">    d.add(</span>
+<span id="cb4-102">        elm.Line()</span>
+<span id="cb4-103">        .right(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>)</span>
+<span id="cb4-104">        .at(xor_b0.out)</span>
+<span id="cb4-105">        .label(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$B_0$"</span>, loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"right"</span>)</span>
+<span id="cb4-106">    )</span></code></pre></div></div>
+</details>
+<div id="c325465f" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/qubit-emulation2/index_files/figure-html/cell-5-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>Molecular Equivalent</strong></p></li>
+<li><p><strong>Molecular Protobits Matrix</strong></p></li>
+</ul>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">display_inline(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"T_{proto}"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, t_proto.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span></code></pre></div></div>
+</details>
+<div id="1755a14c" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20T_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200.5%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200.5%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200.5%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200.5%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="multi-qubit-logic-gates" class="level2">
+<h2 class="anchored" data-anchor-id="multi-qubit-logic-gates">Multi-Qubit Logic Gates</h2>
+<p>In conventional quantum hardware, multi-qubit entangling gates are notoriously difficult to implement—they suffer from high error rates, crosstalk, and delicate laser/microwave tuning.</p>
+<p>In our molecular protobit architecture, the situation is completely reversed: <strong>multi-qubit gates (SWAP, CNOT, CZ, and Toffoli) are often structurally simpler to build than single-qubit rotation gates.</strong></p>
+<p>Because our channels are already organized into discrete protobit buses, multi-qubit control reduces fundamentally to <strong>boolean routing, multiplexing, and conditional masking</strong>.</p>
+<hr>
+<section id="the-swap-gate" class="level3">
+<h3 class="anchored" data-anchor-id="the-swap-gate">The SWAP Gate</h3>
+<p>The SWAP gate exchanges the quantum states of two qubits. In our architecture, no active logic gates are required at all: <strong>we simply cross the physical protobit lines.</strong></p>
+<p>In standard Dirac notation:<br>
+<img src="https://latex.codecogs.com/png.latex?%5Ctext%7BSWAP%7D%20%7Ca,%20b%5Crangle%20=%20%7Cb,%20a%5Crangle"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BSWAP%7D%20=%20%5Cbegin%7Bbmatrix%7D%0A1%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%0A0%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%201%0A%5Cend%7Bbmatrix%7D"></p>
+<p>In our 3-protobit representation, swapping two qubits <img src="https://latex.codecogs.com/png.latex?(A_2%20A_1%20A_0)"> and <img src="https://latex.codecogs.com/png.latex?(B_2%20B_1%20B_0)"> is achieved by routing the two 3-line buses across each other: <img src="https://latex.codecogs.com/png.latex?A_i%20%5Cleftrightarrow%20B_i">. It is a zero-gate, purely geometric operation.</p>
+<hr>
+</section>
+<section id="the-cnot-gate-controlled-not-cx" class="level3">
+<h3 class="anchored" data-anchor-id="the-cnot-gate-controlled-not-cx">The CNOT Gate (Controlled-NOT / CX)</h3>
+<p>The Controlled-NOT gate flips the target qubit if and only if the control qubit is in state <img src="https://latex.codecogs.com/png.latex?%7C1%5Crangle">.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BCNOT%7D%20%7Cc,%20t%5Crangle%20=%20%7Cc,%20c%20%5Coplus%20t%5Crangle"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BCNOT%7D%20=%20%5Cbegin%7Bbmatrix%7D%0A1%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%0A0%20&amp;%200%20&amp;%201%20&amp;%200%0A%5Cend%7Bbmatrix%7D"></p>
+<p>In hardware, conditioning an operation on a control qubit is achieved by multiplexing.</p>
+<p>Because the target operation is a bit-flip (our single-qubit Pauli-<img src="https://latex.codecogs.com/png.latex?X"> gate, which simply inverts the target’s presence bit <img src="https://latex.codecogs.com/png.latex?T_2">), the control condition simplifies directly:<br>
+* The control presence bit (<img src="https://latex.codecogs.com/png.latex?C_2">) and the target presence bit (<img src="https://latex.codecogs.com/png.latex?T_2">) are fed into a single <strong>XOR gate</strong> (<img src="https://latex.codecogs.com/png.latex?T_2'%20=%20C_2%20%5Coplus%20T_2">).<br>
+* The phase lines pass through unaffected.</p>
+<p>A single boolean XOR gate fully realizes quantum entanglement between two qubits!</p>
+<hr>
+</section>
+<section id="the-cz-gate-controlled-z" class="level3">
+<h3 class="anchored" data-anchor-id="the-cz-gate-controlled-z">The CZ Gate (Controlled-Z)</h3>
+<p>The Controlled-Z gate flips the sign phase of the state <img src="https://latex.codecogs.com/png.latex?%7C11%5Crangle"> while leaving all other basis states untouched. Due to quantum symmetry, either qubit can act as the control or the target:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BCZ%7D%20%7Cc,%20t%5Crangle%20=%20(-1)%5E%7Bc%20%5Ccdot%20t%7D%20%7Cc,%20t%5Crangle"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BCZ%7D%20=%20%5Cbegin%7Bbmatrix%7D%0A1%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%20-1%0A%5Cend%7Bbmatrix%7D"></p>
+<p>In our framework, the Pauli-<img src="https://latex.codecogs.com/png.latex?Z"> gate is an inversion of the sign bit (<img src="https://latex.codecogs.com/png.latex?A_0">). Conditioning this phase-flip on the co-presence of both qubits being in state <img src="https://latex.codecogs.com/png.latex?%7C1%5Crangle"> is remarkably simple:<br>
+1. An <strong>AND gate</strong> detects the joint condition: <img src="https://latex.codecogs.com/png.latex?C_2%20%5Cland%20T_2%20=%201">.<br>
+2. The output feeds into a <strong>XOR gate</strong> on the target’s sign bit: <img src="https://latex.codecogs.com/png.latex?T_0'%20=%20T_0%20%5Coplus%20(C_2%20%5Cland%20T_2)">.</p>
+<hr>
+</section>
+<section id="the-toffoli-gate-ccnot-controlled-controlled-not" class="level3">
+<h3 class="anchored" data-anchor-id="the-toffoli-gate-ccnot-controlled-controlled-not">The Toffoli Gate (CCNOT / Controlled-Controlled-NOT)</h3>
+<p>The Toffoli gate is the universal 3-qubit reversible gate: it flips the target qubit if and only if <strong>both</strong> control qubits are in state <img src="https://latex.codecogs.com/png.latex?%7C1%5Crangle">.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Ctext%7BCCNOT%7D%20=%20%5Cbegin%7Bbmatrix%7D%0AI_4%20&amp;%200%20%5C%5C%0A0%20&amp;%20X%0A%5Cend%7Bbmatrix%7D%20=%20%5Cbegin%7Bbmatrix%7D%0A1%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%0A%5Cend%7Bbmatrix%7D"></p>
+<p>In standard quantum computing, compiling a single Toffoli gate requires at least 6 CNOT gates and several <img src="https://latex.codecogs.com/png.latex?T"> gates, creating a massive decoherence bottleneck.</p>
+<p>In our protobit architecture, expanding the control condition requires <strong>no quantum compilation overhead whatsoever</strong>:<br>
+* We simply cascade an extra <strong>AND gate</strong> to verify the second control line (<img src="https://latex.codecogs.com/png.latex?C_1%20%5Cland%20C_2">), followed by our standard target <strong>XOR gate</strong> (<img src="https://latex.codecogs.com/png.latex?T_2'%20=%20T_2%20%5Coplus%20(C_1%20%5Cland%20C_2)">).</p>
+<p>Adding control lines scales linearly and cleanly, bypassing the compiler bottleneck that plagues current quantum computers.</p>
+<hr>
+</section>
+</section>
+<section id="square-root-logic-gates" class="level2">
+<h2 class="anchored" data-anchor-id="square-root-logic-gates">Square-Root Logic Gates</h2>
+<p>Fractional quantum gates—operations that perform half of a classical rotation, such as the <strong>Square Root of SWAP (<img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B%5Ctext%7BSWAP%7D%7D">)</strong> or <strong>Square Root of NOT (<img src="https://latex.codecogs.com/png.latex?%5Csqrt%7BX%7D">)</strong>—might sound exotic.</p>
+<p>Within our discrete geometric framework, however, the exact same design methodology applies systematically:<br>
+1. <strong>Map the 8-state cube vertices</strong> across the inputs.<br>
+2. For transitions that do not land squarely on a single basis vertex, <strong>decompose the fractional rotation into an equal superposition</strong> of adjacent cardinal vertices.<br>
+3. Construct the corresponding boolean multiplexing circuit, using the internal <code>Random</code> protobit signal to balance the superposed branches.</p>
+<section id="the-square-root-of-swap-gate-sqrttextswap" class="level3">
+<h3 class="anchored" data-anchor-id="the-square-root-of-swap-gate-sqrttextswap">The Square Root of SWAP Gate (<img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B%5Ctext%7BSWAP%7D%7D">)</h3>
+<p>In quantum computing (particularly in quantum dot and spintronic architectures), the <img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B%5Ctext%7BSWAP%7D%7D"> gate is exceptionally important: applying it twice performs a full swap (<img src="https://latex.codecogs.com/png.latex?(%5Csqrt%7B%5Ctext%7BSWAP%7D%7D)%5E2%20=%20%5Ctext%7BSWAP%7D">), but applying it once <strong>generates maximal quantum entanglement</strong> between two qubits.</p>
+<p>In the standard computational basis <img src="https://latex.codecogs.com/png.latex?%5C%7B%7C00%5Crangle,%20%7C01%5Crangle,%20%7C10%5Crangle,%20%7C11%5Crangle%5C%7D">, its unitary matrix is:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Csqrt%7B%5Ctext%7BSWAP%7D%7D%20=%20%5Cbegin%7Bbmatrix%7D%0A1%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%0A0%20&amp;%20%5Cfrac%7B1%20+%20i%7D%7B2%7D%20&amp;%20%5Cfrac%7B1%20-%20i%7D%7B2%7D%20&amp;%200%20%5C%5C%0A0%20&amp;%20%5Cfrac%7B1%20-%20i%7D%7B2%7D%20&amp;%20%5Cfrac%7B1%20+%20i%7D%7B2%7D%20&amp;%200%20%5C%5C%0A0%20&amp;%200%20&amp;%200%20&amp;%201%0A%5Cend%7Bbmatrix%7D"></p>
+<p>Notice its operational behavior:<br>
+* <strong>The identical states <img src="https://latex.codecogs.com/png.latex?%7C00%5Crangle"> and <img src="https://latex.codecogs.com/png.latex?%7C11%5Crangle"></strong> remain completely unchanged (pure identity mapping).<br>
+* <strong>The anti-parallel states <img src="https://latex.codecogs.com/png.latex?%7C01%5Crangle"> and <img src="https://latex.codecogs.com/png.latex?%7C10%5Crangle"></strong> are transformed into an equal, entangled superposition of each other with a relative <img src="https://latex.codecogs.com/png.latex?90%5E%5Ccirc"> phase shift:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0A%5Csqrt%7B%5Ctext%7BSWAP%7D%7D%20%7C01%5Crangle%20&amp;=%20%5Cfrac%7B1%20+%20i%7D%7B2%7D%20%7C01%5Crangle%20+%20%5Cfrac%7B1%20-%20i%7D%7B2%7D%20%7C10%5Crangle%20%5C%5C%0A%5Csqrt%7B%5Ctext%7BSWAP%7D%7D%20%7C10%5Crangle%20&amp;=%20%5Cfrac%7B1%20-%20i%7D%7B2%7D%20%7C01%5Crangle%20+%20%5Cfrac%7B1%20+%20i%7D%7B2%7D%20%7C10%5Crangle%0A%5Cend%7Baligned%7D"></p>
+<p>In our dual 3-protobit architecture (<img src="https://latex.codecogs.com/png.latex?A_2%20A_1%20A_0"> and <img src="https://latex.codecogs.com/png.latex?B_2%20B_1%20B_0">):</p>
+<ol type="1">
+<li><strong>Detection:</strong> An exclusive condition (<img src="https://latex.codecogs.com/png.latex?A_2%20%5Coplus%20B_2%20=%201">) identifies when the two qubits differ in presence (<img src="https://latex.codecogs.com/png.latex?%7C01%5Crangle"> or <img src="https://latex.codecogs.com/png.latex?%7C10%5Crangle">).<br>
+</li>
+<li><strong>Conditional Mixing:</strong> When this condition is met, our <code>Random</code> stochastic source triggers an equal superposition switch between crossing the lines (<img src="https://latex.codecogs.com/png.latex?A%20%5Cleftrightarrow%20B">) and leaving them straight (<img src="https://latex.codecogs.com/png.latex?A%20%5Crightarrow%20A,%20B%20%5Crightarrow%20B">).<br>
+</li>
+<li><strong>Phase Imprinting:</strong> The complex coefficients <img src="https://latex.codecogs.com/png.latex?%5Cfrac%7B1%20%5Cpm%20i%7D%7B2%7D"> correspond directly to our <img src="https://latex.codecogs.com/png.latex?T">-gate phase logic, shifting the imaginary protobits (<img src="https://latex.codecogs.com/png.latex?A_1,%20B_1">) and sign protobits (<img src="https://latex.codecogs.com/png.latex?A_0,%20B_0">) into relative quadrature.</li>
+</ol>
+<p>What is ordinarily treated as an elusive continuous quantum interaction is thus realized as <strong>a conditional, stochastic half-crossing circuit</strong> built from elementary boolean gates.</p>
+<hr>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">test_states <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb6-2">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|0&gt; (North Pole)"</span>,       np.array([[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">0j</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">0j</span>]])),</span>
+<span id="cb6-3">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|1&gt; (South Pole)"</span>,       np.array([[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">0j</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">0j</span>]])),</span>
+<span id="cb6-4">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|+&gt; (Equator +X)"</span>,       np.array([[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>]]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> np.sqrt(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb6-5">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|-&gt; (Equator -X)"</span>,       np.array([[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>]]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> np.sqrt(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb6-6">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|+i&gt; (Equator +Y)"</span>,      np.array([[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">1.0j</span>]]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> np.sqrt(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb6-7">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"|-i&gt; (Equator -Y)"</span>,      np.array([[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">1.0j</span>]]) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> np.sqrt(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)),</span>
+<span id="cb6-8">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Superposition (45 deg)"</span>,  np.array([[np.cos(np.pi<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>), np.exp(<span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">1j</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>np.pi<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>np.sin(np.pi<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>)]])),</span>
+<span id="cb6-9">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Arbitrary Superposition"</span>, random_qubit())</span>
+<span id="cb6-10">]</span>
+<span id="cb6-11"></span>
+<span id="cb6-12"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> name, psi <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> test_states:</span>
+<span id="cb6-13">    display(psi)</span>
+<span id="cb6-14">    tm <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> TransitionMatrix.from_qubit(psi)</span>
+<span id="cb6-15">    display_inline(tm)</span>
+<span id="cb6-16">    recovered <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tm.to_qubit()</span>
+<span id="cb6-17">    display(recovered)</span>
+<span id="cb6-18"></span>
+<span id="cb6-19">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Check fidelity (probability overlap)</span></span>
+<span id="cb6-20">    fidelity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">abs</span>(np.vdot(psi, recovered))<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb6-21">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>name<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:25}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> -&gt; Fidelity: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>fidelity<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.6f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">  </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'✓'</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> np<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span>isclose(fidelity, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'✗'</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb6-22"></span>
+<span id="cb6-23"></span>
+<span id="cb6-24">psi <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> random_qubit()</span>
+<span id="cb6-25">h <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.sqrt(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>np.array([[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>], [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]])</span>
+<span id="cb6-26">psi2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> psi <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> h <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> h</span>
+<span id="cb6-27"></span>
+<span id="cb6-28">display(psi)</span>
+<span id="cb6-29">display(psi2)</span>
+<span id="cb6-30"></span>
+<span id="cb6-31">proto <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> TransitionMatrix.from_qubit(psi)</span>
+<span id="cb6-32">proto2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> proto <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> hadamard_proto <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> hadamard_proto</span>
+<span id="cb6-33">recovered <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> proto2.to_qubit()</span>
+<span id="cb6-34"></span>
+<span id="cb6-35">display(recovered)</span></code></pre></div></div>
+</details>
+<div id="afb48f79" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[1.+0.j, 0.+0.j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7B%7Ccccccccc%7C%7D%20%20%5Chline%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[1.+0.j, 0.+0.j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>|0&gt; (North Pole)          -&gt; Fidelity: 1.000000  ✓</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.+0.j, 1.+0.j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7B%7Ccccccccc%7C%7D%20%20%5Chline%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.+0.j, 1.+0.j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>|1&gt; (South Pole)          -&gt; Fidelity: 1.000000  ✓</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.70710678, 0.70710678]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7B%7Ccccccccc%7C%7D%20%20%5Chline%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.70710678+0.j, 0.70710678+0.j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>|+&gt; (Equator +X)          -&gt; Fidelity: 1.000000  ✓</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[ 0.70710678, -0.70710678]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7B%7Ccccccccc%7C%7D%20%20%5Chline%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[ 0.70710678+0.j, -0.70710678+0.j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>|-&gt; (Equator -X)          -&gt; Fidelity: 1.000000  ✓</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.70710678+0.j        , 0.        +0.70710678j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7B%7Ccccccccc%7C%7D%20%20%5Chline%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.70710678+0.j        , 0.        +0.70710678j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>|+i&gt; (Equator +Y)         -&gt; Fidelity: 1.000000  ✓</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[ 0.70710678+0.j        , -0.        -0.70710678j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7B%7Ccccccccc%7C%7D%20%20%5Chline%200.5%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.5%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.70710678+0.j        , 0.        -0.70710678j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>|-i&gt; (Equator -Y)         -&gt; Fidelity: 1.000000  ✓</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.92387953+0.j        , 0.27059805+0.27059805j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7B%7Ccccccccc%7C%7D%20%20%5Chline%200.63%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200.18%20&amp;%200%20&amp;%200.18%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[0.92387953+0.j        , 0.27059805+0.27059805j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>Superposition (45 deg)    -&gt; Fidelity: 1.000000  ✓</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[-0.68465469-0.26443661j, -0.65701957-0.17218165j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20%20%5Cbegin%7Barray%7D%7B%7Ccccccccc%7C%7D%20%20%5Chline%200%20&amp;%200.39%20&amp;%200%20&amp;%200.15%20&amp;%200%20&amp;%200.37%20&amp;%200%20&amp;%200.097%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[-0.68465469-0.26443661j, -0.65701957-0.17218165j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>Arbitrary Superposition   -&gt; Fidelity: 1.000000  ✓</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[-0.66318834-0.43332276j, -0.13772178+0.59451268j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[-0.66318834-0.43332276j, -0.13772178+0.59451268j]])</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>array([[-0.66318834-0.43332276j, -0.13772178+0.59451268j]])</code></pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fraction-de-rotation" class="level2">
+<h2 class="anchored" data-anchor-id="fraction-de-rotation">Fraction de rotation</h2>
+</section>
+<section id="rotations-arbitraires" class="level2">
+<h2 class="anchored" data-anchor-id="rotations-arbitraires">Rotations arbitraires</h2>
+<p><img src="https://latex.codecogs.com/png.latex?R_x(%5Cpi)"></p>
+<p><img src="https://latex.codecogs.com/png.latex?R_y(%5Cpi)"></p>
+<p><img src="https://latex.codecogs.com/png.latex?R_z(%5Cpi)"></p>
+</section>
+<section id="phase" class="level2">
+<h2 class="anchored" data-anchor-id="phase">Phase</h2>
+<p><img src="https://latex.codecogs.com/png.latex?Ph(%5Cpi)"></p>
+<p><img src="https://latex.codecogs.com/png.latex?Ph(%5Cfrac%7B%5Cpi%7D%7B2%7D)"></p>
+<hr>
+</section>
+<section id="reconstructing-a-continuous-qubit-from-the-3-protobit-state-vector" class="level2">
+<h2 class="anchored" data-anchor-id="reconstructing-a-continuous-qubit-from-the-3-protobit-state-vector">Reconstructing a Continuous Qubit from the 3-Protobit State Vector</h2>
+<p>Now, let us reverse the mapping: given a normalized <img src="https://latex.codecogs.com/png.latex?1%20%5Ctimes%208"> protobit transition matrix <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BP%7D%20=%20%5Cbegin%7Bbmatrix%7D%20p_0%20&amp;%20p_1%20&amp;%20p_2%20&amp;%20p_3%20&amp;%20p_4%20&amp;%20p_5%20&amp;%20p_6%20&amp;%20p_7%20%5Cend%7Bbmatrix%7D">, how do we algebraically reconstruct the continuous quantum qubit state?</p>
+<p>In Dirac notation, a general single-qubit ket <img src="https://latex.codecogs.com/png.latex?%7C%5Cpsi%5Crangle"> is expressed as a column vector in the computational basis <img src="https://latex.codecogs.com/png.latex?%5C%7B%7C0%5Crangle,%20%7C1%5Crangle%5C%7D">:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%7C%5Cpsi%5Crangle%20=%20c_0%20%7C0%5Crangle%20+%20c_1%20%7C1%5Crangle%20=%20%5Cbegin%7Bbmatrix%7D%20c_0%20%5C%5C%20c_1%20%5Cend%7Bbmatrix%7D%20%5Cin%20%5Cmathbb%7BC%7D%5E2"></p>
+<p>The algebraic reconstruction operates across three direct steps:</p>
+<section id="step-1-recovering-signed-amplitudes-by-difference" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-recovering-signed-amplitudes-by-difference">Step 1: Recovering Signed Amplitudes by Difference</h3>
+<p>Recall that each real and imaginary axis was split across two mutually exclusive channels: one for the positive magnitude and one for the negative magnitude.</p>
+<p>We recover the signed scalar components directly by taking the net difference between adjacent protobit channels:</p>
+<section id="for-the-0rangle-component-c_0" class="level4">
+<h4 class="anchored" data-anchor-id="for-the-0rangle-component-c_0">For the <img src="https://latex.codecogs.com/png.latex?%7C0%5Crangle"> Component (<img src="https://latex.codecogs.com/png.latex?c_0">):</h4>
+<ul>
+<li><strong>Real part:</strong><br>
+<img src="https://latex.codecogs.com/png.latex?d_0%20=%20p_0%20-%20p_1"></li>
+<li><strong>Imaginary part:</strong><br>
+<img src="https://latex.codecogs.com/png.latex?d_1%20=%20p_2%20-%20p_3"></li>
+</ul>
+</section>
+<section id="for-the-1rangle-component-c_1" class="level4">
+<h4 class="anchored" data-anchor-id="for-the-1rangle-component-c_1">For the <img src="https://latex.codecogs.com/png.latex?%7C1%5Crangle"> Component (<img src="https://latex.codecogs.com/png.latex?c_1">):</h4>
+<ul>
+<li><strong>Real part:</strong><br>
+<img src="https://latex.codecogs.com/png.latex?d_2%20=%20p_4%20-%20p_5"></li>
+<li><strong>Imaginary part:</strong><br>
+<img src="https://latex.codecogs.com/png.latex?d_3%20=%20p_6%20-%20p_7"></li>
+</ul>
+</section>
+</section>
+<section id="step-2-quantum-normalization-gamma" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-quantum-normalization-gamma">Step 2: Quantum Normalization (<img src="https://latex.codecogs.com/png.latex?%5Cgamma">)</h3>
+<p>Because a physical quantum state must obey the unit norm constraint (<img src="https://latex.codecogs.com/png.latex?%5Clangle%5Cpsi%7C%5Cpsi%5Crangle%20=%20%7Cc_0%7C%5E2%20+%20%7Cc_1%7C%5E2%20=%201">), we compute the Euclidean scaling factor <img src="https://latex.codecogs.com/png.latex?%5Cgamma">:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%5Cgamma%20=%20%5Csqrt%7Bd_0%5E2%20+%20d_1%5E2%20+%20d_2%5E2%20+%20d_3%5E2%7D"></p>
+<p>Provided the state represents a valid, non-zero physical distribution (<img src="https://latex.codecogs.com/png.latex?%5Cgamma%20%3E%200">), this scalar rescales the components back onto the surface of the Bloch sphere.</p>
+</section>
+<section id="step-3-the-recovered-dirac-state-vector" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-the-recovered-dirac-state-vector">Step 3: The Recovered Dirac State Vector</h3>
+<p>Combining the signed components and applying the normalization factor <img src="https://latex.codecogs.com/png.latex?%5Cgamma"> yields the complete quantum state in canonical Dirac form:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%7C%5Cpsi%5Crangle%20=%20c_0%20%7C0%5Crangle%20+%20c_1%20%7C1%5Crangle"></p>
+<p>where:</p>
+<p><img src="https://latex.codecogs.com/png.latex?c_0%20=%20%5Cfrac%7Bd_0%20+%20i%20%5C,%20d_1%7D%7B%5Cgamma%7D%20=%20%5Cfrac%7B(p_0%20-%20p_1)%20+%20i%20%5C,%20(p_2%20-%20p_3)%7D%7B%5Cgamma%7D"></p>
+<p><img src="https://latex.codecogs.com/png.latex?c_1%20=%20%5Cfrac%7Bd_2%20+%20i%20%5C,%20d_3%7D%7B%5Cgamma%7D%20=%20%5Cfrac%7B(p_4%20-%20p_5)%20+%20i%20%5C,%20(p_6%20-%20p_7)%7D%7B%5Cgamma%7D"></p>
+<p>In matrix form:</p>
+<p><img src="https://latex.codecogs.com/png.latex?%7C%5Cpsi%5Crangle%20=%20%5Cfrac%7B1%7D%7B%5Cgamma%7D%20%5Cbegin%7Bbmatrix%7D%20(p_0%20-%20p_1)%20+%20i%20%5C,%20(p_2%20-%20p_3)%20%5C%5C%20(p_4%20-%20p_5)%20+%20i%20%5C,%20(p_6%20-%20p_7)%20%5Cend%7Bbmatrix%7D"></p>
+<p>This mapping provides an exact, lossless bridge: any 8-channel protobit state vector collapses seamlessly back into its continuous complex Dirac counterpart <img src="https://latex.codecogs.com/png.latex?%7C%5Cpsi%5Crangle">.</p>
+<hr>
+</section>
+</section>
+<section id="circuits-de-mesure" class="level2">
+<h2 class="anchored" data-anchor-id="circuits-de-mesure">Circuits de mesure</h2>
+<section id="échantillonage" class="level3">
+<h3 class="anchored" data-anchor-id="échantillonage">Échantillonage</h3>
+</section>
+<section id="recuit-simulé" class="level3">
+<h3 class="anchored" data-anchor-id="recuit-simulé">Recuit Simulé</h3>
+<hr>
+</section>
+</section>
+<section id="exemples-classiques" class="level2">
+<h2 class="anchored" data-anchor-id="exemples-classiques">Exemples classiques</h2>
+<p>Retour de phase quantique.</p>
+<p>Transformations de fourrier quantique.</p>
+<hr>
+</section>
+<section id="speculations-wild-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="https://nicdeclic.com/images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
+<ul>
+<li>Beyond Statistical Sampling: Can We Do Better?</li>
+</ul>
+<p>Reconstructing continuous qubit amplitudes by statistically sampling over millions of discrete 3-protobit observations feels like an engineering concession. It mimics the clumsy “shots” measurement bottleneck of classical quantum simulators.</p>
+<p>In a real, physical molecule, <img src="https://latex.codecogs.com/png.latex?%5Cpi">-electrons do not roll dice to calculate their ground state—they settle via <strong>continuous, collective wave relaxation</strong>. There must be a more native, analog readout mechanism that bypasses statistical sampling altogether.</p>
+<p>The 4-vertex tetrahedral POVM of QBism remains conceptually tantalizing:<br>
+* It requires only <strong>2 protobits</strong> instead of 3.<br>
+* The probability conservation (<img src="https://latex.codecogs.com/png.latex?%5Csum%20p_k%20=%201.0">) emerges naturally and symmetrically from the geometry, without requiring separate longitudinal and transverse partitioning.</p>
+<p><strong>The catch? The operator matrices.</strong></p>
+<p>When you translate continuous quantum gates (like Hadamard or Phase rotations) into the tetrahedral basis, the resulting transition operators are not strictly stochastic: they become <strong>quasi-stochastic</strong>. To account for quantum interference, some transition elements dip below zero!</p>
+<p>Because our molecular framework operates strictly on real, non-negative transition matrices (<img src="https://latex.codecogs.com/png.latex?P%20%5Cin%20%5B0,%201%5D">), standard classical transition algebra cannot natively swallow quasi-stochastic operators without introducing complex canceling pathways.</p>
+<p>We are standing at a theoretical crossroads:<br>
+* Do we embrace the <strong>3-protobit Cube</strong>, which is 100% digital, non-negative, and easily wired with boolean gates at the cost of an extra spatial channel?<br>
+* Or is there an unmapped transformation that allows <strong>2-protobit Tetrahedral manifolds</strong> to bypass quasi-stochastic negativity through topological resonance tricks?</p>
+<p>The geometry of information is far richer than textbook quantum mechanics suggests. The quest continues!</p>
+<hr>
+<p>👉 <strong>Next chapter :</strong><br>
+<strong><a href="../../posts/quantum-exceptions/index.html">“Quantum Exceptions”</a></strong></p>
+
+
+</section>
+
+ ]]></description>
+  <category>Qubits</category>
+  <guid>https://nicdeclic.com/posts/qubit-emulation2/</guid>
+  <pubDate>Sat, 07 Nov 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://nicdeclic.com/images/qubit.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Qubit Emulation</title>
@@ -291,7 +1671,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 
 
 
-<p><img src="https://nicdeclic.com/posts/qubit-emulation/qubit.jpg" class="img-fluid"></p>
+<p><img src="https://nicdeclic.com/images/qubit.jpg" class="img-fluid"></p>
 <div class="text-end">
 <blockquote class="blockquote">
 <p><em>“Sometimes, unlearning is the highest form of wisdom.”</em><br>
@@ -300,7 +1680,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 </div>
 <hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="e61595b5" class="cell" data-execution_count="1">
+<div id="b86e902a" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -662,7 +2042,7 @@ background-color: null;
 font-style: inherit;">"right"</span>)</span>
 <span id="cb2-39">    )</span></code></pre></div></div>
 </details>
-<div id="0f109843" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="0c2f523e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -978,7 +2358,7 @@ font-style: inherit;">"single"</span>)</span>
 <span id="cb3-40"></span>
 <span id="cb3-41">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="cf8555bf" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="4f3487c5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1004,7 +2384,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="5c5a54d4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="e6b76903" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20X_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -1220,7 +2600,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="9087b6a4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="dead9749" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1609,7 +2989,7 @@ font-style: inherit;">"$B1$"</span>)</span>
 <span id="cb6-45"></span>
 <span id="cb6-46">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="89204b04" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="fa887ea0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1638,7 +3018,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb7-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="37609cb6" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="7">
+<div id="feb8a4f9" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1719,7 +3099,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="54aa4ae5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="37ff3aee" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Y_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -1902,7 +3282,7 @@ font-style: inherit;">1</span>])))</span>
 background-color: null;
 font-style: inherit;">"|-"</span>).to(xor_gate.in1))</span></code></pre></div></div>
 </details>
-<div id="a63aa65e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="ea2c2905" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2198,7 +3578,7 @@ font-style: inherit;">"$A1$"</span>)</span>
 <span id="cb10-34"></span>
 <span id="cb10-35">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="6d5c0d99" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div id="35538a81" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2224,7 +3604,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="4a11b04a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
+<div id="c19d2087" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Z_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -2459,7 +3839,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="fd337e6f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div id="5f05afed" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2960,7 +4340,7 @@ font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>) </span></code></pre></div></div>
 </details>
-<div id="075b12ab" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="e0848185" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2989,7 +4369,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb14-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="b215a7fc" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="14">
+<div id="573fea7c" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="14">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3070,7 +4450,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="6ad66892" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div id="b146cbe8" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20S_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -3078,64 +4458,7 @@ font-style: inherit;">True</span>))</span></code></pre></div></div>
 </div>
 </div>
 <hr>
-<p><img src="https://nicdeclic.com/images/construction.png" class="img-fluid"></p>
 </section>
-</section>
-<section id="portes-logiques-superposées" class="level2">
-<h2 class="anchored" data-anchor-id="portes-logiques-superposées">Portes logiques superposées</h2>
-<p>Hadamard</p>
-<p>T</p>
-<hr>
-</section>
-<section id="portes-logiques-avec-plus-dune-entrée" class="level2">
-<h2 class="anchored" data-anchor-id="portes-logiques-avec-plus-dune-entrée">Portes logiques avec plus d’une entrée</h2>
-<p>Swap</p>
-<p>Cnot</p>
-<section id="portes-logiques-contrôlées" class="level3">
-<h3 class="anchored" data-anchor-id="portes-logiques-contrôlées">Portes logiques contrôlées</h3>
-<p>Cz</p>
-<p>Toffoli (Ccnot)</p>
-</section>
-<section id="portes-classiques-avec-une-porte-toffoli" class="level3">
-<h3 class="anchored" data-anchor-id="portes-classiques-avec-une-porte-toffoli">Portes classiques avec une porte Toffoli</h3>
-<hr>
-</section>
-</section>
-<section id="rotations-de-base" class="level2">
-<h2 class="anchored" data-anchor-id="rotations-de-base">Rotations de base</h2>
-<p><img src="https://latex.codecogs.com/png.latex?R_x(%5Cpi)"></p>
-<p><img src="https://latex.codecogs.com/png.latex?R_y(%5Cpi)"></p>
-<p><img src="https://latex.codecogs.com/png.latex?R_z(%5Cpi)"></p>
-</section>
-<section id="phase" class="level2">
-<h2 class="anchored" data-anchor-id="phase">Phase</h2>
-<p><img src="https://latex.codecogs.com/png.latex?Ph(%5Cpi)"></p>
-<p><img src="https://latex.codecogs.com/png.latex?Ph(%5Cfrac%7B%5Cpi%7D%7B2%7D)"></p>
-<hr>
-</section>
-<section id="fraction-de-rotation" class="level2">
-<h2 class="anchored" data-anchor-id="fraction-de-rotation">Fraction de rotation</h2>
-<hr>
-</section>
-<section id="portes-logiques-racines-carrés" class="level2">
-<h2 class="anchored" data-anchor-id="portes-logiques-racines-carrés">Portes logiques racines carrés</h2>
-<hr>
-</section>
-<section id="circuits-de-mesure" class="level2">
-<h2 class="anchored" data-anchor-id="circuits-de-mesure">Circuits de mesure</h2>
-<section id="échantillonage" class="level3">
-<h3 class="anchored" data-anchor-id="échantillonage">Échantillonage</h3>
-</section>
-<section id="recuit-simulé" class="level3">
-<h3 class="anchored" data-anchor-id="recuit-simulé">Recuit Simulé</h3>
-<hr>
-</section>
-</section>
-<section id="exemples-classiques" class="level2">
-<h2 class="anchored" data-anchor-id="exemples-classiques">Exemples classiques</h2>
-<p>Retour de phase quantique.</p>
-<p>Transformations de fourrier quantique.</p>
-<hr>
 </section>
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="https://nicdeclic.com/images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
@@ -3455,7 +4778,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb16-46">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="9d8ae99f" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="16">
+<div id="c2a51100" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="16">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3552,7 +4875,7 @@ Under this lens, 4D Minkowski spacetime (<img src="https://latex.codecogs.com/pn
 <p>Perhaps when humans search for the fundamental patterns of change in nature, all roads eventually lead back to the same underlying geometric syntax.</p>
 <hr>
 <p>👉 <strong>Next chapter :</strong><br>
-<strong><a href="../../posts/quantum-exceptions/index.html">“Quantum Exceptions”</a></strong></p>
+<strong><a href="../../posts/qubit-emulation2/index.html">“Qubit Emulation Part 2”</a></strong></p>
 
 
 </section>
@@ -3561,7 +4884,7 @@ Under this lens, 4D Minkowski spacetime (<img src="https://latex.codecogs.com/pn
   <category>Qubits</category>
   <guid>https://nicdeclic.com/posts/qubit-emulation/</guid>
   <pubDate>Fri, 06 Nov 2026 05:00:00 GMT</pubDate>
-  <media:content url="https://nicdeclic.com/posts/qubit-emulation/qubit.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://nicdeclic.com/images/qubit.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Boolean Gates Extensions</title>
@@ -3810,7 +5133,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="ce929b9a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="ce929b9a" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -3958,7 +5281,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="41775da6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="41775da6" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4101,7 +5424,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="fa93757a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="fa93757a" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4247,7 +5570,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="0eb93820" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="0eb93820" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4285,7 +5608,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="327fa196" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="327fa196" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20%7BAnd%7D%20%5Ccdot%20%7BAnd%7D%5E%7B-1%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%200.33%20&amp;%200.33%20&amp;%200.33%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200.33%20&amp;%200.33%20&amp;%200.33%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200.33%20&amp;%200.33%20&amp;%200.33%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -4401,7 +5724,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="a6d22459" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="a6d22459" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4439,7 +5762,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="df49b781" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="df49b781" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20%7BAnd%7D%5E%7B-1%7D%20%5Ccdot%20%7BAnd%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -4466,7 +5789,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="8fda4a93" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="8fda4a93" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20%7BRandom%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200.5%20&amp;%200.5%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -4601,7 +5924,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))    </span></code></pre></div></div>
 </details>
-<div id="0637b81e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div id="0637b81e" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4752,7 +6075,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))   </span></code></pre></div></div>
 </details>
-<div id="5bb70dc9" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
+<div id="5bb70dc9" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4902,7 +6225,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))     </span></code></pre></div></div>
 </details>
-<div id="85f8ee67" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div id="85f8ee67" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5087,7 +6410,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="54621b32" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="54621b32" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5265,7 +6588,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="1e929779" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
+<div id="1e929779" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5383,7 +6706,7 @@ font-style: inherit;"># Route to bottom input (in2)</span></span>
 background-color: null;
 font-style: inherit;">"-|"</span>).at(input_A.end).to(and_gate.in2))</span></code></pre></div></div>
 </details>
-<div id="ba9e77f4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div id="ba9e77f4" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5448,7 +6771,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="1dc5c944" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
+<div id="1dc5c944" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20(%20A%20%5Cotimes%20A%20)%20=%20(%20Random%20%5Cotimes%20Random%20)%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200.25%20&amp;%200.25%20&amp;%200.25%20&amp;%200.25%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -5477,7 +6800,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="9a117384" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="17">
+<div id="9a117384" class="cell quarto-layout-panel" data-execution_count="17" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Split%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -5507,7 +6830,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="7d6a3376" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="18">
+<div id="7d6a3376" class="cell quarto-layout-panel" data-execution_count="18" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20A%20%5Ccdot%20Split%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200.5%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -5565,7 +6888,7 @@ font-style: inherit;">"="</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"A"</span>)</span></code></pre></div></div>
 </details>
-<div id="9594ae6a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="19">
+<div id="9594ae6a" class="cell quarto-layout-panel" data-execution_count="19" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20(%20A%20%5Ccdot%20Split%20)%20%5Ccdot%20And%20=%20B%20"></p>
@@ -5900,7 +7223,7 @@ font-style: inherit;">"B"</span>)</span>
 <span id="cb2-22"></span>
 <span id="cb2-23">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="04d80ad4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="04d80ad4" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5947,7 +7270,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-8">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="2487d471" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="2487d471" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6140,7 +7463,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="b7451562" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="b7451562" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20A%20%5Cotimes%20B%20=%20%5CBig%5C%7B%20%5Ctext%7B%60%6000''%7D%20+%20%5Ctext%7B%60%6011''%7D%20%5CBig%5C%7D%20"></p>
@@ -6605,7 +7928,7 @@ font-style: inherit;">"B"</span>)</span>
 <span id="cb2-22"></span>
 <span id="cb2-23">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="8bc6eeef" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="8bc6eeef" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6955,7 +8278,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.5</span>) </span></code></pre></div></div>
 </details>
-<div id="a4ade8b3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="a4ade8b3" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6988,7 +8311,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.5</span>) </span></code></pre></div></div>
 </details>
-<div id="7dd8d810" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
+<div id="7dd8d810" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7521,7 +8844,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>) </span></code></pre></div></div>
 </details>
-<div id="851a91e2" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
+<div id="851a91e2" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7595,7 +8918,7 @@ font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>) </span></code></pre></div></div>
 </details>
-<div id="a1ab77fb" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
+<div id="a1ab77fb" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7814,7 +9137,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb4-29">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="91a6deaa" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="4">
+<div id="91a6deaa" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7852,7 +9175,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="9d6aaecc" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="9d6aaecc" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20%5C%5C%20%5Chline%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%201%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%200%20%5C%5C%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -8240,7 +9563,7 @@ font-style: inherit;">=</span> mol.add_coupler(b5, b13)</span>
 <span id="cb6-46"></span>
 <span id="cb6-47">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="2255b7db" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="2255b7db" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8426,7 +9749,7 @@ font-style: inherit;">=</span> mol.add_coupler(b8, b2)</span>
 <span id="cb7-27"></span>
 <span id="cb7-28">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="67a8e404" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="67a8e404" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8806,7 +10129,7 @@ font-style: inherit;">0.35</span>])</span>
 <span id="cb8-44"></span>
 <span id="cb8-45">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="b7be5bdf" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="b7be5bdf" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -9182,7 +10505,7 @@ font-style: inherit;">=</span> mol.add_coupler(b4, b13)</span>
 <span id="cb9-50"></span>
 <span id="cb9-51">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="e63871a3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="e63871a3" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -9990,7 +11313,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="6bda9a51" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
+<div id="6bda9a51" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -10124,7 +11447,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="b7a42bac" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="11">
+<div id="b7a42bac" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Coupler%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -10303,7 +11626,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="9e01fc63" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div id="9e01fc63" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Xnor%20=%20%5CBig%5C%7B%20M_1%20%5Ccdot%20M_2%20%5Ccdot%20M_3%20%5CBig%5C%7D%20"></p>
@@ -10541,7 +11864,7 @@ font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>) </span></code></pre></div></div>
 </details>
-<div id="2425fca2" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="2425fca2" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -10968,7 +12291,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="7aa649e1" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
+<div id="7aa649e1" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Nor%20=%20%5CBig%5C%7B%20M_1%20%5Ccdot%20M_2%20%5Ccdot%20M_3%20%5Ccdot%20M_4%20%5Ccdot%20M_5%20%5Ccdot%20M_6%20%5CBig%5C%7D%20"></p>
@@ -11037,7 +12360,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="6e323fe6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div id="6e323fe6" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20%5Ctext%7BPermute%7D_%7B%5B2,%200,%201%5D%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -11468,7 +12791,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb2-32">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="44dde81b" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div id="44dde81b" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -11498,7 +12821,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="716a3935" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div id="716a3935" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20%5C%5C%20%5Chline%200%20&amp;%201%20%5C%5C%200%20&amp;%200%20%5C%5C%201%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -11598,7 +12921,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="db05b79d" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="db05b79d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20DoubleHoneycomb%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%200.5%20&amp;%200.5%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -11931,7 +13254,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb7-36">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="4d85f4c7" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="4d85f4c7" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -12142,7 +13465,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb8-26">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="c563257e" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div id="c563257e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -12185,7 +13508,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="217d2502" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div id="217d2502" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7Cc%7Cc%7Cc%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20&amp;%20%5Cmathbf%7BD1%7D%20&amp;%20%5Cmathbf%7BD2%7D%20&amp;%20%5Cmathbf%7BE1%7D%20&amp;%20%5Cmathbf%7BE2%7D%20&amp;%20%5Cmathbf%7BF1%7D%20&amp;%20%5Cmathbf%7BF2%7D%20%5C%5C%20%5Chline%200%20&amp;%201%20&amp;%200%20&amp;%201%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%201%20%5C%5C%201%20&amp;%201%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -12407,7 +13730,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb10-29">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="5c03a6b8" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="2">
+<div id="5c03a6b8" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -12608,7 +13931,7 @@ font-style: inherit;"># Route branch down into bottom gate (in1)</span></span>
 background-color: null;
 font-style: inherit;">"-|"</span>).at(input_A.end).to(bottom_gate.in1))</span></code></pre></div></div>
 </details>
-<div id="3548c860" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div id="3548c860" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
@@ -12963,7 +14286,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb12-47">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="8f4fe265" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
+<div id="8f4fe265" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
@@ -13230,7 +14553,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb13-32">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="bdcf804e" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="2">
+<div id="bdcf804e" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -13965,7 +15288,7 @@ font-style: inherit;">"double"</span></span>
 <span id="cb3-27"></span>
 <span id="cb3-28">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="616eb078" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="3">
+<div id="616eb078" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -14369,7 +15692,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb6-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="817c067b" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="6">
+<div id="817c067b" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -14392,7 +15715,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="92b96beb" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="92b96beb" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20%5C%5C%20%5Chline%200%20&amp;%201%20%5C%5C%201%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -14597,7 +15920,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb9-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="ec46d289" class="cell quarto-layout-panel" data-layout-ncol="4" data-execution_count="9">
+<div id="ec46d289" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -14634,7 +15957,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="e683e4b0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div id="e683e4b0" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20%5C%5C%20%5Chline%200%20&amp;%200%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%200%20%5C%5C%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%201%20&amp;%201%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -14851,7 +16174,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb12-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="b0960598" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="12">
+<div id="b0960598" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -14897,7 +16220,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="99a4d94a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="99a4d94a" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20&amp;%20%5Cmathbf%7BD%7D%20%5C%5C%20%5Chline%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%200%20&amp;%201%20&amp;%200%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%201%20&amp;%200%20%5C%5C%201%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%201%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
