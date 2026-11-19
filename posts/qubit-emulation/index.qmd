@@ -69,11 +69,11 @@ To reconstruct the full expressive richness of a spherical state space using onl
 
 To completely define the state of a qubit without invoking imaginary numbers in the underlying hardware, we decompose the state across **three distinct functional protobits**:  
 
-1. **The Presence Protobit ($A_2$):**    
+1. **The Presence Protobit ($A_0$):**    
    Encodes the vertical projection (along the $Z$-axis), determining whether the measurement collapses toward $|0\rangle$ or $|1\rangle$.  
 2. **The Imaginary Phase Protobit ($A_1$):**    
    Governs circular phase along the $Y$-axis, encoding the imaginary depth of the quantum state ($+1$ or $+i$).  
-3. **The Sign Phase Protobit ($A_0$):**    
+3. **The Sign Phase Protobit ($A_2$):**    
    Governs real interference along the $X$-axis, determining whether wave amplitudes add constructively ($+1$) or destructively ($-1$).  
 
 ---
@@ -233,39 +233,39 @@ with schemdraw.Drawing() as d:
     d.config(fontsize=12, unit=2.5)
 
     # ==========================================
-    # 1. Line A2 (MSB: Presence bit) -> Passes through a NOT gate
+    # 1. Line A0 (MSB: Presence bit) -> Passes through a NOT gate
     # ==========================================
     # Input wire
-    in_a2 = d.add(elm.Line().right(1.2).label("$A_2$", loc="left"))
+    in_a0 = d.add(elm.Line().right(1.2).label("$A_0$", loc="left"))
     
     # NOT Gate (inverter)
-    not_gate = d.add(logic.Not().right().at(in_a2.end))
+    not_gate = d.add(logic.Not().right().at(in_a0.end))
     
     # Output wire
-    d.add(elm.Line().right(1.2).at(not_gate.out).label("$B_2$", loc="right"))
+    d.add(elm.Line().right(1.2).at(not_gate.out).label("$B_0$", loc="right"))
 
     # ==========================================
     # 2. Line A1 (Imaginary Phase bit) -> Straight wire (Identity)
     # ==========================================
-    y_a1 = in_a2.start[1] - 1.5
+    y_a1 = in_a0.start[1] - 1.5
     d.add(
         elm.Line()
         .right(3.8)
-        .at((in_a2.start[0], y_a1))
+        .at((in_a0.start[0], y_a1))
         .label("$A_1$", loc="left")
         .label("$B_1$", loc="right")
     )
 
     # ==========================================
-    # 3. Line A0 (LSB: Sign Phase bit) -> Straight wire (Identity)
+    # 3. Line A2 (LSB: Sign Phase bit) -> Straight wire (Identity)
     # ==========================================
-    y_a0 = in_a2.start[1] - 3.0
+    y_a2 = in_a0.start[1] - 3.0
     d.add(
         elm.Line()
         .right(3.8)
-        .at((in_a2.start[0], y_a0))
-        .label("$A_0$", loc="left")
-        .label("$B_0$", loc="right")
+        .at((in_a0.start[0], y_a2))
+        .label("$A_2$", loc="left")
+        .label("$B_2$", loc="right")
     )
 
 ```
@@ -301,8 +301,8 @@ c14 = mol.add_atom(x=1.0, y=-2.0)
 # Add bonds
 b1 = mol.add_bond(c1, c2, order="single")
 b2 = mol.add_bond(c1, c3, order="single")
-b3 = mol.add_bond(c2, c4, order="single", label="$A2$")
-b4 = mol.add_bond(c3, c5, order="single", label="$B2$")
+b3 = mol.add_bond(c2, c4, order="single", label="$A0$")
+b4 = mol.add_bond(c3, c5, order="single", label="$B0$")
 b5 = mol.add_bond(c4, c6, order="single")
 b6 = mol.add_bond(c5, c6, order="single")
 
@@ -312,8 +312,8 @@ b9 = mol.add_bond(c8, c10, order="single", label="$B1$")
 b10 = mol.add_bond(c9, c10, order="single")
 
 b11 = mol.add_bond(c11, c12, order="single")
-b12 = mol.add_bond(c11, c13, order="single", label="$A0$")
-b13 = mol.add_bond(c12, c14, order="single", label="$B0$")
+b12 = mol.add_bond(c11, c13, order="single", label="$A2$")
+b13 = mol.add_bond(c12, c14, order="single", label="$B2$")
 b14 = mol.add_bond(c13, c14, order="single")
 
 mol.draw() 
@@ -376,46 +376,46 @@ with schemdraw.Drawing() as d:
     # ==========================================
     # 1. Inputs
     # ==========================================
-    in_a2 = d.add(elm.Line().right(1.5).label("$A_2$", loc="left"))
-    in_a1 = d.add(elm.Line().right(1.0).at((in_a2.start[0], in_a2.start[1] - 1.8)).label("$A_1$", loc="left"))
-    in_a0 = d.add(elm.Line().right(0.5).at((in_a2.start[0], in_a2.start[1] - 3.4)).label("$A_0$", loc="left"))
+    in_a0 = d.add(elm.Line().right(1.5).label("$A_0$", loc="left"))
+    in_a1 = d.add(elm.Line().right(1.0).at((in_a0.start[0], in_a0.start[1] - 1.8)).label("$A_1$", loc="left"))
+    in_a2 = d.add(elm.Line().right(0.5).at((in_a0.start[0], in_a0.start[1] - 3.4)).label("$A_2$", loc="left"))
 
     # ==========================================
-    # 2. Connection for XOR on A0
+    # 2. Connection for XOR on A2
     # ==========================================
     # Tapping points on A2 and A1
-    d.add(elm.Dot().at(in_a2.end))
+    d.add(elm.Dot().at(in_a0.end))
     d.add(elm.Dot().at(in_a1.end))
 
-    # NOT gates on A2 and A1
-    not_a2 = d.add(logic.Not().right().at(in_a2.end))
+    # NOT gates on A0 and A1
+    not_a0 = d.add(logic.Not().right().at(in_a0.end))
     not_a1 = d.add(logic.Not().right().at(in_a1.end))
 
-    # A2' and A1' outputs
-    d.add(elm.Line().right(2.2).at(not_a2.out).label("$B_2$", loc="right"))
+    # B0 and B1 outputs
+    d.add(elm.Line().right(2.2).at(not_a0.out).label("$B_0$", loc="right"))
     d.add(elm.Line().right(2.2).at(not_a1.out).label("$B_1$", loc="right"))
 
     # ==========================================
-    # 3. 3-input XOR gate for A0'
+    # 3. 3-input XOR gate for B2
     # ==========================================
     # XOR gate position at the bottom
     xor_gate = d.add(
         logic.Xor(inputs=3)
         .right()
-        .at((in_a0.end[0] + 1.8, in_a0.end[1]+(1/3)))
+        .at((in_a2.end[0] + 1.8, in_a2.end[1]+(1/3)))
     )
 
-    # Connection from A2 to XOR.in1 (top)
-    d.add(elm.Wire("|-").at(in_a2.end).to(xor_gate.in1))
+    # Connection from A0 to XOR.in1 (top)
+    d.add(elm.Wire("|-").at(in_a0.end).to(xor_gate.in1))
 
     # Connection from A1 to XOR.in2 (middle)
     d.add(elm.Wire("|-").at(in_a1.end).to(xor_gate.in2))
 
-    # Connection from A0 to XOR.in3 (bottom)
-    d.add(elm.Wire("|-").at(in_a0.end).to(xor_gate.in3))
+    # Connection from A2 to XOR.in3 (bottom)
+    d.add(elm.Wire("|-").at(in_a2.end).to(xor_gate.in3))
 
-    # A0' Output
-    d.add(elm.Line().right(1.5).at(xor_gate.out).label("$B_0$", loc="right"))
+    # B2 Output
+    d.add(elm.Line().right(1.5).at(xor_gate.out).label("$B_2$", loc="right"))
 
 ```
 
@@ -447,12 +447,12 @@ c15 = mol.add_atom(x=-0.3, y=-1.5)
 c16 = mol.add_atom(x=0.3, y=-1.5)
 
 # Add bonds
-b1 = mol.add_bond(c1, c2, order="single", label="$B2$")
-b2 = mol.add_bond(c1, c3, order="single", label="$A2$")
+b1 = mol.add_bond(c1, c2, order="single", label="$B0$")
+b2 = mol.add_bond(c1, c3, order="single", label="$A0$")
 b3 = mol.add_bond(c2, c4, order="single")
 b4 = mol.add_bond(c3, c5, order="single")
 b5 = mol.add_bond(c4, c6, order="single")
-b6 = mol.add_bond(c5, c6, order="single", label="$A0$")
+b6 = mol.add_bond(c5, c6, order="single", label="$A2$")
 b7 = mol.add_bond(c3, c7, order="single")
 b8 = mol.add_bond(c4, c8, order="single")
 b9 = mol.add_bond(c5, c7, order="single")
@@ -461,7 +461,7 @@ b11 = mol.add_bond(c7, c9, order="single")
 b12 = mol.add_bond(c8, c10, order="single")
 b13 = mol.add_bond(c9, c11, order="single")
 b14 = mol.add_bond(c10, c12, order="single")
-b15 = mol.add_bond(c11, c12, order="single", label="$B0$")
+b15 = mol.add_bond(c11, c12, order="single", label="$B2$")
 b16 = mol.add_bond(c11, c13, order="single")
 b17 = mol.add_bond(c12, c14, order="single")
 b18 = mol.add_bond(c9, c13, order="single")
@@ -540,35 +540,35 @@ $$
 with schemdraw.Drawing() as d:
     d.config(fontsize=12, unit=2.5)
 
-    # 1. Line A2 (MSB) -> Straight wire with a branch tap going down to the XOR
-    line_a2 = d.add(elm.Line().right(4.5).label("$A_2$", loc="left").label("$B_2$", loc="right"))
+    # 1. Line A0 (MSB) -> Straight wire with a branch tap going down to the XOR
+    line_a0 = d.add(elm.Line().right(4.5).label("$A_0$", loc="left").label("$B_0$", loc="right"))
     
     # 2. Line A1 (Middle) -> Pure straight wire (Identity)
-    y_a1 = line_a2.start[1] - 1.5
+    y_a1 = line_a0.start[1] - 1.5
     d.add(
         elm.Line()
         .right(4.5)
-        .at((line_a2.start[0], y_a1))
+        .at((line_a0.start[0], y_a1))
         .label("$A_1$", loc="left")
         .label("$B_1$", loc="right")
     )
 
-    # 3. Line A0 (LSB) -> Passes through a XOR gate controlled by A2
-    y_a0 = line_a2.start[1] - 3.0
+    # 3. Line A2 (LSB) -> Passes through a XOR gate controlled by A0
+    y_a2 = line_a0.start[1] - 3.0
     
-    # Place the XOR gate on line A0
-    xor_gate = d.add(logic.Xor().right().at((line_a2.start[0] + 2.0, y_a0 + 0.25)))
+    # Place the XOR gate on line A2
+    xor_gate = d.add(logic.Xor().right().at((line_a0.start[0] + 2.0, y_a2 + 0.25)))
     
-    # Lead wire from Input A0 to XOR bottom input (in2)
-    d.add(elm.Wire("-").at((line_a2.start[0] , y_a0)).to(xor_gate.in2).label("$A_0$", loc="left"))
+    # Lead wire from Input A2 to XOR bottom input (in0)
+    d.add(elm.Wire("-").at((line_a0.start[0] , y_a2)).to(xor_gate.in2).label("$A_2$", loc="left"))
     
-    # Output wire from XOR to A0'
-    d.add(elm.Line().at(xor_gate.out).to((line_a2.end[0], y_a0 + 0.25)).label("$B_0$", loc="right"))
+    # Output wire from XOR to B2
+    d.add(elm.Line().at(xor_gate.out).to((line_a0.end[0], y_a2 + 0.25)).label("$B_2$", loc="right"))
 
-    # 4. Control wire from Line A2 down into XOR top input (in1)
-    tap_x = line_a2.start[0] + 1.2
-    d.add(elm.Dot().at((tap_x, line_a2.start[1]))) # Branch junction on A2
-    d.add(elm.Line().down(2.5).at((tap_x, line_a2.start[1])))
+    # 4. Control wire from Line A0 down into XOR top input (in1)
+    tap_x = line_a0.start[0] + 1.2
+    d.add(elm.Dot().at((tap_x, line_a0.start[1]))) # Branch junction on A0
+    d.add(elm.Line().down(2.5).at((tap_x, line_a0.start[1])))
     d.add(elm.Wire("|-").to(xor_gate.in1))
 
 ```
@@ -595,23 +595,27 @@ c9 = mol.add_atom(x=-1.0, y=0.0)
 c10 = mol.add_atom(x=1.0, y=0.0)
 c11 = mol.add_atom(x=-1.0, y=-0.5)
 c12 = mol.add_atom(x=1.0, y=-0.5)
+c13 = mol.add_atom(x=-0.4, y=1.5)
+c14 = mol.add_atom(x=0.4, y=1.5)
 
 # Add bonds
 b1 = mol.add_bond(c1, c2, order="single")
-b2 = mol.add_bond(c1, c3, order="single", label="$A2$")
-b3 = mol.add_bond(c2, c4, order="single", label="$B2$")
+b2 = mol.add_bond(c1, c3, order="single", label="$A0$")
+b3 = mol.add_bond(c2, c4, order="single", label="$B0$")
 b4 = mol.add_bond(c3, c5, order="single")
 b5 = mol.add_bond(c4, c6, order="single")
-b6 = mol.add_bond(c5, c6, order="single", label="$B0$")
-b7 = mol.add_bond(c3, c7, order="single")
-b8 = mol.add_bond(c4, c8, order="single")
-b9 = mol.add_bond(c7, c5, order="single")
-b10 = mol.add_bond(c8, c6, order="single")
-b11 = mol.add_bond(c7, c8, order="single", label="$A0$")
-b12 = mol.add_bond(c9, c10, order="single")
-b13 = mol.add_bond(c10, c12, order="single", label="$B1$")
-b14 = mol.add_bond(c12, c11, order="single")
-b15 = mol.add_bond(c11, c9, order="single", label="$A1$")
+b6 = mol.add_bond(c3, c7, order="single")
+b7 = mol.add_bond(c4, c8, order="single")
+b8 = mol.add_bond(c7, c5, order="single")
+b9 = mol.add_bond(c8, c6, order="single")
+b10 = mol.add_bond(c7, c8, order="single", label="$A2$")
+b11 = mol.add_bond(c9, c10, order="single")
+b12 = mol.add_bond(c10, c12, order="single", label="$B1$")
+b13 = mol.add_bond(c12, c11, order="single")
+b14 = mol.add_bond(c11, c9, order="single", label="$A1$")
+b15 = mol.add_bond(c5, c13, order="single")
+b16 = mol.add_bond(c6, c14, order="single")
+b17 = mol.add_bond(c13, c14, order="single", label="$B2$")
 
 mol.draw() 
 
@@ -670,32 +674,32 @@ with schemdraw.Drawing() as d:
     d.config(fontsize=12, unit=2.5)
 
     # Vertical coordinates of the 3 lines
-    y2, y1, y0 = 4.0, 2.0, 0.0
+    y0, y1, y2 = 4.0, 1.75, 0.0
     x_in = 0.0
 
     # ==========================================
     # 1. Logic gates
     # ==========================================
-    # AND gate for (A2 AND A1)
+    # AND gate for (A0 AND A1)
     and_gate = d.add(logic.And().right().at((3.0, 1.0)))
 
-    # XOR gate for A1' = A1 XOR A2
-    xor_a1 = d.add(logic.Xor().right().at((6.0, y1)))
+    # XOR gate for B1 = A1 XOR A0
+    xor_a1 = d.add(logic.Xor().right().at((6.0, y1 + 0.25)))
 
-    # XOR gate for A0' = A0 XOR (A2 AND A1)
-    xor_a0 = d.add(logic.Xor().right().at((6.0, y0 + 0.25)))
+    # XOR gate for B2 = A2 XOR (A0 AND A1)
+    xor_a2 = d.add(logic.Xor().right().at((6.0, y2 + 0.25)))
 
     # ==========================================
-    # 2. Line A2 (MSB) wiring -> Pure identity to A2'
+    # 2. Line A0 (MSB) wiring -> Pure identity to B0
     # ==========================================
-    d.add(elm.Line().right(8.0).at((x_in, y2)).label("$A_2$", loc="left").label("$B_2$", loc="right"))
+    d.add(elm.Line().right(8.0).at((x_in, y0)).label("$A_0$", loc="left").label("$B_0$", loc="right"))
     
-    # Branch-off points on line A2
-    d.add(elm.Dot().at((1.5, y2)))
-    d.add(elm.Wire("|-").at((1.5, y2)).to(and_gate.in1))
+    # Branch-off points on line A0
+    d.add(elm.Dot().at((1.5, y0)))
+    d.add(elm.Wire("|-").at((1.5, y0)).to(and_gate.in2))
     
-    d.add(elm.Dot().at((4.5, y2)))
-    d.add(elm.Wire("|-").at((4.5, y2)).to(xor_a1.in1))
+    d.add(elm.Dot().at((4.5, y0)))
+    d.add(elm.Wire("|-").at((4.5, y0)).to(xor_a1.in1))
 
     # ==========================================
     # 3. Line A1 Wiring
@@ -704,25 +708,25 @@ with schemdraw.Drawing() as d:
     d.add(elm.Dot().at((1.8, y1)))
     
     # Branching to the AND gate
-    d.add(elm.Wire("|-").at((1.8, y1)).to(and_gate.in2))
+    d.add(elm.Wire("|-").at((1.8, y1)).to(and_gate.in1))
     
     # Main lead to the XOR gate of A1
     d.add(elm.Wire("-|").at((1.8, y1)).to(xor_a1.in2))
     
-    # A1' Output
+    # B1 Output
     d.add(elm.Line().right(1.5).at(xor_a1.out).label("$B_1$", loc="right"))
 
     # ==========================================
     # 4. Line A0 (LSB) Wiring
     # ==========================================
-    # Input A0 to the bottom input of xor_a0
-    d.add(elm.Line().at((x_in, y0)).to(xor_a0.in2).label("$A_0$", loc="left"))
+    # Input A2 to the bottom input of xor_a2
+    d.add(elm.Line().at((x_in, y2)).to(xor_a2.in2).label("$A_2$", loc="left"))
 
-    # Output from the AND gate to the top input of xor_a0
-    d.add(elm.Wire("-|").at(and_gate.out).to(xor_a0.in1))
+    # Output from the AND gate to the top input of xor_a2
+    d.add(elm.Wire("-|").at(and_gate.out).to(xor_a2.in1))
 
-    # A0' Output
-    d.add(elm.Line().right(1.5).at(xor_a0.out).label("$B_0$", loc="right"))
+    # B2 Output
+    d.add(elm.Line().right(1.5).at(xor_a2.out).label("$B_2$", loc="right"))
 
 ```
 
@@ -761,8 +765,8 @@ c22 = mol.add_atom(x=1.0, y=-1.0)
 
 # Add bonds
 b1 = mol.add_bond(c1, c2, order="single")
-b2 = mol.add_bond(c1, c6, order="single", label="$A2$")
-b3 = mol.add_bond(c2, c3, order="single", label="$B2$")
+b2 = mol.add_bond(c1, c6, order="single", label="$A0$")
+b3 = mol.add_bond(c2, c3, order="single", label="$B0$")
 b4 = mol.add_bond(c3, c4, order="single")
 b5 = mol.add_bond(c4, c5, order="single")
 b6 = mol.add_bond(c4, c14, order="single")
@@ -775,9 +779,9 @@ b12 = mol.add_bond(c8, c9, order="single", label="$B1$")
 b13 = mol.add_bond(c8, c13, order="single")
 b14 = mol.add_bond(c9, c14, order="single")
 b15 = mol.add_bond(c10, c11, order="single")
-b16 = mol.add_bond(c10, c15, order="single", label="$B0$")
+b16 = mol.add_bond(c10, c15, order="single", label="$B2$")
 b17 = mol.add_bond(c11, c12, order="single")
-b18 = mol.add_bond(c12, c18, order="single", label="$A0$")
+b18 = mol.add_bond(c12, c18, order="single", label="$A2$")
 b19 = mol.add_bond(c13, c16, order="single")
 b20 = mol.add_bond(c14, c21, order="single")
 b21 = mol.add_bond(c15, c17, order="single")
@@ -909,7 +913,7 @@ Historians of science often recall that Gottfried Wilhelm Leibniz saw the ancien
 Yet, when viewed through the lens of **Conjugated Carbon Computing (CCC)**, the structural parallels become even more striking, almost eerie:  
 
 * **Stochastic Sampling:** Both systems rely on stochastic processes (throwing yarrow stalks or tossing coins) to collapse possibilities into an observed state—mirroring quantum measurement and statistical p-bit relaxation.  
-* **Trigrams as Protobit Triplets:** The fundamental building blocks of the I Ching are **Trigrams** (groups of 3 broken or unbroken lines, yielding $2^3 = 8$ states). This is the exact dimensional cardinality required by our protobit triplets ($A_2, A_1, A_0$) to span the 8 basis states of a complete quantum qubit. The 64 Hexagrams ($2^6$) naturally map to a 2-qubit interacting register!  
+* **Trigrams as Protobit Triplets:** The fundamental building blocks of the I Ching are **Trigrams** (groups of 3 broken or unbroken lines, yielding $2^3 = 8$ states). This is the exact dimensional cardinality required by our protobit triplets ($A_0, A_1, A_2$) to span the 8 basis states of a complete quantum qubit. The 64 Hexagrams ($2^6$) naturally map to a 2-qubit interacting register!  
 * **Turtle Shells & Carbon Geometry:** Historically, ancient divination was performed by heating tortoise plastrons until they cracked into distinct patterns. Visually and geometrically, the natural hexagonal tiling of a turtle shell bears an uncanny resemblance to the fused aromatic rings and polygonal lattices of our molecular carbon logic gates.  
 * **The King Wen Sequence:** When mapped as a discrete state transition matrix, the traditional King Wen permutation order exhibits the algebraic properties of a **unitary, reversible 2-input / 2-output Universal quantum gate**.  
 

@@ -235,10 +235,8 @@ window.Quarto = {
 
 <p><img src="../../images/qubit.jpg" class="img-fluid"></p>
 <hr>
-<p><img src="../../images/construction.png" class="img-fluid"></p>
-<hr>
 <p><a href="https://colab.research.google.com/github/nicdeclic/quantum-molecular-computing/blob/main/posts/quantum-chemistry/index.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid"></a></p>
-<div id="ab8eb372" class="cell" data-execution_count="1">
+<div id="ce11d80c" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -260,6 +258,8 @@ window.Quarto = {
 </details>
 </div>
 <hr>
+<p><img src="../../images/construction.png" class="img-fluid"></p>
+<hr>
 <section id="superposed-quantum-gates" class="level2">
 <h2 class="anchored" data-anchor-id="superposed-quantum-gates">Superposed Quantum Gates</h2>
 <p>The Pauli gates (<span class="math inline">\(X, Y, Z\)</span>) and the phase gate (<span class="math inline">\(S\)</span>) were straightforward because every vertex of our 8-state cube mapped cleanly and deterministically onto another single vertex.</p>
@@ -277,7 +277,7 @@ H |1\rangle &amp;= \frac{1}{\sqrt{2}} \left(|0\rangle - |1\rangle\right) = |-\ra
 <p><span class="math display">\[H = \frac{1}{\sqrt{2}} (X + Z)\]</span></p>
 <p>This identity provides our architectural blueprint!</p>
 <p>We can synthesize the Hadamard transformation by:<br>
-1. Routing our input protobit triplet <span class="math inline">\((A_2, A_1, A_0)\)</span> into <strong>both the <span class="math inline">\(X\)</span> circuit and the <span class="math inline">\(Z\)</span> circuit in parallel</strong>.<br>
+1. Routing our input protobit triplet <span class="math inline">\((A_0, A_1, A_2)\)</span> into <strong>both the <span class="math inline">\(X\)</span> circuit and the <span class="math inline">\(Z\)</span> circuit in parallel</strong>.<br>
 2. Superposing the output channel selection using a <strong>fair-coin random source</strong> to balance the branches with equal probability weights.</p>
 <p>By leveraging physical resonance and stochastic mixing, the discrete geometry of protobits natively recreates the continuous superposition of the Hadamard transform.</p>
 <ul>
@@ -317,42 +317,42 @@ H |1\rangle &amp;= \frac{1}{\sqrt{2}} \left(|0\rangle - |1\rangle\right) = |-\ra
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vertical coordinates for the rails</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    y_rand <span class="op">=</span> <span class="fl">4.5</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    y_a2   <span class="op">=</span> <span class="fl">3.0</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    y_a0   <span class="op">=</span> <span class="fl">3.0</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    y_a1   <span class="op">=</span> <span class="fl">1.5</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    y_a0   <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    y_a2   <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    x_in   <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Logic Gates Setup</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AND gate: inputs from Random and A2</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AND gate: inputs from Random and A0</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right().at((<span class="fl">3.0</span>, <span class="fl">3.25</span>)))</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate: inputs from AND output and A0 -&gt; drives B0</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">5.0</span>, y_a0 <span class="op">+</span> <span class="fl">0.25</span>)))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate: inputs from AND output and A2 -&gt; drives B2</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">5.0</span>, y_a2 <span class="op">+</span> <span class="fl">0.25</span>)))</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Random Source Line -&gt; Drives B2 and AND gate</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Random Source Line -&gt; Drives B0 and AND gate</span></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">6.0</span>)</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        .at((x_in <span class="op">+</span> <span class="dv">2</span>, y_rand))</span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"Random"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Branch down to AND gate input 1</span></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">2.5</span>, y_rand)))</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">2.5</span>, y_rand)).to(and_gate.in1))</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Input A2 Line -&gt; Drives AND gate input 2</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Input A0 Line -&gt; Drives AND gate input 0</span></span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a2))</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a0))</span>
 <span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        .to(and_gate.in2)</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
@@ -367,28 +367,28 @@ H |1\rangle &amp;= \frac{1}{\sqrt{2}} \left(|0\rangle - |1\rangle\right) = |-\ra
 <span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Input A0 Line -&gt; XOR with AND output -&gt; Drives B0</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Input A2 Line -&gt; XOR with AND output -&gt; Drives B2</span></span>
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Straight input wire to XOR bottom input</span></span>
 <span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a0))</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a2))</span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        .to(xor_gate.in2)</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route AND gate output down into XOR top input</span></span>
 <span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(and_gate.out).to(xor_gate.in1))</span>
 <span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output line B0</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output line B2</span></span>
 <span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
 <span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
 <span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">1.0</span>)</span>
 <span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>        .at(xor_gate.out)</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
 <span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="87a8b7b0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="8a6cf0f7" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -407,7 +407,7 @@ H |1\rangle &amp;= \frac{1}{\sqrt{2}} \left(|0\rangle - |1\rangle\right) = |-\ra
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"Hadamard_{proto}"</span>, <span class="st">"="</span>, hadamard_proto.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="7b00aa88" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="c9880d3c" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[ Hadamard_{proto} =  \begin{array}{r|cccccccc|} \text{} &amp; \text{``000''} &amp; \text{``001''} &amp; \text{``010''} &amp; \text{``011''} &amp; \text{``100''} &amp; \text{``101''} &amp; \text{``110''} &amp; \text{``111''} \\  \hline \text{``000''} &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 \\ \text{``001''} &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 \\ \text{``010''} &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 \\ \text{``011''} &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 \\ \text{``100''} &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 \\ \text{``101''} &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 \\ \text{``110''} &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 \\ \text{``111''} &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 \\  \hline \end{array}  \]</span></p>
@@ -467,53 +467,53 @@ T |1\rangle &amp;= e^{i\pi/4} |1\rangle = \frac{1}{\sqrt{2}} (|1\rangle + i|1\ra
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vertical coordinates for the input/output rails</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    y_rand <span class="op">=</span> <span class="fl">5.0</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    y_a2   <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    y_a0   <span class="op">=</span> <span class="fl">3.5</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    y_a1   <span class="op">=</span> <span class="fl">2.0</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    y_a0   <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    y_a2   <span class="op">=</span> <span class="fl">0.5</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    x_in   <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place Logic Gates</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># First stage: AND gate for conditional imaginary phase toggle</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inputs: A2 and Random</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inputs: A0 and Random</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    and_phase <span class="op">=</span> d.add(logic.And().right().at((<span class="fl">3.0</span>, <span class="fl">2.8</span>)))</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate for B1 = A1 XOR (A2 AND Random)</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    xor_b1 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">6.0</span>, y_a1<span class="op">+</span><span class="fl">0.25</span>)))</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate for B1 = A1 XOR (A0 AND Random)</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    xor_b1 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">6.0</span>, y_a1 <span class="op">+</span> <span class="fl">0.25</span>)))</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Second stage: AND gate for sign flip when rotating from +i to -1</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inputs: (A2 AND Random) output and A1</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inputs: (A0 AND Random) output and A1</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    and_sign <span class="op">=</span> d.add(logic.And().right().at((<span class="fl">5.5</span>, <span class="fl">0.6</span>)))</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate for B0 = A0 XOR (Sign toggle)</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    xor_b0 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">8.5</span>, y_a0 <span class="op">-</span> <span class="dv">1</span>)))</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate for B2 = A2 XOR (Sign toggle)</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    xor_b2 <span class="op">=</span> d.add(logic.Xor().right().at((<span class="fl">8.5</span>, y_a2 <span class="op">-</span> <span class="dv">1</span>)))</span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Wire Random Input Line</span></span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">1.5</span>)</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        .at((x_in <span class="op">+</span> <span class="dv">1</span>, y_rand))</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">0.5</span>)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>        .at((x_in <span class="op">+</span> <span class="fl">1.5</span>, y_rand))</span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"Random"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Drop down into top input of and_phase</span></span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).to(and_phase.in1))</span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Wire A2 Line (Presence / Control line)</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Wire A0 Line (Presence / Control line)</span></span>
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">10.5</span>)</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a2))</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a0))</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
 <span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tap A2 down into bottom input of and_phase</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.5</span>, y_a2)))</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.5</span>, y_a2)).to(and_phase.in2))</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tap A0 down into bottom input of and_phase</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.5</span>, y_a0)))</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.5</span>, y_a0)).to(and_phase.in2))</span>
 <span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
 <span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Wire A1 Line (Imaginary Phase bit)</span></span>
@@ -547,28 +547,28 @@ T |1\rangle &amp;= e^{i\pi/4} |1\rangle = \frac{1}{\sqrt{2}} (|1\rangle + i|1\ra
 <span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Wire A0 Line (Sign Phase bit)</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Wire A2 Line (Sign Phase bit)</span></span>
 <span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Direct line from A0 input into bottom pin of xor_b0</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Direct line from A2 input into bottom pin of xor_b2</span></span>
 <span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
 <span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a0 <span class="op">-</span> <span class="fl">1.25</span>))</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>        .to(xor_b0.in2)</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a2 <span class="op">-</span> <span class="fl">1.25</span>))</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>        .to(xor_b2.in2)</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
 <span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route and_sign output into top pin of xor_b0</span></span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(and_sign.out).to(xor_b0.in1))</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route and_sign output into top pin of xor_b2</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(and_sign.out).to(xor_b2.in1))</span>
 <span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output line B0</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output line B2</span></span>
 <span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
 <span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
 <span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>        .right(<span class="fl">1.5</span>)</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>        .at(xor_b0.out)</span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>        .at(xor_b2.out)</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
 <span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="c325465f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="941cd118" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -587,7 +587,7 @@ T |1\rangle &amp;= e^{i\pi/4} |1\rangle = \frac{1}{\sqrt{2}} (|1\rangle + i|1\ra
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"T_{proto}"</span>, <span class="st">"="</span>, t_proto.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="1755a14c" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="7d99b456" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><span class="math display">\[ T_{proto} =  \begin{array}{r|cccccccc|} \text{} &amp; \text{``000''} &amp; \text{``001''} &amp; \text{``010''} &amp; \text{``011''} &amp; \text{``100''} &amp; \text{``101''} &amp; \text{``110''} &amp; \text{``111''} \\  \hline \text{``000''} &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``001''} &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``010''} &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``011''} &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ \text{``100''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0.5 &amp; 0 \\ \text{``101''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0.5 \\ \text{``110''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0.5 &amp; 0 \\ \text{``111''} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 &amp; 0.5 \\  \hline \end{array}  \]</span></p>
@@ -601,7 +601,7 @@ T |1\rangle &amp;= e^{i\pi/4} |1\rangle = \frac{1}{\sqrt{2}} (|1\rangle + i|1\ra
 <h2 class="anchored" data-anchor-id="multi-qubit-logic-gates">Multi-Qubit Logic Gates</h2>
 <p>In conventional quantum hardware, multi-qubit entangling gates are notoriously difficult to implement—they suffer from high error rates, crosstalk, and delicate laser/microwave tuning.</p>
 <p>In our molecular protobit architecture, the situation is completely reversed: <strong>multi-qubit gates (SWAP, CNOT, CZ, and Toffoli) are often structurally simpler to build than single-qubit rotation gates.</strong></p>
-<p>Because our channels are already organized into discrete protobit buses, multi-qubit control reduces fundamentally to <strong>boolean routing, multiplexing, and conditional masking</strong>.</p>
+<p>Because the channels are already organized into discrete protobit buses, multi-qubit control reduces fundamentally to <strong>boolean routing, multiplexing, and conditional masking</strong>.</p>
 <hr>
 <section id="the-swap-gate" class="level3">
 <h3 class="anchored" data-anchor-id="the-swap-gate">The SWAP Gate</h3>
@@ -614,7 +614,81 @@ T |1\rangle &amp;= e^{i\pi/4} |1\rangle = \frac{1}{\sqrt{2}} (|1\rangle + i|1\ra
 0 &amp; 1 &amp; 0 &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix}\]</span></p>
-<p>In our 3-protobit representation, swapping two qubits <span class="math inline">\((A_2 A_1 A_0)\)</span> and <span class="math inline">\((B_2 B_1 B_0)\)</span> is achieved by routing the two 3-line buses across each other: <span class="math inline">\(A_i \leftrightarrow B_i\)</span>. It is a zero-gate, purely geometric operation.</p>
+<ul>
+<li><strong>Logic Schematic</strong></li>
+</ul>
+<p>In the 3-protobit representation, swapping two qubits <span class="math inline">\((A_0 A_1 A_2)\)</span> and <span class="math inline">\((A_3 A_4 A_5)\)</span> is achieved by routing the two 3-line buses across each other. It is a zero-gate, purely geometric operation.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Coordinates</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    x_start <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    x_cross_left <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    x_cross_right <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    x_end <span class="op">=</span> <span class="fl">5.0</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Explicit connections: (label_in, y_in, label_out, y_out)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ordered neatly from top (y=5) to bottom (y=0)</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    routes <span class="op">=</span> [</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"$A_0$"</span>, <span class="fl">5.0</span>, <span class="st">"$B_0$"</span>, <span class="fl">5.0</span>),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"$A_1$"</span>, <span class="fl">4.0</span>, <span class="st">"$B_1$"</span>, <span class="fl">4.0</span>),</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"$A_2$"</span>, <span class="fl">3.0</span>, <span class="st">"$B_2$"</span>, <span class="fl">3.0</span>),</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"$A_3$"</span>, <span class="fl">2.0</span>, <span class="st">"$B_3$"</span>, <span class="fl">2.0</span>),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"$A_4$"</span>, <span class="fl">1.0</span>, <span class="st">"$B_4$"</span>, <span class="fl">1.0</span>),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"$A_5$"</span>, <span class="fl">0.0</span>, <span class="st">"$B_5$"</span>, <span class="fl">0.0</span>),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Map of destination heights for SWAP:</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A0, A1, A2 (y=5, 4, 3) -&gt; B3, B4, B5 (y=2, 1, 0)</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A3, A4, A5 (y=2, 1, 0) -&gt; B0, B1, B2 (y=5, 4, 3)</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    target_y <span class="op">=</span> {</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="fl">5.0</span>: <span class="fl">2.0</span>,  <span class="co"># A0 -&gt; B3</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="fl">4.0</span>: <span class="fl">1.0</span>,  <span class="co"># A1 -&gt; B4</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="fl">3.0</span>: <span class="fl">0.0</span>,  <span class="co"># A2 -&gt; B5</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>        <span class="fl">2.0</span>: <span class="fl">5.0</span>,  <span class="co"># A3 -&gt; B0</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1.0</span>: <span class="fl">4.0</span>,  <span class="co"># A4 -&gt; B1</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0.0</span>: <span class="fl">3.0</span>,  <span class="co"># A5 -&gt; B2</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Draw input stubs with labels</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> label_in, y_in, _, _ <span class="kw">in</span> routes:</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        d.add(</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>            elm.Line()</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>            .at((x_start, y_in))</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>            .to((x_cross_left, y_in))</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>            .label(label_in, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Draw cross-wires (the SWAP)</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> y_in, y_out <span class="kw">in</span> target_y.items():</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        d.add(</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>            elm.Line()</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>            .at((x_cross_left, y_in))</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>            .to((x_cross_right, y_out))</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Draw output stubs with labels</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, _, label_out, y_out <span class="kw">in</span> routes:</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>        d.add(</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>            elm.Line()</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>            .at((x_cross_right, y_out))</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>            .to((x_end, y_out))</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>            .label(label_out, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="de69c847" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="the-cnot-gate-controlled-not-cx" class="level3">
@@ -627,11 +701,119 @@ T |1\rangle &amp;= e^{i\pi/4} |1\rangle = \frac{1}{\sqrt{2}} (|1\rangle + i|1\ra
 0 &amp; 0 &amp; 0 &amp; 1 \\
 0 &amp; 0 &amp; 1 &amp; 0
 \end{bmatrix}\]</span></p>
+<ul>
+<li><strong>Logic Schematic</strong></li>
+</ul>
 <p>In hardware, conditioning an operation on a control qubit is achieved by multiplexing.</p>
-<p>Because the target operation is a bit-flip (our single-qubit Pauli-<span class="math inline">\(X\)</span> gate, which simply inverts the target’s presence bit <span class="math inline">\(T_2\)</span>), the control condition simplifies directly:<br>
-* The control presence bit (<span class="math inline">\(C_2\)</span>) and the target presence bit (<span class="math inline">\(T_2\)</span>) are fed into a single <strong>XOR gate</strong> (<span class="math inline">\(T_2' = C_2 \oplus T_2\)</span>).<br>
+<p>Because the target operation is a bit-flip (our single-qubit Pauli-<span class="math inline">\(X\)</span> gate, which simply inverts the target’s presence bit <span class="math inline">\(A_3\)</span>), the control condition simplifies directly:<br>
+* The control presence bit (<span class="math inline">\(A_0\)</span>) and the target presence bit (<span class="math inline">\(A_3\)</span>) are fed into a single <strong>XOR gate</strong> (<span class="math inline">\(B_3 = A_0 \oplus A_3\)</span>).<br>
 * The phase lines pass through unaffected.</p>
-<p>A single boolean XOR gate fully realizes quantum entanglement between two qubits!</p>
+<p>A single XOR gate fully realizes quantum entanglement between two qubits!</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># In/Out horizontal coordinates</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    x_in <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    x_xor <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    x_out <span class="op">=</span> <span class="fl">6.5</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vertical coordinates: A0 at the top (y=5.0) down to A5 at the bottom (y=0.0)</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    y_a0 <span class="op">=</span> <span class="fl">5.0</span>  <span class="co"># Control presence</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    y_a1 <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    y_a2 <span class="op">=</span> <span class="fl">3.0</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    y_a3 <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># Target presence</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    y_a4 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    y_a5 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place the single XOR Gate on Target Line A3</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The XOR gate is centered on y_a3 (y=2.0)</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().right().at((x_xor, y_a3)))</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Control Qubit Wires (A0, A1, A2)</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A0 Line: straight from in to out, with a tap down to XOR gate</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a0))</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a0))</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tap on line A0 going down to the top input of the XOR gate</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">2.2</span>, y_a0)))</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">2.2</span>, y_a0)).to(xor_gate.in1))</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A1 Line (straight identity)</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a1))</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a1))</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_1$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A2 Line (straight identity)</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a2))</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a2))</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Target Qubit Wires (A3, A4, A5)</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A3 Input line into XOR gate bottom input</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a3 <span class="op">-</span> <span class="fl">0.25</span>))</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>        .to(xor_gate.in2)</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_3$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output from XOR gate to B3</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>        .at(xor_gate.out)</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a3))</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_3$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A4 Line (straight identity)</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a4))</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a4))</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_4$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_4$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A5 Line (straight identity)</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a5))</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a5))</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_5$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_5$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="b40cbe99" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="the-cz-gate-controlled-z" class="level3">
@@ -644,9 +826,123 @@ T |1\rangle &amp;= e^{i\pi/4} |1\rangle = \frac{1}{\sqrt{2}} (|1\rangle + i|1\ra
 0 &amp; 0 &amp; 1 &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; -1
 \end{bmatrix}\]</span></p>
-<p>In our framework, the Pauli-<span class="math inline">\(Z\)</span> gate is an inversion of the sign bit (<span class="math inline">\(A_0\)</span>). Conditioning this phase-flip on the co-presence of both qubits being in state <span class="math inline">\(|1\rangle\)</span> is remarkably simple:<br>
-1. An <strong>AND gate</strong> detects the joint condition: <span class="math inline">\(C_2 \land T_2 = 1\)</span>.<br>
-2. The output feeds into a <strong>XOR gate</strong> on the target’s sign bit: <span class="math inline">\(T_0' = T_0 \oplus (C_2 \land T_2)\)</span>.</p>
+<ul>
+<li><strong>Logic Schematic</strong></li>
+</ul>
+<p>In our framework, the Pauli-<span class="math inline">\(Z\)</span> gate is an inversion of the sign bit (<span class="math inline">\(A_5\)</span>). Conditioning this phase-flip on the co-presence of both qubits being in state <span class="math inline">\(|1\rangle\)</span> is remarkably simple:<br>
+1. An <strong>AND gate</strong> detects the joint condition: <span class="math inline">\(A_0 \land A_3 = 1\)</span>.<br>
+2. The output feeds into a <strong>XOR gate</strong> on the target’s sign bit: <span class="math inline">\(B_5 = A_5 \oplus (A_0 \land A_3)\)</span>.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># In/Out horizontal coordinates</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    x_in <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    x_and <span class="op">=</span> <span class="fl">2.5</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    x_xor <span class="op">=</span> <span class="fl">4.5</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    x_out <span class="op">=</span> <span class="fl">7.0</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vertical coordinates: A0 at the top (y=5.0) down to A5 at the bottom (y=0.0)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    y_a0 <span class="op">=</span> <span class="fl">5.0</span>  <span class="co"># Control presence</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    y_a1 <span class="op">=</span> <span class="fl">4.0</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    y_a2 <span class="op">=</span> <span class="fl">3.0</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    y_a3 <span class="op">=</span> <span class="fl">2.0</span>  <span class="co"># Target presence</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    y_a4 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    y_a5 <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># Target sign bit</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Logic Gates Placement</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AND gate detects co-presence (A0 AND A3), placed midway between them</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right().at((x_and, <span class="fl">0.</span>)))</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate on target sign line A5 (y=0.0)</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().right().at((x_xor, y_a5 <span class="op">-</span> <span class="fl">1.5</span>)))</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Control Qubit Wires (A0, A1, A2)</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A0 Line (straight through, tapped down into AND gate)</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a0))</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a0))</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">1.8</span>, y_a0)))</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">1.8</span>, y_a0)).to(and_gate.in2))</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A1 Line (straight identity)</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a1))</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a1))</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_1$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_1$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A2 Line (straight identity)</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a2))</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a2))</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_2$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_2$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Target Qubit Wires (A3, A4, A5)</span></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A3 Line (straight through, tapped up into AND gate)</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a3))</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a3))</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_3$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_3$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">2.2</span>, y_a3)))</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">2.2</span>, y_a3)).to(and_gate.in1))</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A4 Line (straight identity)</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a4))</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a4))</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_4$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_4$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># A5 Line: enters XOR bottom input, XOR output goes to B5</span></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y_a5 <span class="op">-</span> <span class="fl">1.75</span>))</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>        .to(xor_gate.in2)</span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_5$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>        .at(xor_gate.out)</span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y_a5 <span class="op">-</span> <span class="fl">1.5</span>))</span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_5$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route AND gate output down into the top input of the XOR gate</span></span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(and_gate.out).to(xor_gate.in1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="531c070d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-9-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="the-toffoli-gate-ccnot-controlled-controlled-not" class="level3">
@@ -665,10 +961,130 @@ I_4 &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0
 \end{bmatrix}\]</span></p>
+<ul>
+<li><strong>Logic Schematic</strong></li>
+</ul>
 <p>In standard quantum computing, compiling a single Toffoli gate requires at least 6 CNOT gates and several <span class="math inline">\(T\)</span> gates, creating a massive decoherence bottleneck.</p>
 <p>In our protobit architecture, expanding the control condition requires <strong>no quantum compilation overhead whatsoever</strong>:<br>
-* We simply cascade an extra <strong>AND gate</strong> to verify the second control line (<span class="math inline">\(C_1 \land C_2\)</span>), followed by our standard target <strong>XOR gate</strong> (<span class="math inline">\(T_2' = T_2 \oplus (C_1 \land C_2)\)</span>).</p>
-<p>Adding control lines scales linearly and cleanly, bypassing the compiler bottleneck that plagues current quantum computers.</p>
+* We simply cascade an extra <strong>AND gate</strong> to verify the second control line (<span class="math inline">\(A_0 \land A_3\)</span>), followed by our standard target <strong>XOR gate</strong> (<span class="math inline">\(B_6 = A_6 \oplus (A_0 \land A_3)\)</span>).</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> schemdraw.Drawing() <span class="im">as</span> d:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    d.config(fontsize<span class="op">=</span><span class="dv">12</span>, unit<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># In/Out horizontal coordinates</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    x_in <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    x_and <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    x_xor <span class="op">=</span> <span class="fl">6.0</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    x_out <span class="op">=</span> <span class="fl">8.0</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vertical coordinates: 9 lines (y=8.0 down to y=0.0)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Control 1: A0 (presence), A1, A2</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Control 2: A3 (presence), A4, A5</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Target:    A6 (presence), A7, A8</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="bu">float</span>(<span class="dv">8</span> <span class="op">-</span> i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">9</span>)]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    y[<span class="dv">6</span>] <span class="op">-=</span> <span class="dv">2</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    y[<span class="dv">7</span>] <span class="op">-=</span> <span class="dv">2</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    y[<span class="dv">8</span>] <span class="op">-=</span> <span class="dv">2</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Place Logic Gates</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AND gate placed between A0 and A3 (y=6.5)</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    and_gate <span class="op">=</span> d.add(logic.And().right().at((x_and, <span class="fl">1.5</span>)))</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># XOR gate placed directly on target presence line A6 (y=2.0)</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    xor_gate <span class="op">=</span> d.add(logic.Xor().right().at((x_xor, y[<span class="dv">6</span>])))</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Control Qubit 1 (A0, A1, A2)</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Line A0 (tapped down to AND gate)</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y[<span class="dv">0</span>]))</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y[<span class="dv">0</span>]))</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_0$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_0$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">2.0</span>, y[<span class="dv">0</span>])))</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">2.0</span>, y[<span class="dv">0</span>])).to(and_gate.in2))</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lines A1 and A2 (straight identity)</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>]:</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        d.add(</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>            elm.Line()</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>            .at((x_in, y[i]))</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>            .to((x_out, y[i]))</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>            .label(<span class="ss">f"$A_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>            .label(<span class="ss">f"$B_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Control Qubit 2 (A3, A4, A5)</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Line A3 (tapped up to AND gate)</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y[<span class="dv">3</span>]))</span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y[<span class="dv">3</span>]))</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_3$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_3$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Dot().at((<span class="fl">2.5</span>, y[<span class="dv">3</span>])))</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"|-"</span>).at((<span class="fl">2.5</span>, y[<span class="dv">3</span>])).to(and_gate.in1))</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lines A4 and A5 (straight identity)</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">4</span>, <span class="dv">5</span>]:</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>        d.add(</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>            elm.Line()</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>            .at((x_in, y[i]))</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>            .to((x_out, y[i]))</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>            .label(<span class="ss">f"$A_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>            .label(<span class="ss">f"$B_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Target Qubit (A6, A7, A8)</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ==========================================</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Line A6 (Presence bit passes through XOR gate)</span></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>        .at((x_in, y[<span class="dv">6</span>] <span class="op">-</span> <span class="fl">0.25</span>))</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>        .to(xor_gate.in2)</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$A_6$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>    d.add(</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>        elm.Line()</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>        .at(xor_gate.out)</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>        .to((x_out, y[<span class="dv">6</span>]))</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>        .label(<span class="st">"$B_6$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Route AND gate output down to the XOR gate top input</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>    d.add(elm.Wire(<span class="st">"-|"</span>).at(and_gate.out).to(xor_gate.in1))</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lines A7 and A8 (straight identity)</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">7</span>, <span class="dv">8</span>]:</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>        d.add(</span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>            elm.Line()</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>            .at((x_in, y[i]))</span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>            .to((x_out, y[i]))</span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>            .label(<span class="ss">f"$A_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">$"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>            .label(<span class="ss">f"$B_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">$"</span>, loc<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="48cd5ed1" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <hr>
 </section>
 </section>
@@ -696,55 +1112,58 @@ I_4 &amp; 0 \\
 \sqrt{\text{SWAP}} |01\rangle &amp;= \frac{1 + i}{2} |01\rangle + \frac{1 - i}{2} |10\rangle \\
 \sqrt{\text{SWAP}} |10\rangle &amp;= \frac{1 - i}{2} |01\rangle + \frac{1 + i}{2} |10\rangle
 \end{aligned}\]</span></p>
-<p>In our dual 3-protobit architecture (<span class="math inline">\(A_2 A_1 A_0\)</span> and <span class="math inline">\(B_2 B_1 B_0\)</span>):</p>
+<p>In our dual 3-protobit architecture (<span class="math inline">\(A_0 A_1 A_2\)</span> and <span class="math inline">\(A_3 A_4 A_5\)</span>):</p>
 <ol type="1">
-<li><strong>Detection:</strong> An exclusive condition (<span class="math inline">\(A_2 \oplus B_2 = 1\)</span>) identifies when the two qubits differ in presence (<span class="math inline">\(|01\rangle\)</span> or <span class="math inline">\(|10\rangle\)</span>).<br>
+<li><strong>Detection:</strong> An exclusive condition (<span class="math inline">\(A_0 \oplus A_3 = 1\)</span>) identifies when the two qubits differ in presence (<span class="math inline">\(|01\rangle\)</span> or <span class="math inline">\(|10\rangle\)</span>).<br>
 </li>
 <li><strong>Conditional Mixing:</strong> When this condition is met, our <code>Random</code> stochastic source triggers an equal superposition switch between crossing the lines (<span class="math inline">\(A \leftrightarrow B\)</span>) and leaving them straight (<span class="math inline">\(A \rightarrow A, B \rightarrow B\)</span>).<br>
 </li>
 <li><strong>Phase Imprinting:</strong> The complex coefficients <span class="math inline">\(\frac{1 \pm i}{2}\)</span> correspond directly to our <span class="math inline">\(T\)</span>-gate phase logic, shifting the imaginary protobits (<span class="math inline">\(A_1, B_1\)</span>) and sign protobits (<span class="math inline">\(A_0, B_0\)</span>) into relative quadrature.</li>
 </ol>
 <p>What is ordinarily treated as an elusive continuous quantum interaction is thus realized as <strong>a conditional, stochastic half-crossing circuit</strong> built from elementary boolean gates.</p>
+<ul>
+<li><strong>Logic Schematic</strong></li>
+</ul>
 <hr>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>test_states <span class="op">=</span> [</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|0&gt; (North Pole)"</span>,       np.array([[<span class="fl">1.0</span> <span class="op">+</span> <span class="ot">0j</span>, <span class="fl">0.0</span> <span class="op">+</span> <span class="ot">0j</span>]])),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|1&gt; (South Pole)"</span>,       np.array([[<span class="fl">0.0</span> <span class="op">+</span> <span class="ot">0j</span>, <span class="fl">1.0</span> <span class="op">+</span> <span class="ot">0j</span>]])),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|+&gt; (Equator +X)"</span>,       np.array([[<span class="fl">1.0</span>, <span class="fl">1.0</span>]]) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|-&gt; (Equator -X)"</span>,       np.array([[<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]]) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|+i&gt; (Equator +Y)"</span>,      np.array([[<span class="fl">1.0</span>, <span class="ot">1.0j</span>]]) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)),</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|-i&gt; (Equator -Y)"</span>,      np.array([[<span class="fl">1.0</span>, <span class="op">-</span><span class="ot">1.0j</span>]]) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)),</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Superposition (45 deg)"</span>,  np.array([[np.cos(np.pi<span class="op">/</span><span class="dv">8</span>), np.exp(<span class="ot">1j</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">4</span>)<span class="op">*</span>np.sin(np.pi<span class="op">/</span><span class="dv">8</span>)]])),</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Arbitrary Superposition"</span>, random_qubit())</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, psi <span class="kw">in</span> test_states:</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    display(psi)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    tm <span class="op">=</span> TransitionMatrix.from_qubit(psi)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    display_inline(tm)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    recovered <span class="op">=</span> tm.to_qubit()</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    display(recovered)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check fidelity (probability overlap)</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    fidelity <span class="op">=</span> np.<span class="bu">abs</span>(np.vdot(psi, recovered))<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:25}</span><span class="ss"> -&gt; Fidelity: </span><span class="sc">{</span>fidelity<span class="sc">:.6f}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'✓'</span> <span class="cf">if</span> np<span class="sc">.</span>isclose(fidelity, <span class="fl">1.0</span>) <span class="cf">else</span> <span class="st">'✗'</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>psi <span class="op">=</span> random_qubit()</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> np.sqrt(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>np.array([[<span class="dv">1</span>,<span class="dv">1</span>], [<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>]])</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>psi2 <span class="op">=</span> psi <span class="op">@</span> h <span class="op">@</span> h</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>display(psi)</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>display(psi2)</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>proto <span class="op">=</span> TransitionMatrix.from_qubit(psi)</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>proto2 <span class="op">=</span> proto <span class="op">@</span> hadamard_proto <span class="op">@</span> hadamard_proto</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>recovered <span class="op">=</span> proto2.to_qubit()</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>display(recovered)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>test_states <span class="op">=</span> [</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|0&gt; (North Pole)"</span>,       np.array([[<span class="fl">1.0</span> <span class="op">+</span> <span class="ot">0j</span>, <span class="fl">0.0</span> <span class="op">+</span> <span class="ot">0j</span>]])),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|1&gt; (South Pole)"</span>,       np.array([[<span class="fl">0.0</span> <span class="op">+</span> <span class="ot">0j</span>, <span class="fl">1.0</span> <span class="op">+</span> <span class="ot">0j</span>]])),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|+&gt; (Equator +X)"</span>,       np.array([[<span class="fl">1.0</span>, <span class="fl">1.0</span>]]) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|-&gt; (Equator -X)"</span>,       np.array([[<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]]) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|+i&gt; (Equator +Y)"</span>,      np.array([[<span class="fl">1.0</span>, <span class="ot">1.0j</span>]]) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"|-i&gt; (Equator -Y)"</span>,      np.array([[<span class="fl">1.0</span>, <span class="op">-</span><span class="ot">1.0j</span>]]) <span class="op">/</span> np.sqrt(<span class="dv">2</span>)),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Superposition (45 deg)"</span>,  np.array([[np.cos(np.pi<span class="op">/</span><span class="dv">8</span>), np.exp(<span class="ot">1j</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">4</span>)<span class="op">*</span>np.sin(np.pi<span class="op">/</span><span class="dv">8</span>)]])),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Arbitrary Superposition"</span>, random_qubit())</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, psi <span class="kw">in</span> test_states:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    display(psi)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    tm <span class="op">=</span> TransitionMatrix.from_qubit(psi)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    display_inline(tm)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    recovered <span class="op">=</span> tm.to_qubit()</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    display(recovered)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check fidelity (probability overlap)</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    fidelity <span class="op">=</span> np.<span class="bu">abs</span>(np.vdot(psi, recovered))<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">:25}</span><span class="ss"> -&gt; Fidelity: </span><span class="sc">{</span>fidelity<span class="sc">:.6f}</span><span class="ss">  </span><span class="sc">{</span><span class="st">'✓'</span> <span class="cf">if</span> np<span class="sc">.</span>isclose(fidelity, <span class="fl">1.0</span>) <span class="cf">else</span> <span class="st">'✗'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>psi <span class="op">=</span> random_qubit()</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> np.sqrt(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>np.array([[<span class="dv">1</span>,<span class="dv">1</span>], [<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>]])</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>psi2 <span class="op">=</span> psi <span class="op">@</span> h <span class="op">@</span> h</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>display(psi)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>display(psi2)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>proto <span class="op">=</span> TransitionMatrix.from_qubit(psi)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>proto2 <span class="op">=</span> proto <span class="op">@</span> hadamard_proto <span class="op">@</span> hadamard_proto</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>recovered <span class="op">=</span> proto2.to_qubit()</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>display(recovered)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="afb48f79" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="28ac9dcd" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <pre><code>array([[1.+0.j, 0.+0.j]])</code></pre>
@@ -887,17 +1306,17 @@ I_4 &amp; 0 \\
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>array([[-0.68465469-0.26443661j, -0.65701957-0.17218165j]])</code></pre>
+<pre><code>array([[-0.46771203-0.7625044j , -0.00239127-0.44701989j]])</code></pre>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><span class="math display">\[  \begin{array}{|cccccccc|}  \hline 0 &amp; 0.39 &amp; 0 &amp; 0.15 &amp; 0 &amp; 0.37 &amp; 0 &amp; 0.097 \\  \hline \end{array}  \]</span></p>
+<p><span class="math display">\[  \begin{array}{|cccccccc|}  \hline 0 &amp; 0.28 &amp; 0 &amp; 0.45 &amp; 0 &amp; 0.0014 &amp; 0 &amp; 0.27 \\  \hline \end{array}  \]</span></p>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>array([[-0.68465469-0.26443661j, -0.65701957-0.17218165j]])</code></pre>
+<pre><code>array([[-0.46771203-0.7625044j , -0.00239127-0.44701989j]])</code></pre>
 </div>
 </div>
 <div class="quarto-layout-row">
@@ -907,27 +1326,24 @@ I_4 &amp; 0 \\
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>array([[-0.66318834-0.43332276j, -0.13772178+0.59451268j]])</code></pre>
+<pre><code>array([[-0.61591043+0.7540743j , -0.12927645-0.18791991j]])</code></pre>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>array([[-0.66318834-0.43332276j, -0.13772178+0.59451268j]])</code></pre>
+<pre><code>array([[-0.61591043+0.7540743j , -0.12927645-0.18791991j]])</code></pre>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>array([[-0.66318834-0.43332276j, -0.13772178+0.59451268j]])</code></pre>
+<pre><code>array([[-0.61591043+0.7540743j , -0.12927645-0.18791991j]])</code></pre>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="fraction-de-rotation" class="level2">
-<h2 class="anchored" data-anchor-id="fraction-de-rotation">Fraction de rotation</h2>
-</section>
-<section id="rotations-arbitraires" class="level2">
-<h2 class="anchored" data-anchor-id="rotations-arbitraires">Rotations arbitraires</h2>
+<section id="fractions-of-rotation" class="level2">
+<h2 class="anchored" data-anchor-id="fractions-of-rotation">Fractions of Rotation</h2>
 <p><span class="math inline">\(R_x(\pi)\)</span></p>
 <p><span class="math inline">\(R_y(\pi)\)</span></p>
 <p><span class="math inline">\(R_z(\pi)\)</span></p>
@@ -936,6 +1352,20 @@ I_4 &amp; 0 \\
 <h2 class="anchored" data-anchor-id="phase">Phase</h2>
 <p><span class="math inline">\(Ph(\pi)\)</span></p>
 <p><span class="math inline">\(Ph(\frac{\pi}{2})\)</span></p>
+<hr>
+</section>
+<section id="measurement" class="level2">
+<h2 class="anchored" data-anchor-id="measurement">Measurement</h2>
+<p>At present, the most straightforward and pragmatic method to read out a continuous qubit encoded across a 3-protobit channel is <strong>statistical sampling</strong> (also known as quantum state tomography via shot repetition).</p>
+<p>Because our 3-protobit system defines a discrete probability distribution over 8 physical basis states (<span class="math inline">\(\mathbf{P} \in [0, 1]^8\)</span>), a single physical readout cannot reveal the full continuous wavefunction all at once. A single measurement simply collapses the three carbon bonds into one concrete binary triplet (e.g., observing <code>"100"</code> with probability <span class="math inline">\(p_4\)</span>).</p>
+<p>To reconstruct the continuous qubit:<br>
+1. <strong>Repeated Executions (Shots):</strong> The computational circuit is executed repeatedly under identical boundary conditions (e.g., <span class="math inline">\(N = 1000\)</span> or <span class="math inline">\(10\,000\)</span> shots), or read out simultaneously across an ensemble of identical, parallel molecules.<br>
+2. <strong>Frequency Histogram:</strong> We count the number of times each of the 8 configurations appears (<span class="math inline">\(N_0, N_1, \dots, N_7\)</span>).<br>
+3. <strong>Probability Estimation:</strong> Each protobit channel is estimated by its empirical frequency:<br>
+<span class="math display">\[p_k \approx \frac{N_k}{N}\]</span></p>
+<p>Once this 8-channel stochastic vector <span class="math inline">\(\mathbf{P} = \begin{bmatrix} p_0 &amp; p_1 &amp; \dots &amp; p_7 \end{bmatrix}\)</span> is reconstructed from the samples, it is fed directly into the algebraic decoder detailed below to restore the continuous Dirac state <span class="math inline">\(|\psi\rangle\)</span>.</p>
+<p>Admittedly, statistical sampling is computationally demanding—it inherits the standard <span class="math inline">\(\mathcal{O}(1/\sqrt{N})\)</span> shot-noise scaling of classical estimation.</p>
+<p>More direct, single-shot physical readout mechanisms remain an open and active frontier of ongoing research.</p>
 <hr>
 </section>
 <section id="reconstructing-a-continuous-qubit-from-the-3-protobit-state-vector" class="level2">
@@ -986,21 +1416,15 @@ I_4 &amp; 0 \\
 <hr>
 </section>
 </section>
-<section id="circuits-de-mesure" class="level2">
-<h2 class="anchored" data-anchor-id="circuits-de-mesure">Circuits de mesure</h2>
-<section id="échantillonage" class="level3">
-<h3 class="anchored" data-anchor-id="échantillonage">Échantillonage</h3>
+<section id="classical-examples" class="level2">
+<h2 class="anchored" data-anchor-id="classical-examples">Classical Examples</h2>
+<section id="quantum-phase-kickback." class="level3">
+<h3 class="anchored" data-anchor-id="quantum-phase-kickback.">Quantum phase kickback.</h3>
 </section>
-<section id="recuit-simulé" class="level3">
-<h3 class="anchored" data-anchor-id="recuit-simulé">Recuit Simulé</h3>
+<section id="quantum-fourier-transform." class="level3">
+<h3 class="anchored" data-anchor-id="quantum-fourier-transform.">Quantum Fourier transform.</h3>
 <hr>
 </section>
-</section>
-<section id="exemples-classiques" class="level2">
-<h2 class="anchored" data-anchor-id="exemples-classiques">Exemples classiques</h2>
-<p>Retour de phase quantique.</p>
-<p>Transformations de fourrier quantique.</p>
-<hr>
 </section>
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="../../images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
