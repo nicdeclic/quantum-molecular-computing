@@ -241,7 +241,7 @@ window.Quarto = {
 </blockquote>
 </div>
 <hr>
-<div id="ba2fdb5f" class="cell" data-execution_count="1">
+<div id="a918c1e5" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
@@ -272,29 +272,29 @@ window.Quarto = {
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Barred Eight"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>c2_1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c2_2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>c2_3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>c2_4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>c2_5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>c2_6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=-</span><span class="fl">1.0</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>b2_1 <span class="op">=</span> mol.add_bond(c2_1, c2_2, order<span class="op">=</span><span class="st">"single"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>b2_3 <span class="op">=</span> mol.add_bond(c2_2, c2_5, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"C"</span>, label_pos<span class="op">=</span>[<span class="fl">0.25</span>, <span class="fl">0.4</span>])</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>b2_4 <span class="op">=</span> mol.add_bond(c2_1, c2_3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>b2_5 <span class="op">=</span> mol.add_bond(c2_2, c2_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>b2_6 <span class="op">=</span> mol.add_bond(c2_3, c2_4, order<span class="op">=</span><span class="st">"single"</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>b2_7 <span class="op">=</span> mol.add_bond(c2_3, c2_5, order<span class="op">=</span><span class="st">"single"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>b2_8 <span class="op">=</span> mol.add_bond(c2_4, c2_6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>b2_9 <span class="op">=</span> mol.add_bond(c2_5, c2_6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c2, c5, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"C"</span>, label_pos<span class="op">=</span>[<span class="fl">0.25</span>, <span class="fl">0.4</span>])</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c2, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c3, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c3, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c4, c6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>all_resonances <span class="op">=</span> mol.resonance()</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="3bf8a218" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
+<div id="d36c4b5b" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -404,7 +404,7 @@ window.Quarto = {
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, res_mol <span class="kw">in</span> <span class="bu">enumerate</span>(all_resonances):</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    res_mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="d834e605" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
+<div id="e8834c24" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -427,19 +427,19 @@ window.Quarto = {
 </ul>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>square <span class="op">=</span> <span class="bu">open</span> <span class="op">@</span> (identity <span class="op">^</span> identity) <span class="op">@</span> close</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>square <span class="op">=</span> (<span class="bu">open</span> <span class="op">@</span> (identity <span class="op">^</span> identity) <span class="op">@</span> close).normalize()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"Square"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, <span class="st">"Open"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"(Identity"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Identity)"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Close"</span>, <span class="st">"="</span>, square)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Square"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"Open"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"(Identity"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Identity)"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Close"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, square)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="cf38cd79" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div id="35767bba" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><span class="math display">\[ \Big\{ Square \Big\} = Open \cdot (Identity \otimes Identity) \cdot Close =  \begin{array}{|c|}  \hline 1 \\  \hline \end{array}  \]</span></p>
+<p><span class="math display">\[ Square = \Big\{ Open \cdot (Identity \otimes Identity) \cdot Close \Big\} =  \begin{array}{|c|}  \hline 1 \\  \hline \end{array}  \]</span></p>
 </div>
 </div>
 </div>
 <ul>
-<li><strong>Verdict:</strong> Zero exception. The molecule is stable and neutral.</li>
+<li><strong>Verdict:</strong> No exception. The molecule is stable and neutral.</li>
 </ul>
 </section>
 <section id="the-triangular-ring-3-carbons" class="level4">
@@ -462,9 +462,9 @@ window.Quarto = {
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>mol.draw() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="9eee8b92" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="2">
+<div id="e001d5f4" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/cell-6-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
@@ -480,26 +480,268 @@ window.Quarto = {
 </ul>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>triangular <span class="op">=</span> <span class="bu">open</span> <span class="op">@</span> (identity <span class="op">^</span> identity) <span class="op">@</span> terminate</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>triangular <span class="op">=</span> (<span class="bu">open</span> <span class="op">@</span> (identity <span class="op">^</span> identity) <span class="op">@</span> terminate).normalize()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"Triangular"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, <span class="st">"Open"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"(Identity"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Identity)"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Terminate"</span>, <span class="st">"="</span>, triangular)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="st">"Triangular"</span>, <span class="st">"="</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{</span><span class="vs">"</span>, <span class="st">"Open"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"(Identity"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">otimes"</span>, <span class="st">"Identity)"</span>, <span class="vs">r"</span><span class="er">\</span><span class="vs">cdot"</span>, <span class="st">"Terminate"</span>, <span class="vs">r"</span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}</span><span class="vs">"</span>, <span class="st">"="</span>, triangular)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="a39338c5" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="6854e0a3" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><span class="math display">\[ \Big\{ Triangular \Big\} = Open \cdot (Identity \otimes Identity) \cdot Terminate =  \begin{array}{|c|}  \hline 0 \\  \hline \end{array}  \]</span></p>
+<p><span class="math display">\[ Triangular = \Big\{ Open \cdot (Identity \otimes Identity) \cdot Terminate \Big\} =  \begin{array}{|c|}  \hline 0 \\  \hline \end{array}  \]</span></p>
 </div>
 </div>
 </div>
 <ul>
 <li><strong>Verdict: Quantum Exception!</strong> The neutral molecule cannot exist. It is forced to become an ion (such as the cyclopropenyl cation <span class="math inline">\(C_3H_3^+\)</span>) or a radical.</li>
 </ul>
+<hr>
+</section>
+</section>
+<section id="testing-the-barred-eight-and-gate" class="level3">
+<h3 class="anchored" data-anchor-id="testing-the-barred-eight-and-gate">Testing the “Barred Eight” (AND Gate)</h3>
+<p>Let us now apply the scalar matrix contraction to the earlier AND gate structure: the <strong>Barred Eight</strong>.</p>
+<section id="case-1-floating-boundary-conditions" class="level4">
+<h4 class="anchored" data-anchor-id="case-1-floating-boundary-conditions">Case 1: Floating Boundary Conditions</h4>
+<p>First, we evaluate the circuit with all boundary terminals left floating (free to resonate):</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Barred Eight"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="fl">1.0</span>, label<span class="op">=</span><span class="st">"1"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="fl">1.0</span>, label<span class="op">=</span><span class="st">"2"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="dv">0</span>, label<span class="op">=</span><span class="st">"3"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=</span><span class="dv">0</span>, label<span class="op">=</span><span class="st">"4"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.7</span>, y<span class="op">=-</span><span class="fl">1.0</span>, label<span class="op">=</span><span class="st">"5"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.7</span>, y<span class="op">=-</span><span class="fl">1.0</span>, label<span class="op">=</span><span class="st">"6"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c2, c5, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"C"</span>, label_pos<span class="op">=</span>[<span class="fl">0.25</span>, <span class="fl">0.4</span>])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"A"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c2, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c3, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c3, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c4, c6, order<span class="op">=</span><span class="st">"single"</span>, label<span class="op">=</span><span class="st">"B"</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>mol.draw(scale<span class="op">=</span><span class="fl">1.5</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="68e70e65" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-8-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="255"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Cascading the internal transition operators algebraically yields:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="barred-eight-serial.png" class="quarto-figure quarto-figure-center figure-img" height="300"></p>
+</figure>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>and_floating <span class="op">=</span> ((<span class="bu">open</span> <span class="op">^</span> <span class="bu">open</span>) <span class="op">@</span> (negate <span class="op">^</span> fork <span class="op">^</span> fork <span class="op">^</span> negate) <span class="op">@</span> (identity <span class="op">^</span> fork <span class="op">^</span> close <span class="op">^</span> fork <span class="op">^</span> identity) <span class="op">@</span> (identity <span class="op">^</span> identity <span class="op">^</span> close <span class="op">^</span> swap) <span class="op">@</span> (identity <span class="op">^</span> close <span class="op">^</span> identity) <span class="op">@</span> (close)).normalize()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>matrix_tex <span class="op">=</span> and_floating.to_katex().data.strip(<span class="st">"$ "</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>multiline_eq <span class="op">=</span> <span class="vs">rf"""</span><span class="dv">\b</span><span class="vs">egin</span><span class="ch">{{</span><span class="vs">aligned</span><span class="ch">}}</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ch">\t</span><span class="vs">ext</span><span class="ch">{{</span><span class="vs">And</span><span class="ch">}}</span><span class="vs">_</span><span class="ch">{{\t</span><span class="vs">ext</span><span class="ch">{{</span><span class="vs">floating</span><span class="ch">}}}}</span><span class="vs"> &amp;= </span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{{</span><span class="vs"> </span><span class="kw">(</span><span class="vs">Open </span><span class="er">\</span><span class="vs">otimes Open</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Negate </span><span class="er">\</span><span class="vs">otimes Fork </span><span class="er">\</span><span class="vs">otimes Fork </span><span class="er">\</span><span class="vs">otimes Negate</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Identity </span><span class="er">\</span><span class="vs">otimes Fork </span><span class="er">\</span><span class="vs">otimes Close </span><span class="er">\</span><span class="vs">otimes Fork </span><span class="er">\</span><span class="vs">otimes Identity</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Identity </span><span class="er">\</span><span class="vs">otimes Identity </span><span class="er">\</span><span class="vs">otimes Close </span><span class="er">\</span><span class="vs">otimes Swap</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Identity </span><span class="er">\</span><span class="vs">otimes Close </span><span class="er">\</span><span class="vs">otimes Identity</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Close</span><span class="kw">)</span><span class="vs"> </span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}}</span><span class="vs"> = </span><span class="sc">{</span>matrix_tex<span class="sc">}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="er">\</span><span class="vs">end</span><span class="ch">{{</span><span class="vs">aligned</span><span class="ch">}}</span><span class="vs">"""</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>display(Latex(<span class="ss">f"$$</span><span class="sc">{</span>multiline_eq<span class="sc">}</span><span class="ss">$$"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="abcc4166" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{aligned}
+\text{And}_{\text{floating}} &amp;= \Big\{ (Open \otimes Open) \cdot \\
+&amp;\quad (Negate \otimes Fork \otimes Fork \otimes Negate) \cdot \\
+&amp;\quad (Identity \otimes Fork \otimes Close \otimes Fork \otimes Identity) \cdot \\
+&amp;\quad (Identity \otimes Identity \otimes Close \otimes Swap) \cdot \\
+&amp;\quad (Identity \otimes Close \otimes Identity) \cdot \\
+&amp;\quad (Close) \Big\} = \begin{array}{|c|}  \hline 1 \\  \hline \end{array}
+\end{aligned}\]</span></p>
+</div>
+</div>
+</div>
+<p>The normalized contraction evaluates strictly to <strong><span class="math inline">\([1]\)</span></strong>.</p>
+<ul>
+<li><strong>Verdict:</strong> Zero exception. The Barred Eight possesses valid, neutral resonance states and can exist stably without spontaneous ionization.</li>
+</ul>
+</section>
+<section id="case-2-imposing-an-impossible-condition-clamped-inputsoutputs" class="level4">
+<h4 class="anchored" data-anchor-id="case-2-imposing-an-impossible-condition-clamped-inputsoutputs">Case 2: Imposing an Impossible Condition (Clamped Inputs/Outputs)</h4>
+<p>Now, let us deliberately force a logical contradiction upon the hardware:<br>
+* Clamping input <span class="math inline">\(A\)</span> to state <strong>“0”</strong> (via <span class="math inline">\(Open_{zero}\)</span>),<br>
+* While simultaneously forcing the output <span class="math inline">\(C\)</span> to state <strong>“1”</strong> (via <span class="math inline">\(Close_{one}\)</span>).</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>open_zero <span class="op">=</span> (zero_out <span class="op">^</span> zero_out)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>close_one <span class="op">=</span> (one_in <span class="op">^</span> one_in)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"Open_{zero} = </span><span class="kw">(</span><span class="vs">Zero_{out} </span><span class="er">\</span><span class="vs">otimes Zero_{out}</span><span class="kw">)</span><span class="vs">"</span>, <span class="st">"="</span>, open_zero.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>display_inline(<span class="vs">r"Close_{one} = </span><span class="kw">(</span><span class="vs">One_{in} </span><span class="er">\</span><span class="vs">otimes One_{in}</span><span class="kw">)</span><span class="vs">"</span>, <span class="st">"="</span>, close_one.to_katex(show_labels<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>and_clamped <span class="op">=</span> ((open_zero <span class="op">^</span> <span class="bu">open</span>) <span class="op">@</span> (negate <span class="op">^</span> fork <span class="op">^</span> fork <span class="op">^</span> negate) <span class="op">@</span> (identity <span class="op">^</span> fork <span class="op">^</span> close <span class="op">^</span> fork <span class="op">^</span> identity) <span class="op">@</span> (identity <span class="op">^</span> identity <span class="op">^</span> close_one <span class="op">^</span> swap) <span class="op">@</span> (identity <span class="op">^</span> close <span class="op">^</span> identity) <span class="op">@</span> (close)).normalize()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>matrix_tex <span class="op">=</span> and_clamped.to_katex().data.strip(<span class="st">"$ "</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>multiline_eq <span class="op">=</span> <span class="vs">rf"""</span><span class="dv">\b</span><span class="vs">egin</span><span class="ch">{{</span><span class="vs">aligned</span><span class="ch">}}</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="ch">\t</span><span class="vs">ext</span><span class="ch">{{</span><span class="vs">And</span><span class="ch">}}</span><span class="vs">_</span><span class="ch">{{\t</span><span class="vs">ext</span><span class="ch">{{</span><span class="vs">clamped</span><span class="ch">}}}}</span><span class="vs"> &amp;= </span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{{</span><span class="vs"> </span><span class="kw">(</span><span class="vs">Open_</span><span class="ch">{{</span><span class="vs">zero</span><span class="ch">}}</span><span class="vs"> </span><span class="er">\</span><span class="vs">otimes Open</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Negate </span><span class="er">\</span><span class="vs">otimes Fork </span><span class="er">\</span><span class="vs">otimes Fork </span><span class="er">\</span><span class="vs">otimes Negate</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Identity </span><span class="er">\</span><span class="vs">otimes Fork </span><span class="er">\</span><span class="vs">otimes Close </span><span class="er">\</span><span class="vs">otimes Fork </span><span class="er">\</span><span class="vs">otimes Identity</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Identity </span><span class="er">\</span><span class="vs">otimes Identity </span><span class="er">\</span><span class="vs">otimes Close_</span><span class="ch">{{</span><span class="vs">one</span><span class="ch">}}</span><span class="vs"> </span><span class="er">\</span><span class="vs">otimes Swap</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Identity </span><span class="er">\</span><span class="vs">otimes Close </span><span class="er">\</span><span class="vs">otimes Identity</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Close</span><span class="kw">)</span><span class="vs"> </span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}}</span><span class="vs"> = </span><span class="sc">{</span>matrix_tex<span class="sc">}</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="er">\</span><span class="vs">end</span><span class="ch">{{</span><span class="vs">aligned</span><span class="ch">}}</span><span class="vs">"""</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>display(Latex(<span class="ss">f"$$</span><span class="sc">{</span>multiline_eq<span class="sc">}</span><span class="ss">$$"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="f8033916" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ Open_{zero} = (Zero_{out} \otimes Zero_{out}) =  \begin{array}{r|cccc|} \text{} &amp; \text{``00''} &amp; \text{``01''} &amp; \text{``10''} &amp; \text{``11''} \\  \hline ~ &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[ Close_{one} = (One_{in} \otimes One_{in}) =  \begin{array}{r|c|} \text{} &amp; ~ \\  \hline \text{``00''} &amp; 0 \\ \text{``01''} &amp; 0 \\ \text{``10''} &amp; 0 \\ \text{``11''} &amp; 1 \\  \hline \end{array}  \]</span></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{aligned}
+\text{And}_{\text{clamped}} &amp;= \Big\{ (Open_{zero} \otimes Open) \cdot \\
+&amp;\quad (Negate \otimes Fork \otimes Fork \otimes Negate) \cdot \\
+&amp;\quad (Identity \otimes Fork \otimes Close \otimes Fork \otimes Identity) \cdot \\
+&amp;\quad (Identity \otimes Identity \otimes Close_{one} \otimes Swap) \cdot \\
+&amp;\quad (Identity \otimes Close \otimes Identity) \cdot \\
+&amp;\quad (Close) \Big\} = \begin{array}{|c|}  \hline 0 \\  \hline \end{array}
+\end{aligned}\]</span></p>
+</div>
+</div>
+</div>
+<p>As theoretically predicted, the contracted scalar collapses strictly to <strong><span class="math inline">\([0]\)</span></strong>.<br>
+* <strong>Verdict: Quantum Exception!</strong> The circuit rejects the impossible input/output combination. The molecule cannot satisfy these boundary conditions without forcing an ionized defect.</p>
+<hr>
+</section>
+</section>
+<section id="a-more-complex-molecule" class="level3">
+<h3 class="anchored" data-anchor-id="a-more-complex-molecule">A More Complex Molecule</h3>
+<p>Finally, let us scale up the complexity and test a polycyclic hydrocarbon composed of three fused benzene-like rings: the <strong>Triple Honeycomb</strong>.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a conjugated carbon molecule</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mol <span class="op">=</span> CarbonMolecule(<span class="st">"Triple Honeycomb"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add atoms</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"1"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"2"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"3"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>c4 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"4"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>c5 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">0</span>, label<span class="op">=</span><span class="st">"6"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>c6 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=</span><span class="dv">0</span>, label<span class="op">=</span><span class="st">"7"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>c7 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"9"</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>c8 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=-</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"10"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>c9 <span class="op">=</span> mol.add_atom(x<span class="op">=-</span><span class="fl">0.25</span>, y<span class="op">=-</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"12"</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>c10 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">0.25</span>, y<span class="op">=-</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"13"</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>c11 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"5"</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>c12 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="fl">1.25</span>, y<span class="op">=</span><span class="dv">0</span>, label<span class="op">=</span><span class="st">"8"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>c13 <span class="op">=</span> mol.add_atom(x<span class="op">=</span><span class="dv">1</span>, y<span class="op">=-</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"11"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Add bonds</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> mol.add_bond(c1, c2, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> mol.add_bond(c2, c4, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>b3 <span class="op">=</span> mol.add_bond(c1, c3, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>b4 <span class="op">=</span> mol.add_bond(c3, c5, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>b5 <span class="op">=</span> mol.add_bond(c4, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>b6 <span class="op">=</span> mol.add_bond(c5, c6, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>b7 <span class="op">=</span> mol.add_bond(c5, c7, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>b8 <span class="op">=</span> mol.add_bond(c6, c8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>b9 <span class="op">=</span> mol.add_bond(c7, c9, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>b10 <span class="op">=</span> mol.add_bond(c8, c10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>b11 <span class="op">=</span> mol.add_bond(c9, c10, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>b12 <span class="op">=</span> mol.add_bond(c4, c11, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>b13 <span class="op">=</span> mol.add_bond(c11, c12, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>b14 <span class="op">=</span> mol.add_bond(c12, c13, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>b15 <span class="op">=</span> mol.add_bond(c13, c8, order<span class="op">=</span><span class="st">"single"</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw with Schemdraw</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>mol.draw(scale<span class="op">=</span><span class="fl">1.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="e64e0dd9" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-11-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="306"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Let us verify what our matrix calculus predicts when evaluating its closed transition network:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="triple-honeycomb-serial.png" class="quarto-figure quarto-figure-center figure-img" height="300"></p>
+</figure>
+</div>
+<p>It is possible to simplify the equation a little since <span class="math inline">\(M_2 \cdot M_3\)</span> cancel out.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>triple_honeycomb <span class="op">=</span> ((<span class="bu">open</span><span class="op">**</span><span class="dv">2</span>) <span class="op">@</span> (negate <span class="op">^</span> merge <span class="op">^</span> negate) <span class="op">@</span> (fork<span class="op">**</span><span class="dv">3</span>) <span class="op">@</span> (negate <span class="op">^</span> close<span class="op">**</span><span class="dv">2</span> <span class="op">^</span> negate) <span class="op">@</span> (terminate)).normalize()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>matrix_tex <span class="op">=</span> triple_honeycomb.to_katex().data.strip(<span class="st">"$ "</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>multiline_eq <span class="op">=</span> <span class="vs">rf"""</span><span class="dv">\b</span><span class="vs">egin</span><span class="ch">{{</span><span class="vs">aligned</span><span class="ch">}}</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ch">\t</span><span class="vs">ext</span><span class="ch">{{</span><span class="vs">TripleHoneycomb</span><span class="ch">}}</span><span class="vs"> &amp;= </span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\{{</span><span class="vs"> </span><span class="kw">(</span><span class="vs">Open</span><span class="dv">^</span><span class="ch">{{</span><span class="er">\</span><span class="vs">otimes 2</span><span class="ch">}}</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Negate </span><span class="er">\</span><span class="vs">otimes Merge </span><span class="er">\</span><span class="vs">otimes Negate</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Fork</span><span class="dv">^</span><span class="ch">{{</span><span class="er">\</span><span class="vs">otimes 3</span><span class="ch">}}</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Negate </span><span class="er">\</span><span class="vs">otimes Close</span><span class="dv">^</span><span class="ch">{{</span><span class="er">\</span><span class="vs">otimes 2</span><span class="ch">}}</span><span class="vs"> </span><span class="er">\</span><span class="vs">otimes Negate</span><span class="kw">)</span><span class="vs"> </span><span class="er">\</span><span class="vs">cdot </span><span class="ch">\\</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="vs">&amp;</span><span class="er">\</span><span class="vs">quad </span><span class="kw">(</span><span class="vs">Terminate</span><span class="kw">)</span><span class="vs"> </span><span class="dv">\B</span><span class="vs">ig</span><span class="ch">\}}</span><span class="vs"> = </span><span class="sc">{</span>matrix_tex<span class="sc">}</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="er">\</span><span class="vs">end</span><span class="ch">{{</span><span class="vs">aligned</span><span class="ch">}}</span><span class="vs">"""</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>display(Latex(<span class="ss">f"$$</span><span class="sc">{</span>multiline_eq<span class="sc">}</span><span class="ss">$$"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="66743354" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><span class="math display">\[\begin{aligned}
+\text{TripleHoneycomb} &amp;= \Big\{ (Open^{\otimes 2}) \cdot \\
+&amp;\quad (Negate \otimes Merge \otimes Negate) \cdot \\
+&amp;\quad (Fork^{\otimes 3}) \cdot \\
+&amp;\quad (Negate \otimes Close^{\otimes 2} \otimes Negate) \cdot \\
+&amp;\quad (Terminate) \Big\} = \begin{array}{|c|}  \hline 0 \\  \hline \end{array}
+\end{aligned}\]</span></p>
+</div>
+</div>
+</div>
+<p>The contraction evaluates strictly to <strong><span class="math inline">\([0]\)</span></strong>.</p>
+<p>In organic chemistry, this 13-carbon framework is known as <strong>Phenalene</strong> (<span class="math inline">\(C_{13}H_9\)</span>).</p>
+<p>Because it contains an odd number of <span class="math inline">\(sp^2\)</span> carbon atoms (13 vertices), standard valence theory dictates that it cannot accommodate a closed, non-radical Kekulé resonance structure.</p>
+<p>The algebraic framework correctly identifies that <strong>Phenalene is inherently an open-shell system—an intrinsic Quantum Exception.</strong> In nature, this molecule cannot exist in a closed-shell neutral form; it spontaneously stabilizes as a <strong>free radical</strong> or an <strong>ion</strong> (the phenalenyl cation <span class="math inline">\(C_{13}H_9^+\)</span> or anion <span class="math inline">\(C_{13}H_9^-\)</span>).</p>
+<p>The matrix algebra reproduces the empirical reality of physical chemistry with absolute precision.</p>
+<hr>
+</section>
+</section>
+<section id="the-exponential-bottleneck-of-classical-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="the-exponential-bottleneck-of-classical-simulation">The Exponential Bottleneck of Classical Simulation</h2>
 <p>Of course, evaluating this matrix contraction is not magically free.</p>
 <p>As the molecular graph expands, computing the global transition matrix algebraically requires manipulating matrix dimensions that scale exponentially. For large and sprawling molecular networks, this classical matrix algebra rapidly becomes computationally demanding.</p>
 <p>Nevertheless, at the conceptual and formal level, the algebraic criterion remains absolute: if the normalized scalar evaluates to <span class="math inline">\([0]\)</span>, nature raises an unhandled quantum exception—the problem remains physically unresolved unless an external charge is introduced.</p>
 <hr>
-</section>
-</section>
 </section>
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="../../images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>

@@ -55,22 +55,22 @@ Take any logic gate in its molecular form—for instance, an AND gate implemente
 mol = CarbonMolecule("Barred Eight")
 
 # Add atoms
-c2_1 = mol.add_atom(x=-0.7, y=1.0)
-c2_2 = mol.add_atom(x=0.7, y=1.0)
-c2_3 = mol.add_atom(x=-0.7, y=0)
-c2_4 = mol.add_atom(x=0.7, y=0)
-c2_5 = mol.add_atom(x=-0.7, y=-1.0)
-c2_6 = mol.add_atom(x=0.7, y=-1.0)
+c1 = mol.add_atom(x=-0.7, y=1.0)
+c2 = mol.add_atom(x=0.7, y=1.0)
+c3 = mol.add_atom(x=-0.7, y=0)
+c4 = mol.add_atom(x=0.7, y=0)
+c5 = mol.add_atom(x=-0.7, y=-1.0)
+c6 = mol.add_atom(x=0.7, y=-1.0)
 
 # Add bonds
-b2_1 = mol.add_bond(c2_1, c2_2, order="single")
-b2_3 = mol.add_bond(c2_2, c2_5, order="single", label="C", label_pos=[0.25, 0.4])
-b2_4 = mol.add_bond(c2_1, c2_3, order="single", label="A")
-b2_5 = mol.add_bond(c2_2, c2_4, order="single")
-b2_6 = mol.add_bond(c2_3, c2_4, order="single")
-b2_7 = mol.add_bond(c2_3, c2_5, order="single")
-b2_8 = mol.add_bond(c2_4, c2_6, order="single", label="B")
-b2_9 = mol.add_bond(c2_5, c2_6, order="single")
+b1 = mol.add_bond(c1, c2, order="single")
+b3 = mol.add_bond(c2, c5, order="single", label="C", label_pos=[0.25, 0.4])
+b4 = mol.add_bond(c1, c3, order="single", label="A")
+b5 = mol.add_bond(c2, c4, order="single")
+b6 = mol.add_bond(c3, c4, order="single")
+b7 = mol.add_bond(c3, c5, order="single")
+b8 = mol.add_bond(c4, c6, order="single", label="B")
+b9 = mol.add_bond(c5, c6, order="single")
 
 all_resonances = mol.resonance()
 
@@ -182,20 +182,20 @@ for i, res_mol in enumerate(all_resonances):
 #| fig-align: center
 #| layout-ncol: 1
 
-square = open @ (identity ^ identity) @ close
+square = (open @ (identity ^ identity) @ close).normalize()
 
-display_inline(r"\Big\{", "Square", r"\Big\}", "=", "Open", r"\cdot", "(Identity", r"\otimes", "Identity)", r"\cdot", "Close", "=", square)
+display_inline("Square", "=", r"\Big\{", "Open", r"\cdot", "(Identity", r"\otimes", "Identity)", r"\cdot", "Close", r"\Big\}", "=", square)
 
 ```
 
-* **Verdict:** Zero exception. The molecule is stable and neutral.  
+* **Verdict:** No exception. The molecule is stable and neutral.  
 
 #### 2. The Triangular Ring (3 Carbons):  
 A 3-carbon loop possesses an odd number of vertices:  
 ```{python}
 #| code-fold: true
 #| fig-align: center
-#| layout-ncol: 2
+#| layout-ncol: 1
 
 # Create a conjugated carbon molecule
 mol = CarbonMolecule("Triangular")
@@ -220,12 +220,209 @@ mol.draw()
 #| fig-align: center
 #| layout-ncol: 1
 
-triangular = open @ (identity ^ identity) @ terminate
+triangular = (open @ (identity ^ identity) @ terminate).normalize()
 
-display_inline(r"\Big\{", "Triangular", r"\Big\}", "=", "Open", r"\cdot", "(Identity", r"\otimes", "Identity)", r"\cdot", "Terminate", "=", triangular)
+display_inline("Triangular", "=", r"\Big\{", "Open", r"\cdot", "(Identity", r"\otimes", "Identity)", r"\cdot", "Terminate", r"\Big\}", "=", triangular)
 
 ```
 * **Verdict: Quantum Exception!** The neutral molecule cannot exist. It is forced to become an ion (such as the cyclopropenyl cation $C_3H_3^+$) or a radical.  
+
+---
+
+### Testing the "Barred Eight" (AND Gate)
+
+Let us now apply the scalar matrix contraction to the earlier AND gate structure: the **Barred Eight**.  
+
+#### Case 1: Floating Boundary Conditions
+First, we evaluate the circuit with all boundary terminals left floating (free to resonate):   
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+# Create a conjugated carbon molecule
+mol = CarbonMolecule("Barred Eight")
+
+# Add atoms
+c1 = mol.add_atom(x=-0.7, y=1.0, label="1")
+c2 = mol.add_atom(x=0.7, y=1.0, label="2")
+c3 = mol.add_atom(x=-0.7, y=0, label="3")
+c4 = mol.add_atom(x=0.7, y=0, label="4")
+c5 = mol.add_atom(x=-0.7, y=-1.0, label="5")
+c6 = mol.add_atom(x=0.7, y=-1.0, label="6")
+
+# Add bonds
+b1 = mol.add_bond(c1, c2, order="single")
+b3 = mol.add_bond(c2, c5, order="single", label="C", label_pos=[0.25, 0.4])
+b4 = mol.add_bond(c1, c3, order="single", label="A")
+b5 = mol.add_bond(c2, c4, order="single")
+b6 = mol.add_bond(c3, c4, order="single")
+b7 = mol.add_bond(c3, c5, order="single")
+b8 = mol.add_bond(c4, c6, order="single", label="B")
+b9 = mol.add_bond(c5, c6, order="single")
+
+mol.draw(scale=1.5) 
+
+```
+
+Cascading the internal transition operators algebraically yields:  
+
+![](barred-eight-serial.png){height="300px" fig-align="center"}
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+and_floating = ((open ^ open) @ (negate ^ fork ^ fork ^ negate) @ (identity ^ fork ^ close ^ fork ^ identity) @ (identity ^ identity ^ close ^ swap) @ (identity ^ close ^ identity) @ (close)).normalize()
+
+matrix_tex = and_floating.to_katex().data.strip("$ ")
+
+multiline_eq = rf"""\begin{{aligned}}
+\text{{And}}_{{\text{{floating}}}} &= \Big\{{ (Open \otimes Open) \cdot \\
+&\quad (Negate \otimes Fork \otimes Fork \otimes Negate) \cdot \\
+&\quad (Identity \otimes Fork \otimes Close \otimes Fork \otimes Identity) \cdot \\
+&\quad (Identity \otimes Identity \otimes Close \otimes Swap) \cdot \\
+&\quad (Identity \otimes Close \otimes Identity) \cdot \\
+&\quad (Close) \Big\}} = {matrix_tex}
+\end{{aligned}}"""
+
+display(Latex(f"$${multiline_eq}$$"))
+
+```
+
+The normalized contraction evaluates strictly to **$[1]$**.  
+
+* **Verdict:** Zero exception. The Barred Eight possesses valid, neutral resonance states and can exist stably without spontaneous ionization.  
+
+#### Case 2: Imposing an Impossible Condition (Clamped Inputs/Outputs)  
+Now, let us deliberately force a logical contradiction upon the hardware:  
+* Clamping input $A$ to state **"0"** (via $Open_{zero}$),  
+* While simultaneously forcing the output $C$ to state **"1"** (via $Close_{one}$).  
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+open_zero = (zero_out ^ zero_out)
+close_one = (one_in ^ one_in)
+
+display_inline(r"Open_{zero} = (Zero_{out} \otimes Zero_{out})", "=", open_zero.to_katex(show_labels=True))
+display_inline(r"Close_{one} = (One_{in} \otimes One_{in})", "=", close_one.to_katex(show_labels=True))
+
+and_clamped = ((open_zero ^ open) @ (negate ^ fork ^ fork ^ negate) @ (identity ^ fork ^ close ^ fork ^ identity) @ (identity ^ identity ^ close_one ^ swap) @ (identity ^ close ^ identity) @ (close)).normalize()
+
+matrix_tex = and_clamped.to_katex().data.strip("$ ")
+
+multiline_eq = rf"""\begin{{aligned}}
+\text{{And}}_{{\text{{clamped}}}} &= \Big\{{ (Open_{{zero}} \otimes Open) \cdot \\
+&\quad (Negate \otimes Fork \otimes Fork \otimes Negate) \cdot \\
+&\quad (Identity \otimes Fork \otimes Close \otimes Fork \otimes Identity) \cdot \\
+&\quad (Identity \otimes Identity \otimes Close_{{one}} \otimes Swap) \cdot \\
+&\quad (Identity \otimes Close \otimes Identity) \cdot \\
+&\quad (Close) \Big\}} = {matrix_tex}
+\end{{aligned}}"""
+
+display(Latex(f"$${multiline_eq}$$"))
+
+```
+
+As theoretically predicted, the contracted scalar collapses strictly to **$[0]$**.  
+* **Verdict: Quantum Exception!** The circuit rejects the impossible input/output combination. The molecule cannot satisfy these boundary conditions without forcing an ionized defect.  
+
+---
+
+### A More Complex Molecule
+
+Finally, let us scale up the complexity and test a polycyclic hydrocarbon composed of three fused benzene-like rings: the **Triple Honeycomb**.  
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+# Create a conjugated carbon molecule
+mol = CarbonMolecule("Triple Honeycomb")
+
+# Add atoms
+c1 = mol.add_atom(x=-0.25, y=1, label="1")
+c2 = mol.add_atom(x=0.25, y=1, label="2")
+c3 = mol.add_atom(x=-0.5, y=0.5, label="3")
+c4 = mol.add_atom(x=0.5, y=0.5, label="4")
+c5 = mol.add_atom(x=-0.25, y=0, label="6")
+c6 = mol.add_atom(x=0.25, y=0, label="7")
+c7 = mol.add_atom(x=-0.5, y=-0.5, label="9")
+c8 = mol.add_atom(x=0.5, y=-0.5, label="10")
+c9 = mol.add_atom(x=-0.25, y=-1, label="12")
+c10 = mol.add_atom(x=0.25, y=-1, label="13")
+c11 = mol.add_atom(x=1, y=0.5, label="5")
+c12 = mol.add_atom(x=1.25, y=0, label="8")
+c13 = mol.add_atom(x=1, y=-0.5, label="11")
+
+# Add bonds
+b1 = mol.add_bond(c1, c2, order="single")
+b2 = mol.add_bond(c2, c4, order="single")
+b3 = mol.add_bond(c1, c3, order="single")
+b4 = mol.add_bond(c3, c5, order="single")
+b5 = mol.add_bond(c4, c6, order="single")
+b6 = mol.add_bond(c5, c6, order="single")
+b7 = mol.add_bond(c5, c7, order="single")
+b8 = mol.add_bond(c6, c8, order="single")
+b9 = mol.add_bond(c7, c9, order="single")
+b10 = mol.add_bond(c8, c10, order="single")
+b11 = mol.add_bond(c9, c10, order="single")
+b12 = mol.add_bond(c4, c11, order="single")
+b13 = mol.add_bond(c11, c12, order="single")
+b14 = mol.add_bond(c12, c13, order="single")
+b15 = mol.add_bond(c13, c8, order="single")
+
+# Draw with Schemdraw
+mol.draw(scale=1.5)
+
+```
+
+Let us verify what our matrix calculus predicts when evaluating its closed transition network:  
+
+![](triple-honeycomb-serial.png){height="300px" fig-align="center"}  
+
+It is possible to simplify the equation a little since $M_2 \cdot M_3$ cancel out.
+
+```{python}
+#| code-fold: true
+#| fig-align: center
+#| layout-ncol: 1
+
+triple_honeycomb = ((open**2) @ (negate ^ merge ^ negate) @ (fork**3) @ (negate ^ close**2 ^ negate) @ (terminate)).normalize()
+
+matrix_tex = triple_honeycomb.to_katex().data.strip("$ ")
+
+multiline_eq = rf"""\begin{{aligned}}
+\text{{TripleHoneycomb}} &= \Big\{{ (Open^{{\otimes 2}}) \cdot \\
+&\quad (Negate \otimes Merge \otimes Negate) \cdot \\
+&\quad (Fork^{{\otimes 3}}) \cdot \\
+&\quad (Negate \otimes Close^{{\otimes 2}} \otimes Negate) \cdot \\
+&\quad (Terminate) \Big\}} = {matrix_tex}
+\end{{aligned}}"""
+
+display(Latex(f"$${multiline_eq}$$"))
+
+```
+
+The contraction evaluates strictly to **$[0]$**.  
+
+In organic chemistry, this 13-carbon framework is known as **Phenalene** ($C_{13}H_9$).  
+
+Because it contains an odd number of $sp^2$ carbon atoms (13 vertices), standard valence theory dictates that it cannot accommodate a closed, non-radical Kekulé resonance structure.  
+
+The algebraic framework correctly identifies that **Phenalene is inherently an open-shell system—an intrinsic Quantum Exception.** In nature, this molecule cannot exist in a closed-shell neutral form; it spontaneously stabilizes as a **free radical** or an **ion** (the phenalenyl cation $C_{13}H_9^+$ or anion $C_{13}H_9^-$).  
+
+The matrix algebra reproduces the empirical reality of physical chemistry with absolute precision.  
+
+---
+
+## The Exponential Bottleneck of Classical Simulation
 
 Of course, evaluating this matrix contraction is not magically free.   
 
