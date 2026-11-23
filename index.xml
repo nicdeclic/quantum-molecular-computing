@@ -168,7 +168,7 @@ font-style: inherit;">2</span></span></code></pre></div></div>
 </blockquote>
 </div>
 <hr>
-<div id="ba2fdb5f" class="cell" data-execution_count="1">
+<div id="a918c1e5" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to see library imports</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
@@ -285,7 +285,7 @@ font-style: inherit;">"Barred Eight"</span>)</span>
 <span id="cb2-4"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Add atoms</span></span>
-<span id="cb2-5">c2_1 <span class="op" style="color: #5E5E5E;
+<span id="cb2-5">c1 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -296,7 +296,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.0</span>)</span>
-<span id="cb2-6">c2_2 <span class="op" style="color: #5E5E5E;
+<span id="cb2-6">c2 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -307,7 +307,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.0</span>)</span>
-<span id="cb2-7">c2_3 <span class="op" style="color: #5E5E5E;
+<span id="cb2-7">c3 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -318,7 +318,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>)</span>
-<span id="cb2-8">c2_4 <span class="op" style="color: #5E5E5E;
+<span id="cb2-8">c4 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -329,7 +329,7 @@ background-color: null;
 font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>)</span>
-<span id="cb2-9">c2_5 <span class="op" style="color: #5E5E5E;
+<span id="cb2-9">c5 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -340,7 +340,7 @@ background-color: null;
 font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.0</span>)</span>
-<span id="cb2-10">c2_6 <span class="op" style="color: #5E5E5E;
+<span id="cb2-10">c6 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -355,16 +355,16 @@ font-style: inherit;">1.0</span>)</span>
 <span id="cb2-12"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Add bonds</span></span>
-<span id="cb2-13">b2_1 <span class="op" style="color: #5E5E5E;
+<span id="cb2-13">b1 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_1, c2_2, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c1, c2, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb2-14">b2_3 <span class="op" style="color: #5E5E5E;
+<span id="cb2-14">b3 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_2, c2_5, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c2, c5, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -379,9 +379,9 @@ background-color: null;
 font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.4</span>])</span>
-<span id="cb2-15">b2_4 <span class="op" style="color: #5E5E5E;
+<span id="cb2-15">b4 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_1, c2_3, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c1, c3, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -390,30 +390,30 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"A"</span>)</span>
-<span id="cb2-16">b2_5 <span class="op" style="color: #5E5E5E;
+<span id="cb2-16">b5 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_2, c2_4, order<span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"single"</span>)</span>
-<span id="cb2-17">b2_6 <span class="op" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_3, c2_4, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c2, c4, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb2-18">b2_7 <span class="op" style="color: #5E5E5E;
+<span id="cb2-17">b6 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_3, c2_5, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c3, c4, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"single"</span>)</span>
-<span id="cb2-19">b2_8 <span class="op" style="color: #5E5E5E;
+<span id="cb2-18">b7 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_4, c2_6, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c3, c5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb2-19">b8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c4, c6, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -422,9 +422,9 @@ background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"B"</span>)</span>
-<span id="cb2-20">b2_9 <span class="op" style="color: #5E5E5E;
+<span id="cb2-20">b9 <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> mol.add_bond(c2_5, c2_6, order<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> mol.add_bond(c5, c6, order<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -445,7 +445,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb2-25">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="3bf8a218" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="2">
+<div id="d36c4b5b" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -636,7 +636,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-19">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="d834e605" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="3">
+<div id="e8834c24" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -661,7 +661,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">square <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
+font-style: inherit;">=</span> (<span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">open</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -669,9 +669,13 @@ font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">^</span> identity) <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">@</span> close</span>
+font-style: inherit;">@</span> close).normalize()</span>
 <span id="cb4-2"></span>
-<span id="cb4-3">display_inline(<span class="vs" style="color: #20794D;
+<span id="cb4-3">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Square"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, <span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">r"</span><span class="dv" style="color: #AD0000;
 background-color: null;
@@ -682,20 +686,6 @@ background-color: null;
 font-style: inherit;">\{</span><span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Square"</span>, <span class="vs" style="color: #20794D;
-background-color: null;
-font-style: inherit;">r"</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
-background-color: null;
-font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\}</span><span class="vs" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"="</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Open"</span>, <span class="vs" style="color: #20794D;
 background-color: null;
@@ -721,19 +711,29 @@ font-style: inherit;">\</span><span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">cdot"</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Close"</span>, <span class="st" style="color: #20794D;
+font-style: inherit;">"Close"</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"="</span>, square)</span></code></pre></div></div>
 </details>
-<div id="cf38cd79" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="35767bba" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><img src="https://latex.codecogs.com/png.latex?%20%5CBig%5C%7B%20Square%20%5CBig%5C%7D%20=%20Open%20%5Ccdot%20(Identity%20%5Cotimes%20Identity)%20%5Ccdot%20Close%20=%20%20%5Cbegin%7Barray%7D%7B%7Cc%7C%7D%20%20%5Chline%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%20Square%20=%20%5CBig%5C%7B%20Open%20%5Ccdot%20(Identity%20%5Cotimes%20Identity)%20%5Ccdot%20Close%20%5CBig%5C%7D%20=%20%20%5Cbegin%7Barray%7D%7B%7Cc%7C%7D%20%20%5Chline%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
 </div>
 </div>
 </div>
 <ul>
-<li><strong>Verdict:</strong> Zero exception. The molecule is stable and neutral.</li>
+<li><strong>Verdict:</strong> No exception. The molecule is stable and neutral.</li>
 </ul>
 </section>
 <section id="the-triangular-ring-3-carbons" class="level4">
@@ -818,9 +818,9 @@ font-style: inherit;">"single"</span>)</span>
 <span id="cb5-13"></span>
 <span id="cb5-14">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="9eee8b92" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="5">
+<div id="e001d5f4" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://nicdeclic.com/posts/quantum-exceptions/index_files/figure-html/cell-6-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="138"></p>
@@ -838,7 +838,7 @@ font-style: inherit;">"single"</span>)</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">triangular <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> <span class="bu" style="color: null;
+font-style: inherit;">=</span> (<span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">open</span> <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -846,9 +846,13 @@ font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">^</span> identity) <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">@</span> terminate</span>
+font-style: inherit;">@</span> terminate).normalize()</span>
 <span id="cb6-2"></span>
-<span id="cb6-3">display_inline(<span class="vs" style="color: #20794D;
+<span id="cb6-3">display_inline(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Triangular"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, <span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">r"</span><span class="dv" style="color: #AD0000;
 background-color: null;
@@ -859,20 +863,6 @@ background-color: null;
 font-style: inherit;">\{</span><span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"Triangular"</span>, <span class="vs" style="color: #20794D;
-background-color: null;
-font-style: inherit;">r"</span><span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
-background-color: null;
-font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
-background-color: null;
-font-style: inherit;">\}</span><span class="vs" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"="</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"Open"</span>, <span class="vs" style="color: #20794D;
 background-color: null;
@@ -898,26 +888,1616 @@ font-style: inherit;">\</span><span class="vs" style="color: #20794D;
 background-color: null;
 font-style: inherit;">cdot"</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Terminate"</span>, <span class="st" style="color: #20794D;
+font-style: inherit;">"Terminate"</span>, <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"="</span>, triangular)</span></code></pre></div></div>
 </details>
-<div id="a39338c5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="6854e0a3" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<p><img src="https://latex.codecogs.com/png.latex?%20%5CBig%5C%7B%20Triangular%20%5CBig%5C%7D%20=%20Open%20%5Ccdot%20(Identity%20%5Cotimes%20Identity)%20%5Ccdot%20Terminate%20=%20%20%5Cbegin%7Barray%7D%7B%7Cc%7C%7D%20%20%5Chline%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%20Triangular%20=%20%5CBig%5C%7B%20Open%20%5Ccdot%20(Identity%20%5Cotimes%20Identity)%20%5Ccdot%20Terminate%20%5CBig%5C%7D%20=%20%20%5Cbegin%7Barray%7D%7B%7Cc%7C%7D%20%20%5Chline%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
 </div>
 </div>
 </div>
 <ul>
 <li><strong>Verdict: Quantum Exception!</strong> The neutral molecule cannot exist. It is forced to become an ion (such as the cyclopropenyl cation <img src="https://latex.codecogs.com/png.latex?C_3H_3%5E+">) or a radical.</li>
 </ul>
+<hr>
+</section>
+</section>
+<section id="testing-the-barred-eight-and-gate" class="level3">
+<h3 class="anchored" data-anchor-id="testing-the-barred-eight-and-gate">Testing the “Barred Eight” (AND Gate)</h3>
+<p>Let us now apply the scalar matrix contraction to the earlier AND gate structure: the <strong>Barred Eight</strong>.</p>
+<section id="case-1-floating-boundary-conditions" class="level4">
+<h4 class="anchored" data-anchor-id="case-1-floating-boundary-conditions">Case 1: Floating Boundary Conditions</h4>
+<p>First, we evaluate the circuit with all boundary terminals left floating (free to resonate):</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a conjugated carbon molecule</span></span>
+<span id="cb7-2">mol <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Barred Eight"</span>)</span>
+<span id="cb7-3"></span>
+<span id="cb7-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add atoms</span></span>
+<span id="cb7-5">c1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>)</span>
+<span id="cb7-6">c2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2"</span>)</span>
+<span id="cb7-7">c3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"3"</span>)</span>
+<span id="cb7-8">c4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"4"</span>)</span>
+<span id="cb7-9">c5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"5"</span>)</span>
+<span id="cb7-10">c6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"6"</span>)</span>
+<span id="cb7-11"></span>
+<span id="cb7-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add bonds</span></span>
+<span id="cb7-13">b1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb7-14">b3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2, c5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C"</span>, label_pos<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4</span>])</span>
+<span id="cb7-15">b4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"A"</span>)</span>
+<span id="cb7-16">b5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2, c4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb7-17">b6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c3, c4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb7-18">b7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c3, c5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb7-19">b8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c4, c6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"B"</span>)</span>
+<span id="cb7-20">b9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c5, c6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb7-21"></span>
+<span id="cb7-22">mol.draw(scale<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>) </span></code></pre></div></div>
+</details>
+<div id="68e70e65" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-exceptions/index_files/figure-html/cell-8-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="255"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Cascading the internal transition operators algebraically yields:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-exceptions/barred-eight-serial.png" class="quarto-figure quarto-figure-center figure-img" height="300"></p>
+</figure>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">and_floating <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ((<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (negate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> negate) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> close <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> identity) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> close <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> swap) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> close <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> identity) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (close)).normalize()</span>
+<span id="cb8-2"></span>
+<span id="cb8-3">matrix_tex <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> and_floating.to_katex().data.strip(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$ "</span>)</span>
+<span id="cb8-4"></span>
+<span id="cb8-5">multiline_eq <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">rf"""</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\b</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">egin</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">aligned</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span></span>
+<span id="cb8-6"><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\t</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ext</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">And</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{\t</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ext</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">floating</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> &amp;= </span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Open </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Open</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb8-7"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Negate </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Fork </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Fork </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Negate</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb8-8"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Identity </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Fork </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Close </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Fork </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Identity</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb8-9"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Identity </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Identity </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Close </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Swap</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb8-10"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Identity </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Close </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Identity</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb8-11"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Close</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> = </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>matrix_tex<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb8-12"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">end</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">aligned</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb8-13"></span>
+<span id="cb8-14">display(Latex(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"$$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>multiline_eq<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$$"</span>))</span></code></pre></div></div>
+</details>
+<div id="abcc4166" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0A%5Ctext%7BAnd%7D_%7B%5Ctext%7Bfloating%7D%7D%20&amp;=%20%5CBig%5C%7B%20(Open%20%5Cotimes%20Open)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Negate%20%5Cotimes%20Fork%20%5Cotimes%20Fork%20%5Cotimes%20Negate)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Identity%20%5Cotimes%20Fork%20%5Cotimes%20Close%20%5Cotimes%20Fork%20%5Cotimes%20Identity)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Identity%20%5Cotimes%20Identity%20%5Cotimes%20Close%20%5Cotimes%20Swap)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Identity%20%5Cotimes%20Close%20%5Cotimes%20Identity)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Close)%20%5CBig%5C%7D%20=%20%5Cbegin%7Barray%7D%7B%7Cc%7C%7D%20%20%5Chline%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%0A%5Cend%7Baligned%7D"></p>
+</div>
+</div>
+</div>
+<p>The normalized contraction evaluates strictly to <strong><img src="https://latex.codecogs.com/png.latex?%5B1%5D"></strong>.</p>
+<ul>
+<li><strong>Verdict:</strong> Zero exception. The Barred Eight possesses valid, neutral resonance states and can exist stably without spontaneous ionization.</li>
+</ul>
+</section>
+<section id="case-2-imposing-an-impossible-condition-clamped-inputsoutputs" class="level4">
+<h4 class="anchored" data-anchor-id="case-2-imposing-an-impossible-condition-clamped-inputsoutputs">Case 2: Imposing an Impossible Condition (Clamped Inputs/Outputs)</h4>
+<p>Now, let us deliberately force a logical contradiction upon the hardware:<br>
+* Clamping input <img src="https://latex.codecogs.com/png.latex?A"> to state <strong>“0”</strong> (via <img src="https://latex.codecogs.com/png.latex?Open_%7Bzero%7D">),<br>
+* While simultaneously forcing the output <img src="https://latex.codecogs.com/png.latex?C"> to state <strong>“1”</strong> (via <img src="https://latex.codecogs.com/png.latex?Close_%7Bone%7D">).</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">open_zero <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (zero_out <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> zero_out)</span>
+<span id="cb9-2">close_one <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (one_in <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> one_in)</span>
+<span id="cb9-3"></span>
+<span id="cb9-4">display_inline(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"Open_{zero} = </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Zero_{out} </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Zero_{out}</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, open_zero.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb9-5">display_inline(<span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">r"Close_{one} = </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">One_{in} </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes One_{in}</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"="</span>, close_one.to_katex(show_labels<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>))</span>
+<span id="cb9-6"></span>
+<span id="cb9-7">and_clamped <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ((open_zero <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (negate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> negate) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> close <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> fork <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> identity) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> close_one <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> swap) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (identity <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> close <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> identity) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (close)).normalize()</span>
+<span id="cb9-8"></span>
+<span id="cb9-9">matrix_tex <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> and_clamped.to_katex().data.strip(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$ "</span>)</span>
+<span id="cb9-10"></span>
+<span id="cb9-11">multiline_eq <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">rf"""</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\b</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">egin</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">aligned</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span></span>
+<span id="cb9-12"><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\t</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ext</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">And</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">_</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{\t</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ext</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">clamped</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> &amp;= </span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Open_</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">zero</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Open</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb9-13"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Negate </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Fork </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Fork </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Negate</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb9-14"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Identity </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Fork </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Close </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Fork </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Identity</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb9-15"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Identity </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Identity </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Close_</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">one</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Swap</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb9-16"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Identity </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Close </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Identity</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb9-17"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Close</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> = </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>matrix_tex<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb9-18"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">end</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">aligned</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb9-19"></span>
+<span id="cb9-20">display(Latex(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"$$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>multiline_eq<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$$"</span>))</span></code></pre></div></div>
+</details>
+<div id="f8033916" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Open_%7Bzero%7D%20=%20(Zero_%7Bout%7D%20%5Cotimes%20Zero_%7Bout%7D)%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%20Close_%7Bone%7D%20=%20(One_%7Bin%7D%20%5Cotimes%20One_%7Bin%7D)%20=%20%20%5Cbegin%7Barray%7D%7Br%7Cc%7C%7D%20%5Ctext%7B%7D%20&amp;%20~%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0A%5Ctext%7BAnd%7D_%7B%5Ctext%7Bclamped%7D%7D%20&amp;=%20%5CBig%5C%7B%20(Open_%7Bzero%7D%20%5Cotimes%20Open)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Negate%20%5Cotimes%20Fork%20%5Cotimes%20Fork%20%5Cotimes%20Negate)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Identity%20%5Cotimes%20Fork%20%5Cotimes%20Close%20%5Cotimes%20Fork%20%5Cotimes%20Identity)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Identity%20%5Cotimes%20Identity%20%5Cotimes%20Close_%7Bone%7D%20%5Cotimes%20Swap)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Identity%20%5Cotimes%20Close%20%5Cotimes%20Identity)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Close)%20%5CBig%5C%7D%20=%20%5Cbegin%7Barray%7D%7B%7Cc%7C%7D%20%20%5Chline%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%0A%5Cend%7Baligned%7D"></p>
+</div>
+</div>
+</div>
+<p>As theoretically predicted, the contracted scalar collapses strictly to <strong><img src="https://latex.codecogs.com/png.latex?%5B0%5D"></strong>.<br>
+* <strong>Verdict: Quantum Exception!</strong> The circuit rejects the impossible input/output combination. The molecule cannot satisfy these boundary conditions without forcing an ionized defect.</p>
+<hr>
+</section>
+</section>
+<section id="a-more-complex-molecule" class="level3">
+<h3 class="anchored" data-anchor-id="a-more-complex-molecule">A More Complex Molecule</h3>
+<p>Finally, let us scale up the complexity and test a polycyclic hydrocarbon composed of three fused benzene-like rings: the <strong>Triple Honeycomb</strong>.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a conjugated carbon molecule</span></span>
+<span id="cb10-2">mol <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CarbonMolecule(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Triple Honeycomb"</span>)</span>
+<span id="cb10-3"></span>
+<span id="cb10-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add atoms</span></span>
+<span id="cb10-5">c1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"1"</span>)</span>
+<span id="cb10-6">c2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2"</span>)</span>
+<span id="cb10-7">c3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"3"</span>)</span>
+<span id="cb10-8">c4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"4"</span>)</span>
+<span id="cb10-9">c5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"6"</span>)</span>
+<span id="cb10-10">c6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"7"</span>)</span>
+<span id="cb10-11">c7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"9"</span>)</span>
+<span id="cb10-12">c8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"10"</span>)</span>
+<span id="cb10-13">c9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"12"</span>)</span>
+<span id="cb10-14">c10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"13"</span>)</span>
+<span id="cb10-15">c11 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"5"</span>)</span>
+<span id="cb10-16">c12 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.25</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"8"</span>)</span>
+<span id="cb10-17">c13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_atom(x<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"11"</span>)</span>
+<span id="cb10-18"></span>
+<span id="cb10-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add bonds</span></span>
+<span id="cb10-20">b1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c2, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-21">b2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c2, c4, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-22">b3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c1, c3, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-23">b4 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c3, c5, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-24">b5 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c4, c6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-25">b6 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c5, c6, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-26">b7 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c5, c7, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-27">b8 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c6, c8, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-28">b9 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c7, c9, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-29">b10 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c8, c10, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-30">b11 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c9, c10, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-31">b12 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c4, c11, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-32">b13 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c11, c12, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-33">b14 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c12, c13, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-34">b15 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> mol.add_bond(c13, c8, order<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"single"</span>)</span>
+<span id="cb10-35"></span>
+<span id="cb10-36"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Draw with Schemdraw</span></span>
+<span id="cb10-37">mol.draw(scale<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>)</span></code></pre></div></div>
+</details>
+<div id="e64e0dd9" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-exceptions/index_files/figure-html/cell-11-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="306"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Let us verify what our matrix calculus predicts when evaluating its closed transition network:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://nicdeclic.com/posts/quantum-exceptions/triple-honeycomb-serial.png" class="quarto-figure quarto-figure-center figure-img" height="300"></p>
+</figure>
+</div>
+<p>It is possible to simplify the equation a little since <img src="https://latex.codecogs.com/png.latex?M_2%20%5Ccdot%20M_3"> cancel out.</p>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">triple_honeycomb <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ((<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (negate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> merge <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> negate) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (fork<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (negate <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> close<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span> negate) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> (terminate)).normalize()</span>
+<span id="cb11-2"></span>
+<span id="cb11-3">matrix_tex <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> triple_honeycomb.to_katex().data.strip(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"$ "</span>)</span>
+<span id="cb11-4"></span>
+<span id="cb11-5">multiline_eq <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">rf"""</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\b</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">egin</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">aligned</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span></span>
+<span id="cb11-6"><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\t</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ext</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">TripleHoneycomb</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> &amp;= </span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Open</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">^</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes 2</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb11-7"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Negate </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Merge </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Negate</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb11-8"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Fork</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">^</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes 3</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb11-9"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Negate </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Close</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">^</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes 2</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">otimes Negate</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">cdot </span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\\</span></span>
+<span id="cb11-10"><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">&amp;</span><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">quad </span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">(</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Terminate</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">)</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> </span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\B</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">ig</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> = </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>matrix_tex<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span></span>
+<span id="cb11-11"><span class="er" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">\</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">end</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{{</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">aligned</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">}}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"""</span></span>
+<span id="cb11-12"></span>
+<span id="cb11-13">display(Latex(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"$$</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>multiline_eq<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">$$"</span>))</span></code></pre></div></div>
+</details>
+<div id="66743354" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0A%5Ctext%7BTripleHoneycomb%7D%20&amp;=%20%5CBig%5C%7B%20(Open%5E%7B%5Cotimes%202%7D)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Negate%20%5Cotimes%20Merge%20%5Cotimes%20Negate)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Fork%5E%7B%5Cotimes%203%7D)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Negate%20%5Cotimes%20Close%5E%7B%5Cotimes%202%7D%20%5Cotimes%20Negate)%20%5Ccdot%20%5C%5C%0A&amp;%5Cquad%20(Terminate)%20%5CBig%5C%7D%20=%20%5Cbegin%7Barray%7D%7B%7Cc%7C%7D%20%20%5Chline%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%0A%5Cend%7Baligned%7D"></p>
+</div>
+</div>
+</div>
+<p>The contraction evaluates strictly to <strong><img src="https://latex.codecogs.com/png.latex?%5B0%5D"></strong>.</p>
+<p>In organic chemistry, this 13-carbon framework is known as <strong>Phenalene</strong> (<img src="https://latex.codecogs.com/png.latex?C_%7B13%7DH_9">).</p>
+<p>Because it contains an odd number of <img src="https://latex.codecogs.com/png.latex?sp%5E2"> carbon atoms (13 vertices), standard valence theory dictates that it cannot accommodate a closed, non-radical Kekulé resonance structure.</p>
+<p>The algebraic framework correctly identifies that <strong>Phenalene is inherently an open-shell system—an intrinsic Quantum Exception.</strong> In nature, this molecule cannot exist in a closed-shell neutral form; it spontaneously stabilizes as a <strong>free radical</strong> or an <strong>ion</strong> (the phenalenyl cation <img src="https://latex.codecogs.com/png.latex?C_%7B13%7DH_9%5E+"> or anion <img src="https://latex.codecogs.com/png.latex?C_%7B13%7DH_9%5E-">).</p>
+<p>The matrix algebra reproduces the empirical reality of physical chemistry with absolute precision.</p>
+<hr>
+</section>
+</section>
+<section id="the-exponential-bottleneck-of-classical-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="the-exponential-bottleneck-of-classical-simulation">The Exponential Bottleneck of Classical Simulation</h2>
 <p>Of course, evaluating this matrix contraction is not magically free.</p>
 <p>As the molecular graph expands, computing the global transition matrix algebraically requires manipulating matrix dimensions that scale exponentially. For large and sprawling molecular networks, this classical matrix algebra rapidly becomes computationally demanding.</p>
 <p>Nevertheless, at the conceptual and formal level, the algebraic criterion remains absolute: if the normalized scalar evaluates to <img src="https://latex.codecogs.com/png.latex?%5B0%5D">, nature raises an unhandled quantum exception—the problem remains physically unresolved unless an external charge is introduced.</p>
 <hr>
-</section>
-</section>
 </section>
 <section id="speculations-wild-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="speculations-wild-thoughts"><img src="https://nicdeclic.com/images/warning.png" class="img-fluid" width="50"> Speculations &amp; Wild Thoughts</h2>
@@ -3993,7 +5573,7 @@ background-color: null;
 font-style: inherit;">"right"</span>)</span>
 <span id="cb2-39">    )</span></code></pre></div></div>
 </details>
-<div id="9d847bd4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="9d847bd4" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4309,7 +5889,7 @@ font-style: inherit;">"single"</span>)</span>
 <span id="cb3-40"></span>
 <span id="cb3-41">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="16edbcc6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="16edbcc6" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4335,7 +5915,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="d8ad9e76" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="d8ad9e76" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20X_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -4551,7 +6131,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="5a2de688" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
+<div id="5a2de688" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4940,7 +6520,7 @@ font-style: inherit;">"$B1$"</span>)</span>
 <span id="cb6-45"></span>
 <span id="cb6-46">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="2e8f5fba" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="2e8f5fba" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -4969,7 +6549,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb7-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="2996afa4" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="7">
+<div id="2996afa4" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5050,7 +6630,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="41504db6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="41504db6" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Y_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -5233,7 +6813,7 @@ font-style: inherit;">1</span>])))</span>
 background-color: null;
 font-style: inherit;">"|-"</span>).to(xor_gate.in1))</span></code></pre></div></div>
 </details>
-<div id="05f9213e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
+<div id="05f9213e" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5565,7 +7145,7 @@ font-style: inherit;">"$B2$"</span>)</span>
 <span id="cb10-38"></span>
 <span id="cb10-39">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="0aa7e74b" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div id="0aa7e74b" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -5591,7 +7171,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="d16a947e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
+<div id="d16a947e" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Z_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -5830,7 +7410,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="99bd1bd3" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
+<div id="99bd1bd3" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6331,7 +7911,7 @@ font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>) </span></code></pre></div></div>
 </details>
-<div id="b0885371" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="b0885371" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6360,7 +7940,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb14-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="132d56fd" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="14">
+<div id="132d56fd" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -6441,7 +8021,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="216c57e4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div id="216c57e4" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20S_%7Bproto%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%60000''%7D%20&amp;%20%5Ctext%7B%60%60001''%7D%20&amp;%20%5Ctext%7B%60%60010''%7D%20&amp;%20%5Ctext%7B%60%60011''%7D%20&amp;%20%5Ctext%7B%60%60100''%7D%20&amp;%20%5Ctext%7B%60%60101''%7D%20&amp;%20%5Ctext%7B%60%60110''%7D%20&amp;%20%5Ctext%7B%60%60111''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%60000''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60001''%7D%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60010''%7D%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60100''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60101''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%5Ctext%7B%60%60110''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%60111''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -6769,7 +8349,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb16-46">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="ad42921f" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="16">
+<div id="ad42921f" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7124,7 +8704,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="ce929b9a" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
+<div id="ce929b9a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7272,7 +8852,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="41775da6" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div id="41775da6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7415,7 +8995,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="fa93757a" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div id="fa93757a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7561,7 +9141,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="0eb93820" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
+<div id="0eb93820" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7599,7 +9179,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="327fa196" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="327fa196" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20%7BAnd%7D%20%5Ccdot%20%7BAnd%7D%5E%7B-1%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%6000''%7D%20&amp;%200.33%20&amp;%200.33%20&amp;%200.33%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6001''%7D%20&amp;%200.33%20&amp;%200.33%20&amp;%200.33%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6010''%7D%20&amp;%200.33%20&amp;%200.33%20&amp;%200.33%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%6011''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -7715,7 +9295,7 @@ font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>))</span></code></pre></div></div>
 </details>
-<div id="a6d22459" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="a6d22459" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -7753,7 +9333,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="df49b781" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div id="df49b781" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20%7BAnd%7D%5E%7B-1%7D%20%5Ccdot%20%7BAnd%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%201%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -7780,7 +9360,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="8fda4a93" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div id="8fda4a93" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20%7BRandom%7D%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%600''%7D%20&amp;%20%5Ctext%7B%60%601''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200.5%20&amp;%200.5%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -7915,7 +9495,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))    </span></code></pre></div></div>
 </details>
-<div id="0637b81e" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div id="0637b81e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8066,7 +9646,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))   </span></code></pre></div></div>
 </details>
-<div id="5bb70dc9" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div id="5bb70dc9" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8216,7 +9796,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))     </span></code></pre></div></div>
 </details>
-<div id="85f8ee67" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
+<div id="85f8ee67" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8401,7 +9981,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="54621b32" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+<div id="54621b32" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8579,7 +10159,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="1e929779" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="1">
+<div id="1e929779" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8697,7 +10277,7 @@ font-style: inherit;"># Route to bottom input (in2)</span></span>
 background-color: null;
 font-style: inherit;">"-|"</span>).at(input_A.end).to(and_gate.in2))</span></code></pre></div></div>
 </details>
-<div id="ba9e77f4" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
+<div id="ba9e77f4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -8762,7 +10342,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="1dc5c944" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="1">
+<div id="1dc5c944" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20(%20A%20%5Cotimes%20A%20)%20=%20(%20Random%20%5Cotimes%20Random%20)%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200.25%20&amp;%200.25%20&amp;%200.25%20&amp;%200.25%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -8791,7 +10371,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="9a117384" class="cell quarto-layout-panel" data-execution_count="17" data-layout-ncol="1">
+<div id="9a117384" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="17">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20Split%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20%5Ctext%7B%60%600''%7D%20&amp;%201%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%20%5Ctext%7B%60%601''%7D%20&amp;%200%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -8821,7 +10401,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="7d6a3376" class="cell quarto-layout-panel" data-execution_count="18" data-layout-ncol="1">
+<div id="7d6a3376" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="18">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20A%20%5Ccdot%20Split%20=%20%20%5Cbegin%7Barray%7D%7Br%7Ccccc%7C%7D%20%5Ctext%7B%7D%20&amp;%20%5Ctext%7B%60%6000''%7D%20&amp;%20%5Ctext%7B%60%6001''%7D%20&amp;%20%5Ctext%7B%60%6010''%7D%20&amp;%20%5Ctext%7B%60%6011''%7D%20%5C%5C%20%20%5Chline%20~%20&amp;%200.5%20&amp;%200%20&amp;%200%20&amp;%200.5%20%5C%5C%20%20%5Chline%20%5Cend%7Barray%7D%20%20"></p>
@@ -8879,7 +10459,7 @@ font-style: inherit;">"="</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"A"</span>)</span></code></pre></div></div>
 </details>
-<div id="9594ae6a" class="cell quarto-layout-panel" data-execution_count="19" data-layout-ncol="1">
+<div id="9594ae6a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="19">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20(%20A%20%5Ccdot%20Split%20)%20%5Ccdot%20And%20=%20B%20"></p>
@@ -9214,7 +10794,7 @@ font-style: inherit;">"B"</span>)</span>
 <span id="cb2-22"></span>
 <span id="cb2-23">mol.draw() </span></code></pre></div></div>
 </details>
-<div id="04d80ad4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div id="04d80ad4" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -9261,7 +10841,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-8">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="2487d471" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="2487d471" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -9454,7 +11034,7 @@ font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">True</span>))</span></code></pre></div></div>
 </details>
-<div id="b7451562" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="b7451562" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%20A%20%5Cotimes%20B%20=%20%5CBig%5C%7B%20%5Ctext%7B%60%6000''%7D%20+%20%5Ctext%7B%60%6011''%7D%20%5CBig%5C%7D%20"></p>
@@ -17279,7 +18859,7 @@ font-style: inherit;">"double"</span></span>
 <span id="cb3-27"></span>
 <span id="cb3-28">mol.draw()</span></code></pre></div></div>
 </details>
-<div id="616eb078" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="616eb078" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -17683,7 +19263,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb6-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="817c067b" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="2">
+<div id="817c067b" class="cell quarto-layout-panel" data-layout-ncol="2" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -17706,7 +19286,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="92b96beb" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="92b96beb" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20%5C%5C%20%5Chline%200%20&amp;%201%20%5C%5C%201%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -17911,7 +19491,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb9-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="ec46d289" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="4">
+<div id="ec46d289" class="cell quarto-layout-panel" data-layout-ncol="4" data-execution_count="9">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -17948,7 +19528,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="e683e4b0" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div id="e683e4b0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20%5C%5C%20%5Chline%200%20&amp;%200%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%200%20%5C%5C%201%20&amp;%200%20&amp;%200%20%5C%5C%201%20&amp;%201%20&amp;%201%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -18165,7 +19745,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb12-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="b0960598" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="3">
+<div id="b0960598" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="12">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -18211,7 +19791,7 @@ font-style: inherit;">enumerate</span>(all_resonances):</span>
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">CarbonMolecule.resonance_table(all_resonances)</span></code></pre></div></div>
 </details>
-<div id="99a4d94a" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+<div id="99a4d94a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <p><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Barray%7D%7B%7Cc%7Cc%7Cc%7Cc%7C%7D%20%5Chline%20%5Cmathbf%7BA%7D%20&amp;%20%5Cmathbf%7BB%7D%20&amp;%20%5Cmathbf%7BC%7D%20&amp;%20%5Cmathbf%7BD%7D%20%5C%5C%20%5Chline%200%20&amp;%200%20&amp;%200%20&amp;%200%20%5C%5C%200%20&amp;%201%20&amp;%200%20&amp;%201%20%5C%5C%200%20&amp;%201%20&amp;%201%20&amp;%200%20%5C%5C%201%20&amp;%200%20&amp;%200%20&amp;%201%20%5C%5C%201%20&amp;%200%20&amp;%201%20&amp;%200%20%5C%5C%20%5Chline%20%5Cend%7Barray%7D"></p>
@@ -20773,7 +22353,7 @@ background-color: null;
 font-style: inherit;"># Draw with Schemdraw</span></span>
 <span id="cb2-95">mol3.draw()</span></code></pre></div></div>
 </details>
-<div id="99f01c1b" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="3">
+<div id="99f01c1b" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
@@ -20830,7 +22410,7 @@ background-color: null;
 font-style: inherit;">enumerate</span>(all_resonances):</span>
 <span id="cb3-4">    res_mol.draw() </span></code></pre></div></div>
 </details>
-<div id="f1a95dc6" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="3">
+<div id="f1a95dc6" class="cell quarto-layout-panel" data-layout-ncol="3" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
