@@ -10,7 +10,7 @@ image: "/images/5year old toys.jpg"
 ![](/images/5year old toys.jpg)  
 
 ::: {.text-end}
-> *“Truth is not complex. It is our journey toward it that is.”*  
+> *“The present is merely a child drawing on the walls of eternity. Let it scribble.”*  
 > — **Professor Alvin**
 :::
 

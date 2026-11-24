@@ -492,4 +492,4 @@ Admittedly, this drifts far into the realm of wild, untamed speculation.
 ---
 
 👉 **Next chapter :**  
-**["Quantum Set Theory"](/posts/quantum-set-theory/index.html)**
+**["Quantum 2D Bridges"](/posts/2d-bridge/index.html)**
